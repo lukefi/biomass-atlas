@@ -141,6 +141,7 @@
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<webAppConfig>
 						<contextPath>/</contextPath>
+						<extraClasspath>${luke.oskariconfdir}</extraClasspath>
 					</webAppConfig>
 				</configuration>
 			</plugin>
