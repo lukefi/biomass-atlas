@@ -1,0 +1,3 @@
+[submodule "WebContent/Oskari"]
+	path = WebContent/Oskari
+	url = http://10.62.5.245:82/git/ext/nls-oskari/oskari
