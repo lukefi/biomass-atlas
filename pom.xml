@@ -10,6 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<oskari.version>1.30.1</oskari.version>
 	</properties>
 
 	<dependencies>
@@ -22,7 +23,12 @@
 		<dependency>
 			<groupId>fi.nls.oskari</groupId>
 			<artifactId>map-servlet</artifactId>
-			<version>1.30.1</version>
+			<version>${oskari.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fi.nls.oskari</groupId>
+			<artifactId>service-logging</artifactId>
+			<version>${oskari.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>fi.luke</groupId>
@@ -39,6 +45,16 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.12</version>
 		</dependency>
 	</dependencies>
 
