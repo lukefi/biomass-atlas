@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Standalone servlet - ${viewName} view</title>
+    <title>Biomassa-atlas</title>
 
     <script type="text/javascript" src="/Oskari/libraries/jquery/jquery-1.7.1.min.js">
     </script>

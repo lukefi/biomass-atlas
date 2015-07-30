@@ -48,6 +48,7 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/Oskari/*</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
