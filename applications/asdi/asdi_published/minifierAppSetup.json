@@ -1,0 +1,134 @@
+{
+    "startupSequence": [{
+        "title": "OpenLayers",
+        "bundlename": "openlayers-default-theme",
+        "bundleinstancename": "openlayers-default-theme",
+        "metadata": {
+            "Import-Bundle": {
+                "openlayers-default-theme": {
+                    "bundlePath": "../../../packages/openlayers/bundle/"
+                },
+                "openlayers-full-map": {
+                    "bundlePath": "../../../packages/openlayers/bundle/"
+                }
+            }
+        }
+    }, {
+        "title": "Map",
+        "bundlename": "mapfull",
+        "bundleinstancename": "mapfull",
+        "metadata": {
+            "Import-Bundle": {
+                "mapwmts": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "service-base": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "event-map-layer": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "request-map-layer": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "mapmodule-plugin": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },               
+                "event-base": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "mapfull": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "core-base": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "oskariui": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "request-base": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "domain": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "core-map": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "request-map": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "sandbox-base": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "service-map": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "sandbox-map": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "event-map": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                },
+                "ui-components": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
+        "title": "Oskari DIV Manazer",
+        "bundlename": "divmanazer",
+        "bundleinstancename": "divmanazer",
+        "metadata": {
+            "Import-Bundle": {
+                "divmanazer": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
+        "title": "InfoBox",
+        "bundlename": "infobox",
+        "bundleinstancename": "infobox",
+        "metadata": {
+            "Import-Bundle": {
+                "infobox": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
+        "title": "PostProcessor",
+        "bundlename": "postprocessor",
+        "bundleinstancename": "postprocessor",
+        "metadata": {
+            "Import-Bundle": {
+                "postprocessor": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
+        "title": "Toolbar",
+        "bundleinstancename": "toolbar",
+        "bundlename": "toolbar",
+        "metadata": {
+            "Import-Bundle": {
+                "toolbar": {
+                    "bundlePath": "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }, {
+        "title" : "publishedstatehandler",
+        "bundlename" : "publishedstatehandler",
+        "bundleinstancename" : "publishedstatehandler",
+        "metadata" : {
+            "Import-Bundle" : {
+                "publishedstatehandler" : {
+                    "bundlePath" : "../../../packages/framework/bundle/"
+                }
+            }
+        }
+    }]
+}

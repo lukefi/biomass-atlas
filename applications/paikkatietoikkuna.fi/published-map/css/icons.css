@@ -1,0 +1,552 @@
+.backendstatus-down {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: 0px 0px !important;
+}
+
+.backendstatus-maintenance-pending {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -20px 0px !important;
+}
+
+.backendstatus-maintenance {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -40px 0px !important;
+}
+
+.component-indexmap {
+    width: 46px;
+    height: 46px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -60px 0px !important;
+}
+
+.component-indexmap:hover {
+    width: 46px;
+    height: 46px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -60px -46px !important;
+}
+
+.icon-arrow-white-down {
+    width: 13px;
+    height: 15px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -106px 0px !important;
+}
+
+.icon-arrow-white-right {
+    width: 13px;
+    height: 15px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -119px 0px !important;
+}
+
+.icon-close-dark {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -132px 0px !important;
+}
+
+.icon-close-white {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -148px 0px !important;
+}
+
+.icon-close {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -168px 0px !important;
+}
+
+.icon-close:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -168px -16px !important;
+}
+
+.icon-drag {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -184px 0px !important;
+}
+
+.icon-drag:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -184px -16px !important;
+}
+
+.icon-funnel {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -200px 0px !important;
+}
+
+.icon-info {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -216px 0px !important;
+}
+
+.icon-info:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -216px -16px !important;
+}
+
+.icon-maximize {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -232px 0px !important;
+}
+
+.icon-maximize:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -232px -16px !important;
+}
+
+.icon-menu {
+    width: 25px;
+    height: 7px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -248px 0px !important;
+}
+
+.icon-minimize {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -273px 0px !important;
+}
+
+.icon-minimize:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -273px -16px !important;
+}
+
+.icon-restore {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -289px 0px !important;
+}
+
+.icon-restore:hover {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -289px -16px !important;
+}
+
+.layer-analysis {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -305px 0px !important;
+}
+
+.layer-base {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -321px 0px !important;
+}
+
+.layer-gfi-1 {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -337px 0px !important;
+}
+
+.layer-gfi-2 {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -353px 0px !important;
+}
+
+.layer-group {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -369px 0px !important;
+}
+
+.layer-vector {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -385px 0px !important;
+}
+
+.layer-wfs {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -401px 0px !important;
+}
+
+.layer-wms {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -417px 0px !important;
+}
+
+.layer-wmts {
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -433px 0px !important;
+}
+
+.marker {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -449px 0px !important;
+}
+
+.myplaces-draw-area {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -481px 0px !important;
+}
+
+.myplaces-draw-line {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -513px 0px !important;
+}
+
+.myplaces-draw-point {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -545px 0px !important;
+}
+
+.tool-history-back {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -577px 0px !important;
+}
+
+.tool-history-forward {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -609px 0px !important;
+}
+
+.tool-measure-area {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -641px 0px !important;
+}
+
+.tool-measure-line {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -673px 0px !important;
+}
+
+.tool-reset {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -705px 0px !important;
+}
+
+.menu-3d-dark {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -737px 0px !important;
+}
+
+.menu-3d-light {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -772px 0px !important;
+}
+
+.menu-rounded-dark {
+    width: 36px;
+    height: 36px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -807px 0px !important;
+}
+
+.menu-rounded-light {
+    width: 36px;
+    height: 36px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -843px 0px !important;
+}
+
+.menu-sharp-dark {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -879px 0px !important;
+}
+
+.menu-sharp-light {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -914px 0px !important;
+}
+
+.mylocation-3d-dark {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -949px 0px !important;
+}
+
+.mylocation-3d-light {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -984px 0px !important;
+}
+
+.mylocation-rounded-dark {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1019px 0px !important;
+}
+
+.mylocation-rounded-light {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1054px 0px !important;
+}
+
+.mylocation-sharp-dark {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1089px 0px !important;
+}
+
+.mylocation-sharp-light {
+    width: 35px;
+    height: 35px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1124px 0px !important;
+}
+
+.myplaces-draw-area-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1159px 0px !important;
+}
+
+.myplaces-draw-area-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1191px 0px !important;
+}
+
+.myplaces-draw-line-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1223px 0px !important;
+}
+
+.myplaces-draw-line-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1255px 0px !important;
+}
+
+.myplaces-draw-point-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1287px 0px !important;
+}
+
+.myplaces-draw-point-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1319px 0px !important;
+}
+
+.tool-history-back-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1351px 0px !important;
+}
+
+.tool-history-back-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1383px 0px !important;
+}
+
+.tool-history-forward-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1415px 0px !important;
+}
+
+.tool-history-forward-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1447px 0px !important;
+}
+
+.tool-measure-area-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1479px 0px !important;
+}
+
+.tool-measure-area-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1511px 0px !important;
+}
+
+.tool-measure-line-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1543px 0px !important;
+}
+
+.tool-measure-line-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1575px 0px !important;
+}
+
+.tool-zoombox-dark {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1607px 0px !important;
+}
+
+.tool-zoombox-light {
+    width: 32px;
+    height: 32px;
+    background-image: url('../icons/icons.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: -1639px 0px !important;
+}
+
