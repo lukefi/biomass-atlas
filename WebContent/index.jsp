@@ -6,26 +6,26 @@
 <head>
     <title>Biomassa-atlas</title>
 
-    <script type="text/javascript" src="/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
     </script>
     <!-- ############# css ################# -->
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari${path}/css/icons.css"/>
+            href="${pageContext.request.contextPath}/Oskari${path}/css/icons.css"/>
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari${path}/css/forms.css"/>
+            href="${pageContext.request.contextPath}/Oskari${path}/css/forms.css"/>
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari${path}/css/portal.css"/>
+            href="${pageContext.request.contextPath}/Oskari${path}/css/portal.css"/>
 
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari${path}/css/overwritten.css"/>
+            href="${pageContext.request.contextPath}/Oskari${path}/css/overwritten.css"/>
     <style type="text/css">
         @media screen {
             body {
@@ -58,7 +58,7 @@
             #login input[type="text"], #login input[type="password"] {
                 width: 90%;
                 margin-bottom: 5px;
-                background-image: url("/Oskari${path}/images/forms/input_shadow.png");
+                background-image: url("${pageContext.request.contextPath}/Oskari${path}/images/forms/input_shadow.png");
                 background-repeat: no-repeat;
                 padding-left: 5px;
                 padding-right: 5px;
@@ -147,7 +147,7 @@
 <!--  OSKARI -->
 
 <script type="text/javascript">
-    var ajaxUrl = '${ajaxUrl}';
+    var ajaxUrl = '${pageContext.request.contextPath}${ajaxUrl}';
     var viewId = '${viewId}';
     var language = '${language}';
     var preloaded = ${preloaded};
@@ -155,36 +155,36 @@
 </script>
 
 <script type="text/javascript"
-        src="/Oskari/bundles/bundle.js">
+        src="${pageContext.request.contextPath}/Oskari/bundles/bundle.js">
 </script>
 
 <!--  OPENLAYERS -->
 <script type="text/javascript"
-        src="/Oskari/packages/openlayers/startup.js">
+        src="${pageContext.request.contextPath}/Oskari/packages/openlayers/startup.js">
 </script>
 
 <c:if test="${preloaded}">
     <!-- Pre-compiled application JS, empty unless created by build job -->
     <script type="text/javascript"
-            src="/Oskari${path}/oskari.min.js">
+            src="${pageContext.request.contextPath}/Oskari${path}/oskari.min.js">
     </script>
     <!-- Minified CSS for preload -->
     <link
             rel="stylesheet"
             type="text/css"
-            href="/Oskari${path}/oskari.min.css"
+            href="${pageContext.request.contextPath}/Oskari${path}/oskari.min.css"
             />
     <%--language files --%>
     <script type="text/javascript"
-            src="/Oskari${path}/oskari_lang_all.js">
+            src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_all.js">
     </script>
     <script type="text/javascript"
-            src="/Oskari${path}/oskari_lang_${language}.js">
+            src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_${language}.js">
     </script>
 </c:if>
 
 <script type="text/javascript"
-        src="/Oskari${path}/index.js">
+        src="${pageContext.request.contextPath}/Oskari${path}/index.js">
 </script>
 
 
