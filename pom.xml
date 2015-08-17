@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>fi.nls.oskari</groupId>
 			<artifactId>service-logging</artifactId>
-			<version>1.31.0-SNAPSHOT</version>
+			<version>${oskari.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>fi.luke</groupId>
