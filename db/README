@@ -1,0 +1,4 @@
+You need to build content-resources as a tool and use it to initialize the database:
+
+content-resources> mvn assembly:assembly
+content-resources> java "-Doskari.dropdb=true" "-Doskari.setup=bma" "-Doskari.resourceOverlayDir=c:/workspace/bma/db" -jar target/content-resources-1.31.0-SNAPSHOT-jar-with-dependencies.jar c:/workspace/conf/db-bma.properties

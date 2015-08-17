@@ -147,7 +147,7 @@
 <!--  OSKARI -->
 
 <script type="text/javascript">
-    var ajaxUrl = '${pageContext.request.contextPath}${ajaxUrl}';
+    var ajaxUrl = '${ajaxUrl}';
     var viewId = '${viewId}';
     var language = '${language}';
     var preloaded = ${preloaded};
