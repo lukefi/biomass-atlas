@@ -175,6 +175,7 @@
 					<webAppConfig>
 						<contextPath>/</contextPath>
 						<extraClasspath>${luke.oskariconfdir}</extraClasspath>
+						<overrideDescriptor>${basedir}/WebContent/WEB-INF/jetty-override-web.xml</overrideDescriptor>
 					</webAppConfig>
 				</configuration>
 			</plugin>

@@ -46,14 +46,9 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/Oskari/*</url-pattern>
-        <url-pattern>/favicon.ico</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>mapFullServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/main</url-pattern>
+        <url-pattern>/service</url-pattern>
     </servlet-mapping>
 
     <filter-mapping>
@@ -76,11 +71,8 @@
         <servlet-name>mapFullServlet</servlet-name>
     </filter-mapping>
 
-
-    <!-- <resource-ref>
-        <description>Primary database</description>
-        <res-ref-name>${db.jndi.name}</res-ref-name>
-        <res-type>${db.jndi.type}</res-type>
-        <res-auth>${db.jndi.auth}</res-auth>
-    </resource-ref>  -->
+    <welcome-file-list>
+        <welcome-file>main</welcome-file>
+    </welcome-file-list>
+    
 </web-app>
