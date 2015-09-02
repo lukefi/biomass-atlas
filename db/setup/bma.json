@@ -10,7 +10,7 @@
         "populate-inspire-themes-and-groups"
     ],
     "views" : [
-        "default-view.json"
+        "biomassaatlas-view.json"
     ],
     "sql" : [
         "add_oskari_wfs_parser_config.sql",

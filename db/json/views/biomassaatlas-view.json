@@ -64,7 +64,6 @@
         { "id" : "publisher" },
         { "id" : "maplegend" },
         { "id" : "userguide" },
-        { "id" : "polygonsearch" },
         { "id" : "heatmap" }
     ]
 }
