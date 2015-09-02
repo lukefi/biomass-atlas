@@ -9,7 +9,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<oskari.version>1.30.1</oskari.version>
+		<oskari.version>1.31.0</oskari.version>
 	</properties>
 
 	<scm>
@@ -39,7 +39,7 @@
 		</dependency>
 		<dependency>
 			<groupId>fi.nls.oskari</groupId>
-			<artifactId>map-servlet</artifactId>
+			<artifactId>servlet-map</artifactId>
 			<version>${oskari.version}</version>
 		</dependency>
 		<dependency>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>fi.luke</groupId>
 			<artifactId>common</artifactId>
-			<version>3.5</version>
+			<version>3.6-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
@@ -168,15 +168,14 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.1.5.v20140505</version>
 				<configuration>
-					<webAppSourceDirectory>${basedir}/WebContent</webAppSourceDirectory>
 					<stopPort>9966</stopPort>
 					<stopKey>sidfhsdfh</stopKey>
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<webAppConfig>
 						<contextPath>/</contextPath>
 						<extraClasspath>${luke.oskariconfdir}</extraClasspath>
-						<overrideDescriptor>${basedir}/WebContent/WEB-INF/jetty-override-web.xml</overrideDescriptor>
 					</webAppConfig>
+					<webAppSourceDirectory>${basedir}/WebContent</webAppSourceDirectory>
 				</configuration>
 			</plugin>
 
