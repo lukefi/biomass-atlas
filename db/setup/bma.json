@@ -9,6 +9,11 @@
         "postgres-add-JAAS",
         "populate-inspire-themes-and-groups"
     ],
+    "bundles" : {
+        "bma" : [
+            "testbundle.sql"
+        ]
+    },
     "views" : [
         "biomassaatlas-view.json"
     ],
