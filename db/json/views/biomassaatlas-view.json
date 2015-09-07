@@ -47,8 +47,7 @@
             "id" : "toolbar",
             "config" : {
                 "viewtools": {
-                    "print" : true,
-                    "link" : false
+                    "link" : true
                 }
             }
         },
@@ -64,6 +63,7 @@
         { "id" : "publisher" },
         { "id" : "maplegend" },
         { "id" : "userguide" },
+        { "id" : "printout" },
         { "id" : "heatmap" }
     ]
 }
