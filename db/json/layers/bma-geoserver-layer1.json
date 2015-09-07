@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://joktomcat2.ns.luke.fi/geoserver/wms",
+    "name":"bma:hila1kmvehmaavantaa_peltokokala",
+    "organization": "Biomassa-atlas",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Peltoja Vehmaa-Vantaa"
+        },
+        "sv": {
+            "name": "Peltoja Vehmaa-Vantaa"
+        },
+        "en": {
+            "name": "Peltoja Vehmaa-Vantaa"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

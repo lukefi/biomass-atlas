@@ -7,7 +7,8 @@
         "postgres-add-userlayers",
         "postgres-add-users",
         "postgres-add-JAAS",
-        "populate-inspire-themes-and-groups"
+        "populate-inspire-themes-and-groups",
+        "bma-early-db-init"
     ],
     "bundles" : {
         "bma" : [
