@@ -77,7 +77,7 @@
     <column id="COL19" populated="true" UUID="8992f285-8a24-493b-8fe1-c168b726d8e5" autoIncrement="false" autoIncrementSequenceName="grid_cell_cell_id_seq" defaultValue="" name="cell_id" nullable="0" physicalName="cell_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
      <remarks>ID of the cell in the original source of the grid (väestoruudukko, municipality number etc.)</remarks>
     </column>
-    <column id="COL20" populated="true" UUID="dd71ba05-059c-4387-ad82-4d1e9c557ef1" autoIncrement="false" autoIncrementSequenceName="grid_cell_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL20" populated="true" UUID="dd71ba05-059c-4387-ad82-4d1e9c557ef1" autoIncrement="false" autoIncrementSequenceName="grid_cell_name_seq" defaultValue="" name="name" nullable="1" physicalName="name" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks>Municipality name or similar.</remarks>
     </column>
     <column id="COL21" populated="true" UUID="93c28629-6263-4167-816f-6f02810bdab9" autoIncrement="false" autoIncrementSequenceName="grid_cell_geometry_seq" defaultValue="" name="geometry" nullable="0" physicalName="geometry" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
@@ -190,7 +190,7 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
