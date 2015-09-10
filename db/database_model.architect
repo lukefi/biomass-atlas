@@ -155,7 +155,7 @@
     <column id="COL40" populated="true" UUID="d3d4eb9c-e02d-417e-9d45-bfa9a61bed66" autoIncrement="false" autoIncrementSequenceName="biomass_category_en_seq" defaultValue="" name="en" nullable="0" physicalName="en" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL41" populated="true" UUID="1792cf6b-68c6-4d0f-bf9e-b307cc7dc3f4" autoIncrement="false" autoIncrementSequenceName="biomass_category_parent_category_seq" defaultValue="" name="parent_category" nullable="0" physicalName="parent_category" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+    <column id="COL41" populated="true" UUID="1792cf6b-68c6-4d0f-bf9e-b307cc7dc3f4" autoIncrement="false" autoIncrementSequenceName="biomass_category_parent_category_seq" defaultValue="" name="parent_category" nullable="1" physicalName="parent_category" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
      <remarks></remarks>
     </column>
     </folder>
@@ -185,8 +185,8 @@
    <relationship id="REL52" populated="true" UUID="404b1623-b98d-43d1-93aa-baeb29ba2d2d" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="biomass_category_attribute_fk" physicalName="biomass_category_attribute_fk" pk-table-ref="TAB37" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP53" populated="true" UUID="ac7c9433-bb03-4c9b-8f99-71d3d6dc6202" fk-column-ref="COL5" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL38" />
    </relationship>
-   <relationship id="REL54" populated="true" UUID="3686adf3-606c-4294-8a19-68787f86ddda" deferrability="7" deleteRule="3" fk-table-ref="TAB37" fkCardinality="7" identifying="false" name="biomass_category_biomass_category_fk" physicalName="biomass_category_biomass_category_fk" pk-table-ref="TAB37" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP55" populated="true" UUID="7da91933-1c10-4b54-a152-628a82ef6105" fk-column-ref="COL41" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL38" />
+   <relationship id="REL54" populated="true" UUID="3686adf3-606c-4294-8a19-68787f86ddda" deferrability="7" deleteRule="3" fk-table-ref="TAB37" fkCardinality="7" identifying="false" name="biomass_category_biomass_category_fk" physicalName="biomass_category_biomass_category_fk" pk-table-ref="TAB37" pkCardinality="3" updateRule="3" >
+    <column-mapping id="CMP55" populated="true" UUID="a3dc0f7d-7791-49df-bdb2-0a9f92356e6d" fk-column-ref="COL41" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL38" />
    </relationship>
   </relationships>
  </target-database>
