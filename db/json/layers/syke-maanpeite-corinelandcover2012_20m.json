@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Maanpeite/MapServer/WMSServer",
+    "name":"CorineLandCover2012_20m",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "CorineLandCover 2012 20m"
+        },
+        "sv": {
+            "name": "CorineLandCover 2012 20m"
+        },
+        "en": {
+            "name": "CorineLandCover 2012 20m"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
