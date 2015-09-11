@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_Geologia/MapServer/WMSServer",
+    "name":"Pohjavesialuerajat",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Pohjavesialue"
+        },
+        "sv": {
+            "name": "Pohjavesialue"
+        },
+        "en": {
+            "name": "Pohjavesialue"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

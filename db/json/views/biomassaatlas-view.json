@@ -16,6 +16,7 @@
         "syke-hydrografia-riverbasin.json",
         "syke-hydrografia-drainagebasin.json",
         "syke-hydrografia-hydronode.json",
+        "syke-geologia-pohjavesialuerajat.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [
