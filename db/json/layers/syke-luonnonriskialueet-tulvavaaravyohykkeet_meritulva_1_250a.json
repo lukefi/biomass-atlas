@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Luonnonriskialueet/MapServer/WMSServer",
+    "name":"Tulvavaaravyohykkeet_Meritulva_1_250a",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Tulvavaaravyöhykkeet - Meritulva_1_250a"
+        },
+        "sv": {
+            "name": "Tulvavaaravyöhykkeet - Meritulva_1_250a"
+        },
+        "en": {
+            "name": "Tulvavaaravyöhykkeet - Meritulva_1_250a"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

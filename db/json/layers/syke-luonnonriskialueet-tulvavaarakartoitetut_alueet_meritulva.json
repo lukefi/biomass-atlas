@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Luonnonriskialueet/MapServer/WMSServer",
+    "name":"Tulvavaarakartoitetut_alueet_Meritulva",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Tulvavaarakartoitetut alueet - Meritulva"
+        },
+        "sv": {
+            "name": "Tulvavaarakartoitetut alueet - Meritulva"
+        },
+        "en": {
+            "name": "Tulvavaarakartoitetut alueet - Meritulva"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

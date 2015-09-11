@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Luonnonriskialueet/MapServer/WMSServer",
+    "name":"Merkittavat_tulvariskialueet",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Merkittävät tulvariskialueet"
+        },
+        "sv": {
+            "name": "Merkittävät tulvariskialueet"
+        },
+        "en": {
+            "name": "Merkittävät tulvariskialueet"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
