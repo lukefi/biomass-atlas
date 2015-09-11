@@ -13,6 +13,8 @@
         "wmslayer-openstreetmap-demo-fi.json",
         "syke-hydrografia-jarvet.json",
         "syke-hydrografia-aluemaisetjoet.json",
+        "syke-hydrografia-riverbasin.json",
+        "syke-hydrografia-drainagebasin.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [
