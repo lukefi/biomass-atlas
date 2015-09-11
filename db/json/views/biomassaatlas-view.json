@@ -11,6 +11,7 @@
     },
     "selectedLayers" : [
         "wmslayer-openstreetmap-demo-fi.json",
+        "syke-hydrografia-jarvet.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [
