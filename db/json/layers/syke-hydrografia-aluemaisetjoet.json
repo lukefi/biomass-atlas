@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Hydrografia/MapServer/WMSServer",
+    "name":"Aluemaiset_joet",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Aluemaiset joet"
+        },
+        "sv": {
+            "name": "Aluemaiset joet"
+        },
+        "en": {
+            "name": "Aluemaiset joet"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
