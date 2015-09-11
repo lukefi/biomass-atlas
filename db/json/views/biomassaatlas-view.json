@@ -18,6 +18,7 @@
         "syke-hydrografia-hydronode.json",       
         "syke-hydrografia-watercourselink.json",
         "syke-geologia-pohjavesialuerajat.json",
+        "syke-geologia-pohjavesialue.json",
         "syke-korkeus-syvyyspiste.json",
         "syke-korkeus-syvyyskayra.json",
         "syke-korkeus-syvyysalue.json",
