@@ -60,6 +60,12 @@
         "syke-alueidenhallintajarajoitukset2-koskiensuojelulailla_suojellut_vesistot.json",
         "syke-eliomaantieteellisetalueet-metsakasvillisuusvyohykkeet.json",
         "syke-eliomaantieteellisetalueet-suokasvillisuusvyohykkeet.json",
+        "syke-ortoilmakuvat-image2000mosaiikki.json",
+        "syke-ortoilmakuvat-image2006mosaiikki.json",
+        "syke-ortoilmakuvat-image2012mosaiikki.json",
+        "syke-suojellutalueet-protectedsites_natureconservation.json",
+        "syke-suojellutalueet-protectedsites_nature2000lines.json",
+        "syke-suojellutalueet-protectedsites_nature2000polygons.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [

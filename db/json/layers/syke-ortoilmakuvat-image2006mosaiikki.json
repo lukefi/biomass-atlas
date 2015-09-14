@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_Ortoilmakuvat/MapServer/WMSServer",
+    "name":"Image2006mosaiikki",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Image2006mosaiikki"
+        },
+        "sv": {
+            "name": "Image2006mosaiikki"
+        },
+        "en": {
+            "name": "Image2006mosaiikki"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
