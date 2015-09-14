@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_AlueidenHallintaJaRajoitukset2/MapServer/WMSServer",
+    "name":"EU_uimavesidirektiivin_uimarannat",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "EU_uimavesidirektiivin_uimarannat"
+        },
+        "sv": {
+            "name": "EU_uimavesidirektiivin_uimarannat"
+        },
+        "en": {
+            "name": "EU_uimavesidirektiivin_uimarannat"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

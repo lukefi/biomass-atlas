@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_EliomaantieteellisetAlueet/MapServer/WMSServer",
+    "name":"Suokasvillisuusvyohykkeet",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Suokasvillisuusvyohykkeet"
+        },
+        "sv": {
+            "name": "Suokasvillisuusvyohykkeet"
+        },
+        "en": {
+            "name": "Suokasvillisuusvyohykkeet"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

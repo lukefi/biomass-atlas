@@ -54,6 +54,12 @@
         "syke-alueidenhallintajarajoitukset1-vpdpohjavesi.json",
         "syke-alueidenhallintajarajoitukset1-vpdrannikkovesi.json",
         "syke-alueidenhallintajarajoitukset1-vesienhoitoalueet.json",
+        "syke-alueidenhallintajarajoitukset2-eu_uimavesidirektiivin_uimarannat.json",
+        "syke-alueidenhallintajarajoitukset2-vesiliikenteen_aluerajoitukset.json",
+        "syke-alueidenhallintajarajoitukset2-maastoliikenteen_aluerajoitukset.json",
+        "syke-alueidenhallintajarajoitukset2-koskiensuojelulailla_suojellut_vesistot.json",
+        "syke-eliomaantieteellisetalueet-metsakasvillisuusvyohykkeet.json",
+        "syke-eliomaantieteellisetalueet-suokasvillisuusvyohykkeet.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [

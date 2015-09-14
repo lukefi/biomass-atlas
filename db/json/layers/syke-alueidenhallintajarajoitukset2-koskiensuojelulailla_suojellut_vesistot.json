@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_AlueidenHallintaJaRajoitukset2/MapServer/WMSServer",
+    "name":"Koskiensuojelulailla_suojellut_vesistot",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Koskiensuojelulailla_suojellut_vesistot"
+        },
+        "sv": {
+            "name": "Koskiensuojelulailla_suojellut_vesistot"
+        },
+        "en": {
+            "name": "Koskiensuojelulailla_suojellut_vesistot"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_AlueidenHallintaJaRajoitukset2/MapServer/WMSServer",
+    "name":"Maastoliikenteen_aluerajoitukset",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Maastoliikenteen_aluerajoitukset"
+        },
+        "sv": {
+            "name": "Maastoliikenteen_aluerajoitukset"
+        },
+        "en": {
+            "name": "Maastoliikenteen_aluerajoitukset"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
