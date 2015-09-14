@@ -49,6 +49,11 @@
         "syke-maanpeite-corinelandcover2006_25m.json",
         "syke-maanpeite-corinelandcover2012_20m.json",
         "syke-maanpeite-corinelandcover2012_25ha.json",
+        "syke-alueidenhallintajarajoitukset1-vpdjarvi.json",
+        "syke-alueidenhallintajarajoitukset1-vpdjoki.json",
+        "syke-alueidenhallintajarajoitukset1-vpdpohjavesi.json",
+        "syke-alueidenhallintajarajoitukset1-vpdrannikkovesi.json",
+        "syke-alueidenhallintajarajoitukset1-vesienhoitoalueet.json",
         "bma-geoserver-layer1.json"
     ],
     "bundles" : [
