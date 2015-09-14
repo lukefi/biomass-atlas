@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_YmparistontilanSeuranta/MapServer/WMSServer",
+    "name":"Pintaveden_lampotila_T_lopetetut",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Pintaveden_lampotila_T_lopetetut"
+        },
+        "sv": {
+            "name": "Pintaveden_lampotila_T_lopetetut"
+        },
+        "en": {
+            "name": "Pintaveden_lampotila_T_lopetetut"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

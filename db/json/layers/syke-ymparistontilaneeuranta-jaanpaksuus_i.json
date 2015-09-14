@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_YmparistontilanSeuranta/MapServer/WMSServer",
+    "name":"Jaanpaksuus_I",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Jaanpaksuus_I"
+        },
+        "sv": {
+            "name": "Jaanpaksuus_I"
+        },
+        "en": {
+            "name": "Jaanpaksuus_I"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

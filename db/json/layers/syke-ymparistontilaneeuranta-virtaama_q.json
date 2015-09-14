@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_YmparistontilanSeuranta/MapServer/WMSServer",
+    "name":"Virtaama_Q",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Virtaama_Q"
+        },
+        "sv": {
+            "name": "Virtaama_Q"
+        },
+        "en": {
+            "name": "Virtaama_Q"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

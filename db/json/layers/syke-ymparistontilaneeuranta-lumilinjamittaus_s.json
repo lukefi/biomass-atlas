@@ -1,0 +1,22 @@
+{
+    "type":"wmslayer",
+    "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_YmparistontilanSeuranta/MapServer/WMSServer",
+    "name":"Lumilinjamittaus_S",
+    "organization": "Syke",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Lumilinjamittaus_S"
+        },
+        "sv": {
+            "name": "Lumilinjamittaus_S"
+        },
+        "en": {
+            "name": "Lumilinjamittaus_S"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}
