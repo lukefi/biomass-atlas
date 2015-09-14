@@ -6,13 +6,13 @@
     "inspiretheme": "Others",
     "locale": {
         "fi": {
-            "name": "Koskiensuojelulailla_suojellut_vesistot"
+            "name": "Koskiensuojelulailla suojellut vesistot"
         },
         "sv": {
-            "name": "Koskiensuojelulailla_suojellut_vesistot"
+            "name": "Koskiensuojelulailla suojellut vesistot"
         },
         "en": {
-            "name": "Koskiensuojelulailla_suojellut_vesistot"
+            "name": "Koskiensuojelulailla suojellut vesistot"
         }
     },
     "role_permissions": {
