@@ -1,7 +1,11 @@
 {
-    "type":"wmslayer",
-    "url":"http://joktomcat2.ns.luke.fi/geoserver/wms",
-    "name":"bma:hila1kmvehmaavantaa_peltokokala",
+    "type": "wmslayer",
+    "url": "http://joktomcat2.ns.luke.fi/geoserver/wms",
+    "name": "bma:biomass_for_geoserver",
+    "style": "bma_test_style_1",
+    "params": {
+        "cql_filter": "attribute_id=1"
+    },
     "organization": "Biomassa-atlas",
     "inspiretheme": "Others",
     "locale": {
