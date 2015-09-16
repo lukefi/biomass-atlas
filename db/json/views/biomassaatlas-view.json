@@ -10,6 +10,7 @@
         "development_prefix" : "/applications/sample"
     },
     "selectedLayers" : [
+        "mml-taustakartta.json",
         "wmslayer-openstreetmap-demo-fi.json",
         "syke-hydrografia-jarvet.json",
         "syke-hydrografia-aluemaisetjoet.json",

@@ -21,6 +21,7 @@
     "sql" : [
         "add_oskari_wfs_parser_config.sql",
         "example-wfslayer.sql",
-        "example-permissions.sql"
+        "example-permissions.sql",
+        "bma-fix-default-view.sql"
     ]
 }
