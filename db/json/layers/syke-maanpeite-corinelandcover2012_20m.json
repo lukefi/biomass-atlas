@@ -18,5 +18,6 @@
     "role_permissions": {
         "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
         "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
-    }
+    },
+    "metadataid": "7ce02052-edd7-468d-aa7c-28f7d2f12077"
 }
