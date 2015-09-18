@@ -1,6 +1,6 @@
 {
     "type": "wmslayer",
-    "url": "http://joktomcat2.ns.luke.fi/geoserver/wms",
+    "url": "http://testi.biomassa-atlas.luke.fi/geoserver/wms",
     "name": "bma:biomass_for_geoserver",
     "style": "bma_test_style_1",
     "params": {
