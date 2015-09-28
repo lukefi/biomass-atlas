@@ -167,7 +167,7 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.1.5.v20140505</version>
+				<version>9.2.13.v20150730</version>
 				<configuration>
 					<stopPort>9966</stopPort>
 					<stopKey>sidfhsdfh</stopKey>
