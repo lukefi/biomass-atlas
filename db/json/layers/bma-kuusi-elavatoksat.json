@@ -1,0 +1,26 @@
+{
+    "type": "wmslayer",
+    "url": "http://testi.biomassa-atlas.luke.fi/geoserver/wms",
+    "name": "bma:biomass_for_geoserver",
+    "style": "forest_biomass",
+    "params": {
+        "cql_filter": "attribute_id=2"
+    },
+    "organization": "Biomassa-atlas",
+    "inspiretheme": "Others",
+    "locale": {
+        "fi": {
+            "name": "Kuusi, elävät oksat"
+        },
+        "sv": {
+            "name": "Kuusi, elävät oksat"
+        },
+        "en": {
+            "name": "Kuusi, elävät oksat"
+        }
+    },
+    "role_permissions": {
+        "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
+        "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
+    }
+}

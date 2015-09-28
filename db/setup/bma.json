@@ -90,7 +90,9 @@
         "syke-ymparistontilaneeuranta-jaanpaksuus_i_lopetetut.json",
         "syke-ymparistontilaneeuranta-pintaveden_lampotila_t_lopetetut.json",
         "syke-ymparistontilaneeuranta-lampotilaluotaus_ts_lopetetut.json",       
-        "bma-geoserver-layer1.json"
+        "bma-kuusi-elavatoksat.json",
+        "bma-kuusi-hukkapuu.json",
+        "bma-kuusi-juuret.json"
     ],
     "sql" : [
         "add_oskari_wfs_parser_config.sql",

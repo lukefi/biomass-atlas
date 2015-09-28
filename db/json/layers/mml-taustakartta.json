@@ -4,6 +4,7 @@
     "name":"taustakartta",
     "organization": "Maanmittauslaitos",
     "inspiretheme": "Background maps",
+    "base_map": "true",
     "locale": {
         "fi": {
             "name": "Taustakartta"
