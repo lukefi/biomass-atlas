@@ -176,7 +176,24 @@ function() {
 	},
 	
 	_polygonCompleted : function(evt) {
-		alert("Measurement completed, display calculation results here");
+		var me = this;
+		var points = [];
+		var components = evt.geometry.components[0].components;
+		for (var i = 0; i < components.length; i++) {
+			points.push({x: components[i].x, y: components[i].y});
+		}
+		jQuery.ajax({
+			url: "/biomass/area",
+			method: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: { points: points },
+			dataType: "json",
+			success: me._displayCalculationResults
+		});
+	},
+	
+	_displayCalculationResults : function(results) {
+		alert("Results calculated");
 	}
 	
 }, {
