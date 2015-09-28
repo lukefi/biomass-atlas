@@ -166,11 +166,19 @@ function() {
 						null));
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 				mapModule.addMapControl('measureControls_bma', me._measureControl);
+				me._measureControl.events.on({
+					measure: me._polygonCompleted
+				});
 				me._measureControl.activate();
 
 			}
 		}
+	},
+	
+	_polygonCompleted : function(evt) {
+		alert("Measurement completed, display calculation results here");
 	}
+	
 }, {
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
 });
