@@ -55,6 +55,15 @@ function() {
 		sandbox.register(me);
 
 		me._registerTools();
+		
+		me._measureControl = new OpenLayers.Control.Measure(
+				OpenLayers.Handler.Polygon,
+				{
+					handlerOptions: {
+						persist: true
+					},
+						immediate: true
+					});
 
 		// register to listening events
 		for ( var p in me.eventHandlers) {
@@ -155,6 +164,10 @@ function() {
 				sandbox.request(me, sandbox.getRequestBuilder(
 						'ShowMapMeasurementRequest')(msg || "", false, null,
 						null));
+				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
+				mapModule.addMapControl('measureControls_bma', me._measureControl);
+				me._measureControl.activate();
+
 			}
 		}
 	}
