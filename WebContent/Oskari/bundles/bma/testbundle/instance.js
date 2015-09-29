@@ -184,17 +184,15 @@ function() {
 		}
 		jQuery.ajax({
 			url: "/biomass/area",
-			method: "POST",
+			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: { points: points },
+			data: JSON.stringify({ points: points }),
 			dataType: "json",
-			success: me._displayCalculationResults
+			success: function(results, status, xhr) {
+				alert("Results calculated");
+			}
 		});
 	},
-	
-	_displayCalculationResults : function(results) {
-		alert("Results calculated");
-	}
 	
 }, {
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
