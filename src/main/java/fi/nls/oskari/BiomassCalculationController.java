@@ -28,8 +28,16 @@ public class BiomassCalculationController {
     public Map<?, ?> calculateBiomassForArea(@RequestBody Map<?, ?> requestBody) {
         HashMap<String, Object> result = new HashMap<>();
         String polygonAsWkt = polygonToWkt((List<Map<?,?>>) requestBody.get("points"));
-        String sql = "SELECT st_area(st_geomfromtext(?, 3067))";
-        Double theNumber = jdbcTemplate.queryForList(sql, new Object[]{polygonAsWkt}, Double.class).get(0);
+        long attributeId = 2; // TODO
+        long validityId = 2; // TODO
+        long gridId = 1;
+        String sql =
+                "SELECT COALESCE(sum(d.value), 0) FROM biomass_data d, grid_cell c " +
+                "WHERE d.cell_id = c.id AND c.grid_id = ? " +
+                "AND d.validity_id = ? AND d.attribute_id = ? " +
+                "AND st_contains(st_geomfromtext(?, 3067), st_centroid(c.geometry))";
+        Object[] arguments = new Object[]{gridId, validityId, attributeId, polygonAsWkt};
+        double theNumber = jdbcTemplate.queryForList(sql, arguments, Double.class).get(0);
         // TODO implementation
         result.put("test", theNumber);
         return result;
