@@ -26,8 +26,9 @@ public class BiomassCalculationController {
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<?, ?> calculateBiomassForArea(@RequestBody Map<?, ?> requestBody) {
         HashMap<String, Object> result = new HashMap<>();
+        Long theNumber = jdbcTemplate.queryForList("SELECT count(*) FROM biomass_data", Long.class).get(0);
         // TODO implementation
-        result.put("test", 123);
+        result.put("test", theNumber);
         return result;
     }
     
