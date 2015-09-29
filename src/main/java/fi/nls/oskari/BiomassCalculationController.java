@@ -18,7 +18,7 @@ public class BiomassCalculationController {
 
     private JdbcTemplate jdbcTemplate;
 
-    //@Resource(name="biomassDataSource")
+    @Resource(name="biomassDataSource")
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
