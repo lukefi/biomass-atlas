@@ -172,7 +172,9 @@ function() {
 					}
 				});
 				me._measureControl.activate();
-
+			}
+			else {
+				me._measureControl.deactivate();
 			}
 		}
 	},
