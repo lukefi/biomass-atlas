@@ -167,7 +167,9 @@ function() {
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 				mapModule.addMapControl('measureControls_bma', me._measureControl);
 				me._measureControl.events.on({
-					measure: me._polygonCompleted
+					measure: function(evt) {
+						me._polygonCompleted.apply(me, [evt]);
+					}
 				});
 				me._measureControl.activate();
 
@@ -177,6 +179,7 @@ function() {
 	
 	_polygonCompleted : function(evt) {
 		var me = this;
+		var sandbox = this.getSandbox();
 		var points = [];
 		var components = evt.geometry.components[0].components;
 		for (var i = 0; i < components.length; i++) {
@@ -189,7 +192,8 @@ function() {
 			data: JSON.stringify({ points: points }),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				alert("Results calculated");
+				sandbox.request(me, sandbox.getRequestBuilder(
+				'ShowMapMeasurementRequest')("Tulos: " + results.test, false, null, null));
 			}
 		});
 	},
