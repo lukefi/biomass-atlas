@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+
 @RestController
 @RequestMapping(value="biomass")
 public class BiomassCalculationController {
@@ -25,11 +28,11 @@ public class BiomassCalculationController {
     }
 
     @RequestMapping(value="area", method=RequestMethod.POST)
-    public Map<?, ?> calculateBiomassForArea(@RequestBody Map<?, ?> requestBody) {
+    public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
         HashMap<String, Object> result = new HashMap<>();
-        String polygonAsWkt = polygonToWkt((List<Map<?,?>>) requestBody.get("points"));
-        long attributeId = 2; // TODO
-        long validityId = 2; // TODO
+        String polygonAsWkt = polygonToWkt(requestBody.getPoints());
+        long attributeId = requestBody.getAttributes().get(0); // TODO handle more than one attribute
+        long validityId = 2; // TODO find out the latest validity ID for each attribute
         long gridId = 1;
         String sql =
                 "SELECT COALESCE(sum(d.value), 0) FROM biomass_data d, grid_cell c " +
@@ -43,18 +46,18 @@ public class BiomassCalculationController {
         return result;
     }
     
-    private String polygonToWkt(List<Map<?, ?>> points) {
+    private String polygonToWkt(List<Point> points) {
         StringBuilder sb = new StringBuilder();
         sb.append("POLYGON((");
         boolean first = true;
-        for (Map<?, ?> point : points) {
+        for (Point point : points) {
             if (!first) {
                 sb.append(", ");
             }
             first = false;
-            sb.append(point.get("x"));
+            sb.append(point.getX());
             sb.append(" ");
-            sb.append(point.get("y"));
+            sb.append(point.getY());
         }
         sb.append("))");
         return sb.toString();

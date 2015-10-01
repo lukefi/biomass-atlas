@@ -182,6 +182,10 @@ function() {
 	_polygonCompleted : function(evt) {
 		var me = this;
 		var sandbox = this.getSandbox();
+		var attributeIds = me._getVisibleBiomassAttributeIds(sandbox);
+		if (attributeIds.length == 0) {
+			return; // no layers selected
+		}
 		var points = [];
 		var components = evt.geometry.components[0].components;
 		for (var i = 0; i < components.length; i++) {
@@ -191,7 +195,7 @@ function() {
 			url: "/biomass/area",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({ points: points }),
+			data: JSON.stringify({ points: points, attributes: attributeIds }),
 			dataType: "json",
 			success: function(results, status, xhr) {
 				sandbox.request(me, sandbox.getRequestBuilder(
@@ -199,6 +203,18 @@ function() {
 			}
 		});
 	},
+	
+	_getVisibleBiomassAttributeIds : function(sandbox) {
+		var layers = sandbox.findAllSelectedMapLayers();
+		var biomassAttributeIds = [];
+		for (var i = 0; i < layers.length; i++) {
+			var layer = layers[i];
+			if ("bma" in layer.getOptions()) {
+				biomassAttributeIds.push(layer.getOptions()["bma"].id);
+			}
+		}
+		return biomassAttributeIds;
+	}
 	
 }, {
 	protocol : [ 'Oskari.bundle.BundleInstance' ]

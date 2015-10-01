@@ -6,6 +6,11 @@
     "params": {
         "cql_filter": "attribute_id=2"
     },
+    "options": {
+    	"bma": {
+    		"id": "2"
+    	}
+    },
     "organization": "Biomassa-atlas",
     "inspiretheme": "Others",
     "locale": {
