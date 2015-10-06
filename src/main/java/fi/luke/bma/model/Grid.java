@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.Type;
+
 import fi.rktl.common.model.InsertableEntityWithLongId;
 
 @Entity
@@ -13,9 +15,11 @@ public class Grid extends InsertableEntityWithLongId{
 	private String name;
 	
 	@Column
+	@Type(type="date")
 	private Date startDate;
 	
 	@Column
+	@Type(type="date")
 	private Date endDate;
 
 	public String getName() {
