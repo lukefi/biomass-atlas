@@ -13,7 +13,8 @@ public class Category extends InsertableEntityWithLongId{
 	@Column(name = "en")
 	private String categoryEN;
 	
-	private Integer parentCategory;
+	@Column(name = "parent_category")
+	private Long parentCategory;
 
 	public String getCategoryFI() {
 		return categoryFI;
@@ -31,11 +32,11 @@ public class Category extends InsertableEntityWithLongId{
 		this.categoryEN = categoryEN;
 	}
 
-	public Integer getParentCategory() {
+	public Long getParentCategory() {
 		return parentCategory;
 	}
 
-	public void setParentCategory(Integer parentCategory) {
+	public void setParentCategory(Long parentCategory) {
 		this.parentCategory = parentCategory;
 	}
 }
