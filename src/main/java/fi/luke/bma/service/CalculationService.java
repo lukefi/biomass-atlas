@@ -7,7 +7,6 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import fi.luke.bma.dao.DataDao;
 import fi.luke.bma.dao.ValidityDao;
 import fi.luke.bma.model.Validity;
 
@@ -15,9 +14,6 @@ import fi.luke.bma.model.Validity;
 public class CalculationService {
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	@Autowired
-	public DataDao dataDao;
 	
 	@Autowired
 	public ValidityDao validityDao;
