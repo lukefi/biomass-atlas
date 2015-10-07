@@ -198,8 +198,12 @@ function() {
 			data: JSON.stringify({ points: points, attributes: attributeIds }),
 			dataType: "json",
 			success: function(results, status, xhr) {
+				finalResult = "Tulos: <br>";
+				for(var key in results){
+					finalResult += key + ' : ' + results[key] + "<br>";
+				}
 				sandbox.request(me, sandbox.getRequestBuilder(
-				'ShowMapMeasurementRequest')("Tulos: " + results.test, false, null, null));
+				'ShowMapMeasurementRequest')(finalResult, false, null, null));
 			}
 		});
 	},

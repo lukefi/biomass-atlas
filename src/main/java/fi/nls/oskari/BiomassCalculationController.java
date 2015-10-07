@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 
 @RestController
@@ -26,6 +27,9 @@ public class BiomassCalculationController {
     
     @Autowired
     private CalculationService calculationService;
+    
+    @Autowired
+    private AttributeService attributeService;
     
     @Resource(name="biomassDataSource")
     public void setDataSource(DataSource dataSource) {
@@ -39,7 +43,11 @@ public class BiomassCalculationController {
         long gridId = 1;
         for(long attributeId : requestBody.getAttributes()){
         	double calulatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
-        	result.put("attribute_" + attributeId, calulatedResult);
+        	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
+        	String attributeName = attributeNameAndUnit.get(0);
+        	String attributeUnit = attributeNameAndUnit.get(1);
+        	
+        	result.put(attributeName, calulatedResult + " " + attributeUnit);
         }
         return result;
     }
