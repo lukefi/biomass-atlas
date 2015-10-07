@@ -109,6 +109,7 @@ function() {
 		request = reqBuilder("bmacalculator", "basictools",
 				me.buttons['bmacalculator']);
 		sandbox.request(me.getName(), request);
+		me._syncToolbarButtonVisibility(me);
 		me._buttonsAdded = true;
 	},
 
@@ -165,17 +166,29 @@ function() {
 						'ShowMapMeasurementRequest')(msg || "", false, null,
 						null));
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
-				mapModule.addMapControl('measureControls_bma', me._measureControl);
-				me._measureControl.events.on({
-					measure: function(evt) {
-						me._polygonCompleted.apply(me, [evt]);
-					}
-				});
+				if (!mapModule.getMapControl("measureControls_bma")) {
+					mapModule.addMapControl('measureControls_bma', me._measureControl);
+					me._measureControl.events.on({
+						measure: function(evt) {
+							me._polygonCompleted.apply(me, [evt]);
+						}
+					});
+				}
 				me._measureControl.activate();
 			}
 			else {
 				me._measureControl.deactivate();
 			}
+		},
+		
+		'AfterMapLayerAddEvent' : function(event) {
+			var me = this;
+			me._syncToolbarButtonVisibility(me);
+		},
+		
+		'AfterMapLayerRemoveEvent': function(event) {
+			var me = this;
+			me._syncToolbarButtonVisibility(me);
 		}
 	},
 	
@@ -218,6 +231,17 @@ function() {
 			}
 		}
 		return biomassAttributeIds;
+	},
+	
+	_setToolbarButtonVisibility : function(sandbox, state) {
+		var stateReqBuilder = sandbox.getRequestBuilder("Toolbar.ToolButtonStateRequest");
+		var stateRequest = stateReqBuilder("bmacalculator", "basictools", state);
+		sandbox.request("TestBundle", stateRequest);
+	},
+	
+	_syncToolbarButtonVisibility : function(me) {
+		var sandbox = me.getSandbox();
+		me._setToolbarButtonVisibility(sandbox, me._getVisibleBiomassAttributeIds(sandbox).length > 0);
 	}
 	
 }, {
