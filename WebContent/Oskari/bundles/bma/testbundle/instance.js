@@ -165,12 +165,14 @@ function() {
 						'ShowMapMeasurementRequest')(msg || "", false, null,
 						null));
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
-				mapModule.addMapControl('measureControls_bma', me._measureControl);
-				me._measureControl.events.on({
-					measure: function(evt) {
-						me._polygonCompleted.apply(me, [evt]);
-					}
-				});
+				if (!mapModule.getMapControl("measureControls_bma")) {
+					mapModule.addMapControl('measureControls_bma', me._measureControl);
+					me._measureControl.events.on({
+						measure: function(evt) {
+							me._polygonCompleted.apply(me, [evt]);
+						}
+					});
+				}
 				me._measureControl.activate();
 			}
 			else {
