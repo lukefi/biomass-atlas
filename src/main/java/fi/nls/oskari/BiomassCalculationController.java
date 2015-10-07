@@ -42,12 +42,11 @@ public class BiomassCalculationController {
         String polygonAsWkt = polygonToWkt(requestBody.getPoints());
         long gridId = 1;
         for(long attributeId : requestBody.getAttributes()){
-        	double calulatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
+        	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
         	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
         	String attributeName = attributeNameAndUnit.get(0);
         	String attributeUnit = attributeNameAndUnit.get(1);
-        	
-        	result.put(attributeName, calulatedResult + " " + attributeUnit);
+        	result.put(attributeName, Math.round(calculatedResult) + " " + attributeUnit);
         }
         return result;
     }
