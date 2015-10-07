@@ -109,6 +109,7 @@ function() {
 		request = reqBuilder("bmacalculator", "basictools",
 				me.buttons['bmacalculator']);
 		sandbox.request(me.getName(), request);
+		me._syncToolbarButtonVisibility(me);
 		me._buttonsAdded = true;
 	},
 
@@ -178,6 +179,16 @@ function() {
 			else {
 				me._measureControl.deactivate();
 			}
+		},
+		
+		'AfterMapLayerAddEvent' : function(event) {
+			var me = this;
+			me._syncToolbarButtonVisibility(me);
+		},
+		
+		'AfterMapLayerRemoveEvent': function(event) {
+			var me = this;
+			me._syncToolbarButtonVisibility(me);
 		}
 	},
 	
@@ -222,6 +233,11 @@ function() {
 		var stateReqBuilder = sandbox.getRequestBuilder("Toolbar.ToolButtonStateRequest");
 		var stateRequest = stateReqBuilder("bmacalculator", "basictools", state);
 		sandbox.request("TestBundle", stateRequest);
+	},
+	
+	_syncToolbarButtonVisibility : function(me) {
+		var sandbox = me.getSandbox();
+		me._setToolbarButtonVisibility(sandbox, me._getVisibleBiomassAttributeIds(sandbox).length > 0);
 	}
 	
 }, {
