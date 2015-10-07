@@ -216,6 +216,12 @@ function() {
 			}
 		}
 		return biomassAttributeIds;
+	},
+	
+	_setToolbarButtonVisibility : function(sandbox, state) {
+		var stateReqBuilder = sandbox.getRequestBuilder("Toolbar.ToolButtonStateRequest");
+		var stateRequest = stateReqBuilder("bmacalculator", "basictools", state);
+		sandbox.request("TestBundle", stateRequest);
 	}
 	
 }, {
