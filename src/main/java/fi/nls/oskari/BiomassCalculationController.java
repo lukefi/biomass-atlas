@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.service.CalculationService;
 
 @RestController
 @RequestMapping(value="biomass")
 public class BiomassCalculationController {
 
     private JdbcTemplate jdbcTemplate;
-
+    
+    @Autowired
+    private CalculationService calculationService;
+    
     @Resource(name="biomassDataSource")
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -31,18 +36,11 @@ public class BiomassCalculationController {
     public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
         HashMap<String, Object> result = new HashMap<>();
         String polygonAsWkt = polygonToWkt(requestBody.getPoints());
-        long attributeId = requestBody.getAttributes().get(0); // TODO handle more than one attribute
-        long validityId = 2; // TODO find out the latest validity ID for each attribute
         long gridId = 1;
-        String sql =
-                "SELECT COALESCE(sum(d.value), 0) FROM biomass_data d, grid_cell c " +
-                "WHERE d.cell_id = c.id AND c.grid_id = ? " +
-                "AND d.validity_id = ? AND d.attribute_id = ? " +
-                "AND st_contains(st_geomfromtext(?, 3067), st_centroid(c.geometry))";
-        Object[] arguments = new Object[]{gridId, validityId, attributeId, polygonAsWkt};
-        double theNumber = jdbcTemplate.queryForList(sql, arguments, Double.class).get(0);
-        // TODO implementation
-        result.put("test", theNumber);
+        for(long attributeId : requestBody.getAttributes()){
+        	double calulatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
+        	result.put("attribute_" + attributeId, calulatedResult);
+        }
         return result;
     }
     
