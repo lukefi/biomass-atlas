@@ -27,5 +27,6 @@
     "role_permissions": {
         "Guest" : ["VIEW_LAYER", "VIEW_PUBLISHED"],
         "User" : ["VIEW_LAYER", "VIEW_PUBLISHED", "PUBLISH"]
-    }
+    },
+    "legend_image" : "http://testi.biomassa-atlas.luke.fi/geoserver/wms?request=GetLegendGraphic&version=1.1.1&service=WMS&format=image/png&width=20&height=20&layer=bma:biomass_for_geoserver"
 }
