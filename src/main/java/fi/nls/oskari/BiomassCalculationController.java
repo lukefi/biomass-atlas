@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,19 +19,12 @@ import fi.luke.bma.service.CalculationService;
 @RequestMapping(value="biomass")
 public class BiomassCalculationController {
 
-    private JdbcTemplate jdbcTemplate;
-    
     @Autowired
     private CalculationService calculationService;
     
     @Autowired
     private AttributeService attributeService;
     
-    @Resource(name="biomassDataSource")
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
         HashMap<String, Object> result = new HashMap<>();

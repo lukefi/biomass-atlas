@@ -211,9 +211,9 @@ function() {
 			data: JSON.stringify({ points: points, attributes: attributeIds }),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				finalResult = "Tulos: <br>";
+				finalResult = "";
 				for(var key in results){
-					finalResult += key + ' : ' + results[key] + "<br>";
+					finalResult += key + ': ' + results[key] + "<br>";
 				}
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
