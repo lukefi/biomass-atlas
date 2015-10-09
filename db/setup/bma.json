@@ -89,10 +89,7 @@
         "syke-ymparistontilaneeuranta-lumilinjamittaus_s_lopetetut.json",
         "syke-ymparistontilaneeuranta-jaanpaksuus_i_lopetetut.json",
         "syke-ymparistontilaneeuranta-pintaveden_lampotila_t_lopetetut.json",
-        "syke-ymparistontilaneeuranta-lampotilaluotaus_ts_lopetetut.json",       
-        "bma-kuusi-elavatoksat.json",
-        "bma-kuusi-hukkapuu.json",
-        "bma-kuusi-juuret.json"
+        "syke-ymparistontilaneeuranta-lampotilaluotaus_ts_lopetetut.json"
     ],
     "sql" : [
         "add_oskari_wfs_parser_config.sql",
