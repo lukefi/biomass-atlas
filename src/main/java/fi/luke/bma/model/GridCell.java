@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
-import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
 import fi.rktl.common.model.InsertableEntityWithLongId;
 
@@ -18,7 +18,7 @@ public class GridCell extends InsertableEntityWithLongId {
 	
 	@Column
 	@Type(type="org.hibernate.spatial.GeometryType")
-	private Polygon geometry;
+	private MultiPolygon geometry;
 	
 	@Column(name = "cell_id")
 	private Long cellId;
@@ -35,11 +35,11 @@ public class GridCell extends InsertableEntityWithLongId {
 		this.name = name;
 	}
 
-	public Polygon getGeometry() {
+	public MultiPolygon getGeometry() {
 		return geometry;
 	}
 
-	public void setGeometry(Polygon geometry) {
+	public void setGeometry(MultiPolygon geometry) {
 		this.geometry = geometry;
 	}
 
