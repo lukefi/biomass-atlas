@@ -454,12 +454,9 @@ module.exports = function (grunt) {
             grunt.fail.fatal('Missing parameter\nUsage: grunt sass-build-application:"../path/to/application"', 1);
         }
 /*
-
         // strip file part so we get the application path
         varsDirectory = varsDirectory.substring(0, varsDirectory.lastIndexOf('/'));
         grunt.log.writeln('Compiling app CSS with appPath ' + varsDirectory);
-
-
         // find valid applicationVariables.scss path
         grunt.log.writeln('Finding valid applicationVariables.scss path');
         if (!fs.existsSync(varsDirectory + '/_applicationVariables.scss')) {
@@ -480,10 +477,7 @@ module.exports = function (grunt) {
                 grunt.log.writeln('Found valid applicationVariables.scss path:\n' + varsDirectory);
             }
         }
-
-
         // get application scss files
-
         // compile to css
         grunt.log.writeln('Compiling app SCSS to CSS, using ' + varsDirectory + '/scss/ as SCSS folder.');
         grunt.config.set(
@@ -494,11 +488,8 @@ module.exports = function (grunt) {
                 dest: varsDirectory + '/css/',
                 ext: '.css'
             }]
-
         );
-
         grunt.task.run('sass');
-
         // build bundle css files
         // hackhack, copy applicationVariables to a 'static' location
         // TODO change to copy

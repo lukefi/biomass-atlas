@@ -1,9 +1,9 @@
 {
-  "name": "OskariTools",
+  "name": "BmaTools",
   "version": "0.0.1",
-  "description": "Build tools for Oskari applications",
+  "description": "Build tools for Biomassa-atlas applications",
   "keywords": [
-    "Oskari"
+    "Biomassa"
   ],
   "main": "grunt.js",
   "//": {
@@ -63,16 +63,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/grunt release",
-    "build-paikkis": "./node_modules/.bin/grunt release:paikkis:../applications/paikkatietoikkuna.fi/full-map/minifierAppSetup.json,../applications/paikkatietoikkuna.fi/full-map_guest/minifierAppSetup.json,../applications/paikkatietoikkuna.fi/published-map/minifierAppSetup.json",
-    "build-asdi": "./node_modules/.bin/grunt release:asdi:../applications/asdi/asdi_guest/minifierAppSetup.json,../applications/asdi/asdi_published/minifierAppSetup.json",
-    "build-elf" : "./node_modules/.bin/grunt release:elf:../applications/elf/elf_guest/minifierAppSetup.json,../applications/elf/elf_published/minifierAppSetup.json",
+    "build": "./node_modules/.bin/grunt release",   
+    "build-bma": "./node_modules/.bin/grunt release:bma:../applications/bma/minifierAppSetup.json",
     "trim": "./node_modules/.bin/grunt trimtrailingspaces",
     "lint": "./node_modules/.bin/jshint ../bundles"
   },
   "devDependencies": {
-    "karma" : "0.12.31",
+    "grunt": "^0.4.5",
     "grunt-trimtrailingspaces": "^1.1.0",
+    "karma": "0.12.31",
     "karma-jasmine": "~0.1.3",
     "karma-requirejs": "~0.1.0"
   }
