@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Biomassa-atlas</title>
-
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/Oskari${path}/icons/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
     </script>
     <!-- ############# css ################# -->
