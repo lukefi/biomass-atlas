@@ -1,5 +1,7 @@
 package fi.luke.bma.service;
 
+import java.math.BigInteger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -34,5 +36,22 @@ public class CalculationService {
 		 
 		 Query query = entityManager.createNativeQuery(sql);
 		 return (double) query.getResultList().get(0);
+	}
+	
+	public double getAreaOfPolygon(String polygonAsWkt){
+		String sql = "SELECT ST_AREA(the_geom) FROM (SELECT ST_GEOMFROMTEXT('" + polygonAsWkt + "', 3067)) AS foo(the_geom)";
+		Query query = entityManager.createNativeQuery(sql);
+		return (double) query.getSingleResult();
+	}
+	
+	public Integer getNumberOfCentroids(long gridId, String polygonAsWkt){
+		Long validityId = validityDao.getLatest().getId();
+		String sql = "SELECT COUNT(DISTINCT c.id) FROM grid_cell c" +
+				 " LEFT OUTER JOIN biomass_data d ON c.id = d.cell_id" +
+                 " WHERE c.grid_id = " + gridId +
+                 " AND d.validity_id = " + validityId +
+                 " AND st_contains(st_geomfromtext('" + polygonAsWkt + "', 3067), st_centroid(c.geometry))";
+		Query query = entityManager.createNativeQuery(sql);
+		return ((BigInteger)query.getSingleResult()).intValue();
 	}
 }

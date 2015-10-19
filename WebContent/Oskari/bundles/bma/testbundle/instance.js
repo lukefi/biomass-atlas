@@ -111,6 +111,7 @@ function() {
 		sandbox.request(me.getName(), request);
 		me._syncToolbarButtonVisibility(me);
 		me._buttonsAdded = true;
+		
 	},
 
 	/**
@@ -214,6 +215,15 @@ function() {
 		var area = polygon.getGeodesicArea(projection)/1000000; //Divisor is used for converting area into sq.km, because getGeodesicArea() returns area in sq.m. 
 		if(area < 1){
 			alert("Area is less than 1 square km.");
+			//TODO: Need to remove point in view after this alert message.
+			
+			/*var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveFeaturesFromMapRequest');
+			if (reqBuilder) {
+				var request = reqBuilder(null, null, null);
+				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
+				sandbox.request(mapModule, request);				
+			    console.log("Test");		  
+			}*/
 			return;
 		}
 		

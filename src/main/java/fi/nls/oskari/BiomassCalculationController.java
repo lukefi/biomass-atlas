@@ -30,6 +30,15 @@ public class BiomassCalculationController {
         HashMap<String, Object> result = new HashMap<>();
         String polygonAsWkt = polygonToWkt(requestBody.getPoints());
         long gridId = 1;
+        double areaOfPolygon =  calculationService.getAreaOfPolygon(polygonAsWkt)/1000000; // For m2 converted to km2
+        Integer numberOfCentroids = calculationService.getNumberOfCentroids(gridId, polygonAsWkt);
+        
+        //System.out.println("Area: " + calculationService.getAreaOfPolygon(polygonAsWkt)/1000000);
+        //System.out.println("Number :" +  calculationService.getNumberOfCentroids(gridId, polygonAsWkt));
+        if((areaOfPolygon < (0.95 * numberOfCentroids)) || (areaOfPolygon > (1.05 * numberOfCentroids))){
+        	result.put("Error", "Area selected is too small or too much of grid cell centroids");
+        	return result;
+        }
         for(long attributeId : requestBody.getAttributes()){
         	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
         	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
