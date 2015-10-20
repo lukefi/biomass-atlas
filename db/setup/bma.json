@@ -11,8 +11,9 @@
         "bma-early-db-init"
     ],
     "bundles" : {
-        "bma" : [
-            "testbundle.sql"
+        "bma" : [        
+            "testbundle.sql",
+            "municipality.sql"
         ]
     },
     "views" : [

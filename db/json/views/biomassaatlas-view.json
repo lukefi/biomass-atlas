@@ -66,6 +66,7 @@
         { "id" : "userguide" },
         { "id" : "printout" },
         { "id" : "heatmap" },
-        { "id" : "testbundle" }
+        { "id" : "testbundle" },
+        { "id" : "municipality" }
     ]
 }
