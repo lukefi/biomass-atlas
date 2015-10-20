@@ -89,6 +89,13 @@
                 color: #FFF;
                 padding: 5px;
             }
+            
+            .error{
+            	color: red;
+            }
+            .italic{
+            	font-style: italic;
+            }
 
         }
     </style>

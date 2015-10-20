@@ -1,8 +1,8 @@
 package fi.nls.oskari;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,17 +27,13 @@ public class BiomassCalculationController {
     
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
-        HashMap<String, Object> result = new HashMap<>();
+        TreeMap<String, Object> result = new TreeMap<>();
         String polygonAsWkt = polygonToWkt(requestBody.getPoints());
         long gridId = 1;
         double areaOfPolygon =  calculationService.getAreaOfPolygon(polygonAsWkt)/1000000; // For m2 converted to km2
         Integer numberOfCentroids = calculationService.getNumberOfCentroids(gridId, polygonAsWkt);
-        
-        //System.out.println("Area: " + calculationService.getAreaOfPolygon(polygonAsWkt)/1000000);
-        //System.out.println("Number :" +  calculationService.getNumberOfCentroids(gridId, polygonAsWkt));
         if((areaOfPolygon < (0.95 * numberOfCentroids)) || (areaOfPolygon > (1.05 * numberOfCentroids))){
-        	result.put("Error", "Area selected is too small or too much of grid cell centroids");
-        	return result;
+        	result.put("Error", "Area selected is too small or too much of grid cell centroids.");
         }
         for(long attributeId : requestBody.getAttributes()){
         	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);

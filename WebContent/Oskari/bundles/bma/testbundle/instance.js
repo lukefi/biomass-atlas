@@ -214,7 +214,8 @@ function() {
 		var polygon = new OpenLayers.Geometry.Polygon(ring);
 		var area = polygon.getGeodesicArea(projection)/1000000; //Divisor is used for converting area into sq.km, because getGeodesicArea() returns area in sq.m. 
 		if(area < 1){
-			alert("Area is less than 1 square km.");
+			sandbox.request(me, sandbox.getRequestBuilder(
+			'ShowMapMeasurementRequest')("<span class='error'>Selected Area is less than 1 square km.</span>", false, null, null));
 			//TODO: Need to remove point in view after this alert message.
 			
 			/*var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveFeaturesFromMapRequest');
@@ -236,7 +237,10 @@ function() {
 			success: function(results, status, xhr) {
 				finalResult = "";
 				for(var key in results){
-					finalResult += key + ': ' + results[key] + "<br>";
+					if(key == 'Error')
+						finalResult += "<span class='error italic'>" + key + ': ' + results[key] + "</span><br><br>";
+					else
+						finalResult += key + ': ' + results[key] + "<br>";
 				}
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
