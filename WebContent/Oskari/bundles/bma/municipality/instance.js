@@ -60,7 +60,7 @@ function() {
 			if (p) {
 				sandbox.registerForEventByName(me, p);
 			}
-		}
+		}				
 	},
 
 	_toolButtonClicked : function() {
@@ -157,13 +157,18 @@ function() {
 				wmsLayer.setWmsUrls([this.wmsUrl]);
 				wmsLayer.setWmsName(this.wmsName);				
 				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
-			
+				
 				//me._measureControl.activate();
 			}
 			else {
 				//me._measureControl.deactivate();
 			}
-		}
+		},
+		
+		'MapClickedEvent': function(event){
+			var lonlat = event.getLonLat(), xPoint = event.getMouseX(), yPoint = event.getMouseY();
+			console.log("lonlat:" + lonlat + " \nxPoint:" + xPoint + "\nyPoint:" + yPoint);
+		}		
 	},
 	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
