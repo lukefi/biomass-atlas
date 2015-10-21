@@ -12,6 +12,8 @@ Oskari.clazz.define("Oskari.bma.bundle.municipality.MunicipalityInstance",
 
 function() {
 	this.sandbox = null;
+	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";
+	this.wmsName = "bma:view_municipality_borders";
 }, {
 	/**
 	 * @static
@@ -51,9 +53,8 @@ function() {
 		this.sandbox = sandbox;
 		// register to sandbox as a module
 		sandbox.register(me);
-		console.log("OHO");
-		me._registerTools();		
-		
+		me._registerTools();
+					        
 		// register to listening events
 		for ( var p in me.eventHandlers) {
 			if (p) {
@@ -92,7 +93,6 @@ function() {
 		var reqBuilder = sandbox.getRequestBuilder('Toolbar.AddToolButtonRequest');
 		if (!reqBuilder) {
 			// Couldn't get the request, toolbar not loaded
-			console.log("Error:   test");
 			return;
 		}
 		request = reqBuilder("bmaMunicipalityCalculator", "basictools",	me.buttons['bmaMunicipalityCalculator']);
@@ -134,7 +134,37 @@ function() {
 			return;
 		}
 		return handler.apply(this, [ event ]);
-	},	
+	},
+	
+	/**
+	 * @static
+	 * @property eventHandlers
+	 * Best practices: defining which
+	 * events bundle is listening and how bundle reacts to them
+	 */
+	eventHandlers : {
+		'Toolbar.ToolSelectedEvent' : function(event) {
+			var me = this;
+			var sandbox = this.getSandbox();
+
+			/* we'll show prompt if measure tool has been selected */
+			if (event.getToolId() == 'bmaMunicipalityCalculator') {
+				var msg = "Valitse kunta, jonka biomassa lasketaan";
+				sandbox.request(me, sandbox.getRequestBuilder(
+						'ShowMapMeasurementRequest')(msg || "", false, null, null));
+				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
+				var wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
+				wmsLayer.setWmsUrls([this.wmsUrl]);
+				wmsLayer.setWmsName(this.wmsName);				
+				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
+			
+				//me._measureControl.activate();
+			}
+			else {
+				//me._measureControl.deactivate();
+			}
+		}
+	},
 	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
 });

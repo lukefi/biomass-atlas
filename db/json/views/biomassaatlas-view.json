@@ -44,13 +44,12 @@
             }
         },
         { "id" : "divmanazer" },
-        {
-            "id" : "toolbar",
-            "config" : {
-                "viewtools": {
-                    "link" : true
-                }
-            }
+    	{ "id" : "toolbar",
+	        "config" : {
+	            "viewtools": {
+	                "link" : true
+	            }
+	        }
         },
         { "id" : "infobox" },
         { "id" : "statehandler" },
@@ -68,5 +67,6 @@
         { "id" : "heatmap" },
         { "id" : "testbundle" },
         { "id" : "municipality" }
+        
     ]
 }
