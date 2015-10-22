@@ -1,5 +1,6 @@
 package fi.nls.oskari;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +15,7 @@ import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.MunicipalityService;
 
 @RestController
 @RequestMapping(value="biomass")
@@ -24,6 +26,9 @@ public class BiomassCalculationController {
     
     @Autowired
     private AttributeService attributeService;
+    
+    @Autowired
+    private MunicipalityService municipalityService;
     
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
@@ -60,6 +65,24 @@ public class BiomassCalculationController {
         }
         sb.append("))");
         return sb.toString();
+    }
+    
+    private String pointToWkt(Point point) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("POINT(");
+        sb.append(point.getX());
+        sb.append(" ");
+        sb.append(point.getY());
+        sb.append(")");
+        return sb.toString();
+    }
+    
+    @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
+    public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) {
+    	String pointAsWkt = pointToWkt(requestBody.getPoints().get(0));
+    	Map<String, String> geometryMap = new HashMap<String, String>();
+    	geometryMap.put("geometry", municipalityService.getGeometry(pointAsWkt));
+    	return geometryMap;
     }
     
 }

@@ -166,8 +166,19 @@ function() {
 		},
 		
 		'MapClickedEvent': function(event){
-			var lonlat = event.getLonLat(), xPoint = event.getMouseX(), yPoint = event.getMouseY();
-			console.log("lonlat:" + lonlat + " \nxPoint:" + xPoint + "\nyPoint:" + yPoint);
+			var lonlat = event.getLonLat();			
+			var points = [];
+			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+			jQuery.ajax({
+				url: "/biomass/municipality/geometry",
+				type: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify({ points: points, attributes: null}),
+				dataType: "json",
+				success: function(results, status, xhr) {
+					console.log(results);			
+				}
+			});
 		}		
 	},
 	
