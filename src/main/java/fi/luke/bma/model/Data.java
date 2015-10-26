@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
-@Entity(name = "biomass_data")
-public class Data extends InsertableEntityWithLongId{
+@Entity
+@Table(name = "biomass_data")
+public class Data extends NonInsertableEntityWithLongId {
 	@Column
 	private Double value;
 	
@@ -18,7 +20,7 @@ public class Data extends InsertableEntityWithLongId{
 	
 	@ManyToOne
 	@JoinColumn(name = "cell_id")
-	private GridCell gridCell;
+	private GridCell cell;
 	
 	@ManyToOne
 	@JoinColumn(name = "validity_id")
@@ -40,12 +42,12 @@ public class Data extends InsertableEntityWithLongId{
 		this.attribute = attribute;
 	}
 
-	public GridCell getGridCell() {
-		return gridCell;
+	public GridCell getCell() {
+		return cell;
 	}
 
-	public void setGridCell(GridCell gridCell) {
-		this.gridCell = gridCell;
+	public void setcell(GridCell cell) {
+		this.cell = cell;
 	}
 
 	public Validity getValidity() {

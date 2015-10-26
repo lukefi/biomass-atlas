@@ -163,12 +163,12 @@ function() {
 				
 				$("#bmaMunicipalityCalculateButton").click(function() {
 					jQuery.ajax({
-						url: "/biomass/municipality/caclulate",
+						url: "/biomass/municipality/calculate",
 						type: "POST",
 						contentType: "application/json; charset=UTF-8",
 						data: JSON.stringify({
-							municipalityIds: me.selectedMunicipalityIds,
-							attributes: me._getVisibleBiomassAttributeIds(sandbox)
+							areaIds: me.selectedMunicipalityIds,
+							attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
 						}),
 						dataType: "json",
 						success: function(results, status, xhr) {

@@ -1,8 +1,13 @@
 package fi.luke.bma.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Service;
 
@@ -40,6 +45,18 @@ public class GridCellService extends BaseStoreNonInsertableLongIdEntityManager<G
         query.setParameter(2, x);
         query.setParameter(3, y);
         return (GridCell) query.getSingleResult();
+    }
+
+    public List<GridCell> getByCellId(long gridId, List<Long> cellIds) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<GridCell> query = cb.createQuery(GridCell.class);
+        Root<GridCell> from = query.from(GridCell.class);
+        query.select(from);
+        query.where(cb.and(
+                cb.equal(from.get("grid").get("id"), gridId),
+                from.get("cellId").in(cellIds)
+        ));
+        return entityManager.createQuery(query).getResultList();
     }
 
 }
