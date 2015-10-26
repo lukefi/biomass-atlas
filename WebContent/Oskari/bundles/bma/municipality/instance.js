@@ -60,7 +60,7 @@ function() {
 			if (p) {
 				sandbox.registerForEventByName(me, p);
 			}
-		}				
+		}
 	},
 
 	_toolButtonClicked : function() {
@@ -166,7 +166,9 @@ function() {
 		},
 		
 		'MapClickedEvent': function(event){
-			var lonlat = event.getLonLat();			
+			var me = this;
+			var sandbox = this.getSandbox();
+			var lonlat = event.getLonLat(), xPoint = event.getMouseX(), yPoint = event.getMouseY();			
 			var points = [];
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 			jQuery.ajax({
@@ -175,12 +177,19 @@ function() {
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify({ points: points, attributes: null}),
 				dataType: "json",
-				success: function(results, status, xhr) {
-					console.log(results);			
+				success: function(results, status, xhr) {					
+					var request = sandbox.getRequestBuilder("MapModulePlugin.AddFeaturesToMapRequest");				
+					var style = OpenLayers.Util.applyDefaults(
+					        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
+					        OpenLayers.Feature.Vector.style["default"]);
+					sandbox.request( me, request( results.geometry, "GeoJSON", null, null, 'replace', true, style, false));
 				}
 			});
 		}		
 	},
 	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
+},
+{
+    "extend": ["Oskari.userinterface.extension.DefaultExtension"]
 });
