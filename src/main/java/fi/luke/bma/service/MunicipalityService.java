@@ -1,14 +1,16 @@
 package fi.luke.bma.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import fi.luke.bma.model.GridCell;
 
-@Component
+@Service
 public class MunicipalityService {
     
-    private static final long MUNICIPALITY_GRID = 2;
+    public static final long MUNICIPALITY_GRID = 2;
     
 	private GridCellService gridCellService;
 	
@@ -19,6 +21,10 @@ public class MunicipalityService {
 
 	public GridCell getMunicipalityByLocation(int x, int y) {
 	    return gridCellService.getByLocation(MUNICIPALITY_GRID, x, y);
+	}
+	
+	public List<GridCell> getMunicipalitiesById(List<Long> municipalities) {
+	    return gridCellService.getByCellId(MUNICIPALITY_GRID, municipalities);
 	}
     
 }

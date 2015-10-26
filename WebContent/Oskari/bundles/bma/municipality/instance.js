@@ -48,6 +48,7 @@ function() {
 	start : function() {
 		var me = this;		
 		var conf = me.conf;
+		me.selectedMunicipalityIds = [];
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
 		var sandbox = Oskari.getSandbox(sandboxName);
 		this.sandbox = sandbox;
@@ -150,14 +151,31 @@ function() {
 			/* we'll show prompt if measure tool has been selected */
 			if (event.getToolId() == 'bmaMunicipalityCalculator') {
 				var msg = "Valitse kunta, jonka biomassa lasketaan";
+				msg += "<br/> <button type='button' id='bmaMunicipalityCalculateButton'>Laske</button>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 						'ShowMapMeasurementRequest')(msg || "", false, null, null));
+				me._updateCalculateButtonVisibility(me);
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 				var wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
 				wmsLayer.setWmsUrls([this.wmsUrl]);
 				wmsLayer.setWmsName(this.wmsName);				
 				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
 				
+				$("#bmaMunicipalityCalculateButton").click(function() {
+					jQuery.ajax({
+						url: "/biomass/municipality/calculate",
+						type: "POST",
+						contentType: "application/json; charset=UTF-8",
+						data: JSON.stringify({
+							areaIds: me.selectedMunicipalityIds,
+							attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
+						}),
+						dataType: "json",
+						success: function(results, status, xhr) {
+							// TODO
+						}
+					});
+				});
 				//me._measureControl.activate();
 			}
 			else {
@@ -168,7 +186,7 @@ function() {
 		'MapClickedEvent': function(event){
 			var me = this;
 			var sandbox = this.getSandbox();
-			var lonlat = event.getLonLat(), xPoint = event.getMouseX(), yPoint = event.getMouseY();			
+			var lonlat = event.getLonLat();			
 			var points = [];
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 			jQuery.ajax({
@@ -183,13 +201,36 @@ function() {
 					        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
 					        OpenLayers.Feature.Vector.style["default"]);
 					sandbox.request( me, request( results.geometry, "GeoJSON", null, null, 'replace', true, style, false));
+				
+					me.selectedMunicipalityIds.push(results.id);
+					me._updateCalculateButtonVisibility(me);
 				}
 			});
 		}		
 	},
 	
+	_updateCalculateButtonVisibility : function(me) {
+		var btn = $("#bmaMunicipalityCalculateButton");
+		if (me.selectedMunicipalityIds.length > 0) {
+			btn.show();
+		}
+		else {
+			btn.hide();
+		}
+	},
+	
+	_getVisibleBiomassAttributeIds : function(sandbox) {
+		// TODO this is copy-paste from polygon biomass calculation tool
+		var layers = sandbox.findAllSelectedMapLayers();
+		var biomassAttributeIds = [];
+		for (var i = 0; i < layers.length; i++) {
+			var layer = layers[i];
+			if ("bma" in layer.getOptions()) {
+				biomassAttributeIds.push(layer.getOptions()["bma"].id);
+			}
+		}
+		return biomassAttributeIds;
+	},
+	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
-},
-{
-    "extend": ["Oskari.userinterface.extension.DefaultExtension"]
 });

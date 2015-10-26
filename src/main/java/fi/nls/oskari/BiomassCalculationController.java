@@ -1,5 +1,6 @@
 package fi.nls.oskari;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
+import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.GridCell;
@@ -77,6 +80,28 @@ public class BiomassCalculationController {
     	geometryMap.put("id", municipality.getCellId());
     	geometryMap.put("geometry", new GeometryJSON().toString(municipality.getGeometry()));
     	return geometryMap;
+    }
+    
+    @RequestMapping(value="municipality/calculate", method=RequestMethod.POST)
+    public Map<String, Object> calculateBiomassForMunicipality(@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {
+        List<AdministrativeAreaBiomassCalculationResult> municipalityBiomasses
+            = calculationService.getTotalBiomassForMunicipalities(requestBody.getAttributeIds(), requestBody.getAreaIds());
+        Map<String, Object> root = new TreeMap<>();
+        List<Map<String, ?>> municipalityList = new ArrayList<>();
+        Map<Long, Map<String, Object>> municipalityMap = new TreeMap<>();
+        for (GridCell cell : municipalityService.getMunicipalitiesById(requestBody.getAreaIds())) {
+            Map<String, Object> municipality = new TreeMap<>();
+            municipality.put("name", cell.getName());
+            municipality.put("id", cell.getCellId());
+            municipalityList.add(municipality);
+            municipalityMap.put(cell.getCellId(), municipality);
+        }
+        root.put("municipalities", municipalityList);
+        for (AdministrativeAreaBiomassCalculationResult result : municipalityBiomasses) {
+            Map<String, Object> municipality = municipalityMap.get(result.getAreaId());
+            municipality.put("a" + result.getAttributeId(), result.getValue());
+        }
+        return root;
     }
     
 }
