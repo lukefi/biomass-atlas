@@ -154,6 +154,7 @@ function() {
 				msg += "<br/> <button type='button' id='bmaMunicipalityCalculateButton'>Laske</button>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 						'ShowMapMeasurementRequest')(msg || "", false, null, null));
+				me._updateCalculateButtonVisibility(me);
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 				var wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
 				wmsLayer.setWmsUrls([this.wmsUrl]);
@@ -196,9 +197,20 @@ function() {
 				success: function(results, status, xhr) {
 					console.log(results);
 					me.selectedMunicipalityIds.push(results.id);
+					me._updateCalculateButtonVisibility(me);
 				}
 			});
 		}		
+	},
+	
+	_updateCalculateButtonVisibility : function(me) {
+		var btn = $("#bmaMunicipalityCalculateButton");
+		if (me.selectedMunicipalityIds.length > 0) {
+			btn.show();
+		}
+		else {
+			btn.hide();
+		}
 	},
 	
 	_getVisibleBiomassAttributeIds : function(sandbox) {
