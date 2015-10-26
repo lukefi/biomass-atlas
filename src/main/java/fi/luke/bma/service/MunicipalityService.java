@@ -1,24 +1,24 @@
 package fi.luke.bma.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import fi.luke.bma.model.GridCell;
 
 @Component
 public class MunicipalityService {
-	@PersistenceContext
-	private EntityManager entityManager;
+    
+    private static final long MUNICIPALITY_GRID = 2;
+    
+	private GridCellService gridCellService;
 	
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	@Autowired
+	public void setGridCellService(GridCellService gridCellService) {
+        this.gridCellService = gridCellService;
+    }
+
+	public GridCell getMunicipalityByLocation(int x, int y) {
+	    return gridCellService.getByLocation(MUNICIPALITY_GRID, x, y);
 	}
-	
-	public String getGeometry(String pointAsWkt){
-		String sql = "SELECT ST_ASGEOJSON(v.geometry) FROM view_municipality_borders v"
-				+ " WHERE (SELECT ST_within(ST_GeomFromText('" + pointAsWkt + "', 3067), v.geometry))";
-		Query query = entityManager.createNativeQuery(sql);
-		return (String) query.getSingleResult();
-	}
+    
 }

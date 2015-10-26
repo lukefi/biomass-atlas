@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.geotools.geojson.geom.GeometryJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.model.GridCell;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.MunicipalityService;
@@ -67,21 +69,13 @@ public class BiomassCalculationController {
         return sb.toString();
     }
     
-    private String pointToWkt(Point point) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("POINT(");
-        sb.append(point.getX());
-        sb.append(" ");
-        sb.append(point.getY());
-        sb.append(")");
-        return sb.toString();
-    }
-    
     @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
     public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) {
-    	String pointAsWkt = pointToWkt(requestBody.getPoints().get(0));
-    	Map<String, String> geometryMap = new HashMap<String, String>();
-    	geometryMap.put("geometry", municipalityService.getGeometry(pointAsWkt));
+    	Point point = requestBody.getPoints().get(0);
+    	Map<String, Object> geometryMap = new HashMap<>();
+    	GridCell municipality = municipalityService.getMunicipalityByLocation(point.getX().intValue(), point.getY().intValue());
+    	geometryMap.put("id", municipality.getCellId());
+    	geometryMap.put("geometry", new GeometryJSON().toString(municipality.getGeometry()));
     	return geometryMap;
     }
     

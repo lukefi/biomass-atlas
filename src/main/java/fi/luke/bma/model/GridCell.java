@@ -9,10 +9,10 @@ import org.hibernate.annotations.Type;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
 @Entity(name = "grid_cell")
-public class GridCell extends InsertableEntityWithLongId {
+public class GridCell extends NonInsertableEntityWithLongId {
 	@Column
 	private String name;
 	
