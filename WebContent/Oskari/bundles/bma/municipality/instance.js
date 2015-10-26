@@ -48,6 +48,7 @@ function() {
 	start : function() {
 		var me = this;		
 		var conf = me.conf;
+		me.selectedMunicipalityIds = [];
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
 		var sandbox = Oskari.getSandbox(sandboxName);
 		this.sandbox = sandbox;
@@ -135,7 +136,7 @@ function() {
 		}
 		return handler.apply(this, [ event ]);
 	},
-	
+
 	/**
 	 * @static
 	 * @property eventHandlers
@@ -150,6 +151,7 @@ function() {
 			/* we'll show prompt if measure tool has been selected */
 			if (event.getToolId() == 'bmaMunicipalityCalculator') {
 				var msg = "Valitse kunta, jonka biomassa lasketaan";
+				msg += "<br/> <button type='button' id='bmaMunicipalityCalculateButton'>Laske</button>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 						'ShowMapMeasurementRequest')(msg || "", false, null, null));
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
@@ -158,6 +160,21 @@ function() {
 				wmsLayer.setWmsName(this.wmsName);				
 				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
 				
+				$("#bmaMunicipalityCalculateButton").click(function() {
+					jQuery.ajax({
+						url: "/biomass/municipality/caclulate",
+						type: "POST",
+						contentType: "application/json; charset=UTF-8",
+						data: JSON.stringify({
+							municipalityIds: me.selectedMunicipalityIds,
+							attributes: me._getVisibleBiomassAttributeIds(sandbox)
+						}),
+						dataType: "json",
+						success: function(results, status, xhr) {
+							// TODO
+						}
+					});
+				});
 				//me._measureControl.activate();
 			}
 			else {
@@ -166,6 +183,7 @@ function() {
 		},
 		
 		'MapClickedEvent': function(event){
+			var me = this;
 			var lonlat = event.getLonLat();			
 			var points = [];
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
@@ -176,10 +194,24 @@ function() {
 				data: JSON.stringify({ points: points, attributes: null}),
 				dataType: "json",
 				success: function(results, status, xhr) {
-					console.log(results);			
+					console.log(results);
+					me.selectedMunicipalityIds.push(results.id);
 				}
 			});
 		}		
+	},
+	
+	_getVisibleBiomassAttributeIds : function(sandbox) {
+		// TODO this is copy-paste from polygon biomass calculation tool
+		var layers = sandbox.findAllSelectedMapLayers();
+		var biomassAttributeIds = [];
+		for (var i = 0; i < layers.length; i++) {
+			var layer = layers[i];
+			if ("bma" in layer.getOptions()) {
+				biomassAttributeIds.push(layer.getOptions()["bma"].id);
+			}
+		}
+		return biomassAttributeIds;
 	},
 	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
