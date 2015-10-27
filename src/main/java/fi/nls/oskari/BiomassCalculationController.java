@@ -15,7 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
@@ -24,9 +28,9 @@ import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.MunicipalityService;
 import fi.rktl.common.model.DataCell;
 import fi.rktl.common.reporting.XlsxWriter;
-import fi.luke.bma.service.MunicipalityService;
 
 @RestController
 @RequestMapping(value="biomass")
@@ -61,10 +65,12 @@ public class BiomassCalculationController {
         return result;
     }
     
-    //Export xlsx file
-    //TODO: RequestBody maybe cannot use with exporting xlsx file - should find other 
-    @RequestMapping(value="exportXlsx", method=RequestMethod.POST)
-    public void exportFile(@RequestBody BiomassCalculationRequestModel requestBody, HttpServletResponse response){
+    /** Export xlsx file 
+     * @throws IOException 
+     * @throws JsonMappingException */
+    @RequestMapping(value="area/xlsx", method=RequestMethod.POST)
+    public void exportFile(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
+        BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
     	
     	response.addHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     	response.addHeader("Content-Disposition", "attachment; filename=areaReport.xlsx");
@@ -72,7 +78,7 @@ public class BiomassCalculationController {
     	
     	String filename = "areaReport";
     	
-    	Map<String, ?> biomassData = calculateBiomassForArea(requestBody);
+    	Map<String, ?> biomassData = calculateBiomassForArea(requestModel);
     	List<String> plainColumnNames = new ArrayList<>();
     	List<List<DataCell>> data = new ArrayList<>();
     	List<DataCell> dataRow = new ArrayList<>();

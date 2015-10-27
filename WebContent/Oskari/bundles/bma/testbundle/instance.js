@@ -228,11 +228,12 @@ function() {
 			return;
 		}
 		
+		var queryData = JSON.stringify({ points: points, attributes: attributeIds });
 		jQuery.ajax({
 			url: "/biomass/area",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({ points: points, attributes: attributeIds }),
+			data: queryData,
 			dataType: "json",
 			success: function(results, status, xhr) {
 				finalResult = "";
@@ -244,13 +245,14 @@ function() {
 				}
 				finalResult += 
 					"<br>"
-					+ "<form:form method='POST' action='/biomass/exportXlsx'>" 
-					+ "<form:hidden path=''>" 
-					+ "<input type='submit' name='submit' value='Xlsx' >" 
-					+ "</form:form>"
+					+ "<form method='POST' action='/biomass/area/xlsx'>" 
+					+ "<input type='hidden' id='biomassAreaExportXlsxQuery' name='query' />" 
+					+ "<input type='submit' name='submit' value='Xlsx' />" 
+					+ "</form>"
 					+ "<br>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
+				$("#biomassAreaExportXlsxQuery").val(queryData);
 			}
 		});
 	},
