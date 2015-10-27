@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.GridCell;
+import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
@@ -68,43 +70,72 @@ public class BiomassCalculationController {
         return result;
     }
     
-    /** Export xlsx file 
+    /**
+     * Export xlsx file 
      * @throws IOException 
-     * @throws JsonMappingException */
+     * @throws JsonMappingException
+     */
     @RequestMapping(value="area/xlsx", method=RequestMethod.POST)
-    public void exportFile(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
+    public void exportXslx(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
         BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
     	
     	response.addHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     	response.addHeader("Content-Disposition", "attachment; filename=areaReport.xlsx");
-    	XlsxWriter writer = new XlsxWriter();
     	
-    	String filename = "areaReport";
-    	
-    	@SuppressWarnings("unchecked")
-        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
-    	
-    	List<String> plainColumnNames = new ArrayList<>();
-    	List<List<DataCell>> data = new ArrayList<>();
-    	List<DataCell> dataRow = new ArrayList<>();
-    	List<DataCell> unitRow = new ArrayList<>();
-    	data.add(dataRow);
-    	data.add(unitRow);
-    	for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
-    		plainColumnNames.add(attributeEntry.getKey());
-    		dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
-    		unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
-    	}
+    	TabularReportData reportData = createCalculationReport(requestModel);
     	
     	try {
-			writer.write(response.getOutputStream(), plainColumnNames, data, filename);
-    		//writer.write(response.getOutputStream(), plainColumnNames, data.getData(), info.getActionMethod());
+    	    new XlsxWriter().write(response.getOutputStream(), reportData.getHeaders(), reportData.getData(), "areaReport");
     	} catch (IOException e) {
     		throw new RuntimeException(e);
     	}
-    	
+    }
+
+    /**
+     * Export CSV file 
+     * @throws IOException 
+     * @throws JsonMappingException
+     */
+    @RequestMapping(value="area/csv", method=RequestMethod.POST)
+    public void exportCsv(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
+        BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
+        
+        response.addHeader("Content-Type", "text/csv;Charset=" + response.getCharacterEncoding());
+        response.addHeader("Content-Disposition", "attachment; filename=areaReport.csv");
+
+        TabularReportData reportData = createCalculationReport(requestModel);
+        
+        try (CSVWriter writer = new CSVWriter(response.getWriter(), ';')) {
+            writer.writeNext(reportData.getHeaders().toArray(new String[reportData.getHeaders().size()]));
+            for (List<DataCell> row : reportData.getData()) {
+                String[] line = new String[row.size()];
+                for (int i = 0; i < line.length; i++) {
+                    line[i] = row.get(i).toString();
+                }
+                writer.writeNext(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
+    private TabularReportData createCalculationReport(BiomassCalculationRequestModel requestModel) {
+        @SuppressWarnings("unchecked")
+        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
+        
+        List<String> plainColumnNames = new ArrayList<>();
+        List<List<DataCell>> data = new ArrayList<>();
+        List<DataCell> dataRow = new ArrayList<>();
+        List<DataCell> unitRow = new ArrayList<>();
+        data.add(dataRow);
+        data.add(unitRow);
+        for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
+            plainColumnNames.add(attributeEntry.getKey());
+            dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
+            unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
+        }
+        return new TabularReportData(plainColumnNames, data);
+    }
     
     
     private String polygonToWkt(List<Point> points) {

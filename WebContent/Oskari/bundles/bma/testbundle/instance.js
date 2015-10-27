@@ -244,15 +244,19 @@ function() {
 					finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 				}
 				finalResult += 
-					"<br>"
-					+ "<form method='POST' action='/biomass/area/xlsx'>" 
-					+ "<input type='hidden' id='biomassAreaExportXlsxQuery' name='query' />" 
-					+ "<input type='submit' name='submit' value='Xlsx' />" 
+					"<br>Tallenna tulokset: "
+					+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
+					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='submit' name='submit' value='XLSX' />" 
+					+ "</form>&nbsp;"
+					+ "<form method='POST' action='/biomass/area/csv' style='display: inline-block'>" 
+					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='submit' name='submit' value='CSV' />" 
 					+ "</form>"
 					+ "<br>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
-				$("#biomassAreaExportXlsxQuery").val(queryData);
+				$(".biomassAreaExportQuery").val(queryData);
 			}
 		});
 	},
