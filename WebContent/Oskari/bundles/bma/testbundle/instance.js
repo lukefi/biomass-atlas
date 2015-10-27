@@ -237,11 +237,11 @@ function() {
 			dataType: "json",
 			success: function(results, status, xhr) {
 				finalResult = "";
-				for(var key in results){
-					if(key == 'Error')
-						finalResult += "<span class='error italic'>" + key + ': ' + results[key] + "</span><br><br>";
-					else
-						finalResult += key + ': ' + results[key] + "<br>";
+				if ('error' in results) {
+					finalResult += "<span class='error italic'>" + results.error + "</span><br><br>";
+				}
+				for (var key in results.values) {
+					finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 				}
 				finalResult += 
 					"<br>"

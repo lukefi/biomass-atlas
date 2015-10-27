@@ -26,6 +26,7 @@ import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.GridCell;
+import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.MunicipalityService;
@@ -53,15 +54,17 @@ public class BiomassCalculationController {
         double areaOfPolygon =  calculationService.getAreaOfPolygon(polygonAsWkt)/1000000; // For m2 converted to km2
         Integer numberOfCentroids = calculationService.getNumberOfCentroids(gridId, polygonAsWkt);
         if((areaOfPolygon < (0.95 * numberOfCentroids)) || (areaOfPolygon > (1.05 * numberOfCentroids))){
-        	result.put("Error", "Area selected is too small or too much of grid cell centroids.");
+        	result.put("error", "Area selected is too small or too much of grid cell centroids.");
         }
+        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
         for(long attributeId : requestBody.getAttributes()){
         	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
         	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
         	String attributeName = attributeNameAndUnit.get(0);
         	String attributeUnit = attributeNameAndUnit.get(1);
-        	result.put(attributeName, Math.round(calculatedResult) + " " + attributeUnit);
+        	attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
         }
+        result.put("values", attributeValues);
         return result;
     }
     
@@ -78,14 +81,19 @@ public class BiomassCalculationController {
     	
     	String filename = "areaReport";
     	
-    	Map<String, ?> biomassData = calculateBiomassForArea(requestModel);
+    	@SuppressWarnings("unchecked")
+        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
+    	
     	List<String> plainColumnNames = new ArrayList<>();
     	List<List<DataCell>> data = new ArrayList<>();
     	List<DataCell> dataRow = new ArrayList<>();
+    	List<DataCell> unitRow = new ArrayList<>();
     	data.add(dataRow);
-    	for (Entry<String, ?> attributeEntry : biomassData.entrySet()) {
+    	data.add(unitRow);
+    	for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
     		plainColumnNames.add(attributeEntry.getKey());
-    		dataRow.add(new DataCell(attributeEntry.getValue()));
+    		dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
+    		unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
     	}
     	
     	try {
