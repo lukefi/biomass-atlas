@@ -4,15 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
-@Entity(name = "grid_cell")
-public class GridCell extends InsertableEntityWithLongId {
+@Entity
+@Table(name = "grid_cell")
+public class GridCell extends NonInsertableEntityWithLongId {
 	@Column
 	private String name;
 	
