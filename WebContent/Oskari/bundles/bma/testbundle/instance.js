@@ -242,6 +242,13 @@ function() {
 					else
 						finalResult += key + ': ' + results[key] + "<br>";
 				}
+				finalResult += 
+					"<br>"
+					+ "<form:form method='POST' action='/biomass/exportXlsx'>" 
+					+ "<form:hidden path=''>" 
+					+ "<input type='submit' name='submit' value='Xlsx' >" 
+					+ "</form:form>"
+					+ "<br>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
 			}

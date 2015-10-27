@@ -1,10 +1,14 @@
 package fi.nls.oskari;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.geotools.geojson.geom.GeometryJSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,8 @@ import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.rktl.common.model.DataCell;
+import fi.rktl.common.reporting.XlsxWriter;
 import fi.luke.bma.service.MunicipalityService;
 
 @RestController
@@ -36,7 +42,7 @@ public class BiomassCalculationController {
     private MunicipalityService municipalityService;
     
     @RequestMapping(value="area", method=RequestMethod.POST)
-    public Map<?, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
+    public Map<String, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
         TreeMap<String, Object> result = new TreeMap<>();
         String polygonAsWkt = polygonToWkt(requestBody.getPoints());
         long gridId = 1;
@@ -54,6 +60,38 @@ public class BiomassCalculationController {
         }
         return result;
     }
+    
+    //Export xlsx file
+    //TODO: RequestBody maybe cannot use with exporting xlsx file - should find other 
+    @RequestMapping(value="exportXlsx", method=RequestMethod.POST)
+    public void exportFile(@RequestBody BiomassCalculationRequestModel requestBody, HttpServletResponse response){
+    	
+    	response.addHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    	response.addHeader("Content-Disposition", "attachment; filename=areaReport.xlsx");
+    	XlsxWriter writer = new XlsxWriter();
+    	
+    	String filename = "areaReport";
+    	
+    	Map<String, ?> biomassData = calculateBiomassForArea(requestBody);
+    	List<String> plainColumnNames = new ArrayList<>();
+    	List<List<DataCell>> data = new ArrayList<>();
+    	List<DataCell> dataRow = new ArrayList<>();
+    	data.add(dataRow);
+    	for (Entry<String, ?> attributeEntry : biomassData.entrySet()) {
+    		plainColumnNames.add(attributeEntry.getKey());
+    		dataRow.add(new DataCell(attributeEntry.getValue()));
+    	}
+    	
+    	try {
+			writer.write(response.getOutputStream(), plainColumnNames, data, filename);
+    		//writer.write(response.getOutputStream(), plainColumnNames, data.getData(), info.getActionMethod());
+    	} catch (IOException e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    }
+    
+    
     
     private String polygonToWkt(List<Point> points) {
         StringBuilder sb = new StringBuilder();
