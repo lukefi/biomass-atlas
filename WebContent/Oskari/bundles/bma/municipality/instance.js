@@ -189,21 +189,51 @@ function() {
 			var lonlat = event.getLonLat();			
 			var points = [];
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+
+			/* Fix for Older IE browser; FOR indexOf function*/
+			if (!Array.prototype.indexOf) {
+			  Array.prototype.indexOf = function(elt /*, from*/) {
+			    var len = this.length >>> 0;
+			    
+			    var from = Number(arguments[1]) || 0;
+			    from = (from < 0)
+			         ? Math.ceil(from)
+			         : Math.floor(from);
+			    if (from < 0)
+			      from += len;
+
+			    for (; from < len; from++) {
+			      if (from in this &&
+			          this[from] === elt)
+			        return from;
+			    }
+			    return -1;
+			  };
+			}
+			
 			jQuery.ajax({
 				url: "/biomass/municipality/geometry",
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify({ points: points, attributes: null}),
+				data: JSON.stringify( { points: points, attributes: null } ),
 				dataType: "json",
-				success: function(results, status, xhr) {					
-					var request = sandbox.getRequestBuilder("MapModulePlugin.AddFeaturesToMapRequest");				
-					var style = OpenLayers.Util.applyDefaults(
-					        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
-					        OpenLayers.Feature.Vector.style["default"]);
-					sandbox.request( me, request( results.geometry, "GeoJSON", null, null, 'replace', true, style, false));
-				
-					me.selectedMunicipalityIds.push(results.id);
-					me._updateCalculateButtonVisibility(me);
+				success: function( results, status, xhr ) {
+					if( me.selectedMunicipalityIds.indexOf( results.id ) > -1 ){
+						var requestForRemoveFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.RemoveFeaturesFromMapRequest");
+						sandbox.request( me, requestForRemoveFeature( results.id, null, null) );
+						me.selectedMunicipalityIds.splice( ( results.id ).toString, 1);						
+					} else {
+						var requestForAddFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.AddFeaturesToMapRequest");				
+						var style = OpenLayers.Util.applyDefaults(
+						        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
+						        OpenLayers.Feature.Vector.style[ "default" ]);
+						sandbox.request( me, requestForAddFeature( results.geometry, "GeoJSON", 
+								results.id, null, 'replace', true, style, false) );
+						me.selectedMunicipalityIds.push( results.id );
+						me._updateCalculateButtonVisibility( me );
+					}
 				}
 			});
 		}		
