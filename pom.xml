@@ -42,6 +42,20 @@
 			<groupId>fi.nls.oskari</groupId>
 			<artifactId>servlet-map</artifactId>
 			<version>${oskari.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-webmvc</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-security-web</artifactId>
+					<groupId>org.springframework.security</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-security-config</artifactId>
+					<groupId>org.springframework.security</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>fi.nls.oskari</groupId>
@@ -51,7 +65,7 @@
 		<dependency>
 			<groupId>fi.luke</groupId>
 			<artifactId>common</artifactId>
-			<version>3.6</version>
+			<version>3.8</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
@@ -77,7 +91,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.10.Final</version>
+			<version>4.3.11.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>

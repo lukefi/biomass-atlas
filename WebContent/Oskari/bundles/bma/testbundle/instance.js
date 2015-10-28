@@ -228,29 +228,35 @@ function() {
 			return;
 		}
 		
+		var queryData = JSON.stringify({ points: points, attributes: attributeIds });
 		jQuery.ajax({
 			url: "/biomass/area",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({ points: points, attributes: attributeIds }),
+			data: queryData,
 			dataType: "json",
 			success: function(results, status, xhr) {
 				finalResult = "";
-				for(var key in results){
-					if(key == 'Error')
-						finalResult += "<span class='error italic'>" + key + ': ' + results[key] + "</span><br><br>";
-					else
-						finalResult += key + ': ' + results[key] + "<br>";
+				if ('error' in results) {
+					finalResult += "<span class='error italic'>" + results.error + "</span><br><br>";
+				}
+				for (var key in results.values) {
+					finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 				}
 				finalResult += 
-					"<br>"
-					+ "<form:form method='POST' action='/biomass/exportXlsx'>" 
-					+ "<form:hidden path=''>" 
-					+ "<input type='submit' name='submit' value='Xlsx' >" 
-					+ "</form:form>"
+					"<br>Tallenna tulokset: "
+					+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
+					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='submit' name='submit' value='XLSX' />" 
+					+ "</form>&nbsp;"
+					+ "<form method='POST' action='/biomass/area/csv' style='display: inline-block'>" 
+					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='submit' name='submit' value='CSV' />" 
+					+ "</form>"
 					+ "<br>";
 				sandbox.request(me, sandbox.getRequestBuilder(
 				'ShowMapMeasurementRequest')(finalResult, false, null, null));
+				$(".biomassAreaExportQuery").val(queryData);
 			}
 		});
 	},
