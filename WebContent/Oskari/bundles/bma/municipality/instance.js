@@ -49,6 +49,7 @@ function() {
 		var me = this;		
 		var conf = me.conf;
 		me.selectedMunicipalityIds = [];
+		me.features = [];
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
 		var sandbox = Oskari.getSandbox(sandboxName);
 		this.sandbox = sandbox;
@@ -218,19 +219,29 @@ function() {
 				data: JSON.stringify( { points: points, attributes: null } ),
 				dataType: "json",
 				success: function( results, status, xhr ) {
+					/*console.log(sandbox);
+					console.log(me);
+					console.log(results.id);*/
+					
 					if( me.selectedMunicipalityIds.indexOf( results.id ) > -1 ){
+						//var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 						var requestForRemoveFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.RemoveFeaturesFromMapRequest");
-						sandbox.request( me, requestForRemoveFeature( results.id, null, null) );
-						me.selectedMunicipalityIds.splice( ( results.id ).toString, 1);						
+						//sandbox.request( me, requestForRemoveFeature( "id", results.id) );
+						sandbox.request( me, requestForRemoveFeature(results.id, null, null));
+						me.selectedMunicipalityIds.splice(( results.id ).toString, 1);
+						me._updateCalculateButtonVisibility( me );
 					} else {
 						var requestForAddFeature = sandbox.getRequestBuilder(
-								"MapModulePlugin.AddFeaturesToMapRequest");				
+								"MapModulePlugin.AddFeaturesToMapRequest" );				
 						var style = OpenLayers.Util.applyDefaults(
 						        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
 						        OpenLayers.Feature.Vector.style[ "default" ]);
+						var attribute = {id: results.id};
+										
 						sandbox.request( me, requestForAddFeature( results.geometry, "GeoJSON", 
-								results.id, null, 'replace', true, style, false) );
+								attribute, null, null, true, style, false) );
+						
 						me.selectedMunicipalityIds.push( results.id );
 						me._updateCalculateButtonVisibility( me );
 					}
