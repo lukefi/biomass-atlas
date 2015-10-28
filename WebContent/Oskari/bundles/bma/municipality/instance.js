@@ -185,10 +185,14 @@ function() {
 		},
 		
 		'MapClickedEvent': function(event){
-			var me = this;
-			var sandbox = this.getSandbox();
-			var lonlat = event.getLonLat();			
-			var points = [];
+			var me = this,
+				sandbox = this.getSandbox(),
+				lonlat = event.getLonLat(),		
+				points = [],
+				requestForRemoveFeature,
+				requestForAddFeature,
+				style;
+				
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 
 			/* Fix for Older IE browser; FOR indexOf function*/
@@ -219,28 +223,29 @@ function() {
 				data: JSON.stringify( { points: points, attributes: null } ),
 				dataType: "json",
 				success: function( results, status, xhr ) {
-					/*console.log(sandbox);
-					console.log(me);
-					console.log(results.id);*/
-					
 					if( me.selectedMunicipalityIds.indexOf( results.id ) > -1 ){
-						//var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
-						var requestForRemoveFeature = sandbox.getRequestBuilder(
+						requestForRemoveFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.RemoveFeaturesFromMapRequest");
-						//sandbox.request( me, requestForRemoveFeature( "id", results.id) );
-						sandbox.request( me, requestForRemoveFeature(results.id, null, null));
+						sandbox.request( me, requestForRemoveFeature("id", results.id, null));
 						me.selectedMunicipalityIds.splice(( results.id ).toString, 1);
 						me._updateCalculateButtonVisibility( me );
 					} else {
-						var requestForAddFeature = sandbox.getRequestBuilder(
+						requestForAddFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.AddFeaturesToMapRequest" );				
-						var style = OpenLayers.Util.applyDefaults(
+						style = OpenLayers.Util.applyDefaults(
 						        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
 						        OpenLayers.Feature.Vector.style[ "default" ]);
-						var attribute = {id: results.id};
-										
+						
+						/*var wkt_options = {},
+							geojson_format = new OpenLayers.Format.GeoJSON(),
+							testFeature = geojson_format.read(results.geometry),
+							wkt = new OpenLayers.Format.WKT(wkt_options),
+							out = wkt.write(testFeature);							
+						sandbox.request( me, requestForAddFeature( out, "WKT", 
+								{id: results.id}, null, null, true, style, false) );*/
+						
 						sandbox.request( me, requestForAddFeature( results.geometry, "GeoJSON", 
-								attribute, null, null, true, style, false) );
+								{id: results.id}, null, null, true, style, false) );
 						
 						me.selectedMunicipalityIds.push( results.id );
 						me._updateCalculateButtonVisibility( me );
