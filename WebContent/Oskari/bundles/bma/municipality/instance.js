@@ -163,6 +163,7 @@ function() {
 				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
 				
 				$("#bmaMunicipalityCalculateButton").click(function() {
+					console.log("inside click");
 					jQuery.ajax({
 						url: "/biomass/municipality/calculate",
 						type: "POST",
@@ -173,7 +174,24 @@ function() {
 						}),
 						dataType: "json",
 						success: function(results, status, xhr) {
-							// TODO
+							// TODO - should find better way to show calculation results and selected layers' names
+							totalResult = "";
+							
+							for(var listName in results){
+								totalResult += "<br>" + "<span>"+ listName + "</span>";
+								for(var cityName in results[listName]){						
+									totalResult += "<br>" + "<span>"+ results[listName][cityName].name + "</span>";
+									for (var attributeName in results[listName][cityName]) {
+										// TODO this should be easier after we switch to JSON-stat
+										if (attributeName == "id" || attributeName == "name") continue;
+										totalResult += "<br>" + "<span>" + attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+									}
+								}					
+							}
+							
+							sandbox.request(me, sandbox.getRequestBuilder(
+							'ShowMapMeasurementRequest')(totalResult, false, null, null));
+							console.log("test",results);
 						}
 					});
 				});
