@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fi.luke</groupId>
 	<artifactId>bma</artifactId>
-	<version>0.1.20151013.1-SNAPSHOT</version>
+	<version>0.1.20151028.0</version>
 	<name>Biomassa-atlas</name>
 	<inceptionYear>2015</inceptionYear>
 	<packaging>war</packaging>
@@ -15,7 +14,7 @@
 
 	<scm>
 		<developerConnection>scm:git:${env.GIT_SERVER}/tiha/bma</developerConnection>
-		<tag>HEAD</tag>
+		<tag>0.1.20151028.0</tag>
 	</scm>
 
 	<distributionManagement>
