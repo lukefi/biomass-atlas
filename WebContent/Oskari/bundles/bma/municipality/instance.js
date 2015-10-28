@@ -181,7 +181,11 @@ function() {
 								totalResult += "<br>" + "<span>"+ listName + "</span>";
 								for(var cityName in results[listName]){						
 									totalResult += "<br>" + "<span>"+ results[listName][cityName].name + "</span>";
-									totalResult += "<br>" + "<span>" + "layer? : " + results[listName][cityName].a2 + "</span>";	
+									for (var attributeName in results[listName][cityName]) {
+										// TODO this should be easier after we switch to JSON-stat
+										if (attributeName == "id" || attributeName == "name") continue;
+										totalResult += "<br>" + "<span>" + attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+									}
 								}					
 							}
 							
