@@ -1,6 +1,7 @@
 package fi.nls.oskari;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.geotools.geojson.geom.GeometryJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import au.com.bytecode.opencsv.CSVWriter;
+
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vividsolutions.jts.io.WKTWriter;
 
-import au.com.bytecode.opencsv.CSVWriter;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
@@ -71,8 +73,8 @@ public class BiomassCalculationController {
     }
     
     /**
-     * Export xlsx file 
-     * @throws IOException 
+     * Export xlsx file
+     * @throws IOException
      * @throws JsonMappingException
      */
     @RequestMapping(value="area/xlsx", method=RequestMethod.POST)
@@ -92,8 +94,8 @@ public class BiomassCalculationController {
     }
 
     /**
-     * Export CSV file 
-     * @throws IOException 
+     * Export CSV file
+     * @throws IOException
      * @throws JsonMappingException
      */
     @RequestMapping(value="area/csv", method=RequestMethod.POST)
@@ -156,12 +158,18 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
-    public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) {
+    public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
     	Point point = requestBody.getPoints().get(0);
     	Map<String, Object> geometryMap = new HashMap<>();
     	GridCell municipality = municipalityService.getMunicipalityByLocation(point.getX().intValue(), point.getY().intValue());
     	geometryMap.put("id", municipality.getCellId());
-    	geometryMap.put("geometry", new GeometryJSON().toString(municipality.getGeometry()));
+    	
+    	StringWriter stringWriter = new StringWriter();
+        WKTWriter wktWriter = new WKTWriter();
+        wktWriter.write(municipality.getGeometry(),stringWriter);
+        
+        geometryMap.put("geometry", stringWriter.toString());
+    	//geometryMap.put("geometry", new GeometryJSON().toString(municipality.getGeometry()));
     	return geometryMap;
     }
     

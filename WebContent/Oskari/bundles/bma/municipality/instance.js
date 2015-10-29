@@ -209,8 +209,8 @@ function() {
 				lonlat = event.getLonLat(),		
 				points = [],
 				requestForRemoveFeature,
-				requestForAddFeature,
-				style;
+				requestForAddFeature;
+				
 				
 			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 
@@ -242,30 +242,23 @@ function() {
 				data: JSON.stringify( { points: points, attributes: null } ),
 				dataType: "json",
 				success: function( results, status, xhr ) {
-					if( me.selectedMunicipalityIds.indexOf( results.id ) > -1 ){
+					var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+					if (indexId > -1) {
 						requestForRemoveFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.RemoveFeaturesFromMapRequest");
 						sandbox.request( me, requestForRemoveFeature("id", results.id, null));
-						me.selectedMunicipalityIds.splice(( results.id ).toString, 1);
+						me.selectedMunicipalityIds.splice(indexId, 1);
 						me._updateCalculateButtonVisibility( me );
 					} else {
 						requestForAddFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.AddFeaturesToMapRequest" );				
-						style = OpenLayers.Util.applyDefaults(
-						        {fillColor: '#9966FF', fillOpacity: 0.8, strokeColor: '#000000'},
-						        OpenLayers.Feature.Vector.style[ "default" ]);
+						var style = OpenLayers.Util.applyDefaults(
+						        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+						        OpenLayers.Feature.Vector.style["default"]);
 						
-						/*var wkt_options = {},
-							geojson_format = new OpenLayers.Format.GeoJSON(),
-							testFeature = geojson_format.read(results.geometry),
-							wkt = new OpenLayers.Format.WKT(wkt_options),
-							out = wkt.write(testFeature);							
-						sandbox.request( me, requestForAddFeature( out, "WKT", 
-								{id: results.id}, null, null, true, style, false) );*/
-						
-						sandbox.request( me, requestForAddFeature( results.geometry, "GeoJSON", 
+						sandbox.request( me, requestForAddFeature( results.geometry, 'WKT', 
 								{id: results.id}, null, null, true, style, false) );
-						
+					
 						me.selectedMunicipalityIds.push( results.id );
 						me._updateCalculateButtonVisibility( me );
 					}
