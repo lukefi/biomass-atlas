@@ -214,17 +214,21 @@ Oskari.clazz.define(
                     olLayer.removeAllFeatures();
                     olLayer.refresh();
                 }
-
+               
                 if (style && style !== null) {
-                    for (i=0; i < feature.length; i++) {
-                        featureInstance = feature[i];
+                	if (feature.length === undefined) {
+                		featureInstance = feature;
                         featureInstance.style = style;
-                    }
+                	} else {
+                		for (i=0; i < feature.length; i++) {
+                            featureInstance = feature[i];
+                            featureInstance.style = style;
+                        }
+                	}
                 }
 
                 olLayer.addFeatures(feature);
-
-
+               
                 if(isOlLayerAdded === false) me._map.addLayer(olLayer);
 
                 if (keepLayerOnTop) {
