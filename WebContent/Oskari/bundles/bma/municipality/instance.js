@@ -241,11 +241,12 @@ function() {
 				data: JSON.stringify( { points: points, attributes: null } ),
 				dataType: "json",
 				success: function( results, status, xhr ) {
-					if( me.selectedMunicipalityIds.indexOf( results.id ) > -1 ){
+					var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+					if (indexId > -1) {
 						requestForRemoveFeature = sandbox.getRequestBuilder(
 								"MapModulePlugin.RemoveFeaturesFromMapRequest");
 						sandbox.request( me, requestForRemoveFeature("id", results.id, null));
-						me.selectedMunicipalityIds.splice(( results.id ).toString, 1);
+						me.selectedMunicipalityIds.splice(indexId, 1);
 						me._updateCalculateButtonVisibility( me );
 					} else {
 						requestForAddFeature = sandbox.getRequestBuilder(
