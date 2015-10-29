@@ -209,24 +209,16 @@ function() {
 		for (var i = 0; i < points.length - 1; i++) { // condition has minus 1. Since there was one extra point because of double click.
 			pointsForAreaCalculation.push(new OpenLayers.Geometry.Point(points[i].x, points[i].y));
 		}
-		var ring = new OpenLayers.Geometry.LinearRing(pointsForAreaCalculation);
+		/*var ring = new OpenLayers.Geometry.LinearRing(pointsForAreaCalculation);
 		var projection = new OpenLayers.Projection("EPSG:3067");
 		var polygon = new OpenLayers.Geometry.Polygon(ring);
 		var area = polygon.getGeodesicArea(projection)/1000000; //Divisor is used for converting area into sq.km, because getGeodesicArea() returns area in sq.m. 
 		if(area < 1){
 			sandbox.request(me, sandbox.getRequestBuilder(
 			'ShowMapMeasurementRequest')("<span class='error'>Selected Area is less than 1 square km.</span>", false, null, null));
-			//TODO: Need to remove point in view after this alert message.
-			
-			/*var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveFeaturesFromMapRequest');
-			if (reqBuilder) {
-				var request = reqBuilder(null, null, null);
-				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
-				sandbox.request(mapModule, request);				
-			    console.log("Test");		  
-			}*/
+			//TODO: Need to remove point in view after this alert message.		
 			return;
-		}
+		}*/
 		
 		var queryData = JSON.stringify({ points: points, attributes: attributeIds });
 		jQuery.ajax({
