@@ -14,6 +14,7 @@ function() {
 	this.sandbox = null;
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";
 	this.wmsName = "bma:view_municipality_borders";
+	this.wmsId = "municipalityBorderId";
 }, {
 	/**
 	 * @static
@@ -50,6 +51,7 @@ function() {
 		var conf = me.conf;
 		me.selectedMunicipalityIds = [];
 		me.features = [];
+		me.isMapClicked = false; // For handling map click related to municipality based biomass calculation
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
 		var sandbox = Oskari.getSandbox(sandboxName);
 		this.sandbox = sandbox;
@@ -159,7 +161,9 @@ function() {
 				var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
 				var wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
 				wmsLayer.setWmsUrls([this.wmsUrl]);
-				wmsLayer.setWmsName(this.wmsName);				
+				wmsLayer.setWmsName(this.wmsName);			
+				wmsLayer.setType("wmslayer");		
+				wmsLayer.setId(this.wmsId);		
 				mapModule._layerPlugins.wmslayer.addMapLayerToMap(wmsLayer, true, false);
 				
 				$("#bmaMunicipalityCalculateButton").click(function() {
@@ -192,78 +196,122 @@ function() {
 							sandbox.request(me, sandbox.getRequestBuilder(
 							'ShowMapMeasurementRequest')(totalResult, false, null, null));
 							console.log("test",results);
+							
 						}
 					});
+				});
+				
+				var toolbar = sandbox.findRegisteredModuleInstance('Toolbar'),
+					showResult = toolbar.requestHandlers.showMapMeasurementRequestHandler,
+					cancelButton = showResult._buttons[0];				
+				cancelButton.setHandler(function (event){
+					/* Close the dialog box.*/
+					showResult._dialogShown = false;
+					var toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
+                    sandbox.request(me, toolbarRequest);
+                    showResult._dialog.close(true);
+                    
+                    me.isMapClicked = false;  
+                    me._clearMunicipalityIdList(me);
+                    
+                    /*Removes municipality and features */
+                    var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule'),
+                    	map = mapModule.getMap(),
+                    	numLayers = map.getNumLayers(), 
+                    	wmsLayer,
+                    	vectorLayer,
+                    	baseLayer;
+                    for(var i = 0; i < numLayers; i++){
+                    	var layer = mapModule.getMap().layers[i];
+                    	if(layer.layerId === "bma:view_municipality_borders") {
+                    		wmsLayer = layer;
+                    	}                    	
+                    	if(layer.name === "vectorlayer_VECTOR"){
+                    		vectorLayer = layer;
+                    	}
+                    }                                       
+                    
+                    baseLayer = map.getLayer(0);
+                    if(wmsLayer){
+                    	map.removeLayer(wmsLayer, baseLayer);
+                    }
+                    if(vectorLayer){
+                    	map.removeLayer(vectorLayer, baseLayer);
+                    }
 				});
 				//me._measureControl.activate();
 			}
 			else {
 				//me._measureControl.deactivate();
 			}
+					
+			me.isMapClicked = true;
 		},
 		
 		'MapClickedEvent': function(event){
 			var me = this,
-				sandbox = this.getSandbox(),
-				lonlat = event.getLonLat(),		
-				points = [],
-				requestForRemoveFeature,
-				requestForAddFeature;
+				sandbox = this.getSandbox();
 				
+			if (me.isMapClicked) {
+				var lonlat = event.getLonLat(),		
+					points = [],
+					requestForRemoveFeature,
+					requestForAddFeature;
 				
-			points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+				points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 
-			/* Fix for Older IE browser; FOR indexOf function*/
-			if (!Array.prototype.indexOf) {
-			  Array.prototype.indexOf = function(elt /*, from*/) {
-			    var len = this.length >>> 0;
-			    
-			    var from = Number(arguments[1]) || 0;
-			    from = (from < 0)
-			         ? Math.ceil(from)
-			         : Math.floor(from);
-			    if (from < 0)
-			      from += len;
+				/* Fix for Older IE browser; FOR indexOf function*/
+				if (!Array.prototype.indexOf) {
+				  Array.prototype.indexOf = function(elt /*, from*/) {
+				    var len = this.length >>> 0;
+				    
+				    var from = Number(arguments[1]) || 0;
+				    from = (from < 0)
+				         ? Math.ceil(from)
+				         : Math.floor(from);
+				    if (from < 0)
+				      from += len;
 
-			    for (; from < len; from++) {
-			      if (from in this &&
-			          this[from] === elt)
-			        return from;
-			    }
-			    return -1;
-			  };
-			}
-			
-			jQuery.ajax({
-				url: "/biomass/municipality/geometry",
-				type: "POST",
-				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify( { points: points, attributes: null } ),
-				dataType: "json",
-				success: function( results, status, xhr ) {
-					var indexId = me.selectedMunicipalityIds.indexOf(results.id);
-					if (indexId > -1) {
-						requestForRemoveFeature = sandbox.getRequestBuilder(
-								"MapModulePlugin.RemoveFeaturesFromMapRequest");
-						sandbox.request( me, requestForRemoveFeature("id", results.id, null));
-						me.selectedMunicipalityIds.splice(indexId, 1);
-						me._updateCalculateButtonVisibility( me );
-					} else {
-						requestForAddFeature = sandbox.getRequestBuilder(
-								"MapModulePlugin.AddFeaturesToMapRequest" );				
-						var style = OpenLayers.Util.applyDefaults(
-						        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-						        OpenLayers.Feature.Vector.style["default"]);
-						
-						sandbox.request( me, requestForAddFeature( results.geometry, 'WKT', 
-								{id: results.id}, null, null, true, style, false) );
-					
-						me.selectedMunicipalityIds.push( results.id );
-						me._updateCalculateButtonVisibility( me );
-					}
+				    for (; from < len; from++) {
+				      if (from in this &&
+				          this[from] === elt)
+				        return from;
+				    }
+				    return -1;
+				  };
 				}
-			});
-		}		
+				
+				jQuery.ajax({
+					url: "/biomass/municipality/geometry",
+					type: "POST",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify( { points: points, attributes: null } ),
+					dataType: "json",
+					success: function( results, status, xhr ) {
+						var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+						if (indexId > -1) {
+							requestForRemoveFeature = sandbox.getRequestBuilder(
+									"MapModulePlugin.RemoveFeaturesFromMapRequest");
+							sandbox.request( me, requestForRemoveFeature("id", results.id, null));
+							me.selectedMunicipalityIds.splice(indexId, 1);
+							me._updateCalculateButtonVisibility( me );
+						} else {
+							requestForAddFeature = sandbox.getRequestBuilder(
+									"MapModulePlugin.AddFeaturesToMapRequest" );				
+							var style = OpenLayers.Util.applyDefaults(
+							        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+							        OpenLayers.Feature.Vector.style["default"]);
+							
+							sandbox.request( me, requestForAddFeature( results.geometry, 'WKT', 
+									{id: results.id}, null, null, true, style, false) );
+						
+							me.selectedMunicipalityIds.push( results.id );
+							me._updateCalculateButtonVisibility( me );
+						}
+					}
+				});
+			}
+		}
 	},
 	
 	_updateCalculateButtonVisibility : function(me) {
@@ -287,6 +335,10 @@ function() {
 			}
 		}
 		return biomassAttributeIds;
+	},
+	
+	_clearMunicipalityIdList: function(me) {
+		me.selectedMunicipalityIds = [];
 	},
 	
 	protocol : [ 'Oskari.bundle.BundleInstance' ]
