@@ -1,0 +1,7 @@
+/* Style class for MunicipalityBundle */
+.tool-municipality{
+    width: 32px;
+    height: 32px;
+    background: url('../images/tool-municipality.png') no-repeat;
+    background-position: center center;
+}

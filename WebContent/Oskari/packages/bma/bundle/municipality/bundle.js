@@ -42,7 +42,11 @@ function() {
         "scripts" : [{
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/municipality/instance.js"
-        }],
+        },
+        {
+			"type" : "text/css",
+			"src" : "../../../../bundles/bma/municipality/resources/css/style.css"
+		}],
         "locales" : [{
             "lang" : "en",
             "type" : "text/javascript",
