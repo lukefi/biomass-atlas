@@ -179,20 +179,20 @@ function() {
 							
 							for(var listName in results){
 								totalResult += "<br>" + "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
-								for(var cityName in results[listName]){						
+								for(var cityName in results[listName]){
 									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"+ results[listName][cityName].name + ":" + "</span>";
-									for (var attributeName in results[listName][cityName]) {
+									for (var attributeName in results[listName][cityName].values) {
 										// TODO this should be easier after we switch to JSON-stat
 										if (attributeName == "id" || attributeName == "name") continue;
 										totalResult += "<br>" + "<span style=' font-size:9pt; '>" 
-											+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+											+ attributeName + " : " + results[listName][cityName].values[attributeName].value 
+											+ " " + results[listName][cityName].values[attributeName].unit + "</span>";
 									}
 								}					
 							}
 							
 							sandbox.request(me, sandbox.getRequestBuilder(
 							'ShowMapMeasurementRequest')(totalResult, false, null, null));
-							console.log("test",results);
 						}
 					});
 				});

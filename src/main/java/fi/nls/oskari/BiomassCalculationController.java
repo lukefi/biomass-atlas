@@ -188,12 +188,18 @@ public class BiomassCalculationController {
             municipalityMap.put(cell.getCellId(), municipality);
         }
         root.put("municipalities", municipalityList);
+        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
+        
         for (AdministrativeAreaBiomassCalculationResult result : municipalityBiomasses) {
-            Map<String, Object> municipality = municipalityMap.get(result.getAreaId());
+        	Map<String, Object> municipality = municipalityMap.get(result.getAreaId());
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(result.getAttributeId());
             String layerName = attributeNameAndUnit.get(0);
             String layerUnit = attributeNameAndUnit.get(1);
-            municipality.put(layerName, Math.round(result.getValue()));
+            
+            attributeValues.put(layerName, new ValueAndUnit<Long>(Math.round(result.getValue()), layerUnit));
+            municipality.put("values", attributeValues);
+            
+            //municipality.put(layerName, Math.round(result.getValue()));
             //municipality.put("a" + result.getAttributeId(), result.getValue());
         }
         return root;
