@@ -33,28 +33,8 @@ function(instance, locale, conf) {
 	this.wmsName = "bma:view_municipality_borders";
 	this.wmsId = "municipalityBorderId";
 	this.selectedMunicipalityIds = [];
-	/**
-	 * @property contentState
-	 * what is shown and how
-	 */
-	this.contentState = {};
-
-	/**
-	 * @property showQueue
-	 * request queue to enable postponing ajax loads (TBD)
-	 *
-	 */
-	this.showQueue = [];
-
-	/**
-	 * @property state
-	 */
-	this.state = null;
-
-}, {
-	compileTemplates : function() {
-
-	},
+	
+}, {	
 	/**
 	 * @property template HTML templates for the User Interface
 	 * @static
@@ -84,7 +64,7 @@ function(instance, locale, conf) {
 
 	},
 	/**
-	 * Create help ui
+	 * Create Measurement UI
 	 * @method createUI
 	 * @public
 	 */
@@ -106,7 +86,6 @@ function(instance, locale, conf) {
         calculateTool.find('#municipality-calculate').unbind('click');
         calculateTool.find('#municipality-calculate').bind('click', function(){        	
         	me._calculateButtonClick(me);
-        	
         });
         
         cancelTool.find('#municipality-cancel').html("Lopeta");
@@ -124,6 +103,16 @@ function(instance, locale, conf) {
     	me._updateCalculateButtonVisibility(me);
     	
     	me._addWmsLayer(sandbox);
+    	
+    	me._closeIconClickHandler();
+	},
+	
+	_closeIconClickHandler: function() {
+		var me = this;
+		var parent = me.container.parents('.oskari-flyout');
+    	parent.find('.oskari-flyouttool-close').click(function(){
+    		me._cancelButtonClick();
+    	});
 	},
 	/**
      * @method close
@@ -134,34 +123,7 @@ function(instance, locale, conf) {
         	sandbox = instance.getSandbox();
         sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [instance, 'close']);  
     },
-	/**
-	 * @method _isVisible
-	 * @private
-	 * @returns is visible
-	 */
-	_isVisible: function(){
-		var me = this;
-		var flyout = me.container.parent().parent();
-		var isVisible = flyout.hasClass('oskari-detached');
-		return isVisible;
-
-	},
-	setState : function(state) {
-		this.state = state;
-	},	
-	/**
-	 * @method setContentState
-	 * restore state from store
-	 */
-	setContentState : function(contentState) {
-		var me = this;
-		var parent = me.container.parents('.oskari-flyout');
-        if(parent.hasClass('oskari-detached')){
-            parent.find('.oskari-flyouttool-close').trigger('click');
-        }
-		this.contentState = contentState;
-	},
-	
+		
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#municipality-calculate");
 		if (me.selectedMunicipalityIds.length > 0) {
