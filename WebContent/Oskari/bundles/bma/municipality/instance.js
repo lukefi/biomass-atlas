@@ -71,7 +71,6 @@ function() {
 
 	_toolButtonClicked : function() {
 		// here you can insert code that needs to be run exactly once after toolbar button has been clicked
-		/** update flyout content */
 		this.plugins['Oskari.userinterface.Flyout'].createUI();
 		this.getSandbox().requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
 	},
@@ -109,9 +108,7 @@ function() {
 		me._buttonsAdded = true;
 		
 		var extensionRequest = sandbox.getRequestBuilder('userinterface.AddExtensionRequest')(this);
-		console.log(extensionRequest);
 		sandbox.request(this, extensionRequest);
-		
 	},
 
 	/**
@@ -156,23 +153,7 @@ function() {
 	},
 	getPlugins : function() {
 		return this.plugins;
-	},
-	 /**
-     * @method _createUI
-     * @private
-     *
-     * Custom method, do what ever you like
-     * Best practices: start internal/private methods with an underscore
-     */
-    _createUI : function() {
-        var me = this;
-        for (var pluginType in me.plugins) {
-            if (pluginType) {
-                me.plugins[pluginType].createUI();
-            }
-        }
-    },
-	
+	},	
 	/**
 	 * @static
 	 * @property eventHandlers
@@ -216,20 +197,23 @@ function() {
 							
 							for(var listName in results){
 								totalResult += "<br>" + "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
-								for(var cityName in results[listName]){						
-									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"+ results[listName][cityName].name + ":" + "</span>";
-									for (var attributeName in results[listName][cityName]) {
+								for(var cityName in results[listName]){
+									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"
+										+ results[listName][cityName].name + ":" + "</span>";
+									//for (var attributeName in results[listName][cityName].attributeValues) {
+									for (var attributeName in results[listName][cityName]) {	
 										// TODO this should be easier after we switch to JSON-stat
 										if (attributeName == "id" || attributeName == "name") continue;
-										totalResult += "<br>" + "<span style=' font-size:9pt; '>" 
+											totalResult += "<br>" + "<span style=' font-size:9pt; '>"
 											+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+											//+ attributeName + " : " + results[listName][cityName].attributeValues[attributeName].value + "</span>"; 
+											//+ " " + results[listName][cityName].attributeValues[attributeName].unit + "</span>";
 									}
 								}					
 							}
 							
 							sandbox.request(me, sandbox.getRequestBuilder(
 							'ShowMapMeasurementRequest')(totalResult, false, null, null));
-							console.log("test",results);
 							
 						}
 					});
