@@ -42,11 +42,15 @@ function() {
         "scripts" : [{
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/testbundle/instance.js"
-        }],
+        },
+        {
+			"type" : "text/css",
+			"src" : "../../../../bundles/bma/testbundle/resources/css/style.css"
+		}],
         "locales" : [{
             "lang" : "en",
             "type" : "text/javascript",
-            "src" : "../../../../bundles/bma/testbundle/locale/en.js"
+            "src" : "../../../../bundles/bma/testbundle/resources/locale/en.js"
         }]
     },
     "bundle" : {

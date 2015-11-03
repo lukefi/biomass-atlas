@@ -82,10 +82,10 @@ function() {
 		if (me._buttonsAdded) {
 			return;
 		}
-
+				
 		me.buttons = {
 			'bmaMunicipalityCalculator' : {
-				iconCls : 'tool-measure-area',
+				iconCls : 'tool-municipality',
 				tooltip : "Laske biomassa kunnassa",
 				sticky : true,
 				callback : function() {

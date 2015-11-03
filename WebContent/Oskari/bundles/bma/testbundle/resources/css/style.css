@@ -1,0 +1,7 @@
+/* Style class for TestBundle */
+.tool-area-selection{
+    width: 32px;
+    height: 32px;
+    background: url('../images/tool-area-selection.png') no-repeat;
+    background-position: center center;
+}

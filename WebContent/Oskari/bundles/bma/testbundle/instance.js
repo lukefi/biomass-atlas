@@ -91,7 +91,7 @@ function() {
 
 		me.buttons = {
 			'bmacalculator' : {
-				iconCls : 'tool-measure-area',
+				iconCls : 'tool-area-selection',
 				tooltip : "Laske biomassa alueella",
 				sticky : true,
 				callback : function() {
