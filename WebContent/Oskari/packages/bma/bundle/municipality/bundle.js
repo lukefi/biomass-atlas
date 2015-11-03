@@ -43,6 +43,10 @@ function() {
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/municipality/instance.js"
         },
+		{
+			"type" : "text/javascript",
+			"src" : "../../../../bundles/bma/municipality/Flyout.js"
+		},
         {
 			"type" : "text/css",
 			"src" : "../../../../bundles/bma/municipality/resources/css/style.css"

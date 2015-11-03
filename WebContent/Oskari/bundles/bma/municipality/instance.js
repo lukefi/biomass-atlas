@@ -15,6 +15,7 @@ function() {
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";
 	this.wmsName = "bma:view_municipality_borders";
 	this.wmsId = "municipalityBorderId";
+	this.plugins = {};
 }, {
 	/**
 	 * @static
@@ -65,10 +66,14 @@ function() {
 				sandbox.registerForEventByName(me, p);
 			}
 		}
+				
 	},
 
 	_toolButtonClicked : function() {
 		// here you can insert code that needs to be run exactly once after toolbar button has been clicked
+		/** update flyout content */
+		this.plugins['Oskari.userinterface.Flyout'].createUI();
+		this.getSandbox().requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
 	},
 	
 	/**
@@ -102,6 +107,10 @@ function() {
 		request = reqBuilder("bmaMunicipalityCalculator", "basictools",	me.buttons['bmaMunicipalityCalculator']);
 		sandbox.request(me.getName(), request);	
 		me._buttonsAdded = true;
+		
+		var extensionRequest = sandbox.getRequestBuilder('userinterface.AddExtensionRequest')(this);
+		console.log(extensionRequest);
+		sandbox.request(this, extensionRequest);
 		
 	},
 
@@ -139,6 +148,30 @@ function() {
 		}
 		return handler.apply(this, [ event ]);
 	},
+	startExtension : function() {
+		this.plugins['Oskari.userinterface.Flyout'] = Oskari.clazz.create('Oskari.bma.bundle.municipality.MunicipalityBundle.Flyout', this, null, this.conf);
+	},
+	stopExtension : function() {
+		this.plugins['Oskari.userinterface.Flyout'] = null;
+	},
+	getPlugins : function() {
+		return this.plugins;
+	},
+	 /**
+     * @method _createUI
+     * @private
+     *
+     * Custom method, do what ever you like
+     * Best practices: start internal/private methods with an underscore
+     */
+    _createUI : function() {
+        var me = this;
+        for (var pluginType in me.plugins) {
+            if (pluginType) {
+                me.plugins[pluginType].createUI();
+            }
+        }
+    },
 	
 	/**
 	 * @static
@@ -183,20 +216,20 @@ function() {
 							
 							for(var listName in results){
 								totalResult += "<br>" + "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
-								for(var cityName in results[listName]){
+								for(var cityName in results[listName]){						
 									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"+ results[listName][cityName].name + ":" + "</span>";
-									for (var attributeName in results[listName][cityName].values) {
+									for (var attributeName in results[listName][cityName]) {
 										// TODO this should be easier after we switch to JSON-stat
 										if (attributeName == "id" || attributeName == "name") continue;
 										totalResult += "<br>" + "<span style=' font-size:9pt; '>" 
-											+ attributeName + " : " + results[listName][cityName].values[attributeName].value 
-											+ " " + results[listName][cityName].values[attributeName].unit + "</span>";
+											+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
 									}
 								}					
 							}
 							
 							sandbox.request(me, sandbox.getRequestBuilder(
 							'ShowMapMeasurementRequest')(totalResult, false, null, null));
+							console.log("test",results);
 							
 						}
 					});
@@ -342,5 +375,5 @@ function() {
 		me.selectedMunicipalityIds = [];
 	},
 	
-	protocol : [ 'Oskari.bundle.BundleInstance' ]
+	protocol : [ 'Oskari.bundle.BundleInstance', 'Oskari.mapframework.module.Module', 'Oskari.userinterface.Extension' ]
 });
