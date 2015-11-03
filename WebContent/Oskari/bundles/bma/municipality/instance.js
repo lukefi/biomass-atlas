@@ -184,13 +184,16 @@ function() {
 							for(var listName in results){
 								totalResult += "<br>" + "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
 								for(var cityName in results[listName]){
-									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"+ results[listName][cityName].name + ":" + "</span>";
-									for (var attributeName in results[listName][cityName].values) {
+									totalResult += "<br>" + "<span style=' font-size:9pt;text-decoration:underline; '>"
+										+ results[listName][cityName].name + ":" + "</span>";
+									//for (var attributeName in results[listName][cityName].attributeValues) {
+									for (var attributeName in results[listName][cityName]) {	
 										// TODO this should be easier after we switch to JSON-stat
 										if (attributeName == "id" || attributeName == "name") continue;
-										totalResult += "<br>" + "<span style=' font-size:9pt; '>" 
-											+ attributeName + " : " + results[listName][cityName].values[attributeName].value 
-											+ " " + results[listName][cityName].values[attributeName].unit + "</span>";
+											totalResult += "<br>" + "<span style=' font-size:9pt; '>"
+											+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+											//+ attributeName + " : " + results[listName][cityName].attributeValues[attributeName].value + "</span>"; 
+											//+ " " + results[listName][cityName].attributeValues[attributeName].unit + "</span>";
 									}
 								}					
 							}
