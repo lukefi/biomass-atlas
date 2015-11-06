@@ -71,6 +71,8 @@ function(instance, locale, conf) {
 	createUI: function(sandbox){
 		var me = this;
 		var sandbox = me.instance.getSandbox();
+		me.isMunicipalityIconClickedForFirstTime = true;
+		
 		// clear container
 		var cel = jQuery(me.container);
 		cel.empty();
@@ -228,6 +230,7 @@ function(instance, locale, conf) {
         me._clearMunicipalityIdList(me);        
         me._removeWmsLayer(sandbox);
         me._close();
+        me.isMunicipalityIconClickedForFirstTime = false;
 	},
 	
 	mapClickedEvent: function(event){
@@ -242,35 +245,37 @@ function(instance, locale, conf) {
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 		
 		this._fixIndexOfForOlderIE();
-		
-		jQuery.ajax({
-			url: "/biomass/municipality/geometry",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null } ),
-			dataType: "json",
-			success: function( results, status, xhr ) {
-				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
-				if (indexId > -1) {
-					requestForRemoveFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.RemoveFeaturesFromMapRequest");
-					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
-					me.selectedMunicipalityIds.splice(indexId, 1);
-					me._updateCalculateButtonVisibility(me);
-				} else {
-					requestForAddFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.AddFeaturesToMapRequest" );				
-					var style = OpenLayers.Util.applyDefaults(
-					        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-					        OpenLayers.Feature.Vector.style["default"]);
+		if(me.isMunicipalityIconClickedForFirstTime){
+			jQuery.ajax({
+				url: "/biomass/municipality/geometry",
+				type: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify( { points: points, attributes: null } ),
+				dataType: "json",
+				success: function( results, status, xhr ) {
+					var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+					if (indexId > -1) {
+						requestForRemoveFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.RemoveFeaturesFromMapRequest");
+						sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+						me.selectedMunicipalityIds.splice(indexId, 1);
+						me._updateCalculateButtonVisibility(me);
+					} else {
+						requestForAddFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.AddFeaturesToMapRequest" );				
+						var style = OpenLayers.Util.applyDefaults(
+						        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+						        OpenLayers.Feature.Vector.style["default"]);
 
-					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-							{id: results.id}, null, null, true, style, false));				
-					me.selectedMunicipalityIds.push(results.id);
-					me._updateCalculateButtonVisibility(me);
+						sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
+								{id: results.id}, null, null, true, style, false));				
+						me.selectedMunicipalityIds.push(results.id);
+						me._updateCalculateButtonVisibility(me);
+					}
 				}
-			}
-		});
+			});
+		}
+		
 	},
 	
 	/**

@@ -158,7 +158,7 @@ function() {
 	 * events bundle is listening and how bundle reacts to them
 	 */
 	eventHandlers : {		
-		'MapClickedEvent': function(event){			
+		'MapClickedEvent': function(event){
 			this.plugins['Oskari.userinterface.Flyout'].mapClickedEvent(event);		
 		}
 	},
