@@ -68,9 +68,10 @@ function(instance, locale, conf) {
 	 * @method createUI
 	 * @public
 	 */
-	createUI: function(sandbox){
-		var me = this;
-		var sandbox = me.instance.getSandbox();
+	createUI: function(){
+		var me = this,
+			sandbox = me.instance.getSandbox();
+		
 		me.isMunicipalityIconClickedForFirstTime = true;
 		
 		// clear container
@@ -110,8 +111,8 @@ function(instance, locale, conf) {
 	},
 	
 	_closeIconClickHandler: function() {
-		var me = this;
-		var parent = me.container.parents('.oskari-flyout');
+		var me = this,
+			parent = me.container.parents('.oskari-flyout');
     	parent.find('.oskari-flyouttool-close').click(function(){
     		me._cancelButtonClick();
     	});
@@ -138,8 +139,8 @@ function(instance, locale, conf) {
 	
 	_getVisibleBiomassAttributeIds : function(sandbox) {
 		// TODO this is copy-paste from polygon biomass calculation tool
-		var layers = sandbox.findAllSelectedMapLayers();
-		var biomassAttributeIds = [];
+		var layers = sandbox.findAllSelectedMapLayers(),
+			biomassAttributeIds = [];
 		for (var i = 0; i < layers.length; i++) {
 			var layer = layers[i];
 			if ("bma" in layer.getOptions()) {
@@ -150,8 +151,8 @@ function(instance, locale, conf) {
 	},
 	
 	_addWmsLayer: function(sandbox){
-		var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');
-		var wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
+		var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule'),
+			wmsLayer = Oskari.clazz.create("Oskari.mapframework.domain.WmsLayer");
 		wmsLayer.setWmsUrls([this.wmsUrl]);
 		wmsLayer.setWmsName(this.wmsName);			
 		wmsLayer.setType("wmslayer");		
@@ -199,7 +200,7 @@ function(instance, locale, conf) {
 			dataType: "json",
 			success: function(results, status, xhr) {
 				// TODO - should find better way to show calculation results and selected layers' names
-				totalResult = "";
+				var totalResult = "";
 				
 				for(var listName in results){
 					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
@@ -305,7 +306,7 @@ function(instance, locale, conf) {
 	
 	_showResult: function(result){
 		jQuery("#municipality-message").hide();
-		jQuery("#municipality-data").html(totalResult);
+		jQuery("#municipality-data").html(result);
 	},
 	
 	_clearMunicipalityIdList: function(me) {

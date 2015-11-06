@@ -44,6 +44,10 @@ function() {
             "src" : "../../../../bundles/bma/testbundle/instance.js"
         },
         {
+			"type" : "text/javascript",
+			"src" : "../../../../bundles/bma/testbundle/Flyout.js"
+		},
+        {
 			"type" : "text/css",
 			"src" : "../../../../bundles/bma/testbundle/resources/css/style.css"
 		}],
