@@ -183,16 +183,15 @@ function(instance, locale, conf) {
 				finalResult += 
 					"<br>Tallenna tulokset: "
 					+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
-					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 					+ "<input type='submit' name='submit' value='XLSX' />" 
 					+ "</form>&nbsp;"
 					+ "<form method='POST' action='/biomass/area/csv' style='display: inline-block'>" 
-					+ "<input type='hidden' class='biomassAreaExportQuery' name='query' />" 
+					+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 					+ "<input type='submit' name='submit' value='CSV' />" 
 					+ "</form>"
 					+ "<br>";
 				
-				$(".biomassAreaExportQuery").val(queryData);
 				me._showResult(finalResult);
 			}
 		});

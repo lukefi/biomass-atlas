@@ -202,7 +202,7 @@ public class BiomassCalculationController {
             
             municipality.put(layerName, resultAndUnit);
             //municipality.put("a" + result.getAttributeId(), result.getValue());
-        }  
+        }
         return root;
     }
     
