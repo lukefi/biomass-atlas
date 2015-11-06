@@ -104,6 +104,8 @@ function() {
 		
 		var extensionRequest = sandbox.getRequestBuilder('userinterface.AddExtensionRequest')(this);
 		sandbox.request(this, extensionRequest);
+		
+		this.plugins['Oskari.userinterface.Flyout'].syncToolbarButtonVisibility();
 	},
 
 	/**
@@ -160,6 +162,14 @@ function() {
 	eventHandlers : {		
 		'MapClickedEvent': function(event){
 			this.plugins['Oskari.userinterface.Flyout'].mapClickedEvent(event);		
+		},
+		
+		'AfterMapLayerAddEvent' : function(event) {
+			this.plugins['Oskari.userinterface.Flyout'].syncToolbarButtonVisibility();
+		},
+		
+		'AfterMapLayerRemoveEvent': function(event) {
+			this.plugins['Oskari.userinterface.Flyout'].syncToolbarButtonVisibility();
 		}
 	},
 	

@@ -137,9 +137,10 @@ function(instance, locale, conf) {
 		}
 	},
 	
-	_getVisibleBiomassAttributeIds : function(sandbox) {
+	_getVisibleBiomassAttributeIds : function() {
 		// TODO this is copy-paste from polygon biomass calculation tool
-		var layers = sandbox.findAllSelectedMapLayers(),
+		var sandbox = this.instance.getSandbox(),
+			layers = sandbox.findAllSelectedMapLayers(),
 			biomassAttributeIds = [];
 		for (var i = 0; i < layers.length; i++) {
 			var layer = layers[i];
@@ -302,6 +303,19 @@ function(instance, locale, conf) {
 		    return -1;
 		  };
 		}
+	},
+	
+	syncToolbarButtonVisibility : function() {
+		var me = this,
+			instance = me.instance,
+			sandbox = instance.getSandbox();
+		me._setToolbarButtonVisibility(sandbox, me._getVisibleBiomassAttributeIds().length > 0);
+	},
+	
+	_setToolbarButtonVisibility : function(sandbox, state) {
+		var stateReqBuilder = sandbox.getRequestBuilder("Toolbar.ToolButtonStateRequest"),
+			stateRequest = stateReqBuilder("bmaMunicipalityCalculator", "basictools", state);
+		sandbox.request("Municipality", stateRequest);
 	},
 	
 	_showResult: function(result){
