@@ -96,6 +96,10 @@
             .italic{
             	font-style: italic;
             }
+             #register{
+            	text-align: center;
+            	padding-top: 20px;
+            }
 
         }
     </style>
@@ -109,6 +113,10 @@
     <div id="menubar">
     </div>
     <div id="divider">
+    </div>
+    <div id="register">    	
+    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
+    	<a href="#">Rekisteröidy</a>
     </div>
     <div id="toolbar">
     </div>
