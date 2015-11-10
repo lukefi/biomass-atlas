@@ -1,0 +1,188 @@
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biomassa-atlas</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+    </script>
+    <!-- ############# css ################# -->   
+    <style type="text/css">
+        @media screen {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            #content {
+                height: 100%;
+                margin-left: 153px;
+            }
+           
+            #maptools {
+                background-color: #333438;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                width: 153px;
+                z-index: 2;
+            }
+          
+            #login {
+                margin-left: 5px;
+            }
+
+            #login input[type="text"], #login input[type="password"] {
+                width: 90%;
+                margin-bottom: 5px;
+                background-image: url("${pageContext.request.contextPath}/Oskari${path}/images/forms/input_shadow.png");
+                background-repeat: no-repeat;
+                padding-left: 5px;
+                padding-right: 5px;
+                border: 1px solid #B7B7B7;
+                border-radius: 4px 4px 4px 4px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+                color: #878787;
+                font: 13px/100% Arial,sans-serif;
+            }
+            #login input[type="submit"] {
+                width: 90%;
+                margin-bottom: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                border: 1px solid #B7B7B7;
+                border-radius: 4px 4px 4px 4px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+                color: #878787;
+                font: 13px/100% Arial,sans-serif;
+            }
+            #login p.error {
+                font-weight: bold;
+                color : red;
+                margin-bottom: 10px;
+            }
+
+            #login a {
+                color: #FFF;
+                padding: 5px;
+            }
+            
+            .error{
+            	color: red;
+            }
+            .italic{
+            	font-style: italic;
+            }
+             #registerLink{
+            	text-align: center;
+            	padding-top: 20px;
+            }
+            #register{
+            	padding-left: 25px;
+            }
+            .content-column{            	
+            	display: block;
+            }
+            .column-field-label{
+            	font-size: 20px;
+            	line-height: 2;
+            }
+            .column-field-input{
+            	border-radius: 5px;
+            	font-size: 14px;
+            	height: 30px;
+            	padding-left:10px;
+            	padding-right:10px;
+            }
+            .column-field-input:focus{
+            	background-color: #ECF9EC;
+            }
+            		
+			.column-field-button{
+				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+				box-shadow:inset 0px 1px 0px 0px #ffffff;
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+				background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+				background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+				background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+				background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+				background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+				background-color:#ededed;
+				-moz-border-radius:6px;
+				-webkit-border-radius:6px;
+				border-radius:6px;
+				border:1px solid #dcdcdc;
+				display:inline-block;
+				cursor:pointer;
+				color:#777777;
+				font-family:Arial;
+				font-size:15px;
+				font-weight:bold;
+				padding:6px 24px;
+				text-decoration:none;
+				text-shadow:0px 1px 0px #ffffff;
+				position: relative;
+				top: 20px;
+				padding-left: 10px;
+			}
+			.column-field-button:hover {
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+				background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+				background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+				background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+				background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+				background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+				background-color:#dfdfdf;
+			}
+			.column-field-button:active {
+				position:relative;
+				top:20px;
+			}
+        
+    </style>
+    <!-- ############# /css ################# -->
+</head>
+<body>
+
+<nav id="maptools">    
+    <div id="registerLink">    	
+    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
+    	<a href="#">Rekisteröidy</a>
+    </div>   
+</nav>
+<div id="content">
+	<div id="register">
+		<h1>Rekisteröidy palveluun</h1>
+		<form action="">
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Etunimi</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="firstname" type="text" autofocus required></span>
+			</span>
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Sukunimi</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="lastname" type="text" required></span>
+			</span>
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Nimimerkki</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="username" type="text" required></span>
+			</span>
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="email" type="email" required></span>
+			</span>
+			<span>				
+				<span><input class="column-field-button" size="16" id="register" type="submit" value="Rekisteröidy"></span>
+			</span>			
+			<span>				
+				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuttaa"></span>
+			</span>			
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

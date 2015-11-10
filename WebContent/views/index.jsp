@@ -114,9 +114,10 @@
     </div>
     <div id="divider">
     </div>
-    <div id="register">    	
+    <div id="register"> 
+    ${pageContext.request.contextPath}
     	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
-    	<a href="#">Rekisteröidy</a>
+    	<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
     </div>
     <div id="toolbar">
     </div>
@@ -132,6 +133,7 @@
             <c:when test="${!empty _logout_uri}">
                 <a href="${_logout_uri}">Logout</a>
             </c:when>
+            
             <c:when test="${empty _logout_uri && !empty _login_uri}">
                 <form action='${_login_uri}' method="post" accept-charset="UTF-8">
                     <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="Username" autofocus
