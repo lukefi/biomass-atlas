@@ -126,7 +126,6 @@
 				text-shadow:0px 1px 0px #ffffff;
 				position: relative;
 				top: 20px;
-				padding-left: 10px;
 			}
 			.column-field-button:hover {
 				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
@@ -142,6 +141,15 @@
 				position:relative;
 				top:20px;
 			}
+			
+			#etusivu {
+				padding-top: 20px;
+				text-align: center;				
+			}
+			#frontpage, #frontpage:visited {				
+				color: #3399FF;
+			}
+			
         
     </style>
     <!-- ############# /css ################# -->
@@ -149,11 +157,11 @@
 <body>
 
 <nav id="maptools">    
-    <div id="registerLink">    	
-    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
-    	<a href="#">Rekisteröidy</a>
+    <div id="etusivu"> 	
+    	<a href="#" id="frontpage">Etusivu</a>
     </div>   
 </nav>
+
 <div id="content">
 	<div id="register">
 		<h1>Rekisteröidy palveluun</h1>
@@ -184,5 +192,14 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#frontpage, #cancel').click(function () {		
+		var host = window.location.protocol + "//" + window.location.host; 
+		window.location.replace(host);
+	});
+});
+
+</script>
 </body>
 </html>
