@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,56 +29,7 @@
                 width: 153px;
                 z-index: 2;
             }
-          
-            #login {
-                margin-left: 5px;
-            }
-
-            #login input[type="text"], #login input[type="password"] {
-                width: 90%;
-                margin-bottom: 5px;
-                background-image: url("${pageContext.request.contextPath}/Oskari${path}/images/forms/input_shadow.png");
-                background-repeat: no-repeat;
-                padding-left: 5px;
-                padding-right: 5px;
-                border: 1px solid #B7B7B7;
-                border-radius: 4px 4px 4px 4px;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
-                color: #878787;
-                font: 13px/100% Arial,sans-serif;
-            }
-            #login input[type="submit"] {
-                width: 90%;
-                margin-bottom: 5px;
-                padding-left: 5px;
-                padding-right: 5px;
-                border: 1px solid #B7B7B7;
-                border-radius: 4px 4px 4px 4px;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
-                color: #878787;
-                font: 13px/100% Arial,sans-serif;
-            }
-            #login p.error {
-                font-weight: bold;
-                color : red;
-                margin-bottom: 10px;
-            }
-
-            #login a {
-                color: #FFF;
-                padding: 5px;
-            }
-            
-            .error{
-            	color: red;
-            }
-            .italic{
-            	font-style: italic;
-            }
-             #registerLink{
-            	text-align: center;
-            	padding-top: 20px;
-            }
+                    
             #register{
             	padding-left: 25px;
             }
@@ -165,22 +117,22 @@
 <div id="content">
 	<div id="register">
 		<h1>Rekisteröidy palveluun</h1>
-		<form action="">
+		<form:form action="${pageContext.request.contextPath}/biomass/user/register" method="post" modelAttribute="model">
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Etunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="firstname" type="text" autofocus required></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="firstname" name="firstname" type="text" autofocus required></span>
 			</span>
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Sukunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="lastname" type="text" required></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="lastname" name="lastname" type="text" required></span>
 			</span>
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Nimimerkki</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="username" type="text" required></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="username" name="username" type="text" required></span>
 			</span>
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="email" type="email" required></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="email" name="email" type="email" required></span>
 			</span>
 			<span>				
 				<span><input class="column-field-button" size="16" id="register" type="submit" value="Rekisteröidy"></span>
@@ -188,7 +140,7 @@
 			<span>				
 				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuttaa"></span>
 			</span>			
-		</form>
+		</form:form>
 	</div>
 </div>
 
