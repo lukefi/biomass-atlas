@@ -21,12 +21,12 @@
 		<repository>
 			<id>deployment</id>
 			<name>Internal Releases</name>
-			<url>http://linsrv/nexus/content/repositories/releases/</url>
+			<url>https://nexus.ns.luke.fi/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>deployment</id>
 			<name>Internal Snapshots</name>
-			<url>http://linsrv/nexus/content/repositories/snapshots/</url>
+			<url>https://nexus.ns.luke.fi/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
