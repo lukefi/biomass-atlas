@@ -138,7 +138,7 @@
 				<span><input class="column-field-button" size="16" id="register" type="submit" value="Rekisteröidy"></span>
 			</span>			
 			<span>				
-				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuttaa"></span>
+				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
 			</span>			
 		</form:form>
 	</div>
