@@ -4,14 +4,11 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import fi.luke.bma.model.UserRequestModel;
-import fi.luke.bma.model.VerificationToken;
 import fi.luke.bma.service.UserService;
 
 @RestController
@@ -26,7 +23,7 @@ public class BiomassUserController {
        ModelAndView mv = new ModelAndView("register");
        return mv;
     }
-    
+    /*
     @RequestMapping(value="register", method=RequestMethod.POST)
     public ModelAndView createNewRegistration(@ModelAttribute("model") UserRequestModel model){
         ModelAndView mv = new ModelAndView("message");
@@ -40,7 +37,7 @@ public class BiomassUserController {
         userService.insert(vt);
         return mv;
      }
-    
+    */
     public Timestamp createExpiryTime(){
     	Calendar calender = Calendar.getInstance();
         Timestamp currentTime = new java.sql.Timestamp(calender.getTime().getTime());

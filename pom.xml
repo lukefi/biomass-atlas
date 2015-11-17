@@ -9,7 +9,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<oskari.version>1.32.0</oskari.version>
+		<oskari.version>1.33.2</oskari.version>
 	</properties>
 
 	<scm>
@@ -59,6 +59,11 @@
 		<dependency>
 			<groupId>fi.nls.oskari</groupId>
 			<artifactId>service-logging</artifactId>
+			<version>${oskari.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fi.nls.oskari.service</groupId>
+			<artifactId>oskari-control-users</artifactId>
 			<version>${oskari.version}</version>
 		</dependency>
 		<dependency>
