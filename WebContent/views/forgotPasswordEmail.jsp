@@ -29,10 +29,7 @@
                 width: 153px;
                 z-index: 2;
             }
-                    
-            #register {
-            	padding-left: 25px;
-            }
+            
             .content-column{            	
             	display: block;
             }
@@ -102,10 +99,11 @@
 				color: #3399FF;
 			}
 			
-			#forgotPassword {
-				padding-left: 25px;
-				font-size: 20px;
-			}			
+			#emailAddress {
+            	padding-top: 25px;
+            	padding-left: 25px;
+            }
+			
         
     </style>
     <!-- ############# /css ################# -->
@@ -119,36 +117,17 @@
 </nav>
 
 <div id="content">
-	<div id="register">
-		<h1>Rekisteröidy palveluun</h1>
-		<form:form action="${pageContext.request.contextPath}/biomass/user/register" method="post" modelAttribute="model">
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Etunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="firstname" name="firstname" type="text" autofocus required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Sukunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="lastname" name="lastname" type="text" required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Nimimerkki</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="username" name="username" type="text" required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="email" name="email" type="email" required></span>
-			</span>
-			<span>				
-				<span><input class="column-field-button" size="16" id="register" type="submit" value="Rekisteröidy"></span>
-			</span>			
-			<span>				
-				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
-			</span>			
-		</form:form>
-		
-		<br><br>
-		<a href="#" id="forgotPassword"> Salasana unohtunut</a>
-	
+	<div id="emailAddress">
+		<span class="content-column">
+			<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
+			<span class="content-column"><input class="column-field-input" size="25" id="email" name="email" type="email" autofocus required></span>
+		</span>			
+		<span>				
+			<span><input class="column-field-button" size="16" id="submit" type="button" value="Seurava"></span>
+		</span>			
+		<span>				
+			<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
+		</span>			
 	</div>
 </div>
 
@@ -159,9 +138,13 @@ $(document).ready(function () {
 		window.location.replace(host);
 	});
 	
-	$('#forgotPassword').click(function () {		
-		var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
-		window.location.replace(host);
+	$('#submit').click(function () {
+		var email = jQuery('#email').val();
+		var host = window.location.protocol + "//" + window.location.host; 
+		jQuery.get(host + "/action?action_route=UserPasswordReset&email=" + email, function (data){
+			var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+			window.location.replace(url);
+		});
 	});
 });
 

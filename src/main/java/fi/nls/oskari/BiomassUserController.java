@@ -46,4 +46,16 @@ public class BiomassUserController {
         Timestamp expiryTime = new java.sql.Timestamp(calender.getTime().getTime());
         return expiryTime;
     }
+    
+    @RequestMapping(value="forgotPassword", method=RequestMethod.GET)
+    public ModelAndView forgotPassword(){
+       ModelAndView mv = new ModelAndView("forgotPasswordEmail");
+       return mv;
+    }
+    
+    @RequestMapping(value="emailSent", method=RequestMethod.GET)
+    public ModelAndView emailSent(){
+    	ModelAndView mv = new ModelAndView("emailSent");
+    	return mv;
+    }
 }
