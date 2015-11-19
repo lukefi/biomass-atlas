@@ -29,7 +29,10 @@
                 width: 153px;
                 z-index: 2;
             }
-            
+                    
+            #passwordReset {
+            	padding-left: 25px;
+            }
             .content-column{            	
             	display: block;
             }
@@ -99,12 +102,6 @@
 				color: #3399FF;
 			}
 			
-			#emailAddress {
-            	padding-top: 25px;
-            	padding-left: 25px;
-            }
-			
-        
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -117,17 +114,22 @@
 </nav>
 
 <div id="content">
-	<div id="emailAddress">
-		<span class="content-column">
-			<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
-			<span class="content-column"><input class="column-field-input" size="25" id="email" name="email" type="email" autofocus required></span>
-		</span>			
-		<span>				
-			<span><input class="column-field-button" size="16" id="submit" type="button" value="Seurava"></span>
-		</span>			
-		<span>				
-			<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
-		</span>			
+	<div id="passwordReset">
+		<h2>Salasanan vaihto</h2>
+		<form:form action="${pageContext.request.contextPath}/biomass/user/register" method="post" modelAttribute="model">
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Uusi salasana</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="password" name="password" type="password" autofocus required></span>
+			</span>
+			<span class="content-column">
+				<span class="content-column"><label class="column-field-label">Vahvista uusi salasana</label></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required></span>
+			</span>			
+			<span>				
+				<span><input class="column-field-button" size="16" id="reset" type="button" value="Submit"></span>
+			</span>				
+		</form:form>
+		
 	</div>
 </div>
 
@@ -136,17 +138,8 @@ $(document).ready(function () {
 	$('#frontpage, #cancel').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		window.location.replace(host);
-	});
+	});	
 	
-	$('#submit').click(function () {
-		var email = jQuery('#email').val();
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.get(host + "/action?action_route=UserPasswordReset&email=" + email, function (data){
-			alert(data.email);
-			var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
-			window.location.replace(url);
-		});
-	});
 });
 
 </script>

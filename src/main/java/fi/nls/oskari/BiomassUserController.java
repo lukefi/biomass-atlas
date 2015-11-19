@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,8 +48,9 @@ public class BiomassUserController {
         return expiryTime;
     }
     
-    @RequestMapping(value="forgotPassword", method=RequestMethod.GET)
-    public ModelAndView forgotPassword(){
+    
+    @RequestMapping(value="/forgotPassword", method=RequestMethod.GET)
+    public ModelAndView forgotPassword(@ModelAttribute String uuid){
        ModelAndView mv = new ModelAndView("forgotPasswordEmail");
        return mv;
     }
