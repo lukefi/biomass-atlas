@@ -65,6 +65,12 @@
 			<groupId>fi.nls.oskari.service</groupId>
 			<artifactId>oskari-control-users</artifactId>
 			<version>${oskari.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-webmvc</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>fi.luke</groupId>
