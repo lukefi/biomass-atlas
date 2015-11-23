@@ -138,7 +138,29 @@ $(document).ready(function () {
 	$('#frontpage, #cancel').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		window.location.replace(host);
-	});	
+	});
+	
+	$('#reset').click(function () {		
+		var password = jQuery('#password').val();
+		var uuid = '${uuid}';
+		var host = window.location.protocol + "//" + window.location.host; 
+		jQuery.ajax({
+			url: host + "/action?action_route=UserPasswordReset&password=",
+			type: 'POST',
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({
+					password: password,
+					uuid: uuid					
+				}),
+			success: function(data) {
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+				window.location.replace(url);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("ERROR: " + jqXHR.responseText);
+			}
+		});				
+	});
 	
 });
 
