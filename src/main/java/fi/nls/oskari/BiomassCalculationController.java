@@ -58,7 +58,7 @@ public class BiomassCalculationController {
         double areaOfPolygon =  calculationService.getAreaOfPolygon(polygonAsWkt)/1000000; // For m2 converted to km2
         Integer numberOfCentroids = calculationService.getNumberOfCentroids(gridId, polygonAsWkt);
         if((areaOfPolygon < (0.95 * numberOfCentroids)) || (areaOfPolygon > (1.05 * numberOfCentroids))){
-        	result.put("error", "Area selected is too small or too much of grid cell centroids.");
+        	result.put("error", "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.");
         }
         TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
         for(long attributeId : requestBody.getAttributes()){
