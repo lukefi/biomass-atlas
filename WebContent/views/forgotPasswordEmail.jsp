@@ -103,6 +103,11 @@
             	padding-top: 25px;
             	padding-left: 25px;
             }
+            
+            #error {
+            	color: red;
+            	font-size: 16px;
+            }
 			
         
     </style>
@@ -120,7 +125,9 @@
 	<div id="emailAddress">
 		<span class="content-column">
 			<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
-			<span class="content-column"><input class="column-field-input" size="25" id="email" name="email" type="email" autofocus required></span>
+			<span class="content-column"><input class="column-field-input" size="25" id="email" name="email" type="email" autofocus required>
+			<label id="error"></label>
+			</span>
 		</span>			
 		<span>				
 			<span><input class="column-field-button" size="16" id="submit" type="button" value="Seurava"></span>
@@ -149,14 +156,9 @@ $(document).ready(function () {
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				alert("ERROR: " + jqXHR.responseText);
+				jQuery("#error").text("SERVER ERROR");
 			}
-		});				
-		/* jQuery.get(host + "/action?action_route=UserPasswordReset&email=" + email, function (data){
-			//alert(data.email);
-			var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
-			window.location.replace(url);
-		}); */
+		});		
 	});
 });
 

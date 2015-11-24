@@ -102,6 +102,10 @@
 				color: #3399FF;
 			}
 			
+			.error {
+				color: red;
+			}
+			
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -116,19 +120,23 @@
 <div id="content">
 	<div id="passwordReset">
 		<h2>Salasanan vaihto</h2>
-		<form:form action="${pageContext.request.contextPath}/biomass/user/register" method="post" modelAttribute="model">
+		<form:form>
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Uusi salasana</label></span>
 				<span class="content-column"><input class="column-field-input" size="16" id="password" name="password" type="password" autofocus required></span>
 			</span>
 			<span class="content-column">
 				<span class="content-column"><label class="column-field-label">Vahvista uusi salasana</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required></span>
+				<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required>
+				<label id="unmatchedPassword" class="error"></label></span>
 			</span>			
 			<span>				
 				<span><input class="column-field-button" size="16" id="reset" type="button" value="Submit"></span>
-			</span>				
+			</span>
+				
+			<span class="error"><label id="serverError"></label></span>
 		</form:form>
+		
 		
 	</div>
 </div>
@@ -142,6 +150,13 @@ $(document).ready(function () {
 	
 	$('#reset').click(function () {		
 		var password = jQuery('#password').val();
+		var confirmPassword = jQuery('#confirmPassword').val();
+		
+		if (password != confirmPassword) {
+			jQuery('#unmatchedPassword').text("Confirm password doesn't match.");
+			return;
+		}
+		
 		var uuid = '${uuid}';
 		var host = window.location.protocol + "//" + window.location.host; 
 		jQuery.ajax({
@@ -157,7 +172,7 @@ $(document).ready(function () {
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				alert("ERROR: " + jqXHR.responseText);
+				jQuery("#serverError").text("SERVER ERROR");
 			}
 		});				
 	});
