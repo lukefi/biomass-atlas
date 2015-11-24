@@ -36,6 +36,10 @@
 				color: #3399FF;
 			}
 			
+			#registration, #passwordChanged, #emailSent {
+				padding-left: 25px;
+			}
+			
         
     </style>
     <!-- ############# /css ################# -->
@@ -49,9 +53,23 @@
 </nav>
 
 <div id="content">
-	<div id="message">
-		<h2>Thank you for registration. <br> Please activate your account through the email being sent.</h2>		
-	</div>
+	<c:if test="${!empty registration}">
+		<div id="registration">
+			<h2>Thank you for registration. <br> Please activate your account through the email being sent.</h2>		
+		</div>
+	</c:if>
+	
+	<c:if test="${!empty passwordChanged}">
+		<div id="passwordChanged">
+			<h2>Password has been changed successfully.</h2>		
+		</div>
+	</c:if>
+	
+	<c:if test="${!empty emailSent}">
+		<div id="emailSent">
+			<h2>Email has been sent to you email address. Please use that link to change password.</h2>		
+		</div>
+	</c:if>
 </div>
 
 <script type="text/javascript">

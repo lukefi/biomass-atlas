@@ -153,7 +153,7 @@ $(document).ready(function () {
 					uuid: uuid					
 				}),
 			success: function(data) {
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/passwordChanged"; 
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

@@ -141,11 +141,22 @@ $(document).ready(function () {
 	$('#submit').click(function () {
 		var email = jQuery('#email').val();
 		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.get(host + "/action?action_route=UserPasswordReset&email=" + email, function (data){
-			alert(data.email);
+		jQuery.ajax({
+			url: host + "/action?action_route=UserPasswordReset&email=" + email,
+			type: 'GET',			
+			success: function(data) {
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+				window.location.replace(url);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("ERROR: " + jqXHR.responseText);
+			}
+		});				
+		/* jQuery.get(host + "/action?action_route=UserPasswordReset&email=" + email, function (data){
+			//alert(data.email);
 			var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
 			window.location.replace(url);
-		});
+		}); */
 	});
 });
 

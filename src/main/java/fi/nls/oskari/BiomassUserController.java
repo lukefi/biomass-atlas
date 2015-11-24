@@ -55,9 +55,17 @@ public class BiomassUserController {
        return mv;
     }
     
-    @RequestMapping(value="emailSent", method=RequestMethod.GET)
+    @RequestMapping(value="/emailSent", method=RequestMethod.GET)
     public ModelAndView emailSent(){
-    	ModelAndView mv = new ModelAndView("emailSent");
+    	ModelAndView mv = new ModelAndView("message");
+    	mv.addObject("emailSent", true);
+    	return mv;
+    }
+    
+    @RequestMapping(value="/passwordChanged", method=RequestMethod.GET)
+    public ModelAndView passwordChanged(){
+    	ModelAndView mv = new ModelAndView("message");
+    	mv.addObject("passwordChanged", true);
     	return mv;
     }
 }
