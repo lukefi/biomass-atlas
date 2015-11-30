@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -100,6 +101,11 @@
             	text-align: center;
             	padding-top: 20px;
             }
+            #user{
+            	color: #c2c2c2;
+            	display: block;
+            	font-style: italic;
+            }
 
         }
     </style>
@@ -115,10 +121,10 @@
     <div id="divider">
     </div>
     <div id="register">
-    	<c:if test="${empty _logout_uri}"> 
-	    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
-	    	<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
-    	 </c:if>
+   	    <c:if test="${empty _logout_uri}"> 
+    		<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
+    		<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
+   	    </c:if>
     </div>
     <div id="toolbar">
     </div>
@@ -132,7 +138,10 @@
         <%-- when test="${!empty sessionScope[user]}" --%>
         <c:choose>
             <c:when test="${!empty _logout_uri}">
-                <a href="${_logout_uri}">Logout</a>
+            	<if test="${!empty sessionScope[user]}">
+		   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
+		   	    </if>  
+                <a href="${_logout_uri}">Kirjaudu ulos</a>
             </c:when>
             
             <c:when test="${empty _logout_uri && !empty _login_uri}">
