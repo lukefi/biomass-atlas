@@ -121,30 +121,28 @@
 <div id="content">
 	<div id="register">
 		<h1>Rekisteröidy palveluun</h1>
-		<form:form action="${pageContext.request.contextPath}/biomass/user/register" method="post" modelAttribute="model">
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Etunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="firstname" name="firstname" type="text" autofocus required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Sukunimi</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="lastname" name="lastname" type="text" required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Nimimerkki</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="username" name="username" type="text" required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="email" name="email" type="email" required></span>
-			</span>
-			<span>				
-				<span><input class="column-field-button" size="16" id="register" type="submit" value="Rekisteröidy"></span>
-			</span>			
-			<span>				
-				<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
-			</span>			
-		</form:form>
+		<span class="content-column">
+			<label class="column-field-label">Etunimi</label> <br>
+			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
+		</span>
+		<span class="content-column">
+			<label class="column-field-label">Sukunimi</label> <br>
+			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
+		</span>
+		<span class="content-column">
+			<label class="column-field-label">Nimimerkki</label> <br>
+			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
+		</span>
+		<span class="content-column">
+			<label class="column-field-label">Sähköpostiosoite</label> <br>
+			<input class="column-field-input" size="20" id="email" name="email" type="email" required>
+		</span>
+		<span>				
+			<input class="column-field-button" id="registerBtn" type="button" value="Rekisteröidy">
+		</span>			
+		<span>				
+			<input class="column-field-button" id="cancel" type="button" value="Peruuta">
+		</span>			
 		
 		<br><br>
 		<a href="#" id="forgotPassword"> Salasana unohtunut</a>
@@ -163,6 +161,28 @@ $(document).ready(function () {
 		var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
 		window.location.replace(host);
 	});
+	
+	jQuery('#registerBtn').click(function () {
+		var data = { 
+					firstname: jQuery('#firstname').val(),
+				 	lastname: jQuery('#lastname').val(),				
+					username: jQuery('#username').val(),				
+					email: jQuery('#email').val()
+				   };
+		var host = window.location.protocol + "//" + window.location.host; 
+		jQuery.ajax({
+			url: host + "/action?action_route=UserRegistration",
+			type: 'GET',
+			data: data,
+			success: function(data) {
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/registrationSuccess"; 
+				window.location.replace(url);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			}
+		});		
+	}); 
 });
 
 </script>

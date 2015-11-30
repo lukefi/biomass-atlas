@@ -68,4 +68,11 @@ public class BiomassUserController {
     	mv.addObject("passwordChanged", true);
     	return mv;
     }
+    
+    @RequestMapping(value="/registrationSuccess", method=RequestMethod.GET)
+    public ModelAndView registrationSuccess(){
+    	ModelAndView mv = new ModelAndView("message");
+    	mv.addObject("registrationSuccess", true);
+    	return mv;
+    }
 }

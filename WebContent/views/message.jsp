@@ -36,7 +36,7 @@
 				color: #3399FF;
 			}
 			
-			#registration, #passwordChanged, #emailSent {
+			#registrationSuccess, #passwordChanged, #emailSent {
 				padding-left: 25px;
 			}
 			
@@ -53,8 +53,8 @@
 </nav>
 
 <div id="content">
-	<c:if test="${!empty registration}">
-		<div id="registration">
+	<c:if test="${!empty registrationSuccess}">
+		<div id="registrationSuccess">
 			<h2>Thank you for registration. <br> Please activate your account through the email being sent.</h2>		
 		</div>
 	</c:if>
