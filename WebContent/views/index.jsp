@@ -114,10 +114,11 @@
     </div>
     <div id="divider">
     </div>
-    <div id="register"> 
-    ${pageContext.request.contextPath}
-    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
-    	<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
+    <div id="register">
+    	<c:if test="${empty _logout_uri}"> 
+	    	<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
+	    	<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
+    	 </c:if>
     </div>
     <div id="toolbar">
     </div>
