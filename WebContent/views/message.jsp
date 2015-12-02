@@ -70,6 +70,12 @@
 			<h2>Email has been sent to you email address. Please use that link to change password.</h2>		
 		</div>
 	</c:if>
+	
+	<c:if test="${!empty updateSuccess}">
+		<div id="updateSuccess">
+			<h2>Your information is updated successfully.</h2>		
+		</div>
+	</c:if>
 </div>
 
 <script type="text/javascript">

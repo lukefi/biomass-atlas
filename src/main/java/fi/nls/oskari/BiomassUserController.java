@@ -7,48 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import fi.luke.bma.model.UserRequestModel;
 import fi.luke.bma.service.UserService;
 
 @RestController
 @RequestMapping(value="biomass/user")
 public class BiomassUserController {
 	
-	@Autowired
-	private UserService userService;
-	
     @RequestMapping(value="register", method=RequestMethod.GET)
     public ModelAndView register(){
        ModelAndView mv = new ModelAndView("register");
        return mv;
     }
-    /*
-    @RequestMapping(value="register", method=RequestMethod.POST)
-    public ModelAndView createNewRegistration(@ModelAttribute("model") UserRequestModel model){
-        ModelAndView mv = new ModelAndView("message");
-        VerificationToken vt = new VerificationToken();
-        vt.setFirstname(model.getFirstname());
-        vt.setLastname(model.getLastname());
-        vt.setUsername(model.getUsername());
-        vt.setEmail(model.getEmail());
-        vt.setEnabled(false);
-        vt.setExpiryTime(createExpiryTime());
-        userService.insert(vt);
-        return mv;
-     }
-    */
-    public Timestamp createExpiryTime(){
-    	Calendar calender = Calendar.getInstance();
-        Timestamp currentTime = new java.sql.Timestamp(calender.getTime().getTime());
-        calender.setTime(currentTime);
-        calender.add(Calendar.DAY_OF_MONTH, 1);
-        Timestamp expiryTime = new java.sql.Timestamp(calender.getTime().getTime());
-        return expiryTime;
-    }
-    
-    
+        
     @RequestMapping(value="/forgotPassword", method=RequestMethod.GET)
     public ModelAndView forgotPassword(@ModelAttribute String uuid){
        ModelAndView mv = new ModelAndView("forgotPasswordEmail");
@@ -75,4 +50,26 @@ public class BiomassUserController {
     	mv.addObject("registrationSuccess", true);
     	return mv;
     }
+    
+    @RequestMapping(value="/edit", method=RequestMethod.POST)
+    public ModelAndView editUserInformation(
+    		@RequestParam(value = "firstname") String firstname, 
+    		@RequestParam(value = "lastname") String lastname,
+    		@RequestParam(value = "username") String username, 
+    		@RequestParam(value = "email") String email) {
+    	ModelAndView mv = new ModelAndView("editUserProfile");    	
+    	mv.addObject("firstname", firstname);
+    	mv.addObject("lastname", lastname);
+    	mv.addObject("username", username);
+    	mv.addObject("email", email);
+    	return mv;
+    }
+    
+    @RequestMapping(value="/updateSuccess", method=RequestMethod.GET)
+    public ModelAndView updateSuccess(){
+    	ModelAndView mv = new ModelAndView("message");
+    	mv.addObject("updateSuccess", true);
+    	return mv;
+    }
+    
 }

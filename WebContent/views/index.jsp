@@ -103,10 +103,9 @@
             }
             #user{
             	color: #c2c2c2;
-            	display: block;
             	font-style: italic;
             }
-
+            
         }
     </style>
     <!-- ############# /css ################# -->
@@ -140,6 +139,7 @@
             <c:when test="${!empty _logout_uri}">
             	<if test="${!empty sessionScope[user]}">
 		   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
+		   	    	<span>test<a href="#" id="edit">Muokkaa</a></span>
 		   	    </if>  
                 <a href="${_logout_uri}">Kirjaudu ulos</a>
             </c:when>
@@ -214,6 +214,31 @@
         src="${pageContext.request.contextPath}/Oskari${path}/index.js">
 </script>
 
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#edit').click(function () {		
+		var host = window.location.protocol + "//" + window.location.host; 
+		jQuery.ajax({
+			url: host + "/action?action_route=UserRegistration&edit=${sessionScope[user].id}",
+			type: 'POST',			
+			success: function(data) {				
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/edit";				 
+				/* Create a dynamic form and submit it. This helps to move ahead 
+				 * to new view */				 
+				var form = $('<form>', {action: url, method: 'POST'}).appendTo('body');
+				form.append("<input type='text' name='firstname' id='firstname' value=" + data.firstName + ">");
+			    form.append("<input type='text' id='lastname' name='lastname' value=" + data.lastName + ">");
+			    form.append("<input type='text' id='username' name='username' value=" + data.userName + ">");
+			    form.append("<input type='text' id='email' name='email' value=" + data.email + ">");
+			    form.submit();
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			}
+		});		
+	});
+});
+</script>
 
 <!-- ############# /Javascript ################# -->
 </body>
