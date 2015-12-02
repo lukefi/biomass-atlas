@@ -160,7 +160,7 @@ $(document).ready(function () {
 		var uuid = '${uuid}';
 		var host = window.location.protocol + "//" + window.location.host; 
 		jQuery.ajax({
-			url: host + "/action?action_route=UserPasswordReset&password=",
+			url: host + "/action?action_route=UserPasswordReset&password",
 			type: 'POST',
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
@@ -172,7 +172,8 @@ $(document).ready(function () {
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				jQuery("#serverError").text("SERVER ERROR");
+				//jQuery("#serverError").text("SERVER ERROR");
+				alert(jqXHR.responseText);
 			}
 		});				
 	});

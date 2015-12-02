@@ -157,7 +157,8 @@ $(document).ready(function () {
 					window.location.replace(url);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					jQuery("#error").text("SERVER ERROR");
+					//jQuery("#error").text("SERVER ERROR");
+					alert(jqXHR.responseText);
 				}
 			});		
 		} else
