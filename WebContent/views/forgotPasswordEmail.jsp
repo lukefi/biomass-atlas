@@ -147,20 +147,28 @@ $(document).ready(function () {
 	
 	$('#submit').click(function () {
 		var email = jQuery('#email').val();
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.ajax({
-			url: host + "/action?action_route=UserPasswordReset&email=" + email,
-			type: 'GET',			
-			success: function(data) {
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
-				window.location.replace(url);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				jQuery("#error").text("SERVER ERROR");
-			}
-		});		
+		var host = window.location.protocol + "//" + window.location.host;
+		if (isEmailValid(email)) {
+			jQuery.ajax({
+				url: host + "/action?action_route=UserPasswordReset&email=" + email,
+				type: 'POST',			
+				success: function(data) {
+					var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+					window.location.replace(url);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					jQuery("#error").text("SERVER ERROR");
+				}
+			});		
+		} else
+			jQuery("#error").html("Invalid email address.");
 	});
 });
+
+function isEmailValid(email) {
+	var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	return pattern.test(email);  // returns a boolean 
+}
 
 </script>
 </body>
