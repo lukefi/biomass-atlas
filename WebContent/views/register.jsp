@@ -171,8 +171,8 @@ $(document).ready(function () {
 				   };
 		var host = window.location.protocol + "//" + window.location.host; 
 		jQuery.ajax({
-			url: host + "/action?action_route=UserRegistration",
-			type: 'GET',
+			url: host + "/action?action_route=UserRegistration&register",
+			type: 'POST',
 			data: data,
 			success: function(data) {
 				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/registrationSuccess"; 
