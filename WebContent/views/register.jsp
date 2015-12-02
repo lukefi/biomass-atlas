@@ -103,9 +103,13 @@
 			}
 			
 			#forgotPassword {
-				padding-left: 25px;
+				padding-top: 25px;
 				font-size: 20px;
-			}			
+				display: block;
+			}
+			.error {
+				color: red;
+			}		
         
     </style>
     <!-- ############# /css ################# -->
@@ -124,18 +128,22 @@
 		<span class="content-column">
 			<label class="column-field-label">Etunimi</label> <br>
 			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
+			<span id="errorFirstname" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Sukunimi</label> <br>
 			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
+			<span id="errorLastname" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Nimimerkki</label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
+			<span id="errorUsername" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Sähköpostiosoite</label> <br>
 			<input class="column-field-input" size="20" id="email" name="email" type="email" required>
+			<span id="errorEmail" class="error"></span>
 		</span>
 		<span>				
 			<input class="column-field-button" id="registerBtn" type="button" value="Rekisteröidy">
@@ -169,22 +177,66 @@ $(document).ready(function () {
 					username: jQuery('#username').val(),				
 					email: jQuery('#email').val()
 				   };
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.ajax({
-			url: host + "/action?action_route=UserRegistration&register",
-			type: 'POST',
-			data: data,
-			success: function(data) {
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/registrationSuccess"; 
-				window.location.replace(url);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.responseText);
-			}
-		});		
+		var host = window.location.protocol + "//" + window.location.host;
+		if (validate()) { 
+			jQuery.ajax({
+				url: host + "/action?action_route=UserRegistration&register",
+				type: 'POST',
+				data: data,
+				success: function(data) {
+					var url = window.location.protocol + "//" + window.location.host + "/biomass/user/registrationSuccess"; 
+					window.location.replace(url);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert(jqXHR.responseText);
+				}
+			});
+		}
 	}); 
 });
 
+function isEmailValid(email) {
+	var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	return pattern.test(email);  // returns a boolean 
+}
+
+//Validates the form values
+function validate() {
+	var firstname = $('#firstname').val();
+ 	var lastname = $('#lastname').val();			
+	var username = $('#username').val();				
+	var email = $('#email').val();
+	var flag = true;
+	clearErrorMessage();
+	
+	if(!firstname.trim()) {
+		$('#errorFirstname').html("*Required");	
+		flag = false;
+	} 
+	
+	if(!lastname.trim()) {
+		$('#errorLastname').html("*Required");
+		flag = false;
+	} 
+	
+	if(!username.trim()) {
+		$('#errorUsername').html("*Required");
+		flag = false;
+	} 
+		
+	if(!isEmailValid(email)){
+		$('#errorEmail').html("*Please enter valid email address.");
+		flag = false;
+	}
+	return flag;
+}
+
+function clearErrorMessage() {
+	$('#errorFirstname').html("");
+	$('#errorLastname').html("");
+	$('#errorUsername').html("");
+	$('#errorEmail').html("");
+}
 </script>
 </body>
 </html>

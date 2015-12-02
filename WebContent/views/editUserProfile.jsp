@@ -8,6 +8,7 @@
     <title>Biomassa-atlas</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+    
     </script>
     <!-- ############# css ################# -->   
     <style type="text/css">
@@ -102,10 +103,14 @@
 				color: #3399FF;
 			}
 			
-			#forgotPassword {
-				padding-left: 25px;
+			#changePassword {
+				padding-top: 25px;				
 				font-size: 20px;
-			}			
+				display: block;
+			}
+			.error {
+				color: red;
+			}
         
     </style>
     <!-- ############# /css ################# -->
@@ -124,19 +129,24 @@
 		<span class="content-column">
 			<label class="column-field-label">Etunimi</label> <br>
 			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${firstname}" required>
+			<span id="errorFirstname" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Sukunimi</label> <br>
 			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${lastname}" required>
+			<span id="errorLastname" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Nimimerkki</label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" value="${username}" required>
+			<span id="errorUsername" class="error"></span>
 		</span>
 		<span class="content-column">
 			<label class="column-field-label">Sähköpostiosoite</label> <br>
 			<input class="column-field-input" size="20" id="email" name="email" type="email" value="${email}" required>
+			<span id="errorEmail" class="error"></span>
 		</span>
+		<span id="error" class="content-column error"></span>
 		<span>				
 			<input class="column-field-button" id="saveBtn" type="button" value="Tallenna">
 		</span>			
@@ -145,21 +155,31 @@
 		</span>			
 		
 		<br><br>
-		<a href="#" id="changePassword"> Vaihda Salasana </a>
+		<a href="#" id="changePassword"> Vaihda Salasana </a> (Email will be sent for changing password.)
 	
 	</div>
 </div>
 
 <script type="text/javascript">
-$(document).ready(function () {
-	$('#frontpage, #cancelBtn').click(function () {		
+jQuery(document).ready(function () {
+	jQuery('#frontpage, #cancelBtn').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		window.location.replace(host);
 	});
 	
-	$('#changePassword').click(function () {		
-		var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
-		window.location.replace(host);
+	jQuery('#changePassword').click(function () {		
+		var host = window.location.protocol + "//" + window.location.host;		
+		jQuery.ajax({
+			url: host + "/action?action_route=UserPasswordReset&email=${email}",
+			type: 'POST',			
+			success: function(data) {
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+				window.location.replace(url);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				jQuery("#error").text("SERVER ERROR");
+			} 
+		});			
 	});
 	
 	jQuery('#saveBtn').click(function () {
@@ -169,22 +189,66 @@ $(document).ready(function () {
 					username: jQuery('#username').val(),				
 					email: jQuery('#email').val()
 				   };
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.ajax({
-			url: host + "/action?action_route=UserRegistration&update",
-			type: 'POST',
-			data: data,
-			success: function(data) {
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/updateSuccess"; 
-				window.location.replace(url);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.responseText);
-			}
-		});		
+		var host = window.location.protocol + "//" + window.location.host;
+		if (validate()) { 
+			jQuery.ajax({
+				url: host + "/action?action_route=UserRegistration&update",
+				type: 'POST',
+				data: data,
+				success: function(data) {
+					var url = window.location.protocol + "//" + window.location.host + "/biomass/user/updateSuccess"; 
+					window.location.replace(url);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert(jqXHR.responseText);
+				} 
+			});	
+		} 		
 	}); 
 });
 
+function isEmailValid(email) {
+	var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	return pattern.test(email);  // returns a boolean 
+}
+
+//Validates the form values
+function validate() {
+	var firstname = $('#firstname').val();
+ 	var lastname = $('#lastname').val();			
+	var username = $('#username').val();				
+	var email = $('#email').val();
+	var flag = true;
+	clearErrorMessage();
+	
+	if(!firstname.trim()) {
+		$('#errorFirstname').html("*Required");	
+		flag = false;
+	} 
+	
+	if(!lastname.trim()) {
+		$('#errorLastname').html("*Required");
+		flag = false;
+	} 
+	
+	if(!username.trim()) {
+		$('#errorUsername').html("*Required");
+		flag = false;
+	} 
+		
+	if(!isEmailValid(email)){
+		$('#errorEmail').html("*Please enter valid email address.");
+		flag = false;
+	}
+	return flag;
+}
+
+function clearErrorMessage() {
+	$('#errorFirstname').html("");
+	$('#errorLastname').html("");
+	$('#errorUsername').html("");
+	$('#errorEmail').html("");
+}
 </script>
 </body>
 </html>
