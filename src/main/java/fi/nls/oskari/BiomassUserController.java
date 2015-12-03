@@ -53,14 +53,16 @@ public class BiomassUserController {
     
     @RequestMapping(value="/edit", method=RequestMethod.POST)
     public ModelAndView editUserInformation(
+    		@RequestParam(value = "userId") String id, 
     		@RequestParam(value = "firstname") String firstname, 
     		@RequestParam(value = "lastname") String lastname,
-    		@RequestParam(value = "username") String username, 
+    		/*@RequestParam(value = "username") String username, */
     		@RequestParam(value = "email") String email) {
     	ModelAndView mv = new ModelAndView("editUserProfile");    	
+    	mv.addObject("id", id);
     	mv.addObject("firstname", firstname);
     	mv.addObject("lastname", lastname);
-    	mv.addObject("username", username);
+    	/*mv.addObject("username", username);*/
     	mv.addObject("email", email);
     	return mv;
     }

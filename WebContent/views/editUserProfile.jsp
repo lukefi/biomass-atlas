@@ -106,12 +106,11 @@
 			#changePassword {
 				padding-top: 25px;				
 				font-size: 20px;
-				display: block;
 			}
 			.error {
 				color: red;
 			}
-        
+			        
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -126,6 +125,7 @@
 <div id="content">
 	<div id="register">
 		<h1>Rekisteröidy palveluun</h1>
+		<input type="hidden" id="userId" value="${id}" >
 		<span class="content-column">
 			<label class="column-field-label">Etunimi</label> <br>
 			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${firstname}" required>
@@ -136,11 +136,11 @@
 			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${lastname}" required>
 			<span id="errorLastname" class="error"></span>
 		</span>
-		<span class="content-column">
+		<%-- <span class="content-column">
 			<label class="column-field-label">Nimimerkki</label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" value="${username}" required>
 			<span id="errorUsername" class="error"></span>
-		</span>
+		</span> --%>
 		<span class="content-column">
 			<label class="column-field-label">Sähköpostiosoite</label> <br>
 			<input class="column-field-input" size="20" id="email" name="email" type="email" value="${email}" required>
@@ -154,8 +154,9 @@
 			<input class="column-field-button" id="cancelBtn" type="button" value="Peruuta">
 		</span>			
 		
-		<br><br>
-		<a href="#" id="changePassword"> Vaihda Salasana </a> (Email will be sent for changing password.)
+		<br><br><br>
+		<span class="content-column"> <a href="#" id="changePassword"> Vaihda Salasana </a> </span> 
+		(Email will be sent for changing password.)
 	
 	</div>
 </div>
@@ -184,9 +185,10 @@ jQuery(document).ready(function () {
 	
 	jQuery('#saveBtn').click(function () {
 		var data = { 
+					id: "${id}",
 					firstname: jQuery('#firstname').val(),
 				 	lastname: jQuery('#lastname').val(),				
-					username: jQuery('#username').val(),				
+				 	/* username: jQuery('#username').val(), */				
 					email: jQuery('#email').val()
 				   };
 		var host = window.location.protocol + "//" + window.location.host;
@@ -216,7 +218,7 @@ function isEmailValid(email) {
 function validate() {
 	var firstname = $('#firstname').val();
  	var lastname = $('#lastname').val();			
-	var username = $('#username').val();				
+	/* var username = $('#username').val();	 */			
 	var email = $('#email').val();
 	var flag = true;
 	clearErrorMessage();
@@ -231,10 +233,10 @@ function validate() {
 		flag = false;
 	} 
 	
-	if(!username.trim()) {
+	/* if(!username.trim()) {
 		$('#errorUsername').html("*Required");
 		flag = false;
-	} 
+	}  */
 		
 	if(!isEmailValid(email)){
 		$('#errorEmail').html("*Please enter valid email address.");
@@ -246,7 +248,7 @@ function validate() {
 function clearErrorMessage() {
 	$('#errorFirstname').html("");
 	$('#errorLastname').html("");
-	$('#errorUsername').html("");
+	/* $('#errorUsername').html(""); */
 	$('#errorEmail').html("");
 }
 </script>

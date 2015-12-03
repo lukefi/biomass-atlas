@@ -226,9 +226,10 @@ $(document).ready(function () {
 				/* Create a dynamic form and submit it. This helps to move ahead 
 				 * to new view */				 
 				var form = $('<form>', {action: url, method: 'POST'}).appendTo('body');
+				form.append("<input type='text' name='userId' id='userId' value=" + data.id + ">");
 				form.append("<input type='text' name='firstname' id='firstname' value=" + data.firstName + ">");
 			    form.append("<input type='text' id='lastname' name='lastname' value=" + data.lastName + ">");
-			    form.append("<input type='text' id='username' name='username' value=" + data.userName + ">");
+			   /*  form.append("<input type='text' id='username' name='username' value=" + data.userName + ">"); */
 			    form.append("<input type='text' id='email' name='email' value=" + data.email + ">");
 			    form.submit();
 			},
