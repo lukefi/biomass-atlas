@@ -1,0 +1,38 @@
+/* Style class for CircleBundle */
+.tool-circle{
+    width: 32px;
+    height: 32px;
+    background: url('../images/tool-circle.png') no-repeat;
+    background-position: center center;
+}
+
+.horizontal-line {
+	width: 95%;
+    font-size: 1px;
+    color: rgba(0, 0, 0, 0);
+    line-height: 1px;
+    background-color: grey;
+    margin-top: -6px;
+    margin-bottom: 10px;
+}
+#circle-message {
+	padding-bottom: 10px;
+}
+
+.circle-button {
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	padding-top: 10px;
+}
+
+#circle-point {
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
+#circle-point-value {
+	background-color: #EBEBEB;
+}
+button {
+	margin-left: 20px;
+}
