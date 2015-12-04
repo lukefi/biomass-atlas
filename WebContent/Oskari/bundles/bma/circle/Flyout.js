@@ -69,6 +69,8 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
+		me.isCircleButtonClicked = true;
+		
 		// clear container
 		var cel = jQuery(me.container);
 		cel.empty();
@@ -80,7 +82,6 @@ function(instance, locale, conf) {
         var circleRadius = me.templateCircleRadius.clone();
         var circlePoint = me.templateCirclePoint.clone();
         var calculateCancelTool = me.templateCircleCalculateCancelTool.clone();
-        //var cancelTool = me.templateCircleCancelTool.clone();
         
         calculateCancelTool.find('#circle-calculate').html("Laske");
         calculateCancelTool.find('#circle-calculate').unbind('click');
@@ -100,7 +101,6 @@ function(instance, locale, conf) {
         content.append(circleRadius);
         content.append(circlePoint);
         content.append(calculateCancelTool);
-    	//content.append(cancelTool);
     	
     	me._updateCalculateButtonVisibility(me);
     	    	
@@ -172,6 +172,12 @@ function(instance, locale, conf) {
 			lonlat = event.getLonLat(),		
 			points = [];	
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+		if(me.isCircleButtonClicked){
+			$('#circle-point-value').val(points);
+			me._removeMarker(sandbox);		
+			me._addMarker(sandbox, lonlat);		
+			
+		}
 		//AJAX call
 	},
 			
@@ -191,7 +197,31 @@ function(instance, locale, conf) {
 	_showResult: function(result){
 		jQuery("#circle-message").hide();
 		jQuery("#circle-result").html(result);
-	}	
+	},
+	
+	_addMarker: function(sandbox, lonlat) {
+		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.AddMarkerRequest');
+		if (reqBuilder) {
+		    var data = {
+		        x: lonlat.lon,
+		        y: lonlat.lat,
+		        color: "ff0000",
+		        msg : '',
+		        shape: 0,
+		        size: 3
+		    };
+		    var request = reqBuilder(data, 'marker');
+		    sandbox.request('MainMapModule', request);
+		}
+	},
+	
+	_removeMarker: function(sandbox) {		
+		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveMarkersRequest');
+		if (reqBuilder) {
+			sandbox.request('MainMapModule', reqBuilder('marker'));
+		}
+	}
+	
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
