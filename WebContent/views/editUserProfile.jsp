@@ -156,7 +156,7 @@
 		
 		<br><br><br>
 		<span class="content-column"> <a href="#" id="changePassword"> Vaihda Salasana </a> </span> 
-		(Email will be sent for changing password.)
+		(Linkki salasanan vaihtamiseksi lähetetään sähköpostiisi.)
 	
 	</div>
 </div>
