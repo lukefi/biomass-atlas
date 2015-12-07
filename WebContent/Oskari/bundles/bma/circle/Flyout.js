@@ -26,9 +26,9 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse piste ja säde, jonka biomassa lasketaan</div><div class="horizontal-line">.</div>');
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
-	this.templateCircleRadius = jQuery('<div id="circle-radius"><label id="circle-radius-label">Säde: </label><input id="circle-radius-value" size="10"></input> km</div>');
-	this.templateCirclePoint = jQuery('<div id="circle-point"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>' + 
-			'<div class="horizontal-line">.</div>');
+	this.templateCircleRadius = jQuery('<div id="circle-radius"><label id="circle-radius-label">Säde: </label><input id="circle-radius-value" size="10" disabled></input> km</div>'
+			+ '<div class="horizontal-line">.</div>');
+	this.templateCirclePoint = jQuery('<div id="circle-point"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 }, {	
@@ -94,12 +94,17 @@ function(instance, locale, conf) {
         calculateCancelTool.find('#circle-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
         });
+        
+        circleRadius.find('#circle-radius-value').unbind('keyup');
+        circleRadius.find('#circle-radius-value').bind('keyup', function(){        	
+        	me._updateCalculateButtonVisibility(me);  
+        });
 	
         content.addClass('bma-circle-main-div');
         content.append(circleMessage);
         content.append(circleResult);
-        content.append(circleRadius);
         content.append(circlePoint);
+        content.append(circleRadius);       
         content.append(calculateCancelTool);
     	
     	me._updateCalculateButtonVisibility(me);
@@ -128,15 +133,15 @@ function(instance, locale, conf) {
 		var btn = $("#circle-calculate");
 		if (($.trim($("#circle-radius-value").val()) != '') && 
 				($.trim($("#circle-point-value").val()) != '')) {
-			btn.show();
+			btn.attr("disabled", false);
 		}
 		else {
-			btn.hide();
+			btn.attr("disabled", true);
 		}
 	},
 	
 	_getVisibleBiomassAttributeIds : function() {
-		// TODO this is copy-paste from polygon biomass calculation tool
+		//This is copy-paste from polygon biomass calculation tool
 		var sandbox = this.instance.getSandbox(),
 			layers = sandbox.findAllSelectedMapLayers(),
 			biomassAttributeIds = [];
@@ -153,7 +158,11 @@ function(instance, locale, conf) {
 	_calculateButtonClick: function(){
 		var me = this,
 			sandbox = me.instance.getSandbox();
-		//AJAX call
+		if (me._validateRadiusValue()) {
+			//AJAX call
+		} else {
+			alert("Enter valid radius value.");
+		}
 	},
 	
 	_cancelButtonClick: function(){
@@ -161,7 +170,8 @@ function(instance, locale, conf) {
 			instance = me.instance,
 			sandbox = instance.getSandbox(),
 			toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
-        sandbox.request(instance, toolbarRequest);        
+        sandbox.request(instance, toolbarRequest);
+        me._removeMarker(sandbox);
         me._close();
 	},
 	
@@ -175,10 +185,9 @@ function(instance, locale, conf) {
 		if(me.isCircleButtonClicked){
 			$('#circle-point-value').val(points);
 			me._removeMarker(sandbox);		
-			me._addMarker(sandbox, lonlat);		
-			
+			me._addMarker(sandbox, lonlat);
+			me._enableTextBoxRadius();
 		}
-		//AJAX call
 	},
 			
 	syncToolbarButtonVisibility : function() {
@@ -206,11 +215,9 @@ function(instance, locale, conf) {
 		        x: lonlat.lon,
 		        y: lonlat.lat,
 		        color: "ff0000",
-		        msg : '',
-		        shape: 0,
-		        size: 3
+		        iconUrl: '/Oskari/bundles/bma/circle/resources/images/marker.png',
 		    };
-		    var request = reqBuilder(data, 'marker');
+		    var request = reqBuilder(data);
 		    sandbox.request('MainMapModule', request);
 		}
 	},
@@ -218,10 +225,26 @@ function(instance, locale, conf) {
 	_removeMarker: function(sandbox) {		
 		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveMarkersRequest');
 		if (reqBuilder) {
-			sandbox.request('MainMapModule', reqBuilder('marker'));
+			sandbox.request('MainMapModule', reqBuilder());
 		}
-	}
+	},
 	
+	_enableTextBoxRadius: function() {
+		$('#circle-radius-value').attr('disabled', false);
+		$('#circle-radius-value').css('background-color', 'white');
+	},
+	
+	_validateRadiusValue: function() {		
+		var num = this._convertCommasToDots($('#circle-radius-value').val());
+		if (!isNaN(parseFloat(num)) && isFinite(num))
+			return true;
+		else
+			return false;
+	},
+	
+	_convertCommasToDots: function(value) {
+		return num = value.replace(/,/g , ".");
+	}
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
