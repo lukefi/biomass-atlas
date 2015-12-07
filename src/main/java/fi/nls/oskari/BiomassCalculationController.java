@@ -206,4 +206,12 @@ public class BiomassCalculationController {
         return root;
     }
     
+    @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
+    public Map<String, Object> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) {    	
+        System.out.println(requestBody.getPoints().get(0).getX());        
+        System.out.println(requestBody.getPoints().get(0).getY());        
+        System.out.println(requestBody.getRadius());        
+       return null;
+    }
+    
 }

@@ -86,7 +86,7 @@ function(instance, locale, conf) {
         calculateCancelTool.find('#circle-calculate').html("Laske");
         calculateCancelTool.find('#circle-calculate').unbind('click');
         calculateCancelTool.find('#circle-calculate').bind('click', function(){        	
-        	me._calculateButtonClick(me);
+        	me._calculateButtonClick();
         });
         
         calculateCancelTool.find('#circle-cancel').html("Lopeta");
@@ -157,9 +157,28 @@ function(instance, locale, conf) {
 	
 	_calculateButtonClick: function(){
 		var me = this,
-			sandbox = me.instance.getSandbox();
-		if (me._validateRadiusValue()) {
-			//AJAX call
+			sandbox = me.instance.getSandbox(),
+			points = [];
+		
+		if (me._validateRadiusValue()) {			
+			var point = $('#circle-point-value').val(),
+				feature = new OpenLayers.Format.WKT().read(point);
+			points.push({x: feature.geometry.x, y: feature.geometry.y});
+			
+			jQuery.ajax({
+				url: "/biomass/circle/calculate",
+				type: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify({
+					points: points, 
+					radius: $('#circle-radius-value').val(), 
+					attributes: me._getVisibleBiomassAttributeIds(sandbox)
+				}),
+				dataType: "json",
+				success: function(results, status, xhr) {
+					alert("Success");					
+				}
+			});
 		} else {
 			alert("Enter valid radius value.");
 		}
@@ -171,6 +190,7 @@ function(instance, locale, conf) {
 			sandbox = instance.getSandbox(),
 			toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
         sandbox.request(instance, toolbarRequest);
+        me.isCircleButtonClicked = false;
         me._removeMarker(sandbox);
         me._close();
 	},
