@@ -40,6 +40,8 @@ import fi.rktl.common.reporting.XlsxWriter;
 @RestController
 @RequestMapping(value="biomass")
 public class BiomassCalculationController {
+	
+	private final Integer GRID_ID_1KM_BY_1KM = 1; // From database table 'grid' 
 
     @Autowired
     private CalculationService calculationService;
@@ -207,11 +209,23 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
-    public Map<String, String> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
-    	String geo = calculationService.getGeometry(requestBody.getPoints().get(0), requestBody.getRadius());
+    public Map<String, Object> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
+    	String circleAsWkt = calculationService.getGeometry(requestBody.getPoints().get(0), requestBody.getRadius());
         Map<String, String> value = new HashMap<String, String>();
-        value.put("geo", geo);
-        return value;
+        value.put("geo", circleAsWkt);
+        
+        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
+        TreeMap<String, Object> result = new TreeMap<>();
+        for(long attributeId : requestBody.getAttributes()){
+        	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, GRID_ID_1KM_BY_1KM, circleAsWkt);
+        	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
+        	String attributeName = attributeNameAndUnit.get(0);
+        	String attributeUnit = attributeNameAndUnit.get(1);
+        	attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
+        }
+        result.put("values", attributeValues);
+        result.put("geo", circleAsWkt);
+        return result;
     }
     
 }

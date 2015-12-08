@@ -173,7 +173,7 @@ function(instance, locale, conf) {
 			data: queryData,
 			dataType: "json",
 			success: function(results, status, xhr) {
-				finalResult = "";
+				var finalResult = "";
 				if ('error' in results) {
 					finalResult += "<span class='error italic'>" + results.error + "</span><br><br>";
 				}

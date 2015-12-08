@@ -166,16 +166,16 @@ function(instance, locale, conf) {
 			var point = $('#circle-point-value').val(),
 				feature = new OpenLayers.Format.WKT().read(point);
 			points.push({x: feature.geometry.x, y: feature.geometry.y});
-			
+			var queryData = JSON.stringify({
+								points: points, 
+								radius: $('#circle-radius-value').val(), 
+								attributes: me._getVisibleBiomassAttributeIds(sandbox)
+							}); 
 			jQuery.ajax({
 				url: "/biomass/circle/calculate",
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify({
-					points: points, 
-					radius: $('#circle-radius-value').val(), 
-					attributes: me._getVisibleBiomassAttributeIds(sandbox)
-				}),
+				data: queryData,
 				dataType: "json",
 				success: function(results, status, xhr) {
 					requestForAddFeature = sandbox.getRequestBuilder(
@@ -185,7 +185,14 @@ function(instance, locale, conf) {
 					        OpenLayers.Feature.Vector.style["default"]);
 		
 					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
-							{id: 'Main'}, null, null, true, style, false));	
+							{id: 'Main'}, null, null, true, style, false));
+					
+					var finalResult = "";					
+					for (var key in results.values) {
+						finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+					}			
+					
+					me._showResult(finalResult);
 				}
 			});
 		} else {
@@ -235,6 +242,9 @@ function(instance, locale, conf) {
 	
 	_showResult: function(result){
 		jQuery("#circle-message").hide();
+		jQuery("#circle-point").hide();
+		jQuery("#circle-radius").hide();
+		jQuery("#circle-calclulate-tool").hide();
 		jQuery("#circle-result").html(result);
 	},
 	
@@ -256,7 +266,6 @@ function(instance, locale, conf) {
 	
 	_removeMarker: function() {
 		var sandbox = this.instance.getSandbox();
-		console.log(sandbox);
 		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveMarkersRequest');
 		if (reqBuilder) {
 			sandbox.request('MainMapModule', reqBuilder());
