@@ -70,6 +70,8 @@ function(instance, locale, conf) {
 			sandbox = me.instance.getSandbox();
 		
 		me.isCircleButtonClicked = true;
+		me._removeMarker();
+        me._removeCircleFeature();
 		
 		// clear container
 		var cel = jQuery(me.container);
@@ -158,8 +160,8 @@ function(instance, locale, conf) {
 	_calculateButtonClick: function(){
 		var me = this,
 			sandbox = me.instance.getSandbox(),
-			points = [];
-		
+			points = [],
+			requestForAddFeature;
 		if (me._validateRadiusValue()) {			
 			var point = $('#circle-point-value').val(),
 				feature = new OpenLayers.Format.WKT().read(point);
@@ -176,7 +178,14 @@ function(instance, locale, conf) {
 				}),
 				dataType: "json",
 				success: function(results, status, xhr) {
-					alert("Success");					
+					requestForAddFeature = sandbox.getRequestBuilder(
+							"MapModulePlugin.AddFeaturesToMapRequest" );				
+					var style = OpenLayers.Util.applyDefaults(
+					        {fillColor: '#9900FF', fillOpacity: 0.5, strokeColor: '#000000'},
+					        OpenLayers.Feature.Vector.style["default"]);
+		
+					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
+							{id: 'Main'}, null, null, true, style, false));	
 				}
 			});
 		} else {
@@ -191,7 +200,8 @@ function(instance, locale, conf) {
 			toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
         sandbox.request(instance, toolbarRequest);
         me.isCircleButtonClicked = false;
-        me._removeMarker(sandbox);
+        me._removeMarker();
+        me._removeCircleFeature();
         me._close();
 	},
 	
@@ -204,7 +214,7 @@ function(instance, locale, conf) {
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 		if(me.isCircleButtonClicked){
 			$('#circle-point-value').val(points);
-			me._removeMarker(sandbox);		
+			me._removeMarker();		
 			me._addMarker(sandbox, lonlat);
 			me._enableTextBoxRadius();
 		}
@@ -235,14 +245,18 @@ function(instance, locale, conf) {
 		        x: lonlat.lon,
 		        y: lonlat.lat,
 		        color: "ff0000",
-		        iconUrl: '/Oskari/bundles/bma/circle/resources/images/marker.png',
+		        shape: 2,
+		        size: 3
+		        //iconUrl: '/Oskari/bundles/bma/circle/resources/images/marker.png',
 		    };
 		    var request = reqBuilder(data);
 		    sandbox.request('MainMapModule', request);
 		}
 	},
 	
-	_removeMarker: function(sandbox) {		
+	_removeMarker: function() {
+		var sandbox = this.instance.getSandbox();
+		console.log(sandbox);
 		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveMarkersRequest');
 		if (reqBuilder) {
 			sandbox.request('MainMapModule', reqBuilder());
@@ -264,6 +278,14 @@ function(instance, locale, conf) {
 	
 	_convertCommasToDots: function(value) {
 		return num = value.replace(/,/g , ".");
+	},
+	
+	_removeCircleFeature: function() {
+		var instance = this.instance,
+			sandbox = instance.getSandbox();
+		var requestForRemoveFeature = sandbox.getRequestBuilder(
+			"MapModulePlugin.RemoveFeaturesFromMapRequest");
+		sandbox.request(instance, requestForRemoveFeature("id", "Main", null));
 	}
 	
 }, {

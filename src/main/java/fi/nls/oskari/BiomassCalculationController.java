@@ -207,11 +207,11 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
-    public Map<String, Object> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) {    	
-        System.out.println(requestBody.getPoints().get(0).getX());        
-        System.out.println(requestBody.getPoints().get(0).getY());        
-        System.out.println(requestBody.getRadius());        
-       return null;
+    public Map<String, String> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
+    	String geo = calculationService.getGeometry(requestBody.getPoints().get(0), requestBody.getRadius());
+        Map<String, String> value = new HashMap<String, String>();
+        value.put("geo", geo);
+        return value;
     }
     
 }
