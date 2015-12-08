@@ -31,6 +31,8 @@ function(instance, locale, conf) {
 	this.templateCirclePoint = jQuery('<div id="circle-point"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
+	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
+	'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 }, {	
 	/**
 	 * @property template HTML templates for the User Interface
@@ -84,6 +86,7 @@ function(instance, locale, conf) {
         var circleRadius = me.templateCircleRadius.clone();
         var circlePoint = me.templateCirclePoint.clone();
         var calculateCancelTool = me.templateCircleCalculateCancelTool.clone();
+        var backCancelTool = me.templateCircleBackCancelTool.clone();
         
         calculateCancelTool.find('#circle-calculate').html("Laske");
         calculateCancelTool.find('#circle-calculate').unbind('click');
@@ -101,6 +104,18 @@ function(instance, locale, conf) {
         circleRadius.find('#circle-radius-value').bind('keyup', function(){        	
         	me._updateCalculateButtonVisibility(me);  
         });
+        
+        backCancelTool.find('#circle-back').html("Takaisin");
+        backCancelTool.find('#circle-back').unbind('click');
+        backCancelTool.find('#circle-back').bind('click', function(){        	
+        	me._backButtonClick();
+        });
+        
+        backCancelTool.find('#circle-cancel').html("Lopeta");
+        backCancelTool.find('#circle-cancel').unbind('click');
+        backCancelTool.find('#circle-cancel').bind('click', function(){        	
+        	me._cancelButtonClick();     	
+        });
 	
         content.addClass('bma-circle-main-div');
         content.append(circleMessage);
@@ -108,6 +123,7 @@ function(instance, locale, conf) {
         content.append(circlePoint);
         content.append(circleRadius);       
         content.append(calculateCancelTool);
+        content.append(backCancelTool);
     	
     	me._updateCalculateButtonVisibility(me);
     	    	
@@ -166,11 +182,11 @@ function(instance, locale, conf) {
 			var point = $('#circle-point-value').val(),
 				feature = new OpenLayers.Format.WKT().read(point);
 			points.push({x: feature.geometry.x, y: feature.geometry.y});
-			var queryData = JSON.stringify({
-								points: points, 
-								radius: $('#circle-radius-value').val(), 
-								attributes: me._getVisibleBiomassAttributeIds(sandbox)
-							}); 
+			var	queryData = JSON.stringify({
+					points: points, 
+					radius: $('#circle-radius-value').val(), 
+					attributes: me._getVisibleBiomassAttributeIds(sandbox)
+			});
 			jQuery.ajax({
 				url: "/biomass/circle/calculate",
 				type: "POST",
@@ -192,11 +208,23 @@ function(instance, locale, conf) {
 						finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 					}			
 					
+					finalResult += 
+						"<br>Tallenna tulokset: "
+						+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
+						+ "<input type='hidden' name='query' value= " + queryData + "/>" 
+						+ "<input type='submit' name='submit' value='XLSX' />" 
+						+ "</form>&nbsp;"
+						+ "<form method='POST' action='/biomass/area/csv' style='display: inline-block'>" 
+						+ "<input type='hidden' name='query' value= " + queryData + "/>" 
+						+ "<input type='submit' name='submit' value='CSV' />" 
+						+ "</form>"
+						+ "<br>";
+					
 					me._showResult(finalResult);
 				}
 			});
 		} else {
-			alert("Enter valid radius value.");
+			alert("Kirjoita säteen arvo numeroina.");
 		}
 	},
 	
@@ -210,6 +238,24 @@ function(instance, locale, conf) {
         me._removeMarker();
         me._removeCircleFeature();
         me._close();
+	},
+	
+	_backButtonClick: function(){
+		var me = this,
+			instance = me.instance,
+			sandbox = instance.getSandbox();  
+        jQuery("#circle-message").show();
+		jQuery("#circle-point").show();
+		jQuery("#circle-point-value").val("");
+		jQuery("#circle-radius").show();
+		jQuery("#circle-radius-value").val("");
+		jQuery("#circle-calclulate-tool").show();
+		jQuery("#circle-back-tool").hide();
+		jQuery("#circle-result").html("").hide();
+		me._removeMarker();
+	    me._removeCircleFeature();
+		me._disableTextBoxRadius();
+		me._updateCalculateButtonVisibility(me)
 	},
 	
 	mapClickedEvent: function(event){
@@ -245,7 +291,8 @@ function(instance, locale, conf) {
 		jQuery("#circle-point").hide();
 		jQuery("#circle-radius").hide();
 		jQuery("#circle-calclulate-tool").hide();
-		jQuery("#circle-result").html(result);
+		jQuery("#circle-result").html(result).show();
+		jQuery("#circle-back-tool").show();
 	},
 	
 	_addMarker: function(sandbox, lonlat) {
@@ -275,6 +322,11 @@ function(instance, locale, conf) {
 	_enableTextBoxRadius: function() {
 		$('#circle-radius-value').attr('disabled', false);
 		$('#circle-radius-value').css('background-color', 'white');
+	},
+	
+	_disableTextBoxRadius: function() {
+		$('#circle-radius-value').attr('disabled', true);
+		$('#circle-radius-value').css('background-color', '#EBEBEB');
 	},
 	
 	_validateRadiusValue: function() {		

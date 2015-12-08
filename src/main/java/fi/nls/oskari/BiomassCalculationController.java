@@ -123,9 +123,14 @@ public class BiomassCalculationController {
         }
     }
     
-    private TabularReportData createCalculationReport(BiomassCalculationRequestModel requestModel) {
-        @SuppressWarnings("unchecked")
-        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
+    @SuppressWarnings("unchecked")
+	private TabularReportData createCalculationReport(BiomassCalculationRequestModel requestModel) {
+        Map<String, ValueAndUnit<Long>> biomassData;
+        if (requestModel.getRadius() != null && !requestModel.getRadius().isInfinite()){
+        	biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForCircle(requestModel).get("values");
+        } else {
+        	biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
+        }
         
         List<String> plainColumnNames = new ArrayList<>();
         List<List<DataCell>> data = new ArrayList<>();
@@ -209,7 +214,7 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
-    public Map<String, Object> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
+    public Map<String, ?> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
     	String circleAsWkt = calculationService.getGeometry(requestBody.getPoints().get(0), requestBody.getRadius());
         Map<String, String> value = new HashMap<String, String>();
         value.put("geo", circleAsWkt);
