@@ -24,15 +24,16 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse piste ja säde, jonka biomassa lasketaan</div><div class="horizontal-line">.</div>');
+	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen säde, jolta biomassa lasketaan.</div>' +
+			'<div class="horizontal-line">.</div>');
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
-	this.templateCircleRadius = jQuery('<div id="circle-radius"><label id="circle-radius-label">Säde: </label><input id="circle-radius-value" size="10" disabled></input> km</div>'
-			+ '<div class="horizontal-line">.</div>');
-	this.templateCirclePoint = jQuery('<div id="circle-point"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>');
-	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool"><button class="circle-button" id="circle-calculate"></button>' +
+	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">Säde: </label>' + 
+			'<input id="circle-radius-value" size="10" ></input> km</div> <div class="horizontal-line">.</div>');
+	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>');
+	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
-	'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
+			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 }, {	
 	/**
 	 * @property template HTML templates for the User Interface
@@ -74,7 +75,7 @@ function(instance, locale, conf) {
 		me.isCircleButtonClicked = true;
 		me._removeMarker();
         me._removeCircleFeature();
-		
+        
 		// clear container
 		var cel = jQuery(me.container);
 		cel.empty();
@@ -243,18 +244,16 @@ function(instance, locale, conf) {
 	_backButtonClick: function(){
 		var me = this,
 			instance = me.instance,
-			sandbox = instance.getSandbox();  
-        jQuery("#circle-message").show();
-		jQuery("#circle-point").show();
-		jQuery("#circle-point-value").val("");
-		jQuery("#circle-radius").show();
-		jQuery("#circle-radius-value").val("");
-		jQuery("#circle-calclulate-tool").show();
+			sandbox = instance.getSandbox();
+		me._showInputsAndButtons();
+        jQuery("#circle-message").show();		
+		jQuery("#circle-point-value").val("");		
+		jQuery("#circle-radius-value").val("");		
 		jQuery("#circle-back-tool").hide();
 		jQuery("#circle-result").html("").hide();
 		me._removeMarker();
 	    me._removeCircleFeature();
-		me._disableTextBoxRadius();
+	    me._hideInputsAndButtons();
 		me._updateCalculateButtonVisibility(me)
 	},
 	
@@ -269,7 +268,7 @@ function(instance, locale, conf) {
 			$('#circle-point-value').val(points);
 			me._removeMarker();		
 			me._addMarker(sandbox, lonlat);
-			me._enableTextBoxRadius();
+			me._showInputsAndButtons();
 		}
 	},
 			
@@ -317,17 +316,7 @@ function(instance, locale, conf) {
 		if (reqBuilder) {
 			sandbox.request('MainMapModule', reqBuilder());
 		}
-	},
-	
-	_enableTextBoxRadius: function() {
-		$('#circle-radius-value').attr('disabled', false);
-		$('#circle-radius-value').css('background-color', 'white');
-	},
-	
-	_disableTextBoxRadius: function() {
-		$('#circle-radius-value').attr('disabled', true);
-		$('#circle-radius-value').css('background-color', '#EBEBEB');
-	},
+	},	
 	
 	_validateRadiusValue: function() {		
 		var num = this._convertCommasToDots($('#circle-radius-value').val());
@@ -347,6 +336,20 @@ function(instance, locale, conf) {
 		var requestForRemoveFeature = sandbox.getRequestBuilder(
 			"MapModulePlugin.RemoveFeaturesFromMapRequest");
 		sandbox.request(instance, requestForRemoveFeature("id", "Main", null));
+	},
+	
+	_showInputsAndButtons: function() {
+		jQuery(".horizontal-line").show();
+		jQuery("#circle-point").show();
+		jQuery("#circle-radius").show();
+		jQuery("#circle-calclulate-tool").show();
+	},
+	
+	_hideInputsAndButtons: function() {
+		jQuery(".horizontal-line").hide();
+		jQuery("#circle-point").hide();
+		jQuery("#circle-radius").hide();
+		jQuery("#circle-calclulate-tool").hide();
 	}
 	
 }, {
