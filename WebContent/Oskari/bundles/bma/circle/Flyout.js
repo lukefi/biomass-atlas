@@ -74,7 +74,6 @@ function(instance, locale, conf) {
 		
 		me.isAllowedMapClick = true;
 		me.centerPointCircle = null;
-		//me.removeMarker();
         me._removeCircleFeature();
         
 		// clear container
@@ -179,10 +178,12 @@ function(instance, locale, conf) {
 			sandbox = me.instance.getSandbox(),
 			points = [],
 			requestForAddFeature;
-		me.isAllowedMapClick = false;
 		
-		if (me._validateRadiusValue()) {			
+		if (me._validateRadiusValue()) {
+			me.isAllowedMapClick = false;
+			me._removeCircleFeature();
 			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
+			
 			jQuery.ajax({
 				url: "/biomass/circle/calculate",
 				type: "POST",
@@ -205,7 +206,7 @@ function(instance, locale, conf) {
 					
 					var finalResult = "";					
 					for (var key in results.values) {
-						finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+						finalResult += key + ' : ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 					}
 					
 					var	queryData = JSON.stringify({
@@ -252,14 +253,8 @@ function(instance, locale, conf) {
 			sandbox = instance.getSandbox();
 		me._showInputsAndButtons();
         jQuery("#circle-message").show();		
-		jQuery("#circle-point-value").html("");		
-		jQuery("#circle-radius-value").val("");		
 		jQuery("#circle-back-tool").hide();
 		jQuery("#circle-result").html("").hide();
-		me.removeMarker();
-	    me._removeCircleFeature();
-	    me._hideInputsAndButtons();
-		me._updateCalculateButtonVisibility(me);
 		me.isAllowedMapClick = true;
 	},
 	
@@ -350,14 +345,7 @@ function(instance, locale, conf) {
 		jQuery("#circle-point").show();
 		jQuery("#circle-radius").show();
 		jQuery("#circle-calclulate-tool").show();
-	},
-	
-	_hideInputsAndButtons: function() {
-		jQuery(".horizontal-line").hide();
-		jQuery("#circle-point").hide();
-		jQuery("#circle-radius").hide();
-		jQuery("#circle-calclulate-tool").hide();
-	}
+	}	
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
