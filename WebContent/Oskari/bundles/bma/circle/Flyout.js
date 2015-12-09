@@ -74,7 +74,7 @@ function(instance, locale, conf) {
 		
 		me.isAllowedMapClick = true;
 		me.centerPointCircle = null;
-		me._removeMarker();
+		//me.removeMarker();
         me._removeCircleFeature();
         
 		// clear container
@@ -179,6 +179,8 @@ function(instance, locale, conf) {
 			sandbox = me.instance.getSandbox(),
 			points = [],
 			requestForAddFeature;
+		me.isAllowedMapClick = false;
+		
 		if (me._validateRadiusValue()) {			
 			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
 			jQuery.ajax({
@@ -238,8 +240,8 @@ function(instance, locale, conf) {
 			sandbox = instance.getSandbox(),
 			toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
         sandbox.request(instance, toolbarRequest);
-        me.isCircleButtonClicked = false;
-        me._removeMarker();
+        me.isAllowedMapClick = false;
+        me.removeMarker();
         me._removeCircleFeature();
         me._close();
 	},
@@ -254,7 +256,7 @@ function(instance, locale, conf) {
 		jQuery("#circle-radius-value").val("");		
 		jQuery("#circle-back-tool").hide();
 		jQuery("#circle-result").html("").hide();
-		me._removeMarker();
+		me.removeMarker();
 	    me._removeCircleFeature();
 	    me._hideInputsAndButtons();
 		me._updateCalculateButtonVisibility(me);
@@ -270,11 +272,10 @@ function(instance, locale, conf) {
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 		if(me.isAllowedMapClick){
 			$('#circle-point-value').html("" + points);
-			me._removeMarker();		
+			me.removeMarker();		
 			me._addMarker(sandbox, lonlat);
 			me._showInputsAndButtons();
 			me.centerPointCircle = points;
-			me.isAllowedMapClick = false;
 		}
 	},
 			
@@ -316,7 +317,7 @@ function(instance, locale, conf) {
 		}
 	},
 	
-	_removeMarker: function() {
+	removeMarker: function() {
 		var sandbox = this.instance.getSandbox();
 		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.RemoveMarkersRequest');
 		if (reqBuilder) {

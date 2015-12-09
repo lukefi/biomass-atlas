@@ -60,7 +60,10 @@ function() {
 			if (p) {
 				sandbox.registerForEventByName(me, p);
 			}
-		}				
+		}
+		
+		//When page is refreshed, this removes marker from the map, if exists.
+		this.plugins['Oskari.userinterface.Flyout'].removeMarker();
 	},
 
 	_toolButtonClicked : function(sandbox) {
