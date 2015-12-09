@@ -29,7 +29,7 @@ function(instance, locale, conf) {
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">Säde: </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div> <div class="horizontal-line">.</div>');
-	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><input id="circle-point-value" disabled></input></div>');
+	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><span id="circle-point-value"></span></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
@@ -72,7 +72,8 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
-		me.isCircleButtonClicked = true;
+		me.isAllowedMapClick = true;
+		me.centerPointCircle = null;
 		me._removeMarker();
         me._removeCircleFeature();
         
@@ -150,8 +151,7 @@ function(instance, locale, conf) {
 		
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#circle-calculate");
-		if (($.trim($("#circle-radius-value").val()) != '') && 
-				($.trim($("#circle-point-value").val()) != '')) {
+		if ($.trim($("#circle-radius-value").val()) != '')  {
 			btn.attr("disabled", false);
 		}
 		else {
@@ -180,19 +180,16 @@ function(instance, locale, conf) {
 			points = [],
 			requestForAddFeature;
 		if (me._validateRadiusValue()) {			
-			var point = $('#circle-point-value').val(),
-				feature = new OpenLayers.Format.WKT().read(point);
-			points.push({x: feature.geometry.x, y: feature.geometry.y});
-			var	queryData = JSON.stringify({
-					points: points, 
-					radius: $('#circle-radius-value').val(), 
-					attributes: me._getVisibleBiomassAttributeIds(sandbox)
-			});
+			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
 			jQuery.ajax({
 				url: "/biomass/circle/calculate",
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
-				data: queryData,
+				data: JSON.stringify({
+					points: me.centerPointCircle, 
+					radius: $('#circle-radius-value').val(), 
+					attributes: me._getVisibleBiomassAttributeIds(sandbox)
+				}),
 				dataType: "json",
 				success: function(results, status, xhr) {
 					requestForAddFeature = sandbox.getRequestBuilder(
@@ -207,7 +204,13 @@ function(instance, locale, conf) {
 					var finalResult = "";					
 					for (var key in results.values) {
 						finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
-					}			
+					}
+					
+					var	queryData = JSON.stringify({
+							points: points, 
+							radius: $('#circle-radius-value').val(), 
+							attributes: me._getVisibleBiomassAttributeIds(sandbox)
+					});
 					
 					finalResult += 
 						"<br>Tallenna tulokset: "
@@ -247,14 +250,15 @@ function(instance, locale, conf) {
 			sandbox = instance.getSandbox();
 		me._showInputsAndButtons();
         jQuery("#circle-message").show();		
-		jQuery("#circle-point-value").val("");		
+		jQuery("#circle-point-value").html("");		
 		jQuery("#circle-radius-value").val("");		
 		jQuery("#circle-back-tool").hide();
 		jQuery("#circle-result").html("").hide();
 		me._removeMarker();
 	    me._removeCircleFeature();
 	    me._hideInputsAndButtons();
-		me._updateCalculateButtonVisibility(me)
+		me._updateCalculateButtonVisibility(me);
+		me.isAllowedMapClick = true;
 	},
 	
 	mapClickedEvent: function(event){
@@ -264,11 +268,13 @@ function(instance, locale, conf) {
 			lonlat = event.getLonLat(),		
 			points = [];	
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
-		if(me.isCircleButtonClicked){
-			$('#circle-point-value').val(points);
+		if(me.isAllowedMapClick){
+			$('#circle-point-value').html("" + points);
 			me._removeMarker();		
 			me._addMarker(sandbox, lonlat);
 			me._showInputsAndButtons();
+			me.centerPointCircle = points;
+			me.isAllowedMapClick = false;
 		}
 	},
 			
