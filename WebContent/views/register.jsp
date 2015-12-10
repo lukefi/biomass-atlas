@@ -136,7 +136,7 @@
 			<span id="errorLastname" class="error"></span>
 		</span>
 		<span class="content-column">
-			<label class="column-field-label">Nimimerkki</label> <br>
+			<label class="column-field-label">Käyttäjätunnus (käytetään kirjautumiseen)</label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
 			<span id="errorUsername" class="error"></span>
 		</span>
