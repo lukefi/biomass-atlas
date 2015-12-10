@@ -55,25 +55,25 @@
 <div id="content">
 	<c:if test="${!empty registrationSuccess}">
 		<div id="registrationSuccess">
-			<h2>Thank you for registration. <br> Please activate your account through the email being sent.</h2>		
+			<h2>Kiitos rekisteröinnistä. <br> Aktivoi käyttäjätunnuksesi sähköpostiisi lähetyllä linkillä.</h2>		
 		</div>
 	</c:if>
 	
 	<c:if test="${!empty passwordChanged}">
 		<div id="passwordChanged">
-			<h2>Password has been changed successfully.</h2>		
+			<h2>Salasanasi on vaihdettu.</h2>		
 		</div>
 	</c:if>
 	
 	<c:if test="${!empty emailSent}">
 		<div id="emailSent">
-			<h2>Email has been sent to you email address. Please use that link to change password.</h2>		
+			<h2>Sinulle on lähetetty sähköpostia. Käytä sähköpostissa olevaa linkkiä salasanan vaihtamiseen.</h2>		
 		</div>
 	</c:if>
 	
 	<c:if test="${!empty updateSuccess}">
 		<div id="updateSuccess">
-			<h2>Your information is updated successfully.</h2>		
+			<h2>Tiedot on päivitetty.</h2>		
 		</div>
 	</c:if>
 </div>
