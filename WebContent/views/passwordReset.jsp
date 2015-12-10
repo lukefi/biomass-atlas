@@ -119,25 +119,28 @@
 
 <div id="content">
 	<div id="passwordReset">
-		<h2>Salasanan vaihto</h2>
-		<form:form>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Uusi salasana</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="password" name="password" type="password" autofocus required></span>
-			</span>
-			<span class="content-column">
-				<span class="content-column"><label class="column-field-label">Vahvista uusi salasana</label></span>
-				<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required>
-				<label id="unmatchedPassword" class="error"></label></span>
-			</span>			
-			<span>				
-				<span><input class="column-field-button" size="16" id="reset" type="button" value="Submit"></span>
-			</span>
-				
-			<span class="error"><label id="serverError"></label></span>
-		</form:form>
-		
-		
+		<c:choose>
+			<c:when test="${!empty uuid}">
+				<h2>Salasanan vaihto</h2>
+				<form:form>
+					<span class="content-column">
+						<span class="content-column"><label class="column-field-label">Uusi salasana</label></span>
+						<span class="content-column"><input class="column-field-input" size="16" id="password" name="password" type="password" autofocus required></span>
+					</span>
+					<span class="content-column">
+						<span class="content-column"><label class="column-field-label">Vahvista uusi salasana</label></span>
+						<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required>
+						<label id="unmatchedPassword" class="error"></label></span>
+					</span>			
+					<span>				
+						<span><input class="column-field-button" size="16" id="reset" type="button" value="Submit"></span>
+					</span>					
+				</form:form>
+			</c:when>
+			<c:otherwise>
+				<span class="error"><h2>${error}</h2></span>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 
@@ -172,7 +175,6 @@ $(document).ready(function () {
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				//jQuery("#serverError").text("SERVER ERROR");
 				alert(jqXHR.responseText);
 			}
 		});				
