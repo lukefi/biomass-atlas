@@ -75,6 +75,9 @@ public class GeometryService {
                 + "select r.ogc_fid from roadsegment r "
                 + "where (r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
                 + "or r.ogc_fid = " + roadId;
+        String reachableCellsSql =
+                "select st_astext(st_union(c.geometry)) from grid_cell c, roadsegment r"
+                + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.ogc_fid in (" + reachableRoadsSql + ")";
         return null; // TODO
     }
     
