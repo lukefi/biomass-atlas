@@ -1,0 +1,7 @@
+/* Style class for DrainageBasinBundle */
+.tool-drainage-basin{
+    width: 32px;
+    height: 32px;
+    background: url('../images/tool-drainage-basin.png') no-repeat;
+    background-position: center center;
+}
