@@ -13,11 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.google.common.base.Joiner;
-import com.vividsolutions.jts.geom.Geometry;
 
 import fi.luke.bma.dao.ValidityDao;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
-import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.Validity;
 
 @Component
@@ -89,9 +87,4 @@ public class CalculationService {
         return ((BigInteger) query.getSingleResult()).intValue();
     }
     
-    public String getGeometry(Point point, float radius) {
-    	String sql = "SELECT ST_ASTEXT(the_geom) FROM (SELECT ST_Buffer(ST_MakePoint(" + point.getX() + "," + point.getY() + ", 3067)," + radius*1000 + ")) AS foo(the_geom)";
-    	Query query = entityManager.createNativeQuery(sql);
-        return (String) query.getSingleResult();
-    }
 }

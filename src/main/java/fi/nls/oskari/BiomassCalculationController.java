@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import au.com.bytecode.opencsv.CSVWriter;
-
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vividsolutions.jts.io.WKTWriter;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
@@ -33,6 +32,7 @@ import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.GeometryService;
 import fi.luke.bma.service.MunicipalityService;
 import fi.rktl.common.model.DataCell;
 import fi.rktl.common.reporting.XlsxWriter;
@@ -45,6 +45,9 @@ public class BiomassCalculationController {
 
     @Autowired
     private CalculationService calculationService;
+    
+    @Autowired
+    private GeometryService geometryService;
     
     @Autowired
     private AttributeService attributeService;
@@ -215,7 +218,7 @@ public class BiomassCalculationController {
     
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
     public Map<String, ?> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
-    	String circleAsWkt = calculationService.getGeometry(requestBody.getPoints().get(0), requestBody.getRadius());
+    	String circleAsWkt = geometryService.getCircle(requestBody.getPoints().get(0), requestBody.getRadius());
         Map<String, String> value = new HashMap<String, String>();
         value.put("geo", circleAsWkt);
         
