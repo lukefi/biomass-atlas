@@ -67,7 +67,8 @@
         { "id" : "heatmap" },
         { "id" : "testbundle" },
         { "id" : "municipality" },
-        { "id" : "circle" }
+        { "id" : "circle" },
+        { "id" : "drainagebasin" }
         
     ]
 }
