@@ -29,3 +29,11 @@
 button {
 	margin-left: 20px;
 }
+
+table, tr, th, td {
+    border: 1px solid black;
+}
+
+th {
+	background-color: #e0e0e0;
+}
