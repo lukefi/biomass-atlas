@@ -32,6 +32,9 @@ public class CalculationService {
     }
 
     public double getTotalBiomassForAttribute(long attributeId, long gridId, String polygonAsWkt) {
+        if (polygonAsWkt == null) {
+            return 0;
+        }
         Validity validity = validityDao.getLatest();
         Long validityId = validity.getId();
         String sql = "SELECT COALESCE(sum(d.value),0) FROM biomass_data d, grid_cell c"
