@@ -59,17 +59,20 @@ public class GeometryService {
         throw new NoSuchElementException("Could not find any roads near the given point");
     }
     
-    private String reachableNodesQuery(int nodeId, float radius) {
+    private String reachableNodesQuery(int nodeId, double radius) {
         return "select id1 as node from pgr_drivingdistance('select id, startnode as source, endnode as target, "
                 + "length::float8 as cost from roadsegment', " + nodeId + ", " + radius + ", false, false)";
     }
     
     public String getRoadBuffer(Point point, float radius) {
         Roadsegment nearestRoad = getNearestRoad(point);
+        nearestRoad.getGeometry().getStartPoint();
+        double startRadius = radius * 1000 - point.getDistanceTo(nearestRoad.getGeometry().getStartPoint());
+        double endRadius = radius * 1000 - point.getDistanceTo(nearestRoad.getGeometry().getEndPoint());
         String reachableRoadsSql =
                 "with reachable_nodes as ("
-                + reachableNodesQuery(nearestRoad.getStartNode(), radius * 1000) + " union "
-                + reachableNodesQuery(nearestRoad.getEndNode(), radius * 1000) + ")"
+                + reachableNodesQuery(nearestRoad.getStartNode(), startRadius) + " union "
+                + reachableNodesQuery(nearestRoad.getEndNode(), endRadius) + ")"
                 + "select r.id from roadsegment r "
                 + "where r.linkkityyp <> 21 " // exclude "lautta/lossi" from biomass calculation
                 + "and ((r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
