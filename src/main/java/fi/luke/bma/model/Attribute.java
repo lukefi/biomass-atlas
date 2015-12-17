@@ -5,10 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
-@Entity ( name = "attribute")
-public class Attribute extends InsertableEntityWithLongId{
+@Entity(name = "attribute")
+public class Attribute extends NonInsertableEntityWithLongId {
 	@Column(name = "fi")
 	private String nameFI;
 	

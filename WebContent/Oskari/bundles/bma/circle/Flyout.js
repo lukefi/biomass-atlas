@@ -28,7 +28,10 @@ function(instance, locale, conf) {
 			'<div class="horizontal-line">.</div>');
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">Säde: </label>' + 
-			'<input id="circle-radius-value" size="10" ></input> km</div> <div class="horizontal-line">.</div>');
+			'<input id="circle-radius-value" size="10" ></input> km</div>');
+	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> ' + 
+	'<label><input type="radio" name="radius-type" value="circle" checked /> linnuntietä pitkin</label><br />' +
+	'<label><input type="radio" name="radius-type" value="road" /> tieverkostoa pitkin</label></div> <div class="horizontal-line">.</div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><span id="circle-point-value"></span></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
@@ -85,6 +88,7 @@ function(instance, locale, conf) {
         var circleMessage = me.templateCircleMessage.clone();
         var circleResult = me.templateCircleResult.clone();
         var circleRadius = me.templateCircleRadius.clone();
+        var radiusType = me.templateRadiusType.clone();
         var circlePoint = me.templateCirclePoint.clone();
         var calculateCancelTool = me.templateCircleCalculateCancelTool.clone();
         var backCancelTool = me.templateCircleBackCancelTool.clone();
@@ -122,7 +126,8 @@ function(instance, locale, conf) {
         content.append(circleMessage);
         content.append(circleResult);
         content.append(circlePoint);
-        content.append(circleRadius);       
+        content.append(circleRadius);
+        content.append(radiusType);
         content.append(calculateCancelTool);
         content.append(backCancelTool);
     	
@@ -183,9 +188,16 @@ function(instance, locale, conf) {
 			me.isAllowedMapClick = false;
 			me._removeCircleFeature();
 			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
+			var radiusType = $('input[name=radius-type]:checked').val();
+			if (radiusType == "road") {
+				var ajaxUrl = "/biomass/roadbuffer/calculate";
+			}
+			else {
+				var ajaxUrl = "/biomass/circle/calculate";
+			}
 			
 			jQuery.ajax({
-				url: "/biomass/circle/calculate",
+				url: ajaxUrl,
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify({
@@ -212,6 +224,7 @@ function(instance, locale, conf) {
 					var	queryData = JSON.stringify({
 							points: points, 
 							radius: $('#circle-radius-value').val(), 
+							radiusType: radiusType,
 							attributes: me._getVisibleBiomassAttributeIds(sandbox)
 					});
 					
@@ -291,6 +304,7 @@ function(instance, locale, conf) {
 		jQuery("#circle-message").hide();
 		jQuery("#circle-point").hide();
 		jQuery("#circle-radius").hide();
+		jQuery("#radius-type").hide();
 		jQuery("#circle-calclulate-tool").hide();
 		jQuery("#circle-result").html(result).show();
 		jQuery("#circle-back-tool").show();
@@ -344,6 +358,7 @@ function(instance, locale, conf) {
 		jQuery(".horizontal-line").show();
 		jQuery("#circle-point").show();
 		jQuery("#circle-radius").show();
+		jQuery("#radius-type").show();
 		jQuery("#circle-calclulate-tool").show();
 	}	
 	
