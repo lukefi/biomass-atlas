@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import fi.luke.bma.model.GridCell;
 
 @Service
-public class MunicipalityService {
-    
-    public static final long MUNICIPALITY_GRID = 2;
+public class BoundedAreaService {	
     
 	private GridCellService gridCellService;
 	
@@ -19,12 +17,11 @@ public class MunicipalityService {
         this.gridCellService = gridCellService;
     }
 
-	public GridCell getMunicipalityByLocation(int x, int y) {
-	    return gridCellService.getByLocation(MUNICIPALITY_GRID, x, y);
+	public GridCell getBoundedAreaByLocation(int x, int y, int gridId) {
+	    return gridCellService.getByLocation(gridId, x, y);
 	}
 	
-	public List<GridCell> getMunicipalitiesById(List<Long> municipalities) {
-	    return gridCellService.getByCellId(MUNICIPALITY_GRID, municipalities);
+	public List<GridCell> getBoundedAreasById(List<Long> boundedAreas, int gridId) {
+	    return gridCellService.getByCellId(gridId, boundedAreas);
 	}
-    
 }
