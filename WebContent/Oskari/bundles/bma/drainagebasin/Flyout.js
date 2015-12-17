@@ -204,8 +204,73 @@ function(instance, locale, conf) {
 	},
 	
 	mapClickedEvent: function(event){
-				
-	},	
+		var me = this,
+			instance = me.instance,
+			sandbox = instance.getSandbox(),
+			lonlat = event.getLonLat(),		
+			points = [],
+			requestForRemoveFeature,
+			requestForAddFeature;
+	
+		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+		
+		this._fixIndexOfForOlderIE();
+		if(me.isDrainageBasinIconClickedForFirstTime){
+			jQuery.ajax({
+				url: "/biomass/drainagebasin/geometry",
+				type: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify( { points: points, attributes: null } ),
+				dataType: "json",
+				success: function( results, status, xhr ) {
+					var indexId = me.selectedDrainageBasinIds.indexOf(results.id);
+					if (indexId > -1) {
+						requestForRemoveFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.RemoveFeaturesFromMapRequest");
+						sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+						me.selectedDrainageBasinIds.splice(indexId, 1);
+						me._updateCalculateButtonVisibility(me);
+					} else {
+						requestForAddFeature = sandbox.getRequestBuilder(
+								"MapModulePlugin.AddFeaturesToMapRequest" );				
+						var style = OpenLayers.Util.applyDefaults(
+						        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+						        OpenLayers.Feature.Vector.style["default"]);
+	
+						sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
+								{id: results.id}, null, null, true, style, false));				
+						me.selectedDrainageBasinIds.push(results.id);
+						me._updateCalculateButtonVisibility(me);
+					}
+				}
+			});
+		}		
+	},
+	
+	/**
+	 *  Fix for Older IE browser; FOR indexOf function
+	 */
+	_fixIndexOfForOlderIE: function() {		
+		if (!Array.prototype.indexOf) {
+		  Array.prototype.indexOf = function(elt /*, from*/) {
+		    var len = this.length >>> 0;
+		    
+		    var from = Number(arguments[1]) || 0;
+		    from = (from < 0)
+		         ? Math.ceil(from)
+		         : Math.floor(from);
+		    if (from < 0)
+		      from += len;
+
+		    for (; from < len; from++) {
+		      if (from in this &&
+		          this[from] === elt)
+		        return from;
+		    }
+		    return -1;
+		  };
+		}
+	},
 	
 	syncToolbarButtonVisibility : function() {
 		var me = this,
