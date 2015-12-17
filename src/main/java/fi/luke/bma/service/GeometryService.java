@@ -78,7 +78,7 @@ public class GeometryService {
         String reachableCellsSql =
                 "select st_astext(st_union(c.geometry)) from grid_cell c, roadsegment r"
                 + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.ogc_fid in (" + reachableRoadsSql + ")";
-        return null; // TODO
+        return (String) entityManager.createNativeQuery(reachableCellsSql).getSingleResult();
     }
     
 }
