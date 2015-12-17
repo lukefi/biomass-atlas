@@ -25,9 +25,10 @@ function(instance, locale, conf) {
 	
 	this.template = null;
 	this.templateDrainageBasinMessage = jQuery('<div id="drainage-basin-message">Valitse valuma-alue, jonka biomassa lasketaan</div>');
-	this.templateDrainageBasinData = jQuery('<div id="drainage-basin-data"></div>');
-	this.templateDrainageBasinCalculateTool = jQuery('<div id="drainage-basin-calculate-tool"><button class="drainage-basin-button" id="drainage-basin-calculate"></button></div>');
-	this.templateDrainageBasinCancelTool = jQuery('<div id="drainage-basin-cancel-tool"><button class="drainage-basin-button" id="drainage-basin-cancel"></button></div>');
+	this.templateDrainageBasinData = jQuery('<div id="drainage-basin-data"></div> <div class="horizontal-line">.</div>');
+	this.templateDrainageBasinCalculateCancelTool = jQuery('<div class="drainage-basin-horizontal-line">.</div>' + 
+			'<div id="drainage-basin-calclulate-cancel-tool"><button class="drainage-basin-button" id="drainage-basin-calculate"></button>' +
+			'<span id="drainage-basin-cancel-tool"><button class="drainage-basin-button" id="drainage-basin-cancel"></button></span> </div>');
 	
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";
 	this.wmsName = "bma:view_drainage_basin_borders";
@@ -82,26 +83,24 @@ function(instance, locale, conf) {
 
         var drainageBasinMessage = me.templateDrainageBasinMessage.clone();
         var drainageBasinData = me.templateDrainageBasinData.clone();
-        var calculateTool = me.templateDrainageBasinCalculateTool.clone();
-        var cancelTool = me.templateDrainageBasinCancelTool.clone();
+        var calclulateCancelTool = me.templateDrainageBasinCalculateCancelTool.clone();
         
-        calculateTool.find('#drainage-basin-calculate').html("Laske");
-        calculateTool.find('#drainage-basin-calculate').unbind('click');
-        calculateTool.find('#drainage-basin-calculate').bind('click', function(){        	
+        calclulateCancelTool.find('#drainage-basin-calculate').html("Laske");
+        calclulateCancelTool.find('#drainage-basin-calculate').unbind('click');
+        calclulateCancelTool.find('#drainage-basin-calculate').bind('click', function(){        	
         	me._calculateButtonClick(me);
         });
         
-        cancelTool.find('#drainage-basin-cancel').html("Lopeta");
-        cancelTool.find('#drainage-basin-cancel').unbind('click');
-        cancelTool.find('#drainage-basin-cancel').bind('click', function(){        	
+        calclulateCancelTool.find('#drainage-basin-cancel').html("Lopeta");
+        calclulateCancelTool.find('#drainage-basin-cancel').unbind('click');
+        calclulateCancelTool.find('#drainage-basin-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
         });
 	
         content.addClass('bma-drainage-basin-main-div');
         content.append(drainageBasinMessage);
         content.append(drainageBasinData);
-        content.append(calculateTool);
-    	content.append(cancelTool);
+    	content.append(calclulateCancelTool);
     	
     	me._updateCalculateButtonVisibility(me);
     	
@@ -130,10 +129,10 @@ function(instance, locale, conf) {
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#drainage-basin-calculate");
 		if (me.selectedDrainageBasinIds.length > 0) {
-			btn.show();
+			btn.attr("disabled", false);
 		}
 		else {
-			btn.hide();
+			btn.attr("disabled", true);
 		}
 	},
 	

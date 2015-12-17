@@ -5,3 +5,27 @@
     background: url('../images/tool-drainage-basin.png') no-repeat;
     background-position: center center;
 }
+
+.drainage-basin-horizontal-line {
+	width: 95%;
+    font-size: 1px;
+    color: rgba(0, 0, 0, 0);
+    line-height: 1px;
+    background-color: grey;
+    margin-top: 5px;
+    margin-bottom: 10px;   
+}
+#drainage-basin-message {
+	padding-bottom: 10px;
+}
+
+.drainage-basin-button {
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	padding-top: 10px;	
+}
+
+button {
+	margin-left: 20px;
+}
