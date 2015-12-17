@@ -87,4 +87,29 @@ public class CalculationService {
         return ((BigInteger) query.getSingleResult()).intValue();
     }
     
+    /**
+     * Return total biomasses for drainage basins and attributes using the latest available data for each attribute.
+     * 
+     * @param attributeIds
+     * @param drainageBasinIds
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForDrainageBasins(
+            Collection<Long> attributeIds, Collection<Long> drainageBasinIds) {
+        if (attributeIds.isEmpty() || drainageBasinIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+        Validity validity = validityDao.getLatest();
+        String jpql = "SELECT new fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult(d.attribute.id, c.cellId, d.value)"
+                + " FROM Data d, GridCell c"
+                + " WHERE d.cell.id = c.id AND c.grid.id = " + DrainageBasinService.DRAINAGE_BASIN_GRID
+                + " AND d.validity.id = " + validity.getId()
+                + " AND d.attribute.id IN (" + Joiner.on(',').join(attributeIds) + ")"
+                + " AND c.cellId IN (" + Joiner.on(',').join(drainageBasinIds) + ")";
+
+        Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
+        return query. getResultList();
+    }
+    
 }

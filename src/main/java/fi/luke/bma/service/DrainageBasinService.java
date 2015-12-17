@@ -22,7 +22,7 @@ public class DrainageBasinService {
 	    return gridCellService.getByLocation(DRAINAGE_BASIN_GRID, x, y);
 	}
 	
-	public List<GridCell> geDrainageBasinsById(List<Long> drainageBasins) {
+	public List<GridCell> getDrainageBasinsById(List<Long> drainageBasins) {
 	    return gridCellService.getByCellId(DRAINAGE_BASIN_GRID, drainageBasins);
 	}
 }

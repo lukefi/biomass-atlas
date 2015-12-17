@@ -188,7 +188,39 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function(){
-		
+		var me = this,
+			sandbox = me.instance.getSandbox();		
+		jQuery.ajax({
+			url: "/biomass/drainagebasin/calculate",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({
+				areaIds: me.selectedDrainageBasinIds,
+				attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
+			}),
+			dataType: "json",
+			success: function(results, status, xhr) {
+				// TODO - should find better way to show calculation results and selected layers' names
+				var totalResult = "";
+				
+				for(var listName in results){
+					totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>";
+					for(var drainageBasinName in results[listName]){
+						totalResult += "<br>" + "<span style=' font-size:10pt;text-decoration:underline; '>"
+							+ results[listName][drainageBasinName].name + ":" + "</span>";
+						for (var attributeName in results[listName][drainageBasinName]) {	
+							// TODO this should be easier after we switch to JSON-stat
+							if (attributeName == "id" || attributeName == "name"){
+								continue;
+							} 
+							totalResult += "<br>" + "<span style=' font-size:9pt; '>"
+							+ attributeName + " : " + results[listName][drainageBasinName][attributeName] + "</span>";
+						}
+					}					
+				}
+				me._showResult(totalResult);				
+			}
+		});
 	},
 	
 	_cancelButtonClick: function(){

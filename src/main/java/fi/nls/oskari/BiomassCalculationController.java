@@ -270,4 +270,33 @@ public class BiomassCalculationController {
     	return geometryMap;
     }
     
+    @RequestMapping(value="drainagebasin/calculate", method=RequestMethod.POST)
+    public Map<String, Object> calculateBiomassForDrainageBasin(@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {
+        List<AdministrativeAreaBiomassCalculationResult> drainageBasinBiomasses
+            = calculationService.getTotalBiomassForDrainageBasins(requestBody.getAttributeIds(), requestBody.getAreaIds());
+        Map<String, Object> root = new TreeMap<>();
+        List<Map<String, ?>> drainageBasinList = new ArrayList<>();
+        Map<Long, Map<String, Object>> drainageBasinMap = new TreeMap<>();
+        for (GridCell cell : drainageBasinService.getDrainageBasinsById(requestBody.getAreaIds())) {
+            Map<String, Object> drainageBasin = new TreeMap<>();
+            drainageBasin.put("name", cell.getName());
+            drainageBasin.put("id", cell.getCellId());
+            drainageBasinList.add(drainageBasin);
+            drainageBasinMap.put(cell.getCellId(), drainageBasin);
+        }
+        root.put("drainageBasins", drainageBasinList);
+       
+        for (AdministrativeAreaBiomassCalculationResult result : drainageBasinBiomasses) {
+        	Map<String, Object> drainageBasin = drainageBasinMap.get(result.getAreaId());
+            List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(result.getAttributeId());
+            String layerName = attributeNameAndUnit.get(0);
+            String layerUnit = attributeNameAndUnit.get(1);
+            Long calculatedResult = Math.round(result.getValue());
+            String resultAndUnit = Long.toString(calculatedResult) + " " + layerUnit;
+            
+            drainageBasin.put(layerName, resultAndUnit);
+        }
+        return root;
+    }
+    
 }
