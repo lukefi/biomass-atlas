@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 
 import org.hibernate.annotations.Type;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
 @Entity
-public class Grid extends InsertableEntityWithLongId{
+public class Grid extends NonInsertableEntityWithLongId {
 	@Column
 	private String name;
 	

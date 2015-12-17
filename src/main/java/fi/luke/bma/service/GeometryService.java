@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Service;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.model.Roadsegment;
 
 @Service
 public class GeometryService {
@@ -31,7 +32,7 @@ public class GeometryService {
         return "st_setsrid(st_point(" + point.getX() + "," + point.getY() + "), 3067)";
     }
     
-    private Object[] getNearestRoad(Point point) {
+    private Roadsegment getNearestRoad(Point point) {
         int boxR = 500;
         while (boxR < 3000000) {
             String boundingBox = "st_setsrid(ST_GeomFromText('POLYGON(("
@@ -45,11 +46,11 @@ public class GeometryService {
                     + (point.getY()-boxR) + ","
                     + (point.getX()-boxR) + " "
                     + (point.getY()-boxR) + "))'), 3067)";
-            String sql = "SELECT id, startnode, endnode FROM roadsegment r WHERE st_intersects(r.geometry, " + boundingBox + ")"
+            String sql = "SELECT id, geometry, startnode, endnode FROM roadsegment r WHERE st_intersects(r.geometry, " + boundingBox + ")"
                     + " ORDER BY st_distance(r.geometry, " + toPoint(point) + ") ASC LIMIT 1";
-            Query query = entityManager.createNativeQuery(sql);
+            Query query = entityManager.createNativeQuery(sql, Roadsegment.class);
             try {
-                return (Object[]) query.getSingleResult();
+                return (Roadsegment) query.getSingleResult();
             }
             catch (NoResultException e) {
                 boxR *= 2;
@@ -64,18 +65,15 @@ public class GeometryService {
     }
     
     public String getRoadBuffer(Point point, float radius) {
-        Object[] nearestRoad = getNearestRoad(point);
-        int roadId = (int) nearestRoad[0];
-        int startNode = (int) nearestRoad[1];
-        int endNode = (int) nearestRoad[2];
+        Roadsegment nearestRoad = getNearestRoad(point);
         String reachableRoadsSql =
                 "with reachable_nodes as ("
-                + reachableNodesQuery(startNode, radius * 1000) + " union "
-                + reachableNodesQuery(endNode, radius * 1000) + ")"
+                + reachableNodesQuery(nearestRoad.getStartNode(), radius * 1000) + " union "
+                + reachableNodesQuery(nearestRoad.getEndNode(), radius * 1000) + ")"
                 + "select r.id from roadsegment r "
                 + "where r.linkkityyp <> 21 " // exclude "lautta/lossi" from biomass calculation
                 + "and ((r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
-                + "or r.id = " + roadId + ")";
+                + "or r.id = " + nearestRoad.getId() + ")";
         String reachableCellsSql =
                 "select st_astext(st_union(c.geometry)) from grid_cell c, roadsegment r"
                 + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.id in (" + reachableRoadsSql + ")";
