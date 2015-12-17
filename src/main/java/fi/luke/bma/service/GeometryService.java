@@ -73,8 +73,9 @@ public class GeometryService {
                 + reachableNodesQuery(startNode, radius * 1000) + " union "
                 + reachableNodesQuery(endNode, radius * 1000) + ")"
                 + "select r.ogc_fid from roadsegment r "
-                + "where (r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
-                + "or r.ogc_fid = " + roadId;
+                + "where r.linkkityyp <> 21 " // exclude "lautta/lossi" from biomass calculation
+                + "and ((r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
+                + "or r.ogc_fid = " + roadId + ")";
         String reachableCellsSql =
                 "select st_astext(st_union(c.geometry)) from grid_cell c, roadsegment r"
                 + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.ogc_fid in (" + reachableRoadsSql + ")";
