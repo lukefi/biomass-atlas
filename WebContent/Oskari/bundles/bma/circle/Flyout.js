@@ -188,7 +188,8 @@ function(instance, locale, conf) {
 			me.isAllowedMapClick = false;
 			me._removeCircleFeature();
 			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
-			if ($('input[name=radius-type]:checked').val() == "road") {
+			var radiusType = $('input[name=radius-type]:checked').val();
+			if (radiusType == "road") {
 				var ajaxUrl = "/biomass/roadbuffer/calculate";
 			}
 			else {
@@ -223,6 +224,7 @@ function(instance, locale, conf) {
 					var	queryData = JSON.stringify({
 							points: points, 
 							radius: $('#circle-radius-value').val(), 
+							radiusType: radiusType,
 							attributes: me._getVisibleBiomassAttributeIds(sandbox)
 					});
 					

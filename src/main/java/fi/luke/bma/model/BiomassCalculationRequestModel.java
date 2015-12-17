@@ -32,6 +32,8 @@ public class BiomassCalculationRequestModel {
     private ArrayList<Long> attributes;
     
     private Float radius;
+    
+    private String radiusType;
 
     public ArrayList<Point> getPoints() {
         return points;
@@ -56,5 +58,13 @@ public class BiomassCalculationRequestModel {
 	public void setRadius(Float radius) {
 		this.radius = radius;
 	}
+
+    public String getRadiusType() {
+        return radiusType;
+    }
+
+    public void setRadiusType(String radiusType) {
+        this.radiusType = radiusType;
+    }
     
 }

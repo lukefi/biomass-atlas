@@ -130,7 +130,12 @@ public class BiomassCalculationController {
 	private TabularReportData createCalculationReport(BiomassCalculationRequestModel requestModel) {
         Map<String, ValueAndUnit<Long>> biomassData;
         if (requestModel.getRadius() != null && !requestModel.getRadius().isInfinite()){
-        	biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForCircle(requestModel).get("values");
+            if ("road".equals(requestModel.getRadiusType())) {
+                biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForRoadBuffer(requestModel).get("values");
+            }
+            else {
+                biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForCircle(requestModel).get("values");
+            }
         } else {
         	biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomassForArea(requestModel).get("values");
         }
