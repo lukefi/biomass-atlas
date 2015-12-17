@@ -219,20 +219,30 @@ public class BiomassCalculationController {
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
     public Map<String, ?> calculateBiomassForCircle(@RequestBody BiomassCalculationRequestModel requestBody) { 
     	String circleAsWkt = geometryService.getCircle(requestBody.getPoints().get(0), requestBody.getRadius());
+        return calculateBiomassForWktGeometry(requestBody, circleAsWkt);
+    }
+    
+    @RequestMapping(value="roadbuffer/calculate", method=RequestMethod.POST)
+    public Map<String, ?> calculateBiomassForRoadBuffer(@RequestBody BiomassCalculationRequestModel requestBody) { 
+        String roadBufferAsWkt = geometryService.getRoadBuffer(requestBody.getPoints().get(0), requestBody.getRadius());
+        return calculateBiomassForWktGeometry(requestBody, roadBufferAsWkt);
+    }
+
+    private Map<String, ?> calculateBiomassForWktGeometry(BiomassCalculationRequestModel requestBody, String geometryAsWkt) {
         Map<String, String> value = new HashMap<String, String>();
-        value.put("geo", circleAsWkt);
+        value.put("geo", geometryAsWkt);
         
         TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
         TreeMap<String, Object> result = new TreeMap<>();
         for(long attributeId : requestBody.getAttributes()){
-        	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, GRID_ID_1KM_BY_1KM, circleAsWkt);
+        	double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, GRID_ID_1KM_BY_1KM, geometryAsWkt);
         	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
         	String attributeName = attributeNameAndUnit.get(0);
         	String attributeUnit = attributeNameAndUnit.get(1);
         	attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
         }
         result.put("values", attributeValues);
-        result.put("geo", circleAsWkt);
+        result.put("geo", geometryAsWkt);
         return result;
     }
     
