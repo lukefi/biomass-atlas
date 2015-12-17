@@ -45,7 +45,7 @@ public class GeometryService {
                     + (point.getY()-boxR) + ","
                     + (point.getX()-boxR) + " "
                     + (point.getY()-boxR) + "))'), 3067)";
-            String sql = "SELECT ogc_fid, startnode, endnode FROM roadsegment r WHERE st_intersects(r.geometry, " + boundingBox + ")"
+            String sql = "SELECT id, startnode, endnode FROM roadsegment r WHERE st_intersects(r.geometry, " + boundingBox + ")"
                     + " ORDER BY st_distance(r.geometry, " + toPoint(point) + ") ASC LIMIT 1";
             Query query = entityManager.createNativeQuery(sql);
             try {
@@ -59,7 +59,7 @@ public class GeometryService {
     }
     
     private String reachableNodesQuery(int nodeId, float radius) {
-        return "select id1 as node from pgr_drivingdistance('select ogc_fid as id, startnode as source, endnode as target, "
+        return "select id1 as node from pgr_drivingdistance('select id, startnode as source, endnode as target, "
                 + "length::float8 as cost from roadsegment', " + nodeId + ", " + radius + ", false, false)";
     }
     
@@ -72,13 +72,13 @@ public class GeometryService {
                 "with reachable_nodes as ("
                 + reachableNodesQuery(startNode, radius * 1000) + " union "
                 + reachableNodesQuery(endNode, radius * 1000) + ")"
-                + "select r.ogc_fid from roadsegment r "
+                + "select r.id from roadsegment r "
                 + "where r.linkkityyp <> 21 " // exclude "lautta/lossi" from biomass calculation
                 + "and ((r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
-                + "or r.ogc_fid = " + roadId + ")";
+                + "or r.id = " + roadId + ")";
         String reachableCellsSql =
                 "select st_astext(st_union(c.geometry)) from grid_cell c, roadsegment r"
-                + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.ogc_fid in (" + reachableRoadsSql + ")";
+                + " where c.grid_id = 1 and st_intersects(c.geometry, r.geometry) and r.id in (" + reachableRoadsSql + ")";
         return (String) entityManager.createNativeQuery(reachableCellsSql).getSingleResult();
     }
     
