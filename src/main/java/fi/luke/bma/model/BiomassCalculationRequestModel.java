@@ -25,6 +25,9 @@ public class BiomassCalculationRequestModel {
             this.y = y;
         }
         
+        public double getDistanceTo(com.vividsolutions.jts.geom.Point jtsPoint) {
+            return Math.sqrt(Math.pow(x - jtsPoint.getX(), 2) + Math.pow(y - jtsPoint.getY(), 2));
+        }
     }
     
     private ArrayList<Point> points;
