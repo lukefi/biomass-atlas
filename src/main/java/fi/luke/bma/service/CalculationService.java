@@ -47,31 +47,7 @@ public class CalculationService {
         return (double) query.getSingleResult();
     }
 
-    /**
-     * Return total biomasses for municipalities and attributes using the latest available data for each attribute.
-     * 
-     * @param attributeIds
-     * @param municipalityIds
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForMunicipalities(
-            Collection<Long> attributeIds, Collection<Long> municipalityIds) {
-        if (attributeIds.isEmpty() || municipalityIds.isEmpty()) {
-            return Collections.emptyList();
-        }
-        Validity validity = validityDao.getLatest();
-        String jpql = "SELECT new fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult(d.attribute.id, c.cellId, d.value)"
-                + " FROM Data d, GridCell c"
-                + " WHERE d.cell.id = c.id AND c.grid.id = " + MunicipalityService.MUNICIPALITY_GRID
-                + " AND d.validity.id = " + validity.getId()
-                + " AND d.attribute.id IN (" + Joiner.on(',').join(attributeIds) + ")"
-                + " AND c.cellId IN (" + Joiner.on(',').join(municipalityIds) + ")";
-
-        Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
-        return query. getResultList();
-    }
-
+   
     public double getAreaOfPolygon(String polygonAsWkt) {
         String sql = "SELECT ST_AREA(the_geom) FROM (SELECT ST_GEOMFROMTEXT('" + polygonAsWkt
                 + "', 3067)) AS foo(the_geom)";
@@ -90,29 +66,31 @@ public class CalculationService {
         return ((BigInteger) query.getSingleResult()).intValue();
     }
     
+       
     /**
-     * Return total biomasses for drainage basins and attributes using the latest available data for each attribute.
-     * 
+     * Return total biomasses for bounded areas (like: municipalities, drainage basin, etc) and 
+     * attributes using the latest available data for each attribute.
      * @param attributeIds
-     * @param drainageBasinIds
+     * @param boundedAreaIds
+     * @param gridId
      * @return
      */
     @SuppressWarnings("unchecked")
-    public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForDrainageBasins(
-            Collection<Long> attributeIds, Collection<Long> drainageBasinIds) {
-        if (attributeIds.isEmpty() || drainageBasinIds.isEmpty()) {
-            return Collections.emptyList();
-        }
-        Validity validity = validityDao.getLatest();
-        String jpql = "SELECT new fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult(d.attribute.id, c.cellId, d.value)"
-                + " FROM Data d, GridCell c"
-                + " WHERE d.cell.id = c.id AND c.grid.id = " + DrainageBasinService.DRAINAGE_BASIN_GRID
-                + " AND d.validity.id = " + validity.getId()
-                + " AND d.attribute.id IN (" + Joiner.on(',').join(attributeIds) + ")"
-                + " AND c.cellId IN (" + Joiner.on(',').join(drainageBasinIds) + ")";
-
-        Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
-        return query. getResultList();
+    public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForBoundedArea(
+    		Collection<Long> attributeIds, Collection<Long> boundedAreaIds, int gridId) {
+    	if (attributeIds.isEmpty() || boundedAreaIds.isEmpty()) {
+    		return Collections.emptyList();
+    	}
+    	Validity validity = validityDao.getLatest();
+    	String jpql = "SELECT new fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult(d.attribute.id, c.cellId, d.value)"
+    			+ " FROM Data d, GridCell c"
+    			+ " WHERE d.cell.id = c.id AND c.grid.id = " + gridId
+    			+ " AND d.validity.id = " + validity.getId()
+    			+ " AND d.attribute.id IN (" + Joiner.on(',').join(attributeIds) + ")"
+    			+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ")";
+    	
+    	Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
+    	return query. getResultList();
     }
     
 }

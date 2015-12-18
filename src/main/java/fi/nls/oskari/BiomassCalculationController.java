@@ -31,10 +31,9 @@ import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
+import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
-import fi.luke.bma.service.DrainageBasinService;
 import fi.luke.bma.service.GeometryService;
-import fi.luke.bma.service.MunicipalityService;
 import fi.rktl.common.model.DataCell;
 import fi.rktl.common.reporting.XlsxWriter;
 
@@ -43,6 +42,8 @@ import fi.rktl.common.reporting.XlsxWriter;
 public class BiomassCalculationController {
 	
 	private final Integer GRID_ID_1KM_BY_1KM = 1; // From database table 'grid' 
+	private final Integer GRID_ID_MUNICIPALITY = 2; // From database table 'grid' 
+	private final Integer GRID_ID_DRAINAGE_BASIN = 4; // From database table 'grid' 
 
     @Autowired
     private CalculationService calculationService;
@@ -51,13 +52,10 @@ public class BiomassCalculationController {
     private GeometryService geometryService;
     
     @Autowired
-    private AttributeService attributeService;
-    
+    private AttributeService attributeService;    
+      
     @Autowired
-    private MunicipalityService municipalityService;
-    
-    @Autowired
-    private DrainageBasinService drainageBasinService;
+    private BoundedAreaService boundedAreaService;
     
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<String, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
@@ -177,52 +175,17 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
-    public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Point point = requestBody.getPoints().get(0);
-    	Map<String, Object> geometryMap = new HashMap<>();
-    	GridCell municipality = municipalityService.getMunicipalityByLocation(point.getX().intValue(), point.getY().intValue());
-    	geometryMap.put("id", municipality.getCellId());
-    	
-    	StringWriter stringWriter = new StringWriter();
-        WKTWriter wktWriter = new WKTWriter();
-        wktWriter.write(municipality.getGeometry(),stringWriter);
-        
-        geometryMap.put("geometry", stringWriter.toString());
-    	//geometryMap.put("geometry", new GeometryJSON().toString(municipality.getGeometry()));
+    public Map<?, ?> getMunicipalityGeometry(
+    		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
+    	Map<String, Object> geometryMap = getBoundedAreaGeometry(requestBody, GRID_ID_MUNICIPALITY);
     	return geometryMap;
     }
     
     @RequestMapping(value="municipality/calculate", method=RequestMethod.POST)
-    public Map<String, Object> calculateBiomassForMunicipality(@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {
-        List<AdministrativeAreaBiomassCalculationResult> municipalityBiomasses
-            = calculationService.getTotalBiomassForMunicipalities(requestBody.getAttributeIds(), requestBody.getAreaIds());
-        Map<String, Object> root = new TreeMap<>();
-        List<Map<String, ?>> municipalityList = new ArrayList<>();
-        Map<Long, Map<String, Object>> municipalityMap = new TreeMap<>();
-        for (GridCell cell : municipalityService.getMunicipalitiesById(requestBody.getAreaIds())) {
-            Map<String, Object> municipality = new TreeMap<>();
-            municipality.put("name", cell.getName());
-            municipality.put("id", cell.getCellId());
-            municipalityList.add(municipality);
-            municipalityMap.put(cell.getCellId(), municipality);
-        }
-        root.put("municipalities", municipalityList);
-        //TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
-       
-        for (AdministrativeAreaBiomassCalculationResult result : municipalityBiomasses) {
-        	Map<String, Object> municipality = municipalityMap.get(result.getAreaId());
-            List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(result.getAttributeId());
-            String layerName = attributeNameAndUnit.get(0);
-            String layerUnit = attributeNameAndUnit.get(1);
-            Long calculatedResult = Math.round(result.getValue());
-            String resultAndUnit = Long.toString(calculatedResult) + " " + layerUnit;
-            //attributeValues.put(layerName, new ValueAndUnit<Long>(calculatedResult, layerUnit));
-            //municipality.put("attributeValues", attributeValues);
-            
-            municipality.put(layerName, resultAndUnit);
-            //municipality.put("a" + result.getAttributeId(), result.getValue());
-        }
-        return root;
+    public Map<String, Object> calculateBiomassForMunicipality(
+    		@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {       
+        Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, GRID_ID_MUNICIPALITY);
+   	 	return root;
     }
     
     @RequestMapping(value="circle/calculate", method=RequestMethod.POST)
@@ -256,45 +219,75 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="drainagebasin/geometry", method=RequestMethod.POST)
-    public Map<?, ?> getDrainageBasinGeometry(@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Point point = requestBody.getPoints().get(0);
+    public Map<String, Object> getDrainageBasinGeometry(
+    		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
+    	Map<String, Object> geometryMap = getBoundedAreaGeometry(requestBody, GRID_ID_DRAINAGE_BASIN);
+    	return geometryMap;
+    }
+    
+    @RequestMapping(value="drainagebasin/calculate", method=RequestMethod.POST)
+    public Map<String, Object> calculateBiomassForDrainageBasin(
+    		@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {      
+    	 Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, GRID_ID_DRAINAGE_BASIN);
+    	 return root;    	 
+    }
+    
+    /**
+     * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
+     * @param requestModel is BiomassCalculationRequestModel object which holds point(s) value.
+     * @param gridId is an integer id of bounded area.
+     * @return Map<String, Object> which includes id and geometry of bounded area.
+     * @throws IOException
+     */
+    public Map<String, Object> getBoundedAreaGeometry(BiomassCalculationRequestModel requestModel, 
+    		int gridId) throws IOException {
+    	Point point = requestModel.getPoints().get(0);
     	Map<String, Object> geometryMap = new HashMap<>();
-    	GridCell drainageBasin = drainageBasinService.getDrainageBasinByLocation(point.getX().intValue(), point.getY().intValue());
-    	geometryMap.put("id", drainageBasin.getCellId());
+    	GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
+    			point.getY().intValue(), gridId);
+    	geometryMap.put("id", boundedArea.getCellId());
     	
     	StringWriter stringWriter = new StringWriter();
         WKTWriter wktWriter = new WKTWriter();
-        wktWriter.write(drainageBasin.getGeometry(), stringWriter);
+        wktWriter.write(boundedArea.getGeometry(), stringWriter);
         
         geometryMap.put("geometry", stringWriter.toString());
     	return geometryMap;
     }
     
-    @RequestMapping(value="drainagebasin/calculate", method=RequestMethod.POST)
-    public Map<String, Object> calculateBiomassForDrainageBasin(@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {
-        List<AdministrativeAreaBiomassCalculationResult> drainageBasinBiomasses
-            = calculationService.getTotalBiomassForDrainageBasins(requestBody.getAttributeIds(), requestBody.getAreaIds());
-        Map<String, Object> root = new TreeMap<>();
-        List<Map<String, ?>> drainageBasinList = new ArrayList<>();
-        Map<Long, Map<String, Object>> drainageBasinMap = new TreeMap<>();
-        for (GridCell cell : drainageBasinService.getDrainageBasinsById(requestBody.getAreaIds())) {
-            Map<String, Object> drainageBasin = new TreeMap<>();
-            drainageBasin.put("name", cell.getName());
-            drainageBasin.put("id", cell.getCellId());
-            drainageBasinList.add(drainageBasin);
-            drainageBasinMap.put(cell.getCellId(), drainageBasin);
+    /**
+     * Calculates biomass for bounded areas (like; municipality, drainage basin, etc)
+     * @param requestmodel is AdministrativeAreaBiomassCalculationRequestModel object
+     * @param gridId is an integer id of bounded area.
+     * @return Map<String, Object> which includes id, name and biomass of bounded area(s).
+     */
+    public Map<String, Object> calculateBiomassForBoundedArea(
+    		AdministrativeAreaBiomassCalculationRequestModel requestmodel, int gridId) {
+    	List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses
+    	  		= calculationService.getTotalBiomassForBoundedArea(requestmodel.getAttributeIds(),
+    	  				requestmodel.getAreaIds(), gridId);
+    	Map<String, Object> root = new TreeMap<>();
+    	List<Map<String, ?>> boundedAreaList = new ArrayList<>();
+        Map<Long, Map<String, Object>> boundedAreaMap = new TreeMap<>();
+        for (GridCell cell : boundedAreaService.getBoundedAreasById(requestmodel.getAreaIds(), gridId)) {
+        	Map<String, Object> boundedArea = new TreeMap<>();
+        	boundedArea.put("name", cell.getName());
+        	boundedArea.put("id", cell.getCellId());
+        	boundedAreaList.add(boundedArea);
+        	boundedAreaMap.put(cell.getCellId(), boundedArea);
         }
-        root.put("drainageBasins", drainageBasinList);
-       
-        for (AdministrativeAreaBiomassCalculationResult result : drainageBasinBiomasses) {
-        	Map<String, Object> drainageBasin = drainageBasinMap.get(result.getAreaId());
-            List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(result.getAttributeId());
-            String layerName = attributeNameAndUnit.get(0);
-            String layerUnit = attributeNameAndUnit.get(1);
-            Long calculatedResult = Math.round(result.getValue());
-            String resultAndUnit = Long.toString(calculatedResult) + " " + layerUnit;
-            
-            drainageBasin.put(layerName, resultAndUnit);
+        root.put("boundedAreas", boundedAreaList);
+     
+        for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
+        	Map<String, Object> boundedArea = boundedAreaMap.get(result.getAreaId());
+        	List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(
+        			result.getAttributeId());
+        	String layerName = attributeNameAndUnit.get(0);
+        	String layerUnit = attributeNameAndUnit.get(1);
+        	Long calculatedResult = Math.round(result.getValue());
+        	String resultAndUnit = Long.toString(calculatedResult) + " " + layerUnit;
+          
+        	boundedArea.put(layerName, resultAndUnit);
         }
         return root;
     }
