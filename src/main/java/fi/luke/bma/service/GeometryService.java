@@ -64,9 +64,10 @@ public class GeometryService {
         return boundingBox;
     }
     
-    private String reachableNodesQuery(int nodeId, double radius) {
+    private String reachableNodesQuery(int nodeId, double radius, Point origPoint, float origRadius) {
         return "select id1 as node from pgr_drivingdistance('select id, startnode as source, endnode as target, "
-                + "length::float8 as cost from roadsegment', " + nodeId + ", " + radius + ", false, false)";
+                + "length::float8 as cost from roadsegment where geometry && " + getBoundingBox(origPoint, origRadius).replace("'", "''")
+                + "', " + nodeId + ", " + radius + ", false, false)";
     }
     
     public String getRoadBuffer(Point point, float radiusKm) {
@@ -76,16 +77,20 @@ public class GeometryService {
         double endRadius = radiusM - point.getDistanceTo(nearestRoad.getGeometry().getEndPoint());
         String reachableRoadsSql =
                 "with reachable_nodes as ("
-                + reachableNodesQuery(nearestRoad.getStartNode(), startRadius) + " union "
-                + reachableNodesQuery(nearestRoad.getEndNode(), endRadius) + ")"
+                + reachableNodesQuery(nearestRoad.getStartNode(), startRadius, point, radiusM) + " union "
+                + reachableNodesQuery(nearestRoad.getEndNode(), endRadius, point, radiusM) + ")"
                 + "select r.id from roadsegment r "
                 + "where r.linkkityyp <> 21 " // exclude "lautta/lossi" from biomass calculation
+                + "and r.geometry && " + getBoundingBox(point, radiusM) + " "
                 + "and ((r.startnode in (select node from reachable_nodes) and r.endnode in (select node from reachable_nodes)) "
                 + "or r.id = " + nearestRoad.getId() + ")";
         String reachableCellsSql =
                 "select st_astext(st_union(c.geometry)) from grid_cell c"
-                + " where c.grid_id = 1 and exists (select 1 from roadsegment r"
-                + " where st_intersects(c.geometry, r.geometry) and r.id in (" + reachableRoadsSql + "))";
+                + " where c.grid_id = 1 "
+                + " and c.geometry && " + getBoundingBox(point, radiusM)
+                + " and exists (select 1 from roadsegment r"
+                + " where r.geometry && " + getBoundingBox(point, radiusM) + " "
+                + " and st_intersects(c.geometry, r.geometry) and r.id in (" + reachableRoadsSql + "))";
         return (String) entityManager.createNativeQuery(reachableCellsSql).getSingleResult();
     }
     
