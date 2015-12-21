@@ -30,10 +30,23 @@ button {
 	margin-left: 20px;
 }
 
-table, tr, th, td {
-    border: 1px solid black;
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    width: 100%;
+}
+
+td {
+    border: 1px solid black;    
 }
 
 th {
 	background-color: #e0e0e0;
+	border: 1px solid black;
+	font-size: 12px;
+	height: 30px;
+}
+
+.tr_top_line {
+	border-top: 2px solid black;
 }

@@ -207,13 +207,14 @@ function(instance, locale, conf) {
 						"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 					for(var drainageBasinName in results[listName]){
 						var rowspanSize = _.size(results[listName][drainageBasinName]) - 2; // minus 2 is for attributeName id and name. 
-						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][drainageBasinName].name + "</td>";
+						totalResult += "<tr class='tr_top_line'><td rowspan=" + rowspanSize + " style='padding-left: 10px;'>" + results[listName][drainageBasinName].name + "</td>";
 						for (var attributeName in results[listName][drainageBasinName]) {	
 							// TODO this should be easier after we switch to JSON-stat
 							if (attributeName == "id" || attributeName == "name"){
 								continue;
 							} 
-							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][drainageBasinName][attributeName] + "</td> </tr>";
+							totalResult += "<td style='padding-left: 10px;'>" + attributeName + "</td>" +
+									"<td style='padding-left: 10px;'>" + results[listName][drainageBasinName][attributeName] + "</td> </tr>";
 						}
 					}					
 				}
