@@ -5,3 +5,20 @@
     background: url('../images/tool-area-selection.png') no-repeat;
     background-position: center center;
 }
+
+.area-button {
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	padding-top: 10px;	
+}
+
+.area-horizontal-line {
+	width: 100%;
+    font-size: 1px;
+    color: rgba(0, 0, 0, 0);
+    line-height: 1px;
+    background-color: grey;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

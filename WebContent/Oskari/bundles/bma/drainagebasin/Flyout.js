@@ -25,9 +25,9 @@ function(instance, locale, conf) {
 	
 	this.template = null;
 	this.templateDrainageBasinMessage = jQuery('<div id="drainage-basin-message">Valitse valuma-alue, jonka biomassa lasketaan</div>');
-	this.templateDrainageBasinData = jQuery('<div id="drainage-basin-data"></div> <div class="horizontal-line">.</div>');
-	this.templateDrainageBasinCalculateCancelTool = jQuery('<div class="drainage-basin-horizontal-line">.</div>' + 
-			'<div id="drainage-basin-calclulate-cancel-tool"><button class="drainage-basin-button" id="drainage-basin-calculate"></button>' +
+	this.templateDrainageBasinData = jQuery('<div id="drainage-basin-data"></div>');
+	this.templateDrainageBasinCalculateCancelTool = jQuery('<div id="drainage-basin-calculate-cancel-tool"><div class="drainage-basin-horizontal-line">.</div>' +
+			'<button class="drainage-basin-button" id="drainage-basin-calculate"></button>' +
 			'<span id="drainage-basin-cancel-tool"><button class="drainage-basin-button" id="drainage-basin-cancel"></button></span> </div>');
 	
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";

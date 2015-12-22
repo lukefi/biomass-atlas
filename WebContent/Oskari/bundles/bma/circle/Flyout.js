@@ -24,18 +24,20 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen säde, jolta biomassa lasketaan.</div>' +
-			'<div class="horizontal-line">.</div>');
+	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen säde, jolta biomassa lasketaan.' +
+			'<div class="horizontal-line">.</div> </div>');
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">Säde: </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div>');
-	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> ' + 
-	'<label><input type="radio" name="radius-type" value="circle" checked /> linnuntietä pitkin</label><br />' +
-	'<label><input type="radio" name="radius-type" value="road" /> tieverkostoa pitkin</label></div> <div class="horizontal-line">.</div>');
+	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> <br /> ' + 
+			'<label><input type="radio" name="radius-type" value="circle" checked /> linnuntietä pitkin</label><br />' +
+			'<label><input type="radio" name="radius-type" value="road" /> tieverkostoa pitkin</label></div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><span id="circle-point-value"></span></div>');
-	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
+	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"> <div class="horizontal-line">.</div>' +
+			'<button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
-	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
+	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"> <div class="horizontal-line">.</div>' +
+			'<button class="circle-button" id="circle-back"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 }, {	
 	/**
@@ -216,10 +218,12 @@ function(instance, locale, conf) {
 					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
 							{id: 'Main'}, null, null, true, style, false));
 					
-					var finalResult = "";					
+					var finalResult = "<table><tr><th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 					for (var key in results.values) {
-						finalResult += key + ' : ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+						finalResult += "<tr><td style='padding-left: 10px;'>" + key 
+							+ "</td><td style='padding-left: 10px;'>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 					}
+					finalResult += "</table>";
 					
 					var	queryData = JSON.stringify({
 							points: points, 

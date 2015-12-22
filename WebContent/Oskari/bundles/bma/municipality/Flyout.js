@@ -26,8 +26,9 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateMunicipalityMessage = jQuery('<div id="municipality-message">Valitse kunta, jonka biomassa lasketaan</div>');
 	this.templateMunicipalityData = jQuery('<div id="municipality-data"></div>');
-	this.templateMunicipalityCalculateTool = jQuery('<div id="municipality-calculate-tool"><button class="municipality-button" id="municipality-calculate"></button></div>');
-	this.templateMunicipalityCancelTool = jQuery('<div id="municipality-cancel-tool"><button class="municipality-button" id="municipality-cancel"></button></div>');
+	this.templateCircleCalculateCancelTool = jQuery('<div id="municipality-calculate-tool"> <div class="municipality-horizontal-line">.</div>' +
+			'<button class="municipality-button" id="municipality-calculate"></button>' +
+			'<span id="municipality-cancel-tool"><button class="municipality-button" id="municipality-cancel"></button></span> </div>');
 	
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";
 	this.wmsName = "bma:view_municipality_borders";
@@ -82,26 +83,24 @@ function(instance, locale, conf) {
 
         var municipalityMessage = me.templateMunicipalityMessage.clone();
         var municipalityData = me.templateMunicipalityData.clone();
-        var calculateTool = me.templateMunicipalityCalculateTool.clone();
-        var cancelTool = me.templateMunicipalityCancelTool.clone();
+        var calculateCancelTool = me.templateCircleCalculateCancelTool.clone();
         
-        calculateTool.find('#municipality-calculate').html("Laske");
-        calculateTool.find('#municipality-calculate').unbind('click');
-        calculateTool.find('#municipality-calculate').bind('click', function(){        	
+        calculateCancelTool.find('#municipality-calculate').html("Laske");
+        calculateCancelTool.find('#municipality-calculate').unbind('click');
+        calculateCancelTool.find('#municipality-calculate').bind('click', function(){        	
         	me._calculateButtonClick(me);
         });
         
-        cancelTool.find('#municipality-cancel').html("Lopeta");
-        cancelTool.find('#municipality-cancel').unbind('click');
-        cancelTool.find('#municipality-cancel').bind('click', function(){        	
+        calculateCancelTool.find('#municipality-cancel').html("Lopeta");
+        calculateCancelTool.find('#municipality-cancel').unbind('click');
+        calculateCancelTool.find('#municipality-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
         });
 	
         content.addClass('bma-municipality-main-div');
         content.append(municipalityMessage);
         content.append(municipalityData);
-        content.append(calculateTool);
-    	content.append(cancelTool);
+    	content.append(calculateCancelTool);
     	
     	me._updateCalculateButtonVisibility(me);
     	
@@ -128,7 +127,7 @@ function(instance, locale, conf) {
     },
 		
 	_updateCalculateButtonVisibility : function(me) {
-		var btn = $("#municipality-calculate");
+		var btn = $("#municipality-calculate-tool");
 		if (me.selectedMunicipalityIds.length > 0) {
 			btn.show();
 		}
@@ -204,20 +203,23 @@ function(instance, locale, conf) {
 				var totalResult = "";
 				
 				for(var listName in results){
-					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
+					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>" + 
+						"<table><tr><th>Kunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 					for(var cityName in results[listName]){
-						totalResult += "<br>" + "<span style=' font-size:10pt;text-decoration:underline; '>"
-							+ results[listName][cityName].name + ":" + "</span>";
+						var rowspanSize = _.size(results[listName][cityName]) - 2; // minus 2 is for attributeName id and name. 
+						totalResult += "<tr class='tr_top_line'><td rowspan=" + rowspanSize + " style='padding-left: 10px;'>"
+							+ results[listName][cityName].name + ":" + "</td>";
 						for (var attributeName in results[listName][cityName]) {	
 							// TODO this should be easier after we switch to JSON-stat
 							if (attributeName == "id" || attributeName == "name"){
 								continue;
 							} 
-							totalResult += "<br>" + "<span style=' font-size:9pt; '>"
-							+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+							totalResult += "<td style='padding-left: 10px;'>" + attributeName + "</td>" +
+							"<td style='padding-left: 10px;'>" + results[listName][cityName][attributeName] + "</td> </tr>";
 						}
 					}					
 				}
+				totalResult += "</table>";
 				me._showResult(totalResult);				
 			}
 		});

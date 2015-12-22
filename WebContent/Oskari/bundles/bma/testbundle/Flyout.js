@@ -26,7 +26,7 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateAreaMessage = jQuery('<div id="area-message">Valitse alue, jonka biomassa lasketaan</div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
-	this.templateAreaCancelTool = jQuery('<div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
+	this.templateAreaCancelTool = jQuery('<div id="area-cancel-tool"> <div class="area-horizontal-line">.</div> <button class="area-button" id="area-cancel"></button></div>');
 	
 }, {	
 	/**
@@ -177,11 +177,15 @@ function(instance, locale, conf) {
 				if ('error' in results) {
 					finalResult += "<span class='error italic'>" + results.error + "</span><br><br>";
 				}
+				
+				finalResult += "<table><tr><th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 				for (var key in results.values) {
-					finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+					finalResult += "<tr><td style='padding-left: 10px;'>" + key 
+						+ "</td><td style='padding-left: 10px;'>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 				}
-				finalResult += 
-					"<br>Tallenna tulokset: "
+				finalResult += "</table>";
+				
+				finalResult += "Tallenna tulokset: "
 					+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 					+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 					+ "<input type='submit' name='submit' value='XLSX' />" 
