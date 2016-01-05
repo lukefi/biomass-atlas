@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.Validity;
 import fi.rktl.common.service.BaseStoreLongIdEntityManager;
 
@@ -33,9 +34,10 @@ public class ValidityDaoImpl extends BaseStoreLongIdEntityManager<Validity> impl
 	}
 
 	@Override
-	public Validity getLatest() {
-		String sql = "SELECT v FROM Validity v WHERE v.startDate = (SELECT MAX(v.startDate) FROM Validity v)";
-		TypedQuery<Validity> query = entityManager.createQuery(sql, Validity.class);
+	public Validity getLatest(long attributeId) {
+		String jpql = "SELECT v FROM " + Validity.class.getName() + " v, " + Attribute.class.getName() + " a "
+		        + "WHERE v.id = a.latestValidity.id AND a.id = " + attributeId;
+		TypedQuery<Validity> query = entityManager.createQuery(jpql, Validity.class);
 		return query.getSingleResult();
 	}
 

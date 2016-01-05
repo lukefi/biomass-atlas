@@ -5,5 +5,5 @@ import fi.rktl.common.service.BaseStoreLongId;
 
 public interface ValidityDao extends BaseStoreLongId<Validity>{
 	
-	public Validity getLatest();
+	public Validity getLatest(long attributeId);
 }

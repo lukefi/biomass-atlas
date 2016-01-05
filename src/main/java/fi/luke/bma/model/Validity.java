@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 
 import org.hibernate.annotations.Type;
 
-import fi.rktl.common.model.InsertableEntityWithLongId;
+import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
 @Entity
-public class Validity extends InsertableEntityWithLongId{
+public class Validity extends NonInsertableEntityWithLongId {
 	@Column
 	@Type(type="date")
 	private Date startDate;

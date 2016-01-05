@@ -25,6 +25,10 @@ public class Attribute extends NonInsertableEntityWithLongId {
 	@JoinColumn(name = "biomass_category_id")
 	private Category category;
 
+	@ManyToOne
+	@JoinColumn(name = "latest_validity_id")
+	private Validity latestValidity;
+	
 	public String getNameFI() {
 		return nameFI;
 	}
@@ -64,4 +68,13 @@ public class Attribute extends NonInsertableEntityWithLongId {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+    public Validity getLatestValidity() {
+        return latestValidity;
+    }
+
+    public void setLatestValidity(Validity latestValidity) {
+        this.latestValidity = latestValidity;
+    }
+	
 }
