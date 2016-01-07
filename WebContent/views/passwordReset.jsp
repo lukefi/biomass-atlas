@@ -163,7 +163,7 @@ $(document).ready(function () {
 		var uuid = '${uuid}';
 		var host = window.location.protocol + "//" + window.location.host; 
 		jQuery.ajax({
-			url: host + "/action?action_route=UserPasswordReset&password",
+			url: host + "/action?action_route=UserPasswordReset&setPassword=1",
 			type: 'POST',
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
