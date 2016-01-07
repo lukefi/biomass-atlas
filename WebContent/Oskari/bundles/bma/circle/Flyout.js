@@ -189,8 +189,13 @@ function(instance, locale, conf) {
 			me._removeCircleFeature();
 			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
 			var radiusType = $('input[name=radius-type]:checked').val();
+			var radius = $('#circle-radius-value').val();
 			if (radiusType == "road") {
 				var ajaxUrl = "/biomass/roadbuffer/calculate";
+				if (parseInt(radius) > 65) {
+					alert("Tiereittiä pitkin laskettaessa säde saa olla korkeintaan 65 km. (väliaikainen rajoitus)");
+					return;
+				}
 			}
 			else {
 				var ajaxUrl = "/biomass/circle/calculate";
@@ -202,7 +207,7 @@ function(instance, locale, conf) {
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify({
 					points: me.centerPointCircle, 
-					radius: $('#circle-radius-value').val(), 
+					radius: radius, 
 					attributes: me._getVisibleBiomassAttributeIds(sandbox)
 				}),
 				dataType: "json",
