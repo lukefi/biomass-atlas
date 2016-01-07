@@ -81,8 +81,6 @@ public class BiomassCalculationController {
     
     /**
      * Export xlsx file
-     * @throws IOException
-     * @throws JsonMappingException
      */
     @RequestMapping(value="area/xlsx", method=RequestMethod.POST)
     public void exportXslx(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
@@ -102,8 +100,6 @@ public class BiomassCalculationController {
 
     /**
      * Export CSV file
-     * @throws IOException
-     * @throws JsonMappingException
      */
     @RequestMapping(value="area/csv", method=RequestMethod.POST)
     public void exportCsv(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
@@ -236,8 +232,8 @@ public class BiomassCalculationController {
      * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
      * @param requestModel is BiomassCalculationRequestModel object which holds point(s) value.
      * @param gridId is an integer id of bounded area.
-     * @return Map<String, Object> which includes id and geometry of bounded area.
-     * @throws IOException
+     * @return m which includes id and geometry of bounded area.
+     * @throws IOException if writing fails
      */
     public Map<String, Object> getBoundedAreaGeometry(BiomassCalculationRequestModel requestModel, 
     		int gridId) throws IOException {
@@ -259,7 +255,7 @@ public class BiomassCalculationController {
      * Calculates biomass for bounded areas (like; municipality, drainage basin, etc)
      * @param requestmodel is AdministrativeAreaBiomassCalculationRequestModel object
      * @param gridId is an integer id of bounded area.
-     * @return Map<String, Object> which includes id, name and biomass of bounded area(s).
+     * @return map which includes id, name and biomass of bounded area(s).
      */
     public Map<String, Object> calculateBiomassForBoundedArea(
     		AdministrativeAreaBiomassCalculationRequestModel requestmodel, int gridId) {

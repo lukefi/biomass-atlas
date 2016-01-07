@@ -70,10 +70,6 @@ public class CalculationService {
     /**
      * Return total biomasses for bounded areas (like: municipalities, drainage basin, etc) and 
      * attributes using the latest available data for each attribute.
-     * @param attributeIds
-     * @param boundedAreaIds
-     * @param gridId
-     * @return
      */
     @SuppressWarnings("unchecked")
     public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForBoundedArea(
