@@ -82,7 +82,13 @@
             <groupId>fi.nls.oskari.service</groupId>
             <artifactId>oskari-control-example</artifactId>
             <version>${oskari.version}</version>
-        </dependency>        
+        </dependency>
+        <!-- oskari-search-nls dependency for metadata based search  -->
+        <dependency>
+            <groupId>fi.nls.oskari.service</groupId>
+            <artifactId>oskari-search-nls</artifactId>
+            <version>${oskari.version}</version>
+        </dependency>                
 		<dependency>
 			<groupId>fi.luke</groupId>
 			<artifactId>common</artifactId>
