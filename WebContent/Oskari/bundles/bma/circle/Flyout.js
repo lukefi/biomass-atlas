@@ -369,7 +369,9 @@ function(instance, locale, conf) {
 	
 	getContentState: function() {
 		var state = {};
-		state.test = 123; // TODO implement real state saving here
+		state.radius = jQuery("#circle-radius-value").val();
+		state.radiusType = jQuery('input[name=radius-type]:checked').val();
+		state.point = jQuery("#circle-point-value").text();
         return state;
     },
     
