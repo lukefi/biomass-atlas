@@ -365,7 +365,17 @@ function(instance, locale, conf) {
 		jQuery("#circle-radius").show();
 		jQuery("#radius-type").show();
 		jQuery("#circle-calclulate-tool").show();
-	}	
+	},
+	
+	getContentState: function() {
+		var state = {};
+		state.test = 123; // TODO implement real state saving here
+        return state;
+    },
+    
+    setContentState: function(state) {
+    	// TODO implement state restoration here
+    }
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
