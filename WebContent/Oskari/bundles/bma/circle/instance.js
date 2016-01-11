@@ -13,6 +13,7 @@ Oskari.clazz.define("Oskari.bma.bundle.circle.CircleInstance",
 function() {
 	this.sandbox = null;	
 	this.plugins = {};
+	this.mediator = null;
 }, {
 	/**
 	 * @static
@@ -64,6 +65,8 @@ function() {
 		
 		//When page is refreshed, this removes marker from the map, if exists.
 		this.plugins['Oskari.userinterface.Flyout'].removeMarker();
+		
+		sandbox.registerAsStateful(this.mediator.bundleId, this);
 	},
 
 	_toolButtonClicked : function(sandbox) {
@@ -127,6 +130,22 @@ function() {
 		me.sandbox.unregister(me);
 		me.started = false;
 	},
+
+    /**
+     * @method setState
+     * @param {Object} state bundle state as JSON
+     */
+    setState : function(state) {
+    	this.plugins['Oskari.userinterface.Flyout'].setContentState(state);
+    },
+    
+    /**
+     * @method getState
+     * @return {Object} bundle state as JSON
+     */
+    getState : function() {
+        return this.plugins['Oskari.userinterface.Flyout'].getContentState();
+    },
 	
 	/**
 	 * @method update
