@@ -139,8 +139,7 @@ Oskari.clazz.define('Oskari.userinterface.bundle.ui.UserInterfaceBundleInstance'
                 me.requestHandlers.modal
             );
 
-            /* removed for some reason or another */
-            //sandbox.registerAsStateful(me.mediator.bundleId, me);
+            sandbox.registerAsStateful(me.mediator.bundleId, me);
         },
 
         /**
