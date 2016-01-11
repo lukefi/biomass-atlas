@@ -187,7 +187,7 @@ function(instance, locale, conf) {
 		if (me._validateRadiusValue()) {
 			me.isAllowedMapClick = false;
 			me._removeCircleFeature();
-			points.push({x: me.centerPointCircle[0].x, y: me.centerPointCircle[0].y});
+			points.push({x: me.centerPointCircle.x, y: me.centerPointCircle.y});
 			var radiusType = $('input[name=radius-type]:checked').val();
 			var radius = $('#circle-radius-value').val();
 			if (radiusType == "road") {
@@ -206,7 +206,7 @@ function(instance, locale, conf) {
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
 				data: JSON.stringify({
-					points: me.centerPointCircle, 
+					points: [me.centerPointCircle], 
 					radius: radius, 
 					attributes: me._getVisibleBiomassAttributeIds(sandbox)
 				}),
@@ -278,18 +278,21 @@ function(instance, locale, conf) {
 	
 	mapClickedEvent: function(event){
 		var me = this,
-			instance = me.instance,
-			sandbox = instance.getSandbox(),
-			lonlat = event.getLonLat(),		
-			points = [];	
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
-		if(me.isAllowedMapClick){
-			$('#circle-point-value').html("" + points);
-			me.removeMarker();		
-			me._addMarker(sandbox, lonlat);
-			me._showInputsAndButtons();
-			me.centerPointCircle = points;
+			lonlat = event.getLonLat();	
+		var point = new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat);
+		if (me.isAllowedMapClick) {
+			me.addMarker(point);
 		}
+	},
+	
+	addMarker: function(point) {
+		var me = this;
+		var sandbox = me.instance.getSandbox();
+		$('#circle-point-value').html("" + point);
+		me.removeMarker();
+		me._addMarker(sandbox, point.x, point.y);
+		me._showInputsAndButtons();
+		me.centerPointCircle = point;
 	},
 			
 	syncToolbarButtonVisibility : function() {
@@ -315,12 +318,12 @@ function(instance, locale, conf) {
 		jQuery("#circle-back-tool").show();
 	},
 	
-	_addMarker: function(sandbox, lonlat) {
+	_addMarker: function(sandbox, x, y) {
 		var reqBuilder = sandbox.getRequestBuilder('MapModulePlugin.AddMarkerRequest');
 		if (reqBuilder) {
 		    var data = {
-		        x: lonlat.lon,
-		        y: lonlat.lat,
+		        x: x,
+		        y: y,
 		        color: "ff0000",
 		        shape: 2,
 		        size: 3
@@ -376,7 +379,20 @@ function(instance, locale, conf) {
     },
     
     setContentState: function(state) {
-    	// TODO implement state restoration here
+    	var me = this;
+    	me.removeMarker();
+    	if ("radius" in state) {
+    		jQuery("#circle-radius-value").val(state.radius);
+    	}
+    	if ("radiusType" in state && /^[a-z]+$/.test(state.radiusType)) {
+    		$("input[name=radius-type][value=" + state.radiusType + "]").prop('checked', true);
+    	}
+    	if ("point" in state) {
+    		var point = OpenLayers.Geometry.fromWKT(state.point);
+    		me.addMarker(point);
+    		me._showInputsAndButtons();
+    	}
+    	me._updateCalculateButtonVisibility(me);
     }
 	
 }, {
