@@ -1156,7 +1156,9 @@ Oskari.clazz.define('Oskari.userinterface.bundle.ui.UserInterfaceBundleInstance'
             }
 
             /* let's not Bundles may not have been loaded */
-            /* me.restoreExtensionViewStates(); */
+            // But after initial load they are! We need this for Biomassa-atlas because we need to restore the exact flyout
+            // states when user wants to load a previous search. So we enable this for now.
+            me.restoreExtensionViewStates();
 
         },
 
