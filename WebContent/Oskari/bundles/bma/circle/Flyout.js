@@ -371,10 +371,13 @@ function(instance, locale, conf) {
 	},
 	
 	getContentState: function() {
+		var me = this;
 		var state = {};
-		state.radius = jQuery("#circle-radius-value").val();
-		state.radiusType = jQuery('input[name=radius-type]:checked').val();
-		state.point = jQuery("#circle-point-value").text();
+		if (jQuery(me.container).is(":visible")) {
+			state.radius = jQuery("#circle-radius-value").val();
+			state.radiusType = jQuery('input[name=radius-type]:checked').val();
+			state.point = jQuery("#circle-point-value").text();
+		}
         return state;
     },
     
