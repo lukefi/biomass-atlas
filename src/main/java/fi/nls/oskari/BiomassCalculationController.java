@@ -1,7 +1,6 @@
 package fi.nls.oskari;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVWriter;
-import com.vividsolutions.jts.io.WKTWriter;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
@@ -174,7 +172,7 @@ public class BiomassCalculationController {
     @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
     public Map<?, ?> getMunicipalityGeometry(
     		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Map<String, Object> geometryMap = getBoundedAreaGeometry(requestBody, GRID_ID_MUNICIPALITY);
+    	Map<String, Object> geometryMap = geometryService.getBoundedArea(requestBody.getPoints().get(0), GRID_ID_MUNICIPALITY);
     	return geometryMap;
     }
     
@@ -218,7 +216,7 @@ public class BiomassCalculationController {
     @RequestMapping(value="drainagebasin/geometry", method=RequestMethod.POST)
     public Map<String, Object> getDrainageBasinGeometry(
     		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Map<String, Object> geometryMap = getBoundedAreaGeometry(requestBody, GRID_ID_DRAINAGE_BASIN);
+    	Map<String, Object> geometryMap = geometryService.getBoundedArea(requestBody.getPoints().get(0), GRID_ID_DRAINAGE_BASIN);
     	return geometryMap;
     }
     
@@ -227,29 +225,6 @@ public class BiomassCalculationController {
     		@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {      
     	 Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, GRID_ID_DRAINAGE_BASIN);
     	 return root;    	 
-    }
-    
-    /**
-     * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
-     * @param requestModel is BiomassCalculationRequestModel object which holds point(s) value.
-     * @param gridId is an integer id of bounded area.
-     * @return m which includes id and geometry of bounded area.
-     * @throws IOException if writing fails
-     */
-    public Map<String, Object> getBoundedAreaGeometry(BiomassCalculationRequestModel requestModel, 
-    		int gridId) throws IOException {
-    	Point point = requestModel.getPoints().get(0);
-    	Map<String, Object> geometryMap = new HashMap<>();
-    	GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
-    			point.getY().intValue(), gridId);
-    	geometryMap.put("id", boundedArea.getCellId());
-    	
-    	StringWriter stringWriter = new StringWriter();
-        WKTWriter wktWriter = new WKTWriter();
-        wktWriter.write(boundedArea.getGeometry(), stringWriter);
-        
-        geometryMap.put("geometry", stringWriter.toString());
-    	return geometryMap;
     }
     
     /**

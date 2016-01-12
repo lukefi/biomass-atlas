@@ -1,5 +1,9 @@
 package fi.luke.bma.service;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import javax.persistence.EntityManager;
@@ -7,9 +11,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vividsolutions.jts.io.WKTWriter;
+
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.Roadsegment;
 
 @Service
@@ -18,10 +26,17 @@ public class GeometryService {
     @PersistenceContext
     private EntityManager entityManager;
     
+    private BoundedAreaService boundedAreaService;
+    
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-    
+
+    @Autowired
+    public void setBoundedAreaService(BoundedAreaService boundedAreaService) {
+        this.boundedAreaService = boundedAreaService;
+    }
+
     public String getCircle(Point point, float radius) {
         String sql = "SELECT ST_ASTEXT(the_geom) FROM (SELECT ST_Buffer(" + toPoint(point) + "," + radius*1000 + ")) AS foo(the_geom)";
         Query query = entityManager.createNativeQuery(sql);
@@ -92,6 +107,27 @@ public class GeometryService {
                 + " where r.geometry && " + getBoundingBox(point, radiusM) + " "
                 + " and st_intersects(c.geometry, r.geometry) and r.id in (" + reachableRoadsSql + "))";
         return (String) entityManager.createNativeQuery(reachableCellsSql).getSingleResult();
+    }
+    
+    /**
+     * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
+     * @param point is the point that specifies which area is to be returned
+     * @param gridId is an integer id of bounded area.
+     * @return map which includes id and geometry of bounded area.
+     * @throws IOException if writing fails
+     */
+    public Map<String, Object> getBoundedArea(Point point, int gridId) throws IOException {
+        Map<String, Object> geometryMap = new HashMap<>();
+        GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
+                point.getY().intValue(), gridId);
+        geometryMap.put("id", boundedArea.getCellId());
+        
+        StringWriter stringWriter = new StringWriter();
+        WKTWriter wktWriter = new WKTWriter();
+        wktWriter.write(boundedArea.getGeometry(), stringWriter);
+        
+        geometryMap.put("geometry", stringWriter.toString());
+        return geometryMap;
     }
     
 }
