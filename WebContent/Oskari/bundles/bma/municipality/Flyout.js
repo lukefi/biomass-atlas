@@ -268,7 +268,7 @@ function(instance, locale, conf) {
 		} else if (this.selectedBoundaryType === this.BOUNDARY_MAAKUNTA) {
 			// Implement later
 		} else if (this.selectedBoundaryType === this.BOUNDARY_VALUMAALUE) {
-			
+			this._drainageBasinCalculate();
 		} else {
 			alert("Error");			
 		}		
@@ -311,6 +311,43 @@ function(instance, locale, conf) {
 		});
 	},
 	
+	_drainageBasinCalculate: function(){
+		var me = this,
+			sandbox = me.instance.getSandbox();		
+		jQuery.ajax({
+			url: "/biomass/drainagebasin/calculate",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({
+				areaIds: me.selectedDrainageBasinIds,
+				attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
+			}),
+			dataType: "json",
+			success: function(results, status, xhr) {
+				// TODO - should find better way to show calculation results and selected layers' names
+				var totalResult = "";
+				
+				for(var listName in results){
+					totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
+						"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
+					for(var drainageBasinName in results[listName]){
+						var rowspanSize = _.size(results[listName][drainageBasinName]) - 2; // minus 2 is for attributeName id and name. 
+						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][drainageBasinName].name + "</td>";
+						for (var attributeName in results[listName][drainageBasinName]) {	
+							// TODO this should be easier after we switch to JSON-stat
+							if (attributeName == "id" || attributeName == "name"){
+								continue;
+							} 
+							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][drainageBasinName][attributeName] + "</td> </tr>";
+						}
+					}					
+				}
+				totalResult += "</table>";
+				me._showResult(totalResult);				
+			}
+		});
+	},
+	
 	_cancelButtonClick: function(){
 		var me = this,
 			instance = me.instance,
@@ -318,6 +355,7 @@ function(instance, locale, conf) {
 			toolbarRequest = sandbox.getRequestBuilder('Toolbar.SelectToolButtonRequest')();
         sandbox.request(instance, toolbarRequest);        
         me._clearMunicipalityIdList(me);        
+        me._clearDrainageBasinIdsList(me);        
         me._removeWmsLayer(sandbox);
         me._close();
         me.isMunicipalityIconClickedForFirstTime = false;
@@ -330,12 +368,11 @@ function(instance, locale, conf) {
 			} else if (this.selectedBoundaryType === this.BOUNDARY_MAAKUNTA) {
 				// Implement later
 			} else if (this.selectedBoundaryType === this.BOUNDARY_VALUMAALUE) {
-			
+				this._drainageBasinClick(event);
 			} else {
 				alert("Error");			
 			}		
-		}
-		
+		}		
 	},
 	
 	_municipalityClick: function(event){
@@ -345,7 +382,7 @@ function(instance, locale, conf) {
 			lonlat = event.getLonLat(),		
 			points = [],
 			requestForRemoveFeature,
-			requestForAddFeature;
+			requestForAddFeature;		
 
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 	
@@ -355,14 +392,65 @@ function(instance, locale, conf) {
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify( { points: points, attributes: null } ),
-			dataType: "json",
+			dataType: "json",			
 			success: function( results, status, xhr ) {
-				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+				jQuery.ajax({
+					url: "/biomass/municipality/geometry",
+					type: "POST",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify( { points: points, attributes: null } ),
+					dataType: "json",
+					success: function( results, status, xhr ) {
+						var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+						if (indexId > -1) {
+							requestForRemoveFeature = sandbox.getRequestBuilder(
+									"MapModulePlugin.RemoveFeaturesFromMapRequest");
+							sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+							me.selectedMunicipalityIds.splice(indexId, 1);
+							me._updateCalculateButtonVisibility(me);
+						} else {
+							requestForAddFeature = sandbox.getRequestBuilder(
+									"MapModulePlugin.AddFeaturesToMapRequest" );				
+							var style = OpenLayers.Util.applyDefaults(
+							        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+							        OpenLayers.Feature.Vector.style["default"]);
+
+							sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
+									{id: results.id}, null, null, true, style, false));				
+							me.selectedMunicipalityIds.push(results.id);
+							me._updateCalculateButtonVisibility(me);
+						}
+					}
+				});		
+			}
+		});
+	},
+	
+	_drainageBasinClick : function(event) {
+		var me = this,
+			instance = me.instance,
+			sandbox = instance.getSandbox(),
+			lonlat = event.getLonLat(),		
+			points = [],
+			requestForRemoveFeature,
+			requestForAddFeature;			
+	
+		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
+		
+		this._fixIndexOfForOlderIE();		
+		jQuery.ajax({
+			url: "/biomass/drainagebasin/geometry",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify( { points: points, attributes: null } ),
+			dataType: "json",			
+			success: function( results, status, xhr ) {				
+				var indexId = me.selectedDrainageBasinIds.indexOf(results.id);
 				if (indexId > -1) {
 					requestForRemoveFeature = sandbox.getRequestBuilder(
 							"MapModulePlugin.RemoveFeaturesFromMapRequest");
 					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
-					me.selectedMunicipalityIds.splice(indexId, 1);
+					me.selectedDrainageBasinIds.splice(indexId, 1);
 					me._updateCalculateButtonVisibility(me);
 				} else {
 					requestForAddFeature = sandbox.getRequestBuilder(
@@ -373,14 +461,14 @@ function(instance, locale, conf) {
 
 					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
 							{id: results.id}, null, null, true, style, false));				
-					me.selectedMunicipalityIds.push(results.id);
+					me.selectedDrainageBasinIds.push(results.id);
 					me._updateCalculateButtonVisibility(me);
 				}
 			}
-		});
+		});				
 	},
 	
-	
+		
 	/**
 	 *  Fix for Older IE browser; FOR indexOf function
 	 */
@@ -426,6 +514,10 @@ function(instance, locale, conf) {
 	
 	_clearMunicipalityIdList: function(me) {
 		me.selectedMunicipalityIds = [];
+	},
+	
+	_clearDrainageBasinIdsList: function(me) {
+		me.selectedDrainageBasinIds = [];
 	}
 	
 }, {
