@@ -37,7 +37,7 @@ public class BiomassCalculationRequestModel {
     private Float radius;
     
     private String radiusType;
-
+    
     public ArrayList<Point> getPoints() {
         return points;
     }
@@ -68,6 +68,10 @@ public class BiomassCalculationRequestModel {
 
     public void setRadiusType(String radiusType) {
         this.radiusType = radiusType;
+    }
+
+    public String getSearchDescription() {
+        return "TODO this is the description of this search"; // TODO build real description
     }
     
 }

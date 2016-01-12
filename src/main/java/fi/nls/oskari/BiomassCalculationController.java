@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.opencsv.CSVWriter;
 import com.vividsolutions.jts.io.WKTWriter;
 
-import au.com.bytecode.opencsv.CSVWriter;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
@@ -92,7 +92,8 @@ public class BiomassCalculationController {
     	TabularReportData reportData = createCalculationReport(requestModel);
     	
     	try {
-    	    new XlsxWriter().write(response.getOutputStream(), reportData.getHeaders(), reportData.getData(), "areaReport");
+    	    new XlsxWriter().writeWithMetadata(response.getOutputStream(), reportData.getHeaders(), reportData.getData(),
+    	            "areaReport", requestModel.getSearchDescription());
     	} catch (IOException e) {
     		throw new RuntimeException(e);
     	}
