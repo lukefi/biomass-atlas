@@ -71,7 +71,24 @@ public class BiomassCalculationRequestModel {
     }
 
     public String getSearchDescription() {
-        return "TODO this is the description of this search"; // TODO build real description
+        // FIXME the selection logic here is duplicate from BiomassCalcu
+        if (getRadius() != null && !getRadius().isInfinite()) {
+            String typeString;
+            if ("road".equals(getRadiusType())) {
+                typeString = "Tieverkon kautta";
+            }
+            else {
+                typeString = "Linnuntietä ";
+            }
+            return typeString + " saavutettavissa olevat alueet pisteestä " + describeCentroid() +
+                   " säteellä " + getRadius().intValue() + " km";
+        } else {
+            return "Vapaamuotoiselta alueelta lasketut biomassat"; // TODO
+        }
+    }
+    
+    private String describeCentroid() {
+        return "(" + getPoints().get(0).getX().intValue() + ", " + getPoints().get(0).getY().intValue() + ")";
     }
     
 }
