@@ -80,15 +80,21 @@ public class BiomassCalculationRequestModel {
             else {
                 typeString = "Linnuntietä ";
             }
-            return typeString + " saavutettavissa olevat alueet pisteestä " + describeCentroid() +
+            return typeString + " saavutettavissa olevat alueet pisteestä " + describePoint(getPoints().get(0)) +
                    " säteellä " + getRadius().intValue() + " km";
         } else {
-            return "Vapaamuotoiselta alueelta lasketut biomassat"; // TODO
+            StringBuilder sb = new StringBuilder();
+            sb.append("Monikulmion alueelta lasketut biomassat. Monikulmion kulmapisteet ovat");
+            for (Point point : getPoints()) {
+                sb.append(' ');
+                sb.append(describePoint(point));
+            }
+            return sb.toString();
         }
     }
     
-    private String describeCentroid() {
-        return "(" + getPoints().get(0).getX().intValue() + ", " + getPoints().get(0).getY().intValue() + ")";
+    private String describePoint(Point point) {
+        return "(" + point.getX().intValue() + ", " + point.getY().intValue() + ")";
     }
     
 }
