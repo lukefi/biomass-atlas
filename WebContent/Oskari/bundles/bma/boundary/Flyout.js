@@ -80,7 +80,8 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
-		me.isMunicipalityIconClickedForFirstTime = true;
+		me.isBoundaryIconClickedForFirstTime = true;
+		//me.isBoundaryIconClickedForFirstTime = true;
 		
 		// clear container
 		var cel = jQuery(me.container);
@@ -346,11 +347,12 @@ function(instance, locale, conf) {
         me._clearDrainageBasinIdsList(me);        
         me._removeWmsLayer(sandbox);
         me._close();
-        me.isMunicipalityIconClickedForFirstTime = false;
+        me.isBoundaryIconClickedForFirstTime = false;
+        me.selectedBoundaryType = null;
 	},
 	
 	mapClickedEvent: function(event){		
-		if(this.isMunicipalityIconClickedForFirstTime){			
+		if(this.isBoundaryIconClickedForFirstTime){			
 			if (this.selectedBoundaryType === this.BOUNDARY_KUNTA) {
 				this._municipalityClick(event);
 			} else if (this.selectedBoundaryType === this.BOUNDARY_MAAKUNTA) {
@@ -358,7 +360,7 @@ function(instance, locale, conf) {
 			} else if (this.selectedBoundaryType === this.BOUNDARY_VALUMAALUE) {
 				this._drainageBasinClick(event);
 			} else {
-				alert("Error");			
+				//Do nothing
 			}		
 		}		
 	},
