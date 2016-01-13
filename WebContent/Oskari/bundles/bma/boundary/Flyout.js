@@ -331,13 +331,32 @@ function(instance, locale, conf) {
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
-				areaIds: me.selectedMunicipalityIds,
+				areaIds: me.selectedProvinceIds,
 				attributes: me._getVisibleBiomassAttributeIds(sandbox),
 				boundedAreaGridId: me.PROVINCE_GRID_ID
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				alert('success');				
+				// TODO - should find better way to show calculation results and selected layers' names
+				var totalResult = "";
+				
+				for(var listName in results){
+					totalResult += "<span>"+ "Valitut maakuntat:" + "</span>" + "<br>" +				
+						"<table><tr><th>Maakunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
+					for(var provinceName in results[listName]){
+						var rowspanSize = _.size(results[listName][provinceName]) - 2; // minus 2 is for attributeName id and name. 
+						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][provinceName].name + "</td>";
+						for (var attributeName in results[listName][provinceName]) {	
+							// TODO this should be easier after we switch to JSON-stat
+							if (attributeName == "id" || attributeName == "name"){
+								continue;
+							} 
+							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][provinceName][attributeName] + "</td> </tr>";
+						}
+					}					
+				}
+				totalResult += "</table>";
+				me._showResult(totalResult);							
 			}
 		});
 	},
@@ -470,7 +489,7 @@ function(instance, locale, conf) {
 			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.PROVINCE_GRID_ID } ),
 			dataType: "json",
 			success: function( results, status, xhr ) {
-				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+				var indexId = me.selectedProvinceIds.indexOf(results.id);
 				if (indexId > -1) {
 					requestForRemoveFeature = sandbox.getRequestBuilder(
 					"MapModulePlugin.RemoveFeaturesFromMapRequest");
