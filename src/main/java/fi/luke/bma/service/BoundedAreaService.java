@@ -17,11 +17,11 @@ public class BoundedAreaService {
         this.gridCellService = gridCellService;
     }
 
-	public GridCell getBoundedAreaByLocation(int x, int y, int gridId) {
+	public GridCell getBoundedAreaByLocation(int x, int y, long gridId) {
 	    return gridCellService.getByLocation(gridId, x, y);
 	}
 	
-	public List<GridCell> getBoundedAreasById(List<Long> boundedAreas, int gridId) {
+	public List<GridCell> getBoundedAreasById(List<Long> boundedAreas, long gridId) {
 	    return gridCellService.getByCellId(gridId, boundedAreas);
 	}
 }

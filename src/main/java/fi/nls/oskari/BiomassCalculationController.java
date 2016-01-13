@@ -21,7 +21,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVWriter;
 
-import fi.luke.bma.model.AdministrativeAreaBiomassCalculationRequestModel;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
@@ -40,8 +39,6 @@ import fi.rktl.common.reporting.XlsxWriter;
 public class BiomassCalculationController {
 	
 	private final Integer GRID_ID_1KM_BY_1KM = 1; // From database table 'grid' 
-	private final Integer GRID_ID_MUNICIPALITY = 2; // From database table 'grid' 
-	private final Integer GRID_ID_DRAINAGE_BASIN = 4; // From database table 'grid' 
 
     @Autowired
     private CalculationService calculationService;
@@ -169,17 +166,17 @@ public class BiomassCalculationController {
         return sb.toString();
     }
     
-    @RequestMapping(value="municipality/geometry", method=RequestMethod.POST)
+    @RequestMapping(value="boundedarea/geometry", method=RequestMethod.POST)
     public Map<?, ?> getMunicipalityGeometry(
     		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Map<String, Object> geometryMap = geometryService.getBoundedArea(requestBody.getPoints().get(0), GRID_ID_MUNICIPALITY);
+    	Map<String, Object> geometryMap = geometryService.getBoundedArea(requestBody.getPoints().get(0), requestBody.getBoundedAreaGridId());
     	return geometryMap;
     }
     
-    @RequestMapping(value="municipality/calculate", method=RequestMethod.POST)
+    @RequestMapping(value="boundedarea/calculate", method=RequestMethod.POST)
     public Map<String, Object> calculateBiomassForMunicipality(
-    		@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {       
-        Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, GRID_ID_MUNICIPALITY);
+    		@RequestBody BiomassCalculationRequestModel requestBody) {       
+        Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, requestBody.getBoundedAreaGridId());
    	 	return root;
     }
     
@@ -213,20 +210,6 @@ public class BiomassCalculationController {
         return result;
     }
     
-    @RequestMapping(value="drainagebasin/geometry", method=RequestMethod.POST)
-    public Map<String, Object> getDrainageBasinGeometry(
-    		@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-    	Map<String, Object> geometryMap = geometryService.getBoundedArea(requestBody.getPoints().get(0), GRID_ID_DRAINAGE_BASIN);
-    	return geometryMap;
-    }
-    
-    @RequestMapping(value="drainagebasin/calculate", method=RequestMethod.POST)
-    public Map<String, Object> calculateBiomassForDrainageBasin(
-    		@RequestBody AdministrativeAreaBiomassCalculationRequestModel requestBody) {      
-    	 Map<String, Object> root = calculateBiomassForBoundedArea(requestBody, GRID_ID_DRAINAGE_BASIN);
-    	 return root;    	 
-    }
-    
     /**
      * Calculates biomass for bounded areas (like; municipality, drainage basin, etc)
      * @param requestmodel is AdministrativeAreaBiomassCalculationRequestModel object
@@ -234,9 +217,9 @@ public class BiomassCalculationController {
      * @return map which includes id, name and biomass of bounded area(s).
      */
     public Map<String, Object> calculateBiomassForBoundedArea(
-    		AdministrativeAreaBiomassCalculationRequestModel requestmodel, int gridId) {
+    		BiomassCalculationRequestModel requestmodel, long gridId) {
     	List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses
-    	  		= calculationService.getTotalBiomassForBoundedArea(requestmodel.getAttributeIds(),
+    	  		= calculationService.getTotalBiomassForBoundedArea(requestmodel.getAttributes(),
     	  				requestmodel.getAreaIds(), gridId);
     	Map<String, Object> root = new TreeMap<>();
     	List<Map<String, ?>> boundedAreaList = new ArrayList<>();

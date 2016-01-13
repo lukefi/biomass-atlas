@@ -116,7 +116,7 @@ public class GeometryService {
      * @return map which includes id and geometry of bounded area.
      * @throws IOException if writing fails
      */
-    public Map<String, Object> getBoundedArea(Point point, int gridId) throws IOException {
+    public Map<String, Object> getBoundedArea(Point point, long gridId) throws IOException {
         Map<String, Object> geometryMap = new HashMap<>();
         GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
                 point.getY().intValue(), gridId);

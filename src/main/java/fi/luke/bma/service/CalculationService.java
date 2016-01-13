@@ -73,7 +73,7 @@ public class CalculationService {
      */
     @SuppressWarnings("unchecked")
     public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForBoundedArea(
-    		Collection<Long> attributeIds, Collection<Long> boundedAreaIds, int gridId) {
+    		Collection<Long> attributeIds, Collection<Long> boundedAreaIds, long gridId) {
     	if (attributeIds.isEmpty() || boundedAreaIds.isEmpty()) {
     		return Collections.emptyList();
     	}

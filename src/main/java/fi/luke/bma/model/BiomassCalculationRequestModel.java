@@ -1,6 +1,7 @@
 package fi.luke.bma.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BiomassCalculationRequestModel {
 
@@ -34,9 +35,13 @@ public class BiomassCalculationRequestModel {
     
     private ArrayList<Long> attributes;
     
+    private List<Long> areaIds;
+    
     private Float radius;
     
     private String radiusType;
+    
+    private Long boundedAreaGridId;
     
     public ArrayList<Point> getPoints() {
         return points;
@@ -54,7 +59,15 @@ public class BiomassCalculationRequestModel {
         this.attributes = attributes;
     }
 
-	public Float getRadius() {
+	public List<Long> getAreaIds() {
+        return areaIds;
+    }
+
+    public void setAreaIds(List<Long> areaIds) {
+        this.areaIds = areaIds;
+    }
+
+    public Float getRadius() {
 		return radius;
 	}
 
@@ -68,6 +81,14 @@ public class BiomassCalculationRequestModel {
 
     public void setRadiusType(String radiusType) {
         this.radiusType = radiusType;
+    }
+
+    public Long getBoundedAreaGridId() {
+        return boundedAreaGridId;
+    }
+
+    public void setBoundedAreaGridId(Long boundedAreaGridId) {
+        this.boundedAreaGridId = boundedAreaGridId;
     }
 
     public String getSearchDescription() {
