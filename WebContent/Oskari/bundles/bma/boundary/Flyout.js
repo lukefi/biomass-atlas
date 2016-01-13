@@ -212,7 +212,9 @@ function(instance, locale, conf) {
     
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#boundary-calculate");
-		if ((me.selectedMunicipalityIds.length > 0) || (me.selectedDrainageBasinIds.length > 0) || (me.selectedProvinceIds.length > 0)) {
+		if ((me.selectedMunicipalityIds.length > 0) || 
+				(me.selectedDrainageBasinIds.length > 0) || 
+				(me.selectedProvinceIds.length > 0)) {
 			btn.attr("disabled", false);
 		}
 		else {
@@ -285,7 +287,7 @@ function(instance, locale, conf) {
 	
 	_municipalityCalculate: function(){
 		var me = this,
-		sandbox = me.instance.getSandbox();
+			sandbox = me.instance.getSandbox();
 		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/calculate",
@@ -298,33 +300,14 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				// TODO - should find better way to show calculation results and selected layers' names
-				var totalResult = "";
-				
-				for(var listName in results){
-					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>" +
-						"<table><tr><th>Kunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-					for(var cityName in results[listName]){
-						var rowspanSize = _.size(results[listName][cityName]) - 2; // minus 2 is for attributeName id and name. 
-						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][cityName].name + "</td>";						
-						for (var attributeName in results[listName][cityName]) {	
-							// TODO this should be easier after we switch to JSON-stat
-							if (attributeName == "id" || attributeName == "name"){
-								continue;
-							}							
-							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][cityName][attributeName] + "</td> </tr>";
-						}
-					}					
-				}
-				totalResult += "</table>";
-				me._showResult(totalResult);				
+				me._createTabularResult(results, me.BOUNDARY_KUNTA);					
 			}
 		});
 	},
 	
 	_provinceCalculate: function(){
 		var me = this,
-		sandbox = me.instance.getSandbox();
+			sandbox = me.instance.getSandbox();
 		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/calculate",
@@ -337,33 +320,15 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				// TODO - should find better way to show calculation results and selected layers' names
-				var totalResult = "";
-				
-				for(var listName in results){
-					totalResult += "<span>"+ "Valitut maakuntat:" + "</span>" + "<br>" +				
-						"<table><tr><th>Maakunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-					for(var provinceName in results[listName]){
-						var rowspanSize = _.size(results[listName][provinceName]) - 2; // minus 2 is for attributeName id and name. 
-						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][provinceName].name + "</td>";
-						for (var attributeName in results[listName][provinceName]) {	
-							// TODO this should be easier after we switch to JSON-stat
-							if (attributeName == "id" || attributeName == "name"){
-								continue;
-							} 
-							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][provinceName][attributeName] + "</td> </tr>";
-						}
-					}					
-				}
-				totalResult += "</table>";
-				me._showResult(totalResult);							
+				me._createTabularResult(results, me.BOUNDARY_MAAKUNTA);									
 			}
 		});
 	},
 	
 	_drainageBasinCalculate: function(){
 		var me = this,
-			sandbox = me.instance.getSandbox();		
+			sandbox = me.instance.getSandbox();
+		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/calculate",
 			type: "POST",
@@ -375,28 +340,43 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				// TODO - should find better way to show calculation results and selected layers' names
-				var totalResult = "";
-				
-				for(var listName in results){
-					totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
-						"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-					for(var drainageBasinName in results[listName]){
-						var rowspanSize = _.size(results[listName][drainageBasinName]) - 2; // minus 2 is for attributeName id and name. 
-						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][drainageBasinName].name + "</td>";
-						for (var attributeName in results[listName][drainageBasinName]) {	
-							// TODO this should be easier after we switch to JSON-stat
-							if (attributeName == "id" || attributeName == "name"){
-								continue;
-							} 
-							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][drainageBasinName][attributeName] + "</td> </tr>";
-						}
-					}					
-				}
-				totalResult += "</table>";
-				me._showResult(totalResult);				
+				me._createTabularResult(results, me.BOUNDARY_VALUMAALUE);					
 			}
 		});
+	},
+	
+	_createTabularResult : function(results, boundaryType) {
+		// TODO - should find better way to show calculation results and selected layers' names
+		var totalResult = "";		
+		for(var listName in results){
+			if(boundaryType === this.BOUNDARY_KUNTA) {
+				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
+				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
+			} else if(boundaryType === this.BOUNDARY_MAAKUNTA) {
+				totalResult += "<span>"+ "Valitut maakuntat:" + "</span>" + "<br>" +				
+				"<table><tr><th>Maakunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
+			} else if(boundaryType === this.BOUNDARY_VALUMAALUE) {
+				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
+				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
+			} else {
+				alert("ERROR: Invalid boundary type.");
+				return;
+			} 
+			
+			for(var boundaryName in results[listName]){
+				var rowspanSize = _.size(results[listName][boundaryName]) - 2; // minus 2 is for attributeName id and name. 
+				totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][boundaryName].name + "</td>";
+				for (var attributeName in results[listName][boundaryName]) {	
+					// TODO this should be easier after we switch to JSON-stat
+					if (attributeName == "id" || attributeName == "name"){
+						continue;
+					} 
+					totalResult += "<td>" + attributeName + "</td><td>" + results[listName][boundaryName][attributeName] + "</td> </tr>";
+				}
+			}					
+		}
+		totalResult += "</table>";
+		this._showResult(totalResult);				
 	},
 	
 	_cancelButtonClick: function(){
@@ -429,40 +409,30 @@ function(instance, locale, conf) {
 	},
 	
 	_municipalityClick: function(event){
-		var me = this,
-			instance = me.instance,
-			sandbox = instance.getSandbox(),
+		var me = this,			
 			lonlat = event.getLonLat(),		
-			points = [],
-			requestForRemoveFeature,
-			requestForAddFeature;		
+			points = [];		
 
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
-	
+		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));	
 		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.MUNICIPALITY_GRID_ID } ),
+			data: JSON.stringify({
+				points: points, 
+				attributes: null, 
+				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
+			}),
 			dataType: "json",
 			success: function( results, status, xhr ) {
 				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
-				if (indexId > -1) {
-					requestForRemoveFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.RemoveFeaturesFromMapRequest");
-					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+				if (indexId > -1) {					
+					me._removeSelectedBoundedAreaFromMap(me, results.id);
 					me.selectedMunicipalityIds.splice(indexId, 1);
 					me._updateCalculateButtonVisibility(me);
-				} else {
-					requestForAddFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.AddFeaturesToMapRequest" );				
-					var style = OpenLayers.Util.applyDefaults(
-					        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-					        OpenLayers.Feature.Vector.style["default"]);
-
-					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-							{id: results.id}, null, null, true, style, false));				
+				} else {					
+					me._addSelectionForBoundedAreaOnMap(me, results);
 					me.selectedMunicipalityIds.push(results.id);
 					me._updateCalculateButtonVisibility(me);
 				}
@@ -471,40 +441,30 @@ function(instance, locale, conf) {
 	},
 	
 	_provinceClick: function(event){
-		var me = this,
-			instance = me.instance,
-			sandbox = instance.getSandbox(),
+		var me = this,			
 			lonlat = event.getLonLat(),		
-			points = [],
-			requestForRemoveFeature,
-			requestForAddFeature;		
+			points = [];		
 		
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
-		
+		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));		
 		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.PROVINCE_GRID_ID } ),
+			data: JSON.stringify({
+				points: points, 
+				attributes: null, 
+				boundedAreaGridId: me.PROVINCE_GRID_ID
+			}),
 			dataType: "json",
 			success: function( results, status, xhr ) {
 				var indexId = me.selectedProvinceIds.indexOf(results.id);
-				if (indexId > -1) {
-					requestForRemoveFeature = sandbox.getRequestBuilder(
-					"MapModulePlugin.RemoveFeaturesFromMapRequest");
-					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+				if (indexId > -1) {					
+					me._removeSelectedBoundedAreaFromMap(me, results.id);
 					me.selectedProvinceIds.splice(indexId, 1);
 					me._updateCalculateButtonVisibility(me);
-				} else {
-					requestForAddFeature = sandbox.getRequestBuilder(
-					"MapModulePlugin.AddFeaturesToMapRequest" );				
-					var style = OpenLayers.Util.applyDefaults(
-							{fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-							OpenLayers.Feature.Vector.style["default"]);
-					
-					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-							{id: results.id}, null, null, true, style, false));				
+				} else {						
+					me._addSelectionForBoundedAreaOnMap(me, results);
 					me.selectedProvinceIds.push(results.id);
 					me._updateCalculateButtonVisibility(me);
 				}
@@ -513,40 +473,30 @@ function(instance, locale, conf) {
 	},
 	
 	_drainageBasinClick : function(event) {
-		var me = this,
-			instance = me.instance,
-			sandbox = instance.getSandbox(),
+		var me = this,			
 			lonlat = event.getLonLat(),		
-			points = [],
-			requestForRemoveFeature,
-			requestForAddFeature;			
+			points = [];			
 	
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
-		
+		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));		
 		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID } ),
+			data: JSON.stringify({
+				points: points,
+				attributes: null,
+				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
+			}),
 			dataType: "json",			
 			success: function( results, status, xhr ) {				
 				var indexId = me.selectedDrainageBasinIds.indexOf(results.id);
-				if (indexId > -1) {
-					requestForRemoveFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.RemoveFeaturesFromMapRequest");
-					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+				if (indexId > -1) {					
+					me._removeSelectedBoundedAreaFromMap(me, results.id);
 					me.selectedDrainageBasinIds.splice(indexId, 1);
 					me._updateCalculateButtonVisibility(me);
-				} else {
-					requestForAddFeature = sandbox.getRequestBuilder(
-							"MapModulePlugin.AddFeaturesToMapRequest" );				
-					var style = OpenLayers.Util.applyDefaults(
-					        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-					        OpenLayers.Feature.Vector.style["default"]);
-
-					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-							{id: results.id}, null, null, true, style, false));				
+				} else {					
+					me._addSelectionForBoundedAreaOnMap(me, results);
 					me.selectedDrainageBasinIds.push(results.id);
 					me._updateCalculateButtonVisibility(me);
 				}
@@ -554,7 +504,26 @@ function(instance, locale, conf) {
 		});				
 	},
 	
-		
+	_removeSelectedBoundedAreaFromMap : function(me, selectedAreaId) {
+		var instance = me.instance,
+			sandbox = instance.getSandbox(),
+			requestForRemoveFeature = sandbox.getRequestBuilder(
+					"MapModulePlugin.RemoveFeaturesFromMapRequest");
+		sandbox.request(instance, requestForRemoveFeature("id", selectedAreaId, null));
+	},
+	
+	_addSelectionForBoundedAreaOnMap : function(me, results) {
+		var instance = me.instance,
+			sandbox = instance.getSandbox(),
+			requestForAddFeature = sandbox.getRequestBuilder(
+					"MapModulePlugin.AddFeaturesToMapRequest" ),				
+			style = OpenLayers.Util.applyDefaults(
+			        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+			        OpenLayers.Feature.Vector.style["default"]);			
+		sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
+			{id: results.id}, null, null, true, style, false));	
+	},
+			
 	/**
 	 *  Fix for Older IE browser; FOR indexOf function
 	 */
