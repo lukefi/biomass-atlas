@@ -67,8 +67,7 @@
         { "id" : "heatmap" },
         { "id" : "testbundle" },
         { "id" : "boundary" },
-        { "id" : "circle" },
-        { "id" : "drainagebasin" }       
+        { "id" : "circle" }
         
     ]
 }
