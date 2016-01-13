@@ -2,7 +2,7 @@
 .tool-boundary{
     width: 32px;
     height: 32px;
-    background: url('../images/tool-municipality.png') no-repeat;
+    background: url('../images/tool-boundary.png') no-repeat;
     background-position: center center;
 }
 .boundary-horizontal-line {
