@@ -29,6 +29,7 @@ function(instance, locale, conf) {
 			'<input type="radio" name="boundary" value="maakunta">Maakunta<br> <input type="radio" name="boundary" value="valumaAlue">Valuma-alue<br></div>');	
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
+			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
 			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
 			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
 		
@@ -41,6 +42,8 @@ function(instance, locale, conf) {
 	this.BOUNDARY_KUNTA = "kunta";
 	this.BOUNDARY_MAAKUNTA = "maakunta";
 	this.BOUNDARY_VALUMAALUE = "valumaAlue";
+	this.MUNICIPALITY_GRID_ID = 2;
+	this.DRAINAGE_BASIN_GRID_ID = 4;
 	
 }, {	
 	/**
@@ -51,7 +54,7 @@ function(instance, locale, conf) {
 		content : "<div class='metadataflyout_content'></div>"
 	},
 	getName : function() {
-		return 'Oskari.bma.bundle.municipality.MunicipalityBundle.Flyout';
+		return 'Oskari.bma.bundle.boundary.BoundaryBundle.Flyout';
 	},
 	setEl : function(el, width, height) {
 		this.container = jQuery(el);
@@ -81,7 +84,6 @@ function(instance, locale, conf) {
 			sandbox = me.instance.getSandbox();
 		
 		me.isBoundaryIconClickedForFirstTime = true;
-		//me.isBoundaryIconClickedForFirstTime = true;
 		
 		// clear container
 		var cel = jQuery(me.container);
@@ -95,7 +97,13 @@ function(instance, locale, conf) {
         
         boundaryMessage.find('input[name="boundary"]').unbind('click');
         boundaryMessage.find('input[name="boundary').bind('click', function(){
-        	me._changeBoundaryType(me, this.value);        	
+        	$("#boundary-next").prop('disabled', false);     	
+        });
+        
+        calclulateCancelTool.find('#boundary-next').html("Seuravaa");
+        calclulateCancelTool.find('#boundary-next').unbind('click');
+        calclulateCancelTool.find('#boundary-next').bind('click', function(){        	
+        	me._showBoundary(me);
         });
         
         calclulateCancelTool.find('#boundary-calculate').html("Laske");
@@ -135,10 +143,11 @@ function(instance, locale, conf) {
         sandbox.postRequestByName('userinterface.UpdateExtensionRequest', [instance, 'close']);  
     },
 	
-    _changeBoundaryType : function(me, selectedValue) {
-    	var sandbox = me.instance.getSandbox();
-    	me._removeWmsLayer(sandbox);
+    _showBoundary : function(me) {
+    	var sandbox = me.instance.getSandbox(),
+    		selectedValue = $('input[name="boundary"]:checked').val();
     	
+    	me._removeWmsLayer(sandbox);    	
     	if (selectedValue === this.BOUNDARY_KUNTA) {
     		this.wmsName = "bma:view_municipality_borders";
     		this.wmsId = "municipalityBorderId";    		
@@ -167,10 +176,19 @@ function(instance, locale, conf) {
     		alert("Error: Select the proper boundary type");
     		return;
     	}  	
+    	me._hideNextButton();
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
     	me._updateCalculateButtonVisibility(me);
     	return;
+	},
+	
+	_showNextButton : function() {
+		$("#boundary-next-tool").show();
+	},
+	
+	_hideNextButton : function() {
+		$("#boundary-next-tool").hide();
 	},
 	
 	_showBoundaryOption : function() {
@@ -267,12 +285,13 @@ function(instance, locale, conf) {
 		sandbox = me.instance.getSandbox();
 		
 		jQuery.ajax({
-			url: "/biomass/municipality/calculate",
+			url: "/biomass/boundedarea/calculate",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
 				areaIds: me.selectedMunicipalityIds,
-				attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
+				attributes: me._getVisibleBiomassAttributeIds(sandbox),
+				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
@@ -304,12 +323,13 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox();		
 		jQuery.ajax({
-			url: "/biomass/drainagebasin/calculate",
+			url: "/biomass/boundedarea/calculate",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
 				areaIds: me.selectedDrainageBasinIds,
-				attributeIds: me._getVisibleBiomassAttributeIds(sandbox)
+				attributes: me._getVisibleBiomassAttributeIds(sandbox),
+				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
@@ -376,44 +396,35 @@ function(instance, locale, conf) {
 
 		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));
 	
-		this._fixIndexOfForOlderIE();
+		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
-			url: "/biomass/municipality/geometry",
+			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null } ),
-			dataType: "json",			
+			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.MUNICIPALITY_GRID_ID } ),
+			dataType: "json",
 			success: function( results, status, xhr ) {
-				jQuery.ajax({
-					url: "/biomass/municipality/geometry",
-					type: "POST",
-					contentType: "application/json; charset=UTF-8",
-					data: JSON.stringify( { points: points, attributes: null } ),
-					dataType: "json",
-					success: function( results, status, xhr ) {
-						var indexId = me.selectedMunicipalityIds.indexOf(results.id);
-						if (indexId > -1) {
-							requestForRemoveFeature = sandbox.getRequestBuilder(
-									"MapModulePlugin.RemoveFeaturesFromMapRequest");
-							sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
-							me.selectedMunicipalityIds.splice(indexId, 1);
-							me._updateCalculateButtonVisibility(me);
-						} else {
-							requestForAddFeature = sandbox.getRequestBuilder(
-									"MapModulePlugin.AddFeaturesToMapRequest" );				
-							var style = OpenLayers.Util.applyDefaults(
-							        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
-							        OpenLayers.Feature.Vector.style["default"]);
+				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+				if (indexId > -1) {
+					requestForRemoveFeature = sandbox.getRequestBuilder(
+							"MapModulePlugin.RemoveFeaturesFromMapRequest");
+					sandbox.request(instance, requestForRemoveFeature("id", results.id, null));
+					me.selectedMunicipalityIds.splice(indexId, 1);
+					me._updateCalculateButtonVisibility(me);
+				} else {
+					requestForAddFeature = sandbox.getRequestBuilder(
+							"MapModulePlugin.AddFeaturesToMapRequest" );				
+					var style = OpenLayers.Util.applyDefaults(
+					        {fillColor: '#9900FF', fillOpacity: 0.8, strokeColor: '#000000'},
+					        OpenLayers.Feature.Vector.style["default"]);
 
-							sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-									{id: results.id}, null, null, true, style, false));				
-							me.selectedMunicipalityIds.push(results.id);
-							me._updateCalculateButtonVisibility(me);
-						}
-					}
-				});		
+					sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
+							{id: results.id}, null, null, true, style, false));				
+					me.selectedMunicipalityIds.push(results.id);
+					me._updateCalculateButtonVisibility(me);
+				}
 			}
-		});
+		});		
 	},
 	
 	_drainageBasinClick : function(event) {
@@ -429,10 +440,10 @@ function(instance, locale, conf) {
 		
 		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
-			url: "/biomass/drainagebasin/geometry",
+			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify( { points: points, attributes: null } ),
+			data: JSON.stringify( { points: points, attributes: null, boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID } ),
 			dataType: "json",			
 			success: function( results, status, xhr ) {				
 				var indexId = me.selectedDrainageBasinIds.indexOf(results.id);
