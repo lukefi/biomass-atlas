@@ -26,4 +26,9 @@ public class CircleCalculator extends RadiusCalculator implements Calculator {
         return calculateBiomassForWktGeometry(requestModel, circleAsWkt);
     }
 
+    @Override
+    public String getSearchDescription() {
+        return getSearchDescription(requestModel, "Linnuntietä");
+    }
+
 }

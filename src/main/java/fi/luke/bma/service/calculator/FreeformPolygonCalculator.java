@@ -48,6 +48,17 @@ public class FreeformPolygonCalculator implements Calculator {
         return result;
     }
 
+    @Override
+    public String getSearchDescription() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Monikulmion alueelta lasketut biomassat. Monikulmion kulmapisteet ovat");
+        for (Point point : requestModel.getPoints()) {
+            sb.append(' ');
+            sb.append(CircleCalculator.describePoint(point));
+        }
+        return sb.toString();
+    }
+
     private String polygonToWkt(List<Point> points) {
         StringBuilder sb = new StringBuilder();
         sb.append("POLYGON((");

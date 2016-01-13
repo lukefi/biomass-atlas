@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.ValueAndUnit;
+import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 
@@ -39,5 +40,14 @@ public abstract class RadiusCalculator {
         result.put("values", attributeValues);
         result.put("geo", geometryAsWkt);
         return result;
+    }
+    
+    protected String getSearchDescription(BiomassCalculationRequestModel requestModel, String typeString) {
+        return typeString + " saavutettavissa olevat alueet pisteestä " + describePoint(requestModel.getPoints().get(0)) +
+               " säteellä " + requestModel.getRadius().intValue() + " km";
+    }
+    
+    static String describePoint(Point point) {
+        return "(" + point.getX().intValue() + ", " + point.getY().intValue() + ")";
     }
 }

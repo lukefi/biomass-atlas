@@ -26,4 +26,9 @@ public class RoadBufferCalculator extends RadiusCalculator implements Calculator
         return calculateBiomassForWktGeometry(requestModel, roadBufferAsWkt);
     }
 
+    @Override
+    public String getSearchDescription() {
+        return getSearchDescription(requestModel, "Tieverkon kautta");
+    }
+
 }

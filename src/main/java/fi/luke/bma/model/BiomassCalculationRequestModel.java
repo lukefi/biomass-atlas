@@ -90,32 +90,5 @@ public class BiomassCalculationRequestModel {
     public void setBoundedAreaGridId(Long boundedAreaGridId) {
         this.boundedAreaGridId = boundedAreaGridId;
     }
-
-    public String getSearchDescription() {
-        // FIXME the selection logic here is duplicate from BiomassCalcu
-        if (getRadius() != null && !getRadius().isInfinite()) {
-            String typeString;
-            if ("road".equals(getRadiusType())) {
-                typeString = "Tieverkon kautta";
-            }
-            else {
-                typeString = "Linnuntietä ";
-            }
-            return typeString + " saavutettavissa olevat alueet pisteestä " + describePoint(getPoints().get(0)) +
-                   " säteellä " + getRadius().intValue() + " km";
-        } else {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Monikulmion alueelta lasketut biomassat. Monikulmion kulmapisteet ovat");
-            for (Point point : getPoints()) {
-                sb.append(' ');
-                sb.append(describePoint(point));
-            }
-            return sb.toString();
-        }
-    }
-    
-    private String describePoint(Point point) {
-        return "(" + point.getX().intValue() + ", " + point.getY().intValue() + ")";
-    }
     
 }

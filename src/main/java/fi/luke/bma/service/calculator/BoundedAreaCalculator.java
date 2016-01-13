@@ -61,4 +61,10 @@ public class BoundedAreaCalculator implements Calculator {
         return root;
     }
 
+    @Override
+    public String getSearchDescription() {
+        // TODO Auto-generated method stub
+        return "TODO";
+    }
+
 }

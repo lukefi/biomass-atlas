@@ -78,10 +78,11 @@ public class BiomassCalculationController {
     	response.addHeader("Content-Disposition", "attachment; filename=areaReport.xlsx");
     	
     	TabularReportData reportData = createCalculationReport(requestModel);
+    	String searchDescription = calculatorFactory.getInstance(requestModel).getSearchDescription();
     	
     	try {
     	    new XlsxWriter().writeWithMetadata(response.getOutputStream(), reportData.getHeaders(), reportData.getData(),
-    	            "areaReport", requestModel.getSearchDescription());
+    	            "areaReport", searchDescription);
     	} catch (IOException e) {
     		throw new RuntimeException(e);
     	}
