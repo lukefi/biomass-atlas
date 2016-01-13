@@ -25,8 +25,8 @@ function(instance, locale, conf) {
 	
 	this.template = null;
 	this.templateBoundaryMessage = jQuery('<div id="boundary-message">Valitse maantietellisellä alue, jonka biomassa lasketaan</div> ' +
-			'<div id="boundary-radio"><input type="radio" name="boundary" value="kunta">Kunta<br>' +
-			'<input type="radio" name="boundary" value="maakunta">Maakunta<br> <input type="radio" name="boundary" value="valumaAlue">Valuma-alue<br></div>');	
+			'<div id="boundary-radio"><input type="radio" name="boundary" value="municipality">Kunta<br>' +
+			'<input type="radio" name="boundary" value="province">Maakunta<br> <input type="radio" name="boundary" value="drainageBasin">Valuma-alue<br></div>');	
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
 			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
@@ -36,13 +36,17 @@ function(instance, locale, conf) {
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
 	this.wmsId = null;	
+	
 	this.selectedMunicipalityIds = [];
 	this.selectedDrainageBasinIds = [];
 	this.selectedProvinceIds = [];
 	this.selectedBoundaryType = null;
-	this.BOUNDARY_KUNTA = "kunta";
-	this.BOUNDARY_MAAKUNTA = "maakunta";
-	this.BOUNDARY_VALUMAALUE = "valumaAlue";
+	
+	/* These string values must be same as value for radio button. */
+	this.BOUNDARY_MUNICIPALITY = "municipality";
+	this.BOUNDARY_PROVINCE = "province";
+	this.BOUNDARY_DRAINAGE_BASIN = "drainageBasin";
+	
 	this.MUNICIPALITY_GRID_ID = 2;
 	this.PROVINCE_GRID_ID = 3;
 	this.DRAINAGE_BASIN_GRID_ID = 4;
@@ -150,13 +154,13 @@ function(instance, locale, conf) {
     		selectedValue = $('input[name="boundary"]:checked').val();
     	
     	me._removeWmsLayer(sandbox);    	
-    	if (selectedValue === this.BOUNDARY_KUNTA) {
+    	if (selectedValue === this.BOUNDARY_MUNICIPALITY) {
     		this.wmsName = "bma:view_municipality_borders";
     		this.wmsId = "municipalityBorderId";    		
-    	} else if (selectedValue === this.BOUNDARY_MAAKUNTA) {
+    	} else if (selectedValue === this.BOUNDARY_PROVINCE) {
     		this.wmsName = "bma:view_province_borders";
     		this.wmsId = "provinceBorderId";
-    	} else if (selectedValue === this.BOUNDARY_VALUMAALUE){
+    	} else if (selectedValue === this.BOUNDARY_DRAINAGE_BASIN){
     		this.wmsName = "bma:view_drainage_basin_borders";
     		this.wmsId = "drainageBasinBorderId";
     	} else {
@@ -169,11 +173,11 @@ function(instance, locale, conf) {
     },
     
     _updateMessage : function(me, selectedBoundary) {    	
-    	if (selectedBoundary === this.BOUNDARY_KUNTA) {
+    	if (selectedBoundary === this.BOUNDARY_MUNICIPALITY) {
     		$('#boundary-message').html("Valitse kunta, jonka biomassa lasketaan");    		
-    	} else if (selectedBoundary === this.BOUNDARY_MAAKUNTA) {
+    	} else if (selectedBoundary === this.BOUNDARY_PROVINCE) {
     		$('#boundary-message').html("Valitse maakunta, jonka biomassa lasketaan");    
-    	} else if (selectedBoundary === this.BOUNDARY_VALUMAALUE){
+    	} else if (selectedBoundary === this.BOUNDARY_DRAINAGE_BASIN){
     		$('#boundary-message').html("Valitse valuma-alue, jonka biomassa lasketaan");
     	} else {
     		alert("Error: Select the proper boundary type");
@@ -274,11 +278,11 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function(){		
-		if (this.selectedBoundaryType === this.BOUNDARY_KUNTA) {
+		if (this.selectedBoundaryType === this.BOUNDARY_MUNICIPALITY) {
 			this._municipalityCalculate();
-		} else if (this.selectedBoundaryType === this.BOUNDARY_MAAKUNTA) {
+		} else if (this.selectedBoundaryType === this.BOUNDARY_PROVINCE) {
 			this._provinceCalculate();
-		} else if (this.selectedBoundaryType === this.BOUNDARY_VALUMAALUE) {
+		} else if (this.selectedBoundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
 			this._drainageBasinCalculate();
 		} else {
 			alert("Error");			
@@ -300,7 +304,7 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_KUNTA);					
+				me._createTabularResult(results, me.BOUNDARY_MUNICIPALITY);					
 			}
 		});
 	},
@@ -320,7 +324,7 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_MAAKUNTA);									
+				me._createTabularResult(results, me.BOUNDARY_PROVINCE);									
 			}
 		});
 	},
@@ -340,7 +344,7 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_VALUMAALUE);					
+				me._createTabularResult(results, me.BOUNDARY_DRAINAGE_BASIN);					
 			}
 		});
 	},
@@ -349,13 +353,13 @@ function(instance, locale, conf) {
 		// TODO - should find better way to show calculation results and selected layers' names
 		var totalResult = "";		
 		for(var listName in results){
-			if(boundaryType === this.BOUNDARY_KUNTA) {
+			if(boundaryType === this.BOUNDARY_MUNICIPALITY) {
 				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
 				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else if(boundaryType === this.BOUNDARY_MAAKUNTA) {
+			} else if(boundaryType === this.BOUNDARY_PROVINCE) {
 				totalResult += "<span>"+ "Valitut maakuntat:" + "</span>" + "<br>" +				
 				"<table><tr><th>Maakunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else if(boundaryType === this.BOUNDARY_VALUMAALUE) {
+			} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
 				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
 				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 			} else {
@@ -396,11 +400,11 @@ function(instance, locale, conf) {
 	
 	mapClickedEvent: function(event){		
 		if(this.isBoundaryIconClickedForFirstTime){			
-			if (this.selectedBoundaryType === this.BOUNDARY_KUNTA) {
+			if (this.selectedBoundaryType === this.BOUNDARY_MUNICIPALITY) {
 				this._municipalityClick(event);
-			} else if (this.selectedBoundaryType === this.BOUNDARY_MAAKUNTA) {
+			} else if (this.selectedBoundaryType === this.BOUNDARY_PROVINCE) {
 				this._provinceClick(event);
-			} else if (this.selectedBoundaryType === this.BOUNDARY_VALUMAALUE) {
+			} else if (this.selectedBoundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
 				this._drainageBasinClick(event);
 			} else {
 				//Do nothing
