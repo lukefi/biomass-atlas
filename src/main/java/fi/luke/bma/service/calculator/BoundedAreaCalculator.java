@@ -63,8 +63,19 @@ public class BoundedAreaCalculator implements Calculator {
 
     @Override
     public String getSearchDescription() {
-        // TODO Auto-generated method stub
-        return "TODO";
+        List<GridCell> areaList = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(), requestModel.getBoundedAreaGridId());
+        if (areaList.size() == 0) {
+            return "";
+        }
+        String gridName = areaList.get(0).getGrid().getName();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < areaList.size(); i++) {
+            if (i > 0) {
+                sb.append(", ");
+            }
+            sb.append(areaList.get(i).getName());
+        }
+        return "Aluejaon " + gridName + " alueilta " + areaList + " lasketut biomassat";
     }
 
 }
