@@ -13,7 +13,8 @@
     "bundles" : {
         "bma" : [        
             "testbundle.sql",
-            "municipality.sql"
+            "boundary.sql",
+            "circle.sql"           
         ]
     },
     "views" : [

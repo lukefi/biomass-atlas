@@ -66,9 +66,9 @@
         { "id" : "printout" },
         { "id" : "heatmap" },
         { "id" : "testbundle" },
-        { "id" : "municipality" },
+        { "id" : "boundary" },
         { "id" : "circle" },
-        { "id" : "drainagebasin" }
+        { "id" : "drainagebasin" }       
         
     ]
 }

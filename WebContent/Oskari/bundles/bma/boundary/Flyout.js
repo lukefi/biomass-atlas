@@ -1,8 +1,8 @@
 /**
- * @class Oskari.bma.bundle.municipality.MunicipalityBundle.Flyout
+ * @class Oskari.bma.bundle.boundary.BoundaryBundle.Flyout
  *
  */
-Oskari.clazz.define('Oskari.bma.bundle.municipality.MunicipalityBundle.Flyout',
+Oskari.clazz.define('Oskari.bma.bundle.boundary.BoundaryBundle.Flyout',
 
 /**
  * @method create called automatically on construction
@@ -31,9 +31,7 @@ function(instance, locale, conf) {
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
 			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
 			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
-	/*this.templateMunicipalityCalculateTool = jQuery('<div id="municipality-calculate-tool"><button class="municipality-button" id="municipality-calculate"></button></div>');
-	this.templateMunicipalityCancelTool = jQuery('<div id="municipality-cancel-tool"><button class="municipality-button" id="municipality-cancel"></button></div>');*/
-	
+		
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
 	this.wmsId = null;	
@@ -493,8 +491,8 @@ function(instance, locale, conf) {
 	
 	_setToolbarButtonVisibility : function(sandbox, state) {
 		var stateReqBuilder = sandbox.getRequestBuilder("Toolbar.ToolButtonStateRequest"),
-			stateRequest = stateReqBuilder("bmaMunicipalityCalculator", "basictools", state);
-		sandbox.request("Municipality", stateRequest);
+			stateRequest = stateReqBuilder("bmaBoundaryCalculator", "basictools", state);
+		sandbox.request("Boundary", stateRequest);
 	},
 	
 	_showResult: function(result){	

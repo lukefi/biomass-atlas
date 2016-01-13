@@ -1,9 +1,9 @@
 /**
- * @class Oskari.bma.bundle.municipality.MunicipalityInstance
+ * @class Oskari.bma.bundle.boundary.BoundaryInstance
  *
- * This bundle provides a tool for biomass calculations on selected municipality(s)
+ * This bundle provides a tool for biomass calculations on selected bounded area(s)
  */
-Oskari.clazz.define("Oskari.bma.bundle.municipality.MunicipalityInstance",
+Oskari.clazz.define("Oskari.bma.bundle.boundary.BoundaryInstance",
 
 /**
  * @method create called automatically on construction
@@ -18,7 +18,7 @@ function() {
 	 * @static
 	 * @property __name
 	 */
-	__name : 'Municipality',
+	__name : 'Boundary',
 
 	/**
 	 * @method getName
@@ -83,9 +83,9 @@ function() {
 		}
 				
 		me.buttons = {
-			'bmaMunicipalityCalculator' : {
-				iconCls : 'tool-municipality',
-				tooltip : "Laske biomassa kunnassa",
+			'bmaBoundaryCalculator' : {
+				iconCls : 'tool-boundary',
+				tooltip : "Laske biomassa maantietellisellä alueella",
 				sticky : true,
 				callback : function() {
 					me._toolButtonClicked();
@@ -98,7 +98,7 @@ function() {
 			// Couldn't get the request, toolbar not loaded
 			return;
 		}
-		request = reqBuilder("bmaMunicipalityCalculator", "basictools",	me.buttons['bmaMunicipalityCalculator']);
+		request = reqBuilder("bmaBoundaryCalculator", "basictools",	me.buttons['bmaBoundaryCalculator']);
 		sandbox.request(me.getName(), request);	
 		me._buttonsAdded = true;
 		
@@ -145,7 +145,7 @@ function() {
 		return handler.apply(this, [ event ]);
 	},
 	startExtension : function() {
-		this.plugins['Oskari.userinterface.Flyout'] = Oskari.clazz.create('Oskari.bma.bundle.municipality.MunicipalityBundle.Flyout', this, null, this.conf);
+		this.plugins['Oskari.userinterface.Flyout'] = Oskari.clazz.create('Oskari.bma.bundle.boundary.BoundaryBundle.Flyout', this, null, this.conf);
 	},
 	stopExtension : function() {
 		this.plugins['Oskari.userinterface.Flyout'] = null;

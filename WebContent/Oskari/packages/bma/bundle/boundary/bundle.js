@@ -3,7 +3,7 @@
  *
  * @class Oskari.<mynamespace>.bundle.<bundle-identifier>.MyBundle
  */
-Oskari.clazz.define("Oskari.bma.bundle.municipality.MunicipalityInstance",
+Oskari.clazz.define("Oskari.bma.bundle.boundary.BoundaryInstance",
 
 /**
  * Called automatically on construction. At this stage bundle sources have been
@@ -21,7 +21,7 @@ function() {
      * @method create
      */
     "create" : function() {
-        return Oskari.clazz.create("Oskari.bma.bundle.municipality.MunicipalityInstance");
+        return Oskari.clazz.create("Oskari.bma.bundle.boundary.BoundaryInstance");
     },
     /**
      * Called by Bundle Manager to provide state information to
@@ -41,26 +41,26 @@ function() {
     "source" : {
         "scripts" : [{
             "type" : "text/javascript",
-            "src" : "../../../../bundles/bma/municipality/instance.js"
+            "src" : "../../../../bundles/bma/boundary/instance.js"
         },
 		{
 			"type" : "text/javascript",
-			"src" : "../../../../bundles/bma/municipality/Flyout.js"
+			"src" : "../../../../bundles/bma/boundary/Flyout.js"
 		},
         {
 			"type" : "text/css",
-			"src" : "../../../../bundles/bma/municipality/resources/css/style.css"
+			"src" : "../../../../bundles/bma/boundary/resources/css/style.css"
 		}],
         "locales" : [{
             "lang" : "en",
             "type" : "text/javascript",
-            "src" : "../../../../bundles/bma/municipality/resource/locale/en.js"
+            "src" : "../../../../bundles/bma/boundary/resource/locale/en.js"
         }]
     },
     "bundle" : {
         "manifest" : {
-            "Bundle-Identifier" : "municipality",
-            "Bundle-Name" : "municipality",
+            "Bundle-Identifier" : "boundary",
+            "Bundle-Name" : "boundary",
             "Bundle-Author" : [{
                 "Name" : "Luke",
                 "Organisation" : "luke.fi",
@@ -96,4 +96,4 @@ function() {
 });
 
 // Install this bundle by instantating the Bundle Class
-Oskari.bundle_manager.installBundleClass("municipality", "Oskari.bma.bundle.municipality.MunicipalityInstance");
+Oskari.bundle_manager.installBundleClass("boundary", "Oskari.bma.bundle.boundary.BoundaryInstance");

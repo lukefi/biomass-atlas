@@ -1,16 +1,16 @@
 
 INSERT INTO portti_bundle (name, startup) 
-       VALUES ('municipality','{}');
+       VALUES ('boundary','{}');
 
 UPDATE portti_bundle set startup = '{
-    "title": "municipality",
-    "bundleinstancename": "municipality",
-    "bundlename": "municipality",
+    "title": "boundary",
+    "bundleinstancename": "boundary",
+    "bundlename": "boundary",
     "metadata": {
         "Import-Bundle": {
-            "municipality": {
+            "boundary": {
                 "bundlePath": "/Oskari/packages/bma/bundle/"
             }
         }
     }
-}' WHERE name = 'municipality';
+}' WHERE name = 'boundary';
