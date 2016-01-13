@@ -36,9 +36,7 @@ function(instance, locale, conf) {
 	
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
-	this.wmsId = null;
-	/*this.wmsName = "bma:view_municipality_borders";
-	this.wmsId = "municipalityBorderId";*/
+	this.wmsId = null;	
 	this.selectedMunicipalityIds = [];
 	this.selectedDrainageBasinIds = [];
 	this.selectedBoundaryType = null;
@@ -94,14 +92,11 @@ function(instance, locale, conf) {
 
         var boundaryMessage = me.templateBoundaryMessage.clone();
         var boundaryData = me.templateBoundaryData.clone();
-        var calclulateCancelTool = me.templateBoundaryCalculateCancelTool.clone();
-       /* var calculateTool = me.templateMunicipalityCalculateTool.clone();
-        var cancelTool = me.templateMunicipalityCancelTool.clone();*/
+        var calclulateCancelTool = me.templateBoundaryCalculateCancelTool.clone();       
         
         boundaryMessage.find('input[name="boundary"]').unbind('click');
         boundaryMessage.find('input[name="boundary').bind('click', function(){
-        	me._changeBoundaryType(me, this.value);
-        	//me._updateCalculateButtonVisibility(me);  
+        	me._changeBoundaryType(me, this.value);        	
         });
         
         calclulateCancelTool.find('#boundary-calculate').html("Laske");
@@ -119,13 +114,7 @@ function(instance, locale, conf) {
         content.addClass('bma-boundary-main-div');
         content.append(boundaryMessage);
         content.append(boundaryData);
-        content.append(calclulateCancelTool);
-        /*content.append(calculateTool);
-    	content.append(cancelTool);*/
-    	
-    	//me._updateCalculateButtonVisibility(me);
-    	
-    	//me._addWmsLayer(sandbox);
+        content.append(calclulateCancelTool);        
     	
     	me._closeIconClickHandler();
 	},
@@ -292,20 +281,21 @@ function(instance, locale, conf) {
 				var totalResult = "";
 				
 				for(var listName in results){
-					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>";
+					totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>" +
+						"<table><tr><th>Kunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
 					for(var cityName in results[listName]){
-						totalResult += "<br>" + "<span style=' font-size:10pt;text-decoration:underline; '>"
-							+ results[listName][cityName].name + ":" + "</span>";
+						var rowspanSize = _.size(results[listName][cityName]) - 2; // minus 2 is for attributeName id and name. 
+						totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][cityName].name + "</td>";						
 						for (var attributeName in results[listName][cityName]) {	
 							// TODO this should be easier after we switch to JSON-stat
 							if (attributeName == "id" || attributeName == "name"){
 								continue;
-							} 
-							totalResult += "<br>" + "<span style=' font-size:9pt; '>"
-							+ attributeName + " : " + results[listName][cityName][attributeName] + "</span>";
+							}							
+							totalResult += "<td>" + attributeName + "</td><td>" + results[listName][cityName][attributeName] + "</td> </tr>";
 						}
 					}					
 				}
+				totalResult += "</table>";
 				me._showResult(totalResult);				
 			}
 		});
