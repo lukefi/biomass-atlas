@@ -2,16 +2,25 @@ package fi.luke.bma.service.calculator;
 
 import java.util.Map;
 
+import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+
 /**
- * Interface for objects that provide biomass calculation services based on
+ * Abstract superclass for objects that provide biomass calculation services based on
  * specific calculation method
  */
-public interface Calculator {
+public abstract class Calculator {
 
-    Map<String, ?> calculateBiomass();
+    protected final Integer GRID_ID_1KM_BY_1KM = 1; // From database table 'grid'
+    
+    public abstract Map<String, ?> calculateBiomass();
     
     /**
      * Return human readable description of the search parameters used by this Calculator
      */
-    String getSearchDescription();
+    public abstract String getSearchDescription();
+    
+    protected String describePoint(Point point) {
+        return "(" + point.getX().intValue() + ", " + point.getY().intValue() + ")";
+    }
+    
 }

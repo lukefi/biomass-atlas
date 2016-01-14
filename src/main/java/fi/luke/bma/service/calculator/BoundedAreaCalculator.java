@@ -12,7 +12,7 @@ import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
 
-public class BoundedAreaCalculator implements Calculator {
+public class BoundedAreaCalculator extends Calculator {
 
     private final BiomassCalculationRequestModel requestModel;
 

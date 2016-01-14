@@ -7,7 +7,7 @@ import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.GeometryService;
 
-public class CircleCalculator extends RadiusCalculator implements Calculator {
+public class CircleCalculator extends RadiusCalculator {
 
     private final BiomassCalculationRequestModel requestModel;
 

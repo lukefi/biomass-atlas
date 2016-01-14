@@ -7,7 +7,7 @@ import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.GeometryService;
 
-public class RoadBufferCalculator extends RadiusCalculator implements Calculator {
+public class RoadBufferCalculator extends RadiusCalculator {
 
     private final BiomassCalculationRequestModel requestModel;
 

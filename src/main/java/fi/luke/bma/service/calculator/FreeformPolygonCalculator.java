@@ -10,7 +10,7 @@ import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 
-public class FreeformPolygonCalculator implements Calculator {
+public class FreeformPolygonCalculator extends Calculator {
 
     private final BiomassCalculationRequestModel requestModel;
 
@@ -29,7 +29,7 @@ public class FreeformPolygonCalculator implements Calculator {
     public Map<String, ?> calculateBiomass() {
         TreeMap<String, Object> result = new TreeMap<>();
         String polygonAsWkt = polygonToWkt(requestModel.getPoints());
-        long gridId = 1;
+        final long gridId = GRID_ID_1KM_BY_1KM;
         double areaOfPolygon = calculationService.getAreaOfPolygon(polygonAsWkt) / 1000000; // For m2 converted to km2
         Integer numberOfCentroids = calculationService.getNumberOfCentroids(gridId, polygonAsWkt);
         if ((areaOfPolygon < (0.95 * numberOfCentroids)) || (areaOfPolygon > (1.05 * numberOfCentroids))) {
@@ -54,7 +54,7 @@ public class FreeformPolygonCalculator implements Calculator {
         sb.append("Monikulmion alueelta lasketut biomassat. Monikulmion kulmapisteet ovat");
         for (Point point : requestModel.getPoints()) {
             sb.append(' ');
-            sb.append(CircleCalculator.describePoint(point));
+            sb.append(describePoint(point));
         }
         return sb.toString();
     }
