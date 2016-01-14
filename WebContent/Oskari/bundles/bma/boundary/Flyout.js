@@ -415,7 +415,57 @@ function(instance, locale, conf) {
 			}					
 		}
 		totalResult += "</table>";
+		totalResult = this._createExportPanel(totalResult, boundaryType);
 		this._showResult(totalResult);				
+	},
+	
+	_createExportPanel : function(totalResult, boundaryType) {
+		var	queryData,
+			me = this,
+			sandbox = this.instance.getSandbox(),
+			attributes = this._getVisibleBiomassAttributeIds(sandbox);
+		
+		if(boundaryType === this.BOUNDARY_MUNICIPALITY) {
+			queryData= JSON.stringify({				
+				areaIds: me.selectedMunicipalityIds,
+				attributes: attributes,
+				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
+			});
+		} else if(boundaryType === this.BOUNDARY_PROVINCE) {
+			queryData= JSON.stringify({				
+				areaIds: me.selectedProvinceIds,
+				attributes: attributes,
+				boundedAreaGridId: me.PROVINCE_GRID_ID
+			});
+		} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
+			queryData= JSON.stringify({				
+				areaIds: me.selectedDrainageBasinIds,
+				attributes: attributes,
+				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
+			});
+		} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
+			queryData= JSON.stringify({				
+				areaIds: me.selectedPostalCodeIds,
+				attributes: attributes,
+				boundedAreaGridId: me.POSTAL_CODE_GRID_ID
+			});
+		} else {
+			alert("ERROR: Invalid boundary type.");
+			return;
+		}		
+		
+		totalResult += 
+			"Tallenna tulokset: "
+			+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
+			+ "<input type='hidden' name='query' value= " + queryData + "/>" 
+			+ "<input type='submit' name='submit' value='XLSX' />" 
+			+ "</form>&nbsp;"
+			+ "<form method='POST' action='/biomass/area/csv' style='display: inline-block'>" 
+			+ "<input type='hidden' name='query' value= " + queryData + "/>" 
+			+ "<input type='submit' name='submit' value='CSV' />" 
+			+ "</form>"
+			+ "<br>";
+		return totalResult;
 	},
 	
 	_cancelButtonClick: function(){
