@@ -10,7 +10,7 @@ import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 
-public abstract class RadiusCalculator extends Calculator {
+public abstract class RadiusCalculator extends SingleAreaCalculator {
 
     private final CalculationService calculationService;
     

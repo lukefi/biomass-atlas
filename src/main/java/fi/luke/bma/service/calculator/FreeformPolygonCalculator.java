@@ -10,7 +10,7 @@ import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 
-public class FreeformPolygonCalculator extends Calculator {
+public class FreeformPolygonCalculator extends SingleAreaCalculator {
 
     private final BiomassCalculationRequestModel requestModel;
 

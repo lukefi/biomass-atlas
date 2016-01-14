@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.GridCell;
+import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
@@ -31,11 +32,11 @@ public class BoundedAreaCalculator extends Calculator {
     }
 
     @Override
-    public Map<String, ?> calculateBiomass() {
+    public Map<String, List<Map<String, ?>>> calculateBiomass() {
         List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses = calculationService
                 .getTotalBiomassForBoundedArea(requestModel.getAttributes(), requestModel.getAreaIds(),
                         requestModel.getBoundedAreaGridId());
-        Map<String, Object> root = new TreeMap<>();
+        Map<String, List<Map<String, ?>>> root = new TreeMap<>();
         List<Map<String, ?>> boundedAreaList = new ArrayList<>();
         Map<Long, Map<String, Object>> boundedAreaMap = new TreeMap<>();
         for (GridCell cell : boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
@@ -76,6 +77,13 @@ public class BoundedAreaCalculator extends Calculator {
             sb.append(areaList.get(i).getName());
         }
         return "Aluejaon " + gridName + " alueilta " + areaList + " lasketut biomassat";
+    }
+
+    @Override
+    public TabularReportData calculateBiomassInTabularFormat() {
+        List<Map<String, ?>> calculateBiomass = calculateBiomass().get("boundedAreas");
+        // TODO implement this
+        return null;
     }
 
 }
