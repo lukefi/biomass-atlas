@@ -15,6 +15,7 @@ Oskari.registerLocalization({
                 "lastName": "Sukunimi",
                 "user": "Nimimerkki",
                 "pass": "Salasana",
+                "email": "Sähköposti",
                 "pass_retype": "Salasana uudestaan",
                 "addRole": "Lisää rooli(t)",
                 "password_mismatch": "Salasanat eivät täsmää.",
