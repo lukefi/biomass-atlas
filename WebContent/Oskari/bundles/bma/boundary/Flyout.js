@@ -385,8 +385,8 @@ function(instance, locale, conf) {
 		// TODO - should find better way to show calculation results and selected layers' names
 		var totalResult = "";
 		if (boundaryType === this.BOUNDARY_MUNICIPALITY) {
-			totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
-			"<table><tr><th>Valuma-alue</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
+			totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>" +				
+			"<table><tr><th>Kunta</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
 		} else if(boundaryType === this.BOUNDARY_PROVINCE) {
 			totalResult += "<span>"+ "Valitut maakunnat:" + "</span>" + "<br>" +				
 			"<table><tr><th>Maakunta</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
