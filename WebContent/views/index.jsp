@@ -219,7 +219,7 @@ $(document).ready(function () {
 	$('#edit').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		jQuery.ajax({
-			url: host + "/action?action_route=UserRegistration&edit=${sessionScope[user].id}",
+			url: host + "/action?action_route=UserRegistration&edit=yes",
 			type: 'POST',			
 			success: function(data) {				
 				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/edit";				 

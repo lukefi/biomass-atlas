@@ -194,7 +194,7 @@ jQuery(document).ready(function () {
 		var host = window.location.protocol + "//" + window.location.host;
 		if (validate()) { 
 			jQuery.ajax({
-				url: host + "/action?action_route=UserRegistration&update",
+				url: host + "/action?action_route=UserRegistration&update=yes",
 				type: 'POST',
 				data: data,
 				success: function(data) {
