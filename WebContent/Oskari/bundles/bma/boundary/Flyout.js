@@ -400,21 +400,20 @@ function(instance, locale, conf) {
 			alert("ERROR: Invalid boundary type.");
 			return;
 		}
-		for(var listName in results){
-			
-			
-			for(var boundaryName in results[listName]){
-				var rowspanSize = _.size(results[listName][boundaryName]) - 2; // minus 2 is for attributeName id and name. 
-				totalResult += "<tr><td rowspan=" + rowspanSize + ">" + results[listName][boundaryName].name + "</td>";
-				for (var attributeName in results[listName][boundaryName]) {	
-					// TODO this should be easier after we switch to JSON-stat
-					if (attributeName == "id" || attributeName == "name"){
-						continue;
-					} 
-					totalResult += "<td>" + attributeName + "</td><td>" + results[listName][boundaryName][attributeName] + "</td> </tr>";
-				}
-			}					
-		}
+		
+		for (var boundaryName in results.boundedAreas) {
+			var boundedArea = results.boundedAreas[boundaryName];
+			var rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name. 
+			totalResult += "<tr><td rowspan=" + rowspanSize + ">" + boundedArea.name + "</td>";
+			for (var attributeId in boundedArea) {
+				// TODO this should be easier after we switch to JSON-stat
+				if (attributeId == "id" || attributeId == "name"){
+					continue;
+				} 
+				var attributeInfo = results.attributes[attributeId];
+				totalResult += "<td>" + attributeInfo.name + "</td><td>" + boundedArea[attributeId] + " " + attributeInfo.unit + "</td> </tr>";
+			}
+		}					
 		totalResult += "</table>";
 		totalResult = this._createExportPanel(totalResult, boundaryType);
 		this._showResult(totalResult);				
