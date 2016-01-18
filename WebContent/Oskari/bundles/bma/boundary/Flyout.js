@@ -38,10 +38,6 @@ function(instance, locale, conf) {
 	this.wmsName = null;
 	this.wmsId = null;	
 	
-	this.selectedMunicipalityIds = [];
-	this.selectedDrainageBasinIds = [];
-	this.selectedProvinceIds = [];
-	this.selectedPostalCodeIds = [];
 	this.selectedBoundaryType = null;
 	
 	/* These string values must be same as value for radio button. */
@@ -50,10 +46,17 @@ function(instance, locale, conf) {
 	this.BOUNDARY_DRAINAGE_BASIN = "drainageBasin";
 	this.BOUNDARY_POSTAL_CODE = "postalCode";
 	
-	this.MUNICIPALITY_GRID_ID = 2;
-	this.PROVINCE_GRID_ID = 3;
-	this.DRAINAGE_BASIN_GRID_ID = 4;
-	this.POSTAL_CODE_GRID_ID = 5;
+	this.GRID_IDS = {};
+	this.GRID_IDS[this.BOUNDARY_MUNICIPALITY] = 2;
+	this.GRID_IDS[this.BOUNDARY_PROVINCE] = 3;
+	this.GRID_IDS[this.BOUNDARY_DRAINAGE_BASIN] = 4;
+	this.GRID_IDS[this.BOUNDARY_POSTAL_CODE] = 5;
+	
+	this.selectedIds = {};
+	this.selectedIds[this.BOUNDARY_MUNICIPALITY] = [];
+	this.selectedIds[this.BOUNDARY_PROVINCE] = [];
+	this.selectedIds[this.BOUNDARY_DRAINAGE_BASIN] = [];
+	this.selectedIds[this.BOUNDARY_POSTAL_CODE] = [];
 	
 }, {	
 	/**
@@ -187,7 +190,7 @@ function(instance, locale, conf) {
     	} else if (selectedBoundary === this.BOUNDARY_DRAINAGE_BASIN){
     		$('#boundary-message').html("Valitse valuma-alue, jonka biomassa lasketaan");
     	} else if (selectedBoundary === this.BOUNDARY_POSTAL_CODE){
-    		$('#boundary-message').html("Valitse postinumero, jonka biomassa lasketaan");
+    		$('#boundary-message').html("Valitse postinumeroalue, jonka biomassa lasketaan");
     	} else {
     		alert("Error: Select the proper boundary type");
     		return;
@@ -225,15 +228,13 @@ function(instance, locale, conf) {
     
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#boundary-calculate");
-		if ((me.selectedMunicipalityIds.length > 0) || 
-				(me.selectedDrainageBasinIds.length > 0) || 
-				(me.selectedProvinceIds.length > 0) ||
-				(me.selectedPostalCodeIds.length > 0)) {
-			btn.attr("disabled", false);
+		for (var idList in me.selectedIds) {
+			if (me.selectedIds[idList].length > 0) {
+				btn.attr("disabled", false);
+				return;
+			}
 		}
-		else {
-			btn.attr("disabled", true);
-		}
+		btn.attr("disabled", true);
 	},
 	
 	_getVisibleBiomassAttributeIds : function() {
@@ -288,20 +289,10 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function(){		
-		if (this.selectedBoundaryType === this.BOUNDARY_MUNICIPALITY) {
-			this._municipalityCalculate();
-		} else if (this.selectedBoundaryType === this.BOUNDARY_PROVINCE) {
-			this._provinceCalculate();
-		} else if (this.selectedBoundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
-			this._drainageBasinCalculate();
-		} else if (this.selectedBoundaryType === this.BOUNDARY_POSTAL_CODE) {
-			this._postalCodeCalculate();
-		} else {
-			alert("Error");			
-		}		
+		this._areaCalculate(this.selectedBoundaryType);	
 	},
 	
-	_municipalityCalculate: function(){
+	_areaCalculate: function(boundaryType) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
@@ -310,73 +301,13 @@ function(instance, locale, conf) {
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
-				areaIds: me.selectedMunicipalityIds,
+				areaIds: me.selectedIds[boundaryType],
 				attributes: me._getVisibleBiomassAttributeIds(sandbox),
-				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
+				boundedAreaGridId: me.GRID_IDS[boundaryType]
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_MUNICIPALITY);					
-			}
-		});
-	},
-	
-	_provinceCalculate: function(){
-		var me = this,
-			sandbox = me.instance.getSandbox();
-		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/calculate",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				areaIds: me.selectedProvinceIds,
-				attributes: me._getVisibleBiomassAttributeIds(sandbox),
-				boundedAreaGridId: me.PROVINCE_GRID_ID
-			}),
-			dataType: "json",
-			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_PROVINCE);									
-			}
-		});
-	},
-	
-	_drainageBasinCalculate: function(){
-		var me = this,
-			sandbox = me.instance.getSandbox();
-		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/calculate",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				areaIds: me.selectedDrainageBasinIds,
-				attributes: me._getVisibleBiomassAttributeIds(sandbox),
-				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
-			}),
-			dataType: "json",
-			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_DRAINAGE_BASIN);					
-			}
-		});
-	},
-	
-	_postalCodeCalculate: function(){
-		var me = this,
-			sandbox = me.instance.getSandbox();
-		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/calculate",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				areaIds: me.selectedPostalCodeIds,
-				attributes: me._getVisibleBiomassAttributeIds(sandbox),
-				boundedAreaGridId: me.POSTAL_CODE_GRID_ID
-			}),
-			dataType: "json",
-			success: function(results, status, xhr) {
-				me._createTabularResult(results, me.BOUNDARY_POSTAL_CODE);					
+				me._createTabularResult(results, boundaryType);					
 			}
 		});
 	},
@@ -394,7 +325,7 @@ function(instance, locale, conf) {
 			totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
 			"<table><tr><th>Valuma-alue</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
 		} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
-			totalResult += "<span>"+ "Valitut postinumerot:" + "</span>" + "<br>" +				
+			totalResult += "<span>"+ "Valitut postinumeroalueet:" + "</span>" + "<br>" +				
 			"<table><tr><th>Postinumero</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
 		} else {
 			alert("ERROR: Invalid boundary type.");
@@ -425,34 +356,11 @@ function(instance, locale, conf) {
 			sandbox = this.instance.getSandbox(),
 			attributes = this._getVisibleBiomassAttributeIds(sandbox);
 		
-		if(boundaryType === this.BOUNDARY_MUNICIPALITY) {
-			queryData= JSON.stringify({				
-				areaIds: me.selectedMunicipalityIds,
-				attributes: attributes,
-				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
-			});
-		} else if(boundaryType === this.BOUNDARY_PROVINCE) {
-			queryData= JSON.stringify({				
-				areaIds: me.selectedProvinceIds,
-				attributes: attributes,
-				boundedAreaGridId: me.PROVINCE_GRID_ID
-			});
-		} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
-			queryData= JSON.stringify({				
-				areaIds: me.selectedDrainageBasinIds,
-				attributes: attributes,
-				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
-			});
-		} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
-			queryData= JSON.stringify({				
-				areaIds: me.selectedPostalCodeIds,
-				attributes: attributes,
-				boundedAreaGridId: me.POSTAL_CODE_GRID_ID
-			});
-		} else {
-			alert("ERROR: Invalid boundary type.");
-			return;
-		}		
+		queryData= JSON.stringify({				
+			areaIds: me.selectedIds[boundaryType],
+			attributes: attributes,
+			boundedAreaGridId: me.GRID_IDS[boundaryType]
+		});
 		
 		totalResult += 
 			"Tallenna tulokset: "
@@ -482,29 +390,18 @@ function(instance, locale, conf) {
 	},
 	
 	_clearAllIdList : function() {
-		this._clearMunicipalityIdList(this);        
-        this._clearProvinceIdList(this);        
-        this._clearDrainageBasinIdsList(this);        
-        this._clearPostalCodeIdsList(this);
+		for (var key in this.selectedIds) {
+			this.selectedIds[key] = []
+		}
 	},
 	
-	mapClickedEvent: function(event){		
-		if(this.isBoundaryIconClickedForFirstTime){			
-			if (this.selectedBoundaryType === this.BOUNDARY_MUNICIPALITY) {
-				this._municipalityClick(event);
-			} else if (this.selectedBoundaryType === this.BOUNDARY_PROVINCE) {
-				this._provinceClick(event);
-			} else if (this.selectedBoundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
-				this._drainageBasinClick(event);
-			} else if (this.selectedBoundaryType === this.BOUNDARY_POSTAL_CODE) {
-				this._postalCodeClick(event);
-			} else {
-				//Do nothing
-			}		
+	mapClickedEvent: function(event) {		
+		if (this.isBoundaryIconClickedForFirstTime) {		
+			this._areaClick(event, this.selectedBoundaryType);
 		}		
 	},
 	
-	_municipalityClick: function(event){
+	_areaClick: function(event, boundaryType) {
 		var me = this,			
 			lonlat = event.getLonLat(),		
 			points = [];		
@@ -518,114 +415,18 @@ function(instance, locale, conf) {
 			data: JSON.stringify({
 				points: points, 
 				attributes: null, 
-				boundedAreaGridId: me.MUNICIPALITY_GRID_ID
+				boundedAreaGridId: me.GRID_IDS[boundaryType]
 			}),
 			dataType: "json",
 			success: function( results, status, xhr ) {
-				var indexId = me.selectedMunicipalityIds.indexOf(results.id);
+				var indexId = me.selectedIds[boundaryType].indexOf(results.id);
 				if (indexId > -1) {					
 					me._removeSelectedBoundedAreaFromMap(me, results.id);
-					me.selectedMunicipalityIds.splice(indexId, 1);
+					me.selectedIds[boundaryType].splice(indexId, 1);
 					me._updateCalculateButtonVisibility(me);
 				} else {					
 					me._addSelectionForBoundedAreaOnMap(me, results);
-					me.selectedMunicipalityIds.push(results.id);
-					me._updateCalculateButtonVisibility(me);
-				}
-			}
-		});		
-	},
-	
-	_provinceClick: function(event){
-		var me = this,			
-			lonlat = event.getLonLat(),		
-			points = [];		
-		
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));		
-		this._fixIndexOfForOlderIE();		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/geometry",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				points: points, 
-				attributes: null, 
-				boundedAreaGridId: me.PROVINCE_GRID_ID
-			}),
-			dataType: "json",
-			success: function( results, status, xhr ) {
-				var indexId = me.selectedProvinceIds.indexOf(results.id);
-				if (indexId > -1) {					
-					me._removeSelectedBoundedAreaFromMap(me, results.id);
-					me.selectedProvinceIds.splice(indexId, 1);
-					me._updateCalculateButtonVisibility(me);
-				} else {						
-					me._addSelectionForBoundedAreaOnMap(me, results);
-					me.selectedProvinceIds.push(results.id);
-					me._updateCalculateButtonVisibility(me);
-				}
-			}
-		});		
-	},
-	
-	_drainageBasinClick : function(event) {
-		var me = this,			
-			lonlat = event.getLonLat(),		
-			points = [];			
-	
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));		
-		this._fixIndexOfForOlderIE();		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/geometry",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				points: points,
-				attributes: null,
-				boundedAreaGridId: me.DRAINAGE_BASIN_GRID_ID
-			}),
-			dataType: "json",			
-			success: function( results, status, xhr ) {				
-				var indexId = me.selectedDrainageBasinIds.indexOf(results.id);
-				if (indexId > -1) {					
-					me._removeSelectedBoundedAreaFromMap(me, results.id);
-					me.selectedDrainageBasinIds.splice(indexId, 1);
-					me._updateCalculateButtonVisibility(me);
-				} else {					
-					me._addSelectionForBoundedAreaOnMap(me, results);
-					me.selectedDrainageBasinIds.push(results.id);
-					me._updateCalculateButtonVisibility(me);
-				}
-			}
-		});				
-	},
-	
-	_postalCodeClick: function(event){
-		var me = this,			
-			lonlat = event.getLonLat(),		
-			points = [];		
-
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));	
-		this._fixIndexOfForOlderIE();		
-		jQuery.ajax({
-			url: "/biomass/boundedarea/geometry",
-			type: "POST",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-				points: points, 
-				attributes: null, 
-				boundedAreaGridId: me.POSTAL_CODE_GRID_ID
-			}),
-			dataType: "json",
-			success: function( results, status, xhr ) {
-				var indexId = me.selectedPostalCodeIds.indexOf(results.id);
-				if (indexId > -1) {					
-					me._removeSelectedBoundedAreaFromMap(me, results.id);
-					me.selectedPostalCodeIds.splice(indexId, 1);
-					me._updateCalculateButtonVisibility(me);
-				} else {					
-					me._addSelectionForBoundedAreaOnMap(me, results);
-					me.selectedPostalCodeIds.push(results.id);
+					me.selectedIds[boundaryType].push(results.id);
 					me._updateCalculateButtonVisibility(me);
 				}
 			}
@@ -693,22 +494,6 @@ function(instance, locale, conf) {
 	_showResult: function(result){	
 		jQuery("#boundary-message").hide();
 		jQuery("#boundary-data").html(result);
-	},
-	
-	_clearMunicipalityIdList: function(me) {
-		me.selectedMunicipalityIds = [];
-	},
-	
-	_clearProvinceIdList: function(me) {
-		me.selectedProvinceIds = [];
-	},
-	
-	_clearDrainageBasinIdsList: function(me) {
-		me.selectedDrainageBasinIds = [];
-	},
-	
-	_clearPostalCodeIdsList: function(me) {
-		me.selectedPostalCodeIds = [];
 	}
 	
 }, {
