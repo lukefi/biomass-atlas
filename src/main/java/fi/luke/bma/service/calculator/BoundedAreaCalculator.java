@@ -5,15 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.TabularReportData;
-import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
@@ -38,11 +34,11 @@ public class BoundedAreaCalculator extends Calculator {
     }
 
     @Override
-    public Map<String, List<Map<String, ?>>> calculateBiomass() {
+    public Map<String, ?> calculateBiomass() {
         List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses = calculationService
                 .getTotalBiomassForBoundedArea(requestModel.getAttributes(), requestModel.getAreaIds(),
                         requestModel.getBoundedAreaGridId());
-        Map<String, List<Map<String, ?>>> root = new TreeMap<>();
+        Map<String, Object> root = new TreeMap<>();
         List<Map<String, ?>> boundedAreaList = new ArrayList<>();
         Map<Long, Map<String, Object>> boundedAreaMap = new TreeMap<>();
         for (GridCell cell : boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
@@ -54,16 +50,21 @@ public class BoundedAreaCalculator extends Calculator {
             boundedAreaMap.put(cell.getCellId(), boundedArea);
         }
         root.put("boundedAreas", boundedAreaList);
+        
+        Map<Long, Map<String, String>> attributeMap = new HashMap<>();
+        for (Long attributeId : requestModel.getAttributes()) {
+            List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
+            Map<String, String> m = new HashMap<>();
+            m.put("name", attributeNameAndUnit.get(0));
+            m.put("unit", attributeNameAndUnit.get(1));
+            attributeMap.put(attributeId, m);
+        }
+        root.put("attributes", attributeMap);
 
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
             Map<String, Object> boundedArea = boundedAreaMap.get(result.getAreaId());
-            List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(result.getAttributeId());
-            String layerName = attributeNameAndUnit.get(0);
-            String layerUnit = attributeNameAndUnit.get(1);
             Long calculatedResult = Math.round(result.getValue());
-            String resultAndUnit = Long.toString(calculatedResult) + " " + layerUnit;
-
-            boundedArea.put(layerName, resultAndUnit);
+            boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
         }
         return root;
     }
@@ -87,23 +88,18 @@ public class BoundedAreaCalculator extends Calculator {
 
     @Override
     public TabularReportData calculateBiomassInTabularFormat() {
-        List<Map<String, ?>> calculateBiomass = calculateBiomass().get("boundedAreas");
-        // TODO implement this       
-        return null;
-    }
-    
-    /**
-     * Splits value and unit from a combined string
-     * @param result is the string which contains value and unit combined
-     * @return List of Strings which contains: first element as value and second as unit.
-     */
-    private List<String> splitValueAndUnit(String result) {
-    	List<String> valueAndUnit = new ArrayList<>();    	
-		Matcher match = Pattern.compile("^[0-9]+|[\\w\\W]+").matcher(result);
-	    while (match.find()) {
-	        valueAndUnit.add(match.group().trim());	    	
-	    }    	
-    	return valueAndUnit;    	
+        @SuppressWarnings("unchecked")
+        List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
+        List<String> columnNames = new ArrayList<>();
+        columnNames.add(""); // for the empty cell at the intersection of row and column headers
+        List<List<DataCell>> data = new ArrayList<>();
+        List<DataCell> unitRow = new ArrayList<>();
+        data.add(unitRow);
+        /*for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.get(0).entrySet()) {
+            columnNames.add(attributeEntry.getKey());
+            unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
+        }*/
+        return new TabularReportData(columnNames, data);
     }
 
 }

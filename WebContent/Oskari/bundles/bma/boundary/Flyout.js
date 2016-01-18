@@ -24,7 +24,7 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateBoundaryMessage = jQuery('<div id="boundary-message">Valitse maantietellisellä alue, jonka biomassa lasketaan</div> ' +
+	this.templateBoundaryMessage = jQuery('<div id="boundary-message">Valitse maantieteellinen alue, jonka biomassa lasketaan</div> ' +
 			'<div id="boundary-radio"><input type="radio" name="boundary" value="municipality">Kunta<br>' +
 			'<input type="radio" name="boundary" value="province">Maakunta<br> <input type="radio" name="boundary" value="drainageBasin">Valuma-alue<br>' +
 			'<input type="radio" name="boundary" value="postalCode">Postinumero</div>');	
@@ -110,7 +110,7 @@ function(instance, locale, conf) {
         	$("#boundary-next").prop('disabled', false);     	
         });
         
-        calclulateCancelTool.find('#boundary-next').html("Seuravaa");
+        calclulateCancelTool.find('#boundary-next').html("Seuraava");
         calclulateCancelTool.find('#boundary-next').unbind('click');
         calclulateCancelTool.find('#boundary-next').bind('click', function(){        	
         	me._showBoundary(me);
@@ -383,24 +383,25 @@ function(instance, locale, conf) {
 	
 	_createTabularResult : function(results, boundaryType) {
 		// TODO - should find better way to show calculation results and selected layers' names
-		var totalResult = "";		
+		var totalResult = "";
+		if (boundaryType === this.BOUNDARY_MUNICIPALITY) {
+			totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
+			"<table><tr><th>Valuma-alue</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
+		} else if(boundaryType === this.BOUNDARY_PROVINCE) {
+			totalResult += "<span>"+ "Valitut maakunnat:" + "</span>" + "<br>" +				
+			"<table><tr><th>Maakunta</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
+		} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
+			totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
+			"<table><tr><th>Valuma-alue</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
+		} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
+			totalResult += "<span>"+ "Valitut postinumerot:" + "</span>" + "<br>" +				
+			"<table><tr><th>Postinumero</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
+		} else {
+			alert("ERROR: Invalid boundary type.");
+			return;
+		}
 		for(var listName in results){
-			if(boundaryType === this.BOUNDARY_MUNICIPALITY) {
-				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
-				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else if(boundaryType === this.BOUNDARY_PROVINCE) {
-				totalResult += "<span>"+ "Valitut maakuntat:" + "</span>" + "<br>" +				
-				"<table><tr><th>Maakunta</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
-				totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
-				"<table><tr><th>Valuma-alue</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
-				totalResult += "<span>"+ "Valitut postinumerot:" + "</span>" + "<br>" +				
-				"<table><tr><th>Postinumero</th> <th>Biomassa tyypi</th> <th>Määrä</th></tr>";
-			} else {
-				alert("ERROR: Invalid boundary type.");
-				return;
-			} 
+			
 			
 			for(var boundaryName in results[listName]){
 				var rowspanSize = _.size(results[listName][boundaryName]) - 2; // minus 2 is for attributeName id and name. 
