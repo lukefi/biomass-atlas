@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
@@ -83,22 +84,35 @@ public class BoundedAreaCalculator extends Calculator {
             }
             sb.append(areaList.get(i).getName());
         }
-        return "Aluejaon " + gridName + " alueilta " + areaList + " lasketut biomassat";
+        return "Aluejaon " + gridName + " alueilta " + sb.toString() + " lasketut biomassat";
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public TabularReportData calculateBiomassInTabularFormat() {
-        @SuppressWarnings("unchecked")
         List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
+        Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass().get("attributes");
         List<String> columnNames = new ArrayList<>();
-        columnNames.add(""); // for the empty cell at the intersection of row and column headers
+        columnNames.add("Alue");
+        columnNames.add("Biomassan tyyppi");
+        columnNames.add("Määrä");
+        columnNames.add("Yksikkö");
         List<List<DataCell>> data = new ArrayList<>();
-        List<DataCell> unitRow = new ArrayList<>();
-        data.add(unitRow);
-        /*for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.get(0).entrySet()) {
-            columnNames.add(attributeEntry.getKey());
-            unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
-        }*/
+        for (Map<String, ?> boundedArea : biomassData) {
+            for (Entry<String, ?> entry : boundedArea.entrySet()) {
+                if ("id".equals(entry.getKey()) || "name".equals(entry.getKey())) {
+                    continue;
+                }
+                long attributeId = Long.valueOf(entry.getKey());
+                Map<String, String> attributeInfo = attributeMap.get(attributeId);
+                List<DataCell> row = new ArrayList<>();
+                row.add(new DataCell(boundedArea.get("name")));
+                row.add(new DataCell(attributeInfo.get("name")));
+                row.add(new DataCell((Long)entry.getValue()));
+                row.add(new DataCell(attributeInfo.get("unit")));
+                data.add(row);
+            }
+        }
         return new TabularReportData(columnNames, data);
     }
 
