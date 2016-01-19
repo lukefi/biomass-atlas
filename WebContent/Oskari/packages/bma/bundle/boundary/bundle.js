@@ -52,6 +52,11 @@ function() {
 			"src" : "../../../../bundles/bma/boundary/resources/css/style.css"
 		}],
         "locales" : [{
+            "lang" : "en",
+            "type" : "text/javascript",
+            "src" : "../../../../bundles/bma/boundary/resources/locale/en.js"
+        },
+        {
             "lang" : "fi",
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/boundary/resources/locale/fi.js"
