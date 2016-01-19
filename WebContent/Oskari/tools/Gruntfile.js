@@ -36,9 +36,9 @@ module.exports = function (grunt) {
         },
         sprite: {
             options: {
-                iconDirectoryPath: '../applications/bma/icons',
-                resultImageName: '../applications/bma/icons/icons.png',
-                resultCSSName: '../applications/bma/css/icons.css',
+                iconDirectoryPath: '../applications/sample/servlet/icons',
+                resultImageName: '../applications/sample/servlet/icons/icons.png',
+                resultCSSName: '../applications/sample/servlet/css/icons.css',
                 spritePathInCSS: '../icons'
             }
         },
