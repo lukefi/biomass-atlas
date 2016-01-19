@@ -103,7 +103,7 @@ public class BoundedAreaCalculator extends Calculator {
                 if ("id".equals(entry.getKey()) || "name".equals(entry.getKey())) {
                     continue;
                 }
-                long attributeId = Long.valueOf(entry.getKey());
+                long attributeId = Long.parseLong(entry.getKey());
                 Map<String, String> attributeInfo = attributeMap.get(attributeId);
                 List<DataCell> row = new ArrayList<>();
                 row.add(new DataCell(boundedArea.get("name")));
