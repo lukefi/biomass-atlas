@@ -105,6 +105,7 @@ function(instance, locale, conf) {
 	 */
 	createUI: function(){
 		var me = this,
+		    localization = me.instance.getLocalization()["flyout"],
 			sandbox = me.instance.getSandbox();
 		
 		me.isBoundaryIconClickedForFirstTime = true;
@@ -124,19 +125,19 @@ function(instance, locale, conf) {
         	$("#boundary-next").prop('disabled', false);     	
         });
         
-        calclulateCancelTool.find('#boundary-next').html("Seuraava");
+        calclulateCancelTool.find('#boundary-next').html(localization.next);
         calclulateCancelTool.find('#boundary-next').unbind('click');
         calclulateCancelTool.find('#boundary-next').bind('click', function(){        	
         	me._showBoundary(me);
         });
         
-        calclulateCancelTool.find('#boundary-calculate').html("Laske");
+        calclulateCancelTool.find('#boundary-calculate').html(localization.calculate);
         calclulateCancelTool.find('#boundary-calculate').unbind('click');
         calclulateCancelTool.find('#boundary-calculate').bind('click', function(){        	
         	me._calculateButtonClick(me);
         });
         
-        calclulateCancelTool.find('#boundary-cancel').html("Lopeta");
+        calclulateCancelTool.find('#boundary-cancel').html(localization.quit);
         calclulateCancelTool.find('#boundary-cancel').unbind('click');
         calclulateCancelTool.find('#boundary-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
@@ -193,19 +194,9 @@ function(instance, locale, conf) {
     	me._addWmsLayer(sandbox);    	
     },
     
-    _updateMessage : function(me, selectedBoundary) {    	
-    	if (selectedBoundary === this.BOUNDARY_MUNICIPALITY) {
-    		$('#boundary-message').html("Valitse kunta, jonka biomassa lasketaan");    		
-    	} else if (selectedBoundary === this.BOUNDARY_PROVINCE) {
-    		$('#boundary-message').html("Valitse maakunta, jonka biomassa lasketaan");    
-    	} else if (selectedBoundary === this.BOUNDARY_DRAINAGE_BASIN){
-    		$('#boundary-message').html("Valitse valuma-alue, jonka biomassa lasketaan");
-    	} else if (selectedBoundary === this.BOUNDARY_POSTAL_CODE){
-    		$('#boundary-message').html("Valitse postinumeroalue, jonka biomassa lasketaan");
-    	} else {
-    		alert("Error: Select the proper boundary type");
-    		return;
-    	}  	
+    _updateMessage : function(me, selectedBoundary) {
+    	var localization = me.instance.getLocalization()["flyout"].selectAreaType;
+    	$('#boundary-message').html(localization[selectedBoundary]);
     	me._hideNextButton();
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
