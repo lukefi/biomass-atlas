@@ -25,9 +25,9 @@ function(instance, locale, conf) {
 	
 	this.template = null;
 	this.templateBoundaryMessage = jQuery('<div id="boundary-message">Valitse maantieteellinen alue, jonka biomassa lasketaan</div> ' +
-			'<div id="boundary-radio"><input type="radio" name="boundary" value="municipality">Kunta<br>' +
-			'<input type="radio" name="boundary" value="province">Maakunta<br> <input type="radio" name="boundary" value="drainageBasin">Valuma-alue<br>' +
-			'<input type="radio" name="boundary" value="postalCode">Postinumero</div>');	
+			'<div id="boundary-radio"><label><input type="radio" name="boundary" value="municipality">Kunta</label><br>' +
+			'<label><input type="radio" name="boundary" value="province">Maakunta</label><br> <label><input type="radio" name="boundary" value="drainageBasin">Valuma-alue</label><br>' +
+			'<label><input type="radio" name="boundary" value="postalCode">Postinumero</label></div>');	
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
 			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
@@ -109,7 +109,7 @@ function(instance, locale, conf) {
         var calclulateCancelTool = me.templateBoundaryCalculateCancelTool.clone();       
         
         boundaryMessage.find('input[name="boundary"]').unbind('click');
-        boundaryMessage.find('input[name="boundary').bind('click', function(){
+        boundaryMessage.find('input[name="boundary"]').bind('click', function(){
         	$("#boundary-next").prop('disabled', false);     	
         });
         
@@ -423,12 +423,11 @@ function(instance, locale, conf) {
 				if (indexId > -1) {					
 					me._removeSelectedBoundedAreaFromMap(me, results.id);
 					me.selectedIds[boundaryType].splice(indexId, 1);
-					me._updateCalculateButtonVisibility(me);
 				} else {					
 					me._addSelectionForBoundedAreaOnMap(me, results);
 					me.selectedIds[boundaryType].push(results.id);
-					me._updateCalculateButtonVisibility(me);
 				}
+				me._updateCalculateButtonVisibility(me);
 			}
 		});		
 	},
