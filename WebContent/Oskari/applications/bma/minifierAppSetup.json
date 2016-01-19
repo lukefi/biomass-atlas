@@ -103,6 +103,12 @@
                     },
                     "testbundle": {
                         "bundlePath": "../../packages/bma/bundle/"
+                    },
+                    "boundary": {
+                        "bundlePath": "../../packages/bma/bundle/"
+                    },
+                    "circle": {
+                        "bundlePath": "../../packages/bma/bundle/"
                     }
                 },
                 "Require-Bundle-Instance": []
