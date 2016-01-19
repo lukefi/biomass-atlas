@@ -11,6 +11,7 @@ Oskari.registerLocalization({
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
+    		"saveResults": "Tallenna tulokset",
     		"areaType": {
     			"municipality": "Kunta",
     			"province": "Maakunta",

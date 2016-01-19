@@ -352,7 +352,7 @@ function(instance, locale, conf) {
 		});
 		
 		totalResult += 
-			"Tallenna tulokset: "
+			me.instance.getLocalization()["flyout"].saveResults + ": "
 			+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 			+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 			+ "<input type='submit' name='submit' value='XLSX' />" 
