@@ -22,29 +22,14 @@ function(instance, locale, conf) {
 
 	/* @property container the DIV element */
 	this.container = null;
-	
-	this.template = null;
-	this.templateBoundaryMessage = jQuery('<div id="boundary-message">Valitse maantieteellinen alue, jonka biomassa lasketaan</div> ' +
-			'<div id="boundary-radio"><label><input type="radio" name="boundary" value="municipality">Kunta</label><br>' +
-			'<label><input type="radio" name="boundary" value="province">Maakunta</label><br> <label><input type="radio" name="boundary" value="drainageBasin">Valuma-alue</label><br>' +
-			'<label><input type="radio" name="boundary" value="postalCode">Postinumero</label></div>');	
-	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
-	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
-			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
-			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
-			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
-		
-	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
-	this.wmsName = null;
-	this.wmsId = null;	
-	
-	this.selectedBoundaryType = null;
-	
+
 	/* These string values must be same as value for radio button. */
 	this.BOUNDARY_MUNICIPALITY = "municipality";
 	this.BOUNDARY_PROVINCE = "province";
 	this.BOUNDARY_DRAINAGE_BASIN = "drainageBasin";
 	this.BOUNDARY_POSTAL_CODE = "postalCode";
+	
+	this.AREA_TYPES = [this.BOUNDARY_MUNICIPALITY, this.BOUNDARY_PROVINCE, this.BOUNDARY_DRAINAGE_BASIN, this.BOUNDARY_POSTAL_CODE];
 	
 	this.GRID_IDS = {};
 	this.GRID_IDS[this.BOUNDARY_MUNICIPALITY] = 2;
@@ -57,6 +42,32 @@ function(instance, locale, conf) {
 	this.selectedIds[this.BOUNDARY_PROVINCE] = [];
 	this.selectedIds[this.BOUNDARY_DRAINAGE_BASIN] = [];
 	this.selectedIds[this.BOUNDARY_POSTAL_CODE] = [];
+
+	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
+	this.wmsName = null;
+	this.wmsId = null;	
+
+	this.template = null;
+	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
+	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
+			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
+			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
+			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
+	
+	{
+		var flyoutLocalization = this.instance.getLocalization()["flyout"];
+		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
+		messageString += '<div id="boundary-radio">';
+		for (var i = 0; i < this.AREA_TYPES.length; i++) {
+			var areaType = this.AREA_TYPES[i];
+			messageString += '<label><input type="radio" name="boundary" value="' + areaType;
+			messageString += '">' + flyoutLocalization["areaType"][areaType] + '</label><br>';
+		}
+		messageString += '</div>';
+		this.templateBoundaryMessage = jQuery(messageString);
+	}
+		
+	this.selectedBoundaryType = null;
 	
 }, {	
 	/**
@@ -79,7 +90,7 @@ function(instance, locale, conf) {
 		this.container.empty();
 	},
 	getTitle : function() {
-		return "Mittaustulokset";
+		return this.instance.getLocalization()["flyout"]["title"];
 	},
 	getDescription : function() {
 
