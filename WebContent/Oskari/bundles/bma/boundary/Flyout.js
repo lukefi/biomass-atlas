@@ -190,8 +190,8 @@ function(instance, locale, conf) {
     		return;
     	}
     	this.selectedBoundaryType = selectedValue;
-    	me._updateMessage(me, selectedValue);    	
-    	me._addWmsLayer(sandbox);    	
+    	me._updateMessage(me, selectedValue);
+    	me._addWmsLayer(sandbox);
     },
     
     _updateMessage : function(me, selectedBoundary) {
@@ -316,23 +316,10 @@ function(instance, locale, conf) {
 	
 	_createTabularResult : function(results, boundaryType) {
 		// TODO - should find better way to show calculation results and selected layers' names
-		var totalResult = "";
-		if (boundaryType === this.BOUNDARY_MUNICIPALITY) {
-			totalResult += "<span>"+ "Valitut kunnat:" + "</span>" + "<br>" +				
-			"<table><tr><th>Kunta</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
-		} else if(boundaryType === this.BOUNDARY_PROVINCE) {
-			totalResult += "<span>"+ "Valitut maakunnat:" + "</span>" + "<br>" +				
-			"<table><tr><th>Maakunta</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
-		} else if(boundaryType === this.BOUNDARY_DRAINAGE_BASIN) {
-			totalResult += "<span>"+ "Valitut valuma-alueet:" + "</span>" + "<br>" +				
-			"<table><tr><th>Valuma-alue</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
-		} else if(boundaryType === this.BOUNDARY_POSTAL_CODE) {
-			totalResult += "<span>"+ "Valitut postinumeroalueet:" + "</span>" + "<br>" +				
-			"<table><tr><th>Postinumero</th> <th>Biomassa tyyppi</th> <th>Määrä</th></tr>";
-		} else {
-			alert("ERROR: Invalid boundary type.");
-			return;
-		}
+		var localization = this.instance.getLocalization()["flyout"]
+		var totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
+		totalResult += "<table><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
+		totalResult += localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 		
 		for (var boundaryName in results.boundedAreas) {
 			var boundedArea = results.boundedAreas[boundaryName];
