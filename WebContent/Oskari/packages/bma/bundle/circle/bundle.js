@@ -54,7 +54,7 @@ function() {
         "locales" : [{
             "lang" : "en",
             "type" : "text/javascript",
-            "src" : "../../../../bundles/bma/circle/resource/locale/en.js"
+            "src" : "../../../../bundles/bma/circle/resources/locale/en.js"
         }]
     },
     "bundle" : {

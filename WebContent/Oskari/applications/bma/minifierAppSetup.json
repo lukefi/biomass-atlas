@@ -580,6 +580,38 @@
 				},
 				"Require-Bundle-Instance": []
 			}	
+		}, {
+        	"instanceProps": {},
+			"title": "Boundary",
+			"fi": "Maantieteellinen",
+			"sv": "Geografisk",
+			"en": "Boundary",
+			"bundlename": "boundary",
+			"bundleinstancename": "boundary",
+			"metadata": {
+				"Import-Bundle": {
+					"boundary": {
+						"bundlePath": "../../packages/bma/bundle/"
+					}
+				},
+				"Require-Bundle-Instance": []
+			}	
+		}, {
+        	"instanceProps": {},
+			"title": "Buffer",
+			"fi": "Puskuri",
+			"sv": "Buffert",
+			"en": "Buffer",
+			"bundlename": "circle",
+			"bundleinstancename": "circle",
+			"metadata": {
+				"Import-Bundle": {
+					"circle": {
+						"bundlePath": "../../packages/bma/bundle/"
+					}
+				},
+				"Require-Bundle-Instance": []
+			}	
 		}
     ]
 }
