@@ -34,6 +34,12 @@ function() {
 		return this.sandbox;
 	},
 	/**
+     * @method getLocalization
+     */
+    getLocalization: function() {
+        return Oskari.getLocalization(this.getName());
+    },
+	/**
 	 * @method init
 	 * implements Module protocol init method - initializes request handlers and templates
 	 */
@@ -85,7 +91,7 @@ function() {
 		me.buttons = {
 			'bmaBoundaryCalculator' : {
 				iconCls : 'tool-boundary',
-				tooltip : "Laske biomassa maantietellisellä alueella",
+				tooltip : me.getLocalization()["toolbarTooltip"],
 				sticky : true,
 				callback : function() {
 					me._toolButtonClicked();
