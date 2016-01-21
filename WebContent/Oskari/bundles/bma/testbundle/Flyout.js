@@ -24,7 +24,7 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateAreaMessage = jQuery('<div id="area-message">Valitse alue, jonka biomassa lasketaan</div>');
+	this.templateAreaMessage = jQuery('<div id="area-message">Valitse alue, jonka biomassa lasketaan<div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
 	this.templateAreaCancelTool = jQuery('<div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
 	
@@ -79,6 +79,11 @@ function(instance, locale, conf) {
         cancelTool.find('#area-cancel').unbind('click');
         cancelTool.find('#area-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
+        });        
+       
+        areaMessage.find('#area-info-tool').unbind('click');
+        areaMessage.find('#area-info-tool').bind('click', function(){        	
+        	me._displayInfoTip();     	
         });
 	
         content.addClass('bma-area-main-div');
@@ -229,7 +234,24 @@ function(instance, locale, conf) {
     },
     
     setContentState: function(state) {
-    }
+    },
+    
+    _displayInfoTip: function () {      
+        var title = "Title goes here",
+        	desc = "Description goes here",
+        	dialog = Oskari.clazz.create(
+                'Oskari.userinterface.component.Popup'
+            ),
+            okBtn = Oskari.clazz.create(
+                'Oskari.userinterface.component.Button'
+            );            
+        okBtn.addClass('default area-button');
+        okBtn.setTitle('Ok');
+        okBtn.setHandler(function () {
+            dialog.close(true);
+        });
+        dialog.show(title, desc, [okBtn]);       
+    },
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
