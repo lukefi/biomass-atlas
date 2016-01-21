@@ -1276,7 +1276,8 @@ Oskari.clazz.define('Oskari.userinterface.bundle.ui.UserInterfaceBundleInstance'
                         flyout.css('left', viewState.left);
                         flyout.css('top', viewState.top);
                         flyout.width(viewState.width);
-                        flyout.height(viewState.height);
+                        // Restoring the height will cause visual issues when the state to be restored is not exactly the original state
+                        //flyout.height(viewState.height);
                         flyout.css('z-index', viewState['z-index']);
 
                         op = ops[extensionInfo.state];
