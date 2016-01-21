@@ -42,6 +42,7 @@ function(instance, locale, conf) {
 	this.selectedIds[this.BOUNDARY_PROVINCE] = [];
 	this.selectedIds[this.BOUNDARY_DRAINAGE_BASIN] = [];
 	this.selectedIds[this.BOUNDARY_POSTAL_CODE] = [];
+	this.selectedPoints = [];
 
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
@@ -376,12 +377,14 @@ function(instance, locale, conf) {
         me._removeWmsLayer(sandbox);  
         me._close();
         me.isBoundaryIconClickedForFirstTime = false;
+        me._setSelectedBoundaryType(null);        
 	},
 	
 	_clearAllIdList : function() {
 		for (var key in this.selectedIds) {
 			this.selectedIds[key] = []
 		}
+		this.selectedPoints = []
 	},
 	
 	mapClickedEvent: function(event) {		
@@ -392,29 +395,31 @@ function(instance, locale, conf) {
 	
 	_areaClick: function(event, boundaryType) {
 		var me = this,			
-			lonlat = event.getLonLat(),		
-			points = [];		
+			lonlat = event.getLonLat(),	
+			point = new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat);
 
-		points.push( new OpenLayers.Geometry.Point(lonlat.lon, lonlat.lat));	
 		this._fixIndexOfForOlderIE();		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/geometry",
 			type: "POST",
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({
-				points: points, 
+				points: [point], 
 				attributes: null, 
 				boundedAreaGridId: me.GRID_IDS[boundaryType]
 			}),
 			dataType: "json",
-			success: function( results, status, xhr ) {
-				var indexId = me.selectedIds[boundaryType].indexOf(results.id);
+			success: function(results, status, xhr) {
+				var result = results[0];
+				var indexId = me.selectedIds[boundaryType].indexOf(result.id);
 				if (indexId > -1) {					
-					me._removeSelectedBoundedAreaFromMap(me, results.id);
+					me._removeSelectedBoundedAreaFromMap(me, result.id);
 					me.selectedIds[boundaryType].splice(indexId, 1);
+					me.selectedPoints.splice(indexId, 1);
 				} else {					
-					me._addSelectionForBoundedAreaOnMap(me, results);
-					me.selectedIds[boundaryType].push(results.id);
+					me._addSelectionForBoundedAreaOnMap(me, result);
+					me.selectedIds[boundaryType].push(result.id);
+					me.selectedPoints.push(point);
 				}
 				me._updateCalculateButtonVisibility(me);
 			}
@@ -500,7 +505,7 @@ function(instance, locale, conf) {
 	getContentState: function() {
 		var me = this;
 		var state = {};
-		state.areaIds = me.selectedIds;
+		state.selectedPoints = me.selectedPoints;
 		state.boundaryType = me._getSelectedBoundaryType();
         return state;
     },
@@ -509,7 +514,29 @@ function(instance, locale, conf) {
     	var me = this;
     	if (state) {
     		me._setSelectedBoundaryType(state.boundaryType);
-    		me.selectedIds = state.areaIds;
+    		setTimeout(function() {
+    			me._showBoundary(me);
+    			jQuery.ajax({
+    				url: "/biomass/boundedarea/geometry",
+    				type: "POST",
+    				contentType: "application/json; charset=UTF-8",
+    				data: JSON.stringify({
+    					points: state.selectedPoints, 
+    					attributes: null, 
+    					boundedAreaGridId: me.GRID_IDS[state.boundaryType]
+    				}),
+    				dataType: "json",
+    				success: function(results, status, xhr) {
+    					for (var i = 0; i < results.length; i++) {
+    						var result = results[i];
+	    					me._addSelectionForBoundedAreaOnMap(me, result);
+	    					me.selectedIds[state.boundaryType].push(result.id);
+    					}
+    					me.selectedPoints = state.selectedPoints;
+    					me._updateCalculateButtonVisibility(me);
+    				}
+    			});	
+    		}, 200);
     	}
     }
 	

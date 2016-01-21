@@ -2,7 +2,9 @@ package fi.luke.bma.service;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -113,21 +115,25 @@ public class GeometryService {
      * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
      * @param point is the point that specifies which area is to be returned
      * @param gridId is an integer id of bounded area.
-     * @return map which includes id and geometry of bounded area.
+     * @return list of maps which includes id and geometry of bounded area.
      * @throws IOException if writing fails
      */
-    public Map<String, Object> getBoundedArea(Point point, long gridId) throws IOException {
-        Map<String, Object> geometryMap = new HashMap<>();
-        GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
-                point.getY().intValue(), gridId);
-        geometryMap.put("id", boundedArea.getCellId());
-        
-        StringWriter stringWriter = new StringWriter();
-        WKTWriter wktWriter = new WKTWriter();
-        wktWriter.write(boundedArea.getGeometry(), stringWriter);
-        
-        geometryMap.put("geometry", stringWriter.toString());
-        return geometryMap;
+    public List<Map<String, Object>> getBoundedAreas(List<Point> points, long gridId) throws IOException {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Point point : points) {
+            Map<String, Object> geometryMap = new HashMap<>();
+            GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
+                    point.getY().intValue(), gridId);
+            geometryMap.put("id", boundedArea.getCellId());
+            
+            StringWriter stringWriter = new StringWriter();
+            WKTWriter wktWriter = new WKTWriter();
+            wktWriter.write(boundedArea.getGeometry(), stringWriter);
+            
+            geometryMap.put("geometry", stringWriter.toString());
+            result.add(geometryMap);
+        }
+        return result;
     }
     
 }

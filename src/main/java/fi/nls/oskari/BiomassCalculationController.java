@@ -59,8 +59,8 @@ public class BiomassCalculationController {
     }
     
     @RequestMapping(value="boundedarea/geometry", method=RequestMethod.POST)
-    public Map<?, ?> getMunicipalityGeometry(@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
-        return geometryService.getBoundedArea(requestBody.getPoints().get(0), requestBody.getBoundedAreaGridId());
+    public List<Map<String, Object>> getBoundedAreaGeometry(@RequestBody BiomassCalculationRequestModel requestBody) throws IOException {
+        return geometryService.getBoundedAreas(requestBody.getPoints(), requestBody.getBoundedAreaGridId());
     }
     
     /**
