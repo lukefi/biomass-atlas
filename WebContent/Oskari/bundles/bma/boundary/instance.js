@@ -67,7 +67,9 @@ function() {
 			if (p) {
 				sandbox.registerForEventByName(me, p);
 			}
-		}				
+		}
+		
+		sandbox.registerAsStateful(this.mediator.bundleId, this);
 	},
 
 	_toolButtonClicked : function(sandbox) {
@@ -131,7 +133,23 @@ function() {
 		me.sandbox.unregister(me);
 		me.started = false;
 	},
-	
+
+    /**
+     * @method setState
+     * @param {Object} state bundle state as JSON
+     */
+    setState : function(state) {
+    	this.plugins['Oskari.userinterface.Flyout'].setContentState(state);
+    },
+    
+    /**
+     * @method getState
+     * @return {Object} bundle state as JSON
+     */
+    getState : function() {
+    	return this.plugins['Oskari.userinterface.Flyout'].getContentState();
+    },
+
 	/**
 	 * @method update
 	 * BundleInstance protocol method

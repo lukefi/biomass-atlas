@@ -146,8 +146,9 @@ function(instance, locale, conf) {
         content.addClass('bma-boundary-main-div');
         content.append(boundaryMessage);
         content.append(boundaryData);
-        content.append(calclulateCancelTool);        
-    	
+        content.append(calclulateCancelTool);    
+        me._refreshSelectedBoundaryType();
+        
     	me._closeIconClickHandler();
 	},
 	
@@ -171,6 +172,7 @@ function(instance, locale, conf) {
     _showBoundary : function(me) {
     	var sandbox = me.instance.getSandbox(),
     		selectedValue = $('input[name="boundary"]:checked').val();
+    	me._setSelectedBoundaryType(selectedValue);
     	
     	me._removeWmsLayer(sandbox);    	
     	if (selectedValue === this.BOUNDARY_MUNICIPALITY) {
@@ -189,7 +191,6 @@ function(instance, locale, conf) {
     		alert("Error: Select the proper boundary type");
     		return;
     	}
-    	this.selectedBoundaryType = selectedValue;
     	me._updateMessage(me, selectedValue);
     	me._addWmsLayer(sandbox);
     },
@@ -291,7 +292,7 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function(){		
-		this._areaCalculate(this.selectedBoundaryType);	
+		this._areaCalculate(this._getSelectedBoundaryType());	
 	},
 	
 	_areaCalculate: function(boundaryType) {
@@ -375,7 +376,6 @@ function(instance, locale, conf) {
         me._removeWmsLayer(sandbox);  
         me._close();
         me.isBoundaryIconClickedForFirstTime = false;
-        me.selectedBoundaryType = null;        
 	},
 	
 	_clearAllIdList : function() {
@@ -386,7 +386,7 @@ function(instance, locale, conf) {
 	
 	mapClickedEvent: function(event) {		
 		if (this.isBoundaryIconClickedForFirstTime) {		
-			this._areaClick(event, this.selectedBoundaryType);
+			this._areaClick(event, this._getSelectedBoundaryType());
 		}		
 	},
 	
@@ -482,7 +482,36 @@ function(instance, locale, conf) {
 	_showResult: function(result){	
 		jQuery("#boundary-message").hide();
 		jQuery("#boundary-data").html(result);
-	}
+	},
+	
+	_getSelectedBoundaryType: function() {
+		return this.selectedBoundaryType;
+	},
+	
+	_setSelectedBoundaryType: function(selectedType) {
+		this.selectedBoundaryType = selectedType;
+		this._refreshSelectedBoundaryType();
+	},
+	
+	_refreshSelectedBoundaryType: function() {
+		$('input[name="boundary"]').val([this._getSelectedBoundaryType()]);
+	},
+	
+	getContentState: function() {
+		var me = this;
+		var state = {};
+		state.areaIds = me.selectedIds;
+		state.boundaryType = me._getSelectedBoundaryType();
+        return state;
+    },
+    
+    setContentState: function(state) {
+    	var me = this;
+    	if (state) {
+    		me._setSelectedBoundaryType(state.boundaryType);
+    		me.selectedIds = state.areaIds;
+    	}
+    }
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
