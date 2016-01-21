@@ -116,22 +116,28 @@ function(instance, locale, conf) {
         instance._measureControl.deactivate();
 	},
 	
-	toolSelectedEvent: function(event){
-		var me = this,
-			instance = me.instance,
-			sandbox = instance.getSandbox();
+	toolSelectedEvent: function(event) {
+		var me = this;
 		if (event.getToolId() == 'bmacalculator') {
-			var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');		
-			if (!mapModule.getMapControl("measureControls_bma")) {
-				mapModule.addMapControl('measureControls_bma', instance._measureControl);
-				instance._measureControl.events.on({
-					measure: function(evt) {
-						me._polygonCompleted.apply(me, [evt]);
-					}
-				});
-			}
-			instance._measureControl.activate();
+			me.beginMeasure();
 		}		
+	},
+	
+	beginMeasure: function() {
+		var me = this,
+		instance = me.instance,
+		sandbox = instance.getSandbox();
+		var mapModule = sandbox.findRegisteredModuleInstance('MainMapModule');		
+		if (!mapModule.getMapControl("measureControls_bma")) {
+			mapModule.addMapControl('measureControls_bma', instance._measureControl);
+			instance._measureControl.events.on({
+				measure: function(evt) {
+					me._polygonCompleted.apply(me, [evt]);
+				}
+			});
+		}
+		instance._latestGeometry = null;
+		instance._measureControl.activate();
 	},
 	
 	_getVisibleBiomassAttributeIds : function() {
@@ -153,6 +159,7 @@ function(instance, locale, conf) {
 			points = [],
 			components = evt.geometry.components[0].components,
 			pointsForAreaCalculation = [];
+		me.instance._latestGeometry = evt.geometry;
 		if (attributeIds.length == 0) {
 			return; // no layers selected
 		}
@@ -213,7 +220,16 @@ function(instance, locale, conf) {
 	_showResult: function(result){
 		jQuery("#area-message").hide();
 		jQuery("#area-data").html(result);
-	}	
+	},
+	
+	getContentState: function() {
+		var me = this;
+		var state = {};
+        return state;
+    },
+    
+    setContentState: function(state) {
+    }
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']

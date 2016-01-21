@@ -57,6 +57,7 @@ function() {
 
 		me._registerTools();
 		
+		me._latestGeometry = null;
 		me._measureControl = new OpenLayers.Control.Measure(
 				OpenLayers.Handler.Polygon,
 				{
@@ -72,6 +73,8 @@ function() {
 				sandbox.registerForEventByName(me, p);
 			}
 		}
+		
+		sandbox.registerAsStateful(this.mediator.bundleId, this);
 	},
 
 	_toolButtonClicked : function() {
@@ -138,6 +141,59 @@ function() {
 		me.sandbox.unregister(me);
 		me.started = false;
 	},
+	
+    /**
+     * @method setState
+     * @param {Object} state bundle state as JSON
+     */
+    setState : function(state) {
+    	var me = this,
+    	flyout = this.plugins['Oskari.userinterface.Flyout'];
+    	if (state) {
+    		if (state.measureControlActive) {
+    			if (!me._measureControl.active) {
+    				flyout.beginMeasure.apply(flyout);
+    			}
+    			if (state.geometry) {
+    				/* This is awful but it works with OpenLayers 2. */
+    				me._measureControl.deactivate();
+    				me._measureControl.activate();
+    				var vertices = OpenLayers.Geometry.fromWKT(state.geometry).getVertices();
+    				me._measureControl.handler.setEvent({});
+    				for (var i = 0; i < vertices.length; i++) {
+    					var lonlat = new OpenLayers.LonLat(vertices[i].x, vertices[i].y);
+    					var pixel = me._measureControl.map.getViewPortPxFromLonLat(lonlat);
+    					if (i == 0) {
+    						me._measureControl.handler.createFeature(pixel);
+    					}
+    					else {
+    						me._measureControl.handler.addPoint(pixel);
+    					}
+    				}
+    				me._measureControl.handler.finishGeometry();
+    			}
+    		}
+    		else {
+    			me._measureControl.deactivate();
+    		}
+    		if ("contentState" in state) {
+    			flyout.setContentState(state.contentState);
+    		}
+    	}
+    },
+    
+    /**
+     * @method getState
+     * @return {Object} bundle state as JSON
+     */
+    getState : function() {
+    	var me = this;
+    	var state = {};
+    	state.contentState = this.plugins['Oskari.userinterface.Flyout'].getContentState();
+    	state.measureControlActive = me._measureControl.active;
+    	state.geometry = (me._latestGeometry ? me._latestGeometry.toString() : null);
+        return state;
+    },
 	
 	/**
 	 * @method update
