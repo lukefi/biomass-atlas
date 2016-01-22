@@ -6,10 +6,8 @@
     background-position: center center;
 }
 
-#area-info-tool
-{
-    float: right;   
-    margin-right: 45%
+#area-message, #area-info-tool {    
+    display: inline-block;
 }
 
 .area-button {

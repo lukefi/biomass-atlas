@@ -143,6 +143,11 @@ function(instance, locale, conf) {
         calclulateCancelTool.find('#boundary-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
         });
+        
+        /*boundaryMessage.find('#boundary-info-tool').unbind('click');
+        boundaryMessage.find('#boundary-info-tool').bind('click', function(){        	
+        	me._displayInfoTip();     	
+        });*/
 	
         content.addClass('bma-boundary-main-div');
         content.append(boundaryMessage);
@@ -199,6 +204,7 @@ function(instance, locale, conf) {
     _updateMessage : function(me, selectedBoundary) {
     	var localization = me.instance.getLocalization()["flyout"].selectAreaType;
     	$('#boundary-message').html(localization[selectedBoundary]);
+    	me._createInfoIcon(selectedBoundary);
     	me._hideNextButton();
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
@@ -538,8 +544,34 @@ function(instance, locale, conf) {
     			});	
     		}, 200);
     	}
+    },
+    
+    _createInfoIcon: function (boundaryType) {      
+        var me = this,
+        	infoIcon = jQuery('<div class="icon-info" id="boundary-info-tool"></div>'),
+            location = jQuery('#boundary-message');       
+        location.append(infoIcon);
+        // show metadata
+        infoIcon.click(function (e) {
+            var areaTypeInfoLocalization = me.instance.getLocalization()["flyout"].areaTypeInfo,
+            	title = areaTypeInfoLocalization.title[boundaryType],
+            	desc = areaTypeInfoLocalization.description[boundaryType],
+                dialog = Oskari.clazz.create(
+                    'Oskari.userinterface.component.Popup'
+                ),
+                okBtn = Oskari.clazz.create(
+                    'Oskari.userinterface.component.Button'
+                );
+
+            okBtn.addClass('default boundary-button');
+            okBtn.setTitle('Ok');
+            okBtn.setHandler(function () {
+                dialog.close(true);
+            });
+            dialog.show(title, desc, [okBtn]);
+        });
     }
-	
+    
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']
 });

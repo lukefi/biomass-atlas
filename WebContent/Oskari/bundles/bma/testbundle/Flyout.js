@@ -251,7 +251,7 @@ function(instance, locale, conf) {
             dialog.close(true);
         });
         dialog.show(title, desc, [okBtn]);       
-    },
+    }
 	
 }, {
 	'protocol' : ['Oskari.userinterface.Flyout']

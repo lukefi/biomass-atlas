@@ -29,6 +29,20 @@ Oskari.registerLocalization({
     			"province": "Valitut maakunnat",
     			"drainageBasin": "Valitut valuma-alueet",
     			"postalCode": "Valitut postinumeroalueet"
+    		},
+    		"areaTypeInfo": {
+    			"title": {
+    				"municipality": "kunta title",
+	    			"province": "maakunta title",
+	    			"drainageBasin": "valuma-alue tile",
+	    			"postalCode": "postinumeroalue tile"
+    			},
+    			"description": {
+    				"municipality": "kunta description",
+	    			"province": "maakunta description",
+	    			"drainageBasin": "valuma-alue description",
+	    			"postalCode": "postinumeroalue description"
+    			}
     		}
     	}
     }

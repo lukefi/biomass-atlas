@@ -33,3 +33,7 @@ table, tr, th, td {
 th {
 	background-color: #e0e0e0;
 }
+
+#boundary-message, #boundary-info-tool { 
+    display: inline-block;
+}
