@@ -31,9 +31,11 @@ function(instance, locale, conf) {
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">' + flyoutLocalization.radius + ': </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div>');
-	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> ' + 
-			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"].beeline + '</label><br />' +
-			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"].roadNetwork + '</label></div> <div class="horizontal-line">.</div>');
+	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> <br>' + 
+			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"].circle + 
+			'</label><div class="icon-info" id="circle-info-tool"></div><br />' +
+			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"].road + 
+			'</label><div class="icon-info" id="road-info-tool"></div></div> <div class="horizontal-line">.</div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label"> '+ flyoutLocalization.point + 
 			': </label><span id="circle-point-value"></span></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
@@ -124,6 +126,16 @@ function(instance, locale, conf) {
         backCancelTool.find('#circle-cancel').unbind('click');
         backCancelTool.find('#circle-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
+        });
+        
+        radiusType.find('#circle-info-tool').unbind('click');
+        radiusType.find('#circle-info-tool').bind('click', function(){        	
+        	me._displayInfoTip("circle");     	
+        });
+        
+        radiusType.find('#road-info-tool').unbind('click');
+        radiusType.find('#road-info-tool').bind('click', function(){        	
+        	me._displayInfoTip("road");     	
         });
 	
         content.addClass('bma-circle-main-div');
@@ -401,6 +413,24 @@ function(instance, locale, conf) {
     		me._showInputsAndButtons();
     	}
     	me._updateCalculateButtonVisibility(me);
+    },
+    
+    _displayInfoTip: function (selectionType) {      
+        var selectionTypeIconLocalization = this.instance.getLocalization()["flyout"].selectionTypeInfo,
+        	title = selectionTypeIconLocalization.title[selectionType],
+        	desc = selectionTypeIconLocalization.description[selectionType],
+        	dialog = Oskari.clazz.create(
+                'Oskari.userinterface.component.Popup'
+            ),
+            okBtn = Oskari.clazz.create(
+                'Oskari.userinterface.component.Button'
+            );            
+        okBtn.addClass('default area-button');
+        okBtn.setTitle('Ok');
+        okBtn.setHandler(function () {
+            dialog.close(true);
+        });
+        dialog.show(title, desc, [okBtn]);       
     }
 	
 }, {

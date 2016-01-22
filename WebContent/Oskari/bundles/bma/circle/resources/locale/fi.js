@@ -15,17 +15,17 @@ Oskari.registerLocalization({
     		"amount": "Määrä",
     		"saveResults": "Tallenna tulokset",
     		"selectionType": {
-    			"beeline": "Linnuntietä pitkin",
-    			"roadNetwork": "Tieverkostoa pitkin"    			
+    			"circle": "Linnuntietä pitkin",
+    			"road": "Tieverkostoa pitkin"    			
     		},
     		"selectionTypeInfo": {
     			"title": {
-    				"beeline": "beeline title",
-	    			"roadNetwork": "roadNetwork title"	    			
+    				"circle": "beeline title",
+	    			"road": "roadNetwork title"	    			
     			},
     			"description": {
-    				"beeline": "beeline description",
-	    			"roadNetwork": "roadNetwork description"	    			
+    				"circle": "beeline description",
+	    			"road": "roadNetwork description"	    			
     			}
     		},
     		"error": {

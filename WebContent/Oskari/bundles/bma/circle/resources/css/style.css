@@ -39,3 +39,7 @@
 button {
 	margin-left: 20px;
 }
+
+#road-info-tool, #circle-info-tool { 
+    display: inline-block;
+}
