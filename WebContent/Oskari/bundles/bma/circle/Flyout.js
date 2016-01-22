@@ -25,6 +25,10 @@ function(instance, locale, conf) {
 	
 	this.template = null;
 	
+	/* These values are same as in localization file */
+	this.SELECTION_CIRCLE = "circle";
+	this.SELECTION_ROAD = "road";
+	
 	var flyoutLocalization = this.instance.getLocalization()["flyout"];
 	this.templateCircleMessage = jQuery('<div id="circle-message">' + flyoutLocalization.message + 
 			'<div class="horizontal-line">.</div></div>');
@@ -32,9 +36,9 @@ function(instance, locale, conf) {
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">' + flyoutLocalization.radius + ': </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div>');
 	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> <br>' + 
-			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"].circle + 
+			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"][this.SELECTION_CIRCLE] + 
 			'</label><div class="icon-info" id="circle-info-tool"></div><br />' +
-			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"].road + 
+			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"][this.SELECTION_ROAD] + 
 			'</label><div class="icon-info" id="road-info-tool"></div></div> <div class="horizontal-line">.</div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label"> '+ flyoutLocalization.point + 
 			': </label><span id="circle-point-value"></span></div>');
@@ -130,12 +134,12 @@ function(instance, locale, conf) {
         
         radiusType.find('#circle-info-tool').unbind('click');
         radiusType.find('#circle-info-tool').bind('click', function(){        	
-        	me._displayInfoTip("circle");     	
+        	me._displayInfoTip(me.SELECTION_CIRCLE);     	
         });
         
         radiusType.find('#road-info-tool').unbind('click');
         radiusType.find('#road-info-tool').bind('click', function(){        	
-        	me._displayInfoTip("road");     	
+        	me._displayInfoTip(me.SELECTION_ROAD);     	
         });
 	
         content.addClass('bma-circle-main-div');
@@ -207,7 +211,7 @@ function(instance, locale, conf) {
 			points.push({x: me.centerPointCircle.x, y: me.centerPointCircle.y});
 			var radiusType = $('input[name=radius-type]:checked').val();
 			var radius = parseFloat(this._convertCommasToDots($('#circle-radius-value').val()));
-			if (radiusType == "road") {
+			if (radiusType == me.SELECTION_ROAD) {
 				var ajaxUrl = "/biomass/roadbuffer/calculate";
 				if (parseInt(radius) > 65) {
 					alert(localization.error["roadRouteExceed"]);
@@ -415,7 +419,7 @@ function(instance, locale, conf) {
     	me._updateCalculateButtonVisibility(me);
     },
     
-    _displayInfoTip: function (selectionType) {      
+    _displayInfoTip: function (selectionType) {  
         var selectionTypeIconLocalization = this.instance.getLocalization()["flyout"].selectionTypeInfo,
         	title = selectionTypeIconLocalization.title[selectionType],
         	desc = selectionTypeIconLocalization.description[selectionType],
