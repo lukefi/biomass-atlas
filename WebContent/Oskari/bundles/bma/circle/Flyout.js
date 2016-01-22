@@ -24,15 +24,18 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateCircleMessage = jQuery('<div id="circle-message">Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen säde, jolta biomassa lasketaan.</div>' +
-			'<div class="horizontal-line">.</div>');
+	
+	var flyoutLocalization = this.instance.getLocalization()["flyout"];
+	this.templateCircleMessage = jQuery('<div id="circle-message">' + flyoutLocalization.message + 
+			'<div class="horizontal-line">.</div></div>');
 	this.templateCircleResult = jQuery('<div id="circle-result"></div>');
-	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">Säde: </label>' + 
+	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">' + flyoutLocalization.radius + ': </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div>');
 	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> ' + 
-	'<label><input type="radio" name="radius-type" value="circle" checked /> linnuntietä pitkin</label><br />' +
-	'<label><input type="radio" name="radius-type" value="road" /> tieverkostoa pitkin</label></div> <div class="horizontal-line">.</div>');
-	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label">Piste: </label><span id="circle-point-value"></span></div>');
+			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"].beeline + '</label><br />' +
+			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"].roadNetwork + '</label></div> <div class="horizontal-line">.</div>');
+	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label"> '+ flyoutLocalization.point + 
+			': </label><span id="circle-point-value"></span></div>');
 	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
 			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
 	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
@@ -58,7 +61,7 @@ function(instance, locale, conf) {
 		this.container.empty();
 	},
 	getTitle : function() {
-		return "Mittaustulokset";
+		return this.instance.getLocalization()["flyout"]["title"];
 	},
 	getDescription : function() {
 
@@ -73,6 +76,7 @@ function(instance, locale, conf) {
 	 */
 	createUI: function(){
 		var me = this,
+			localization = me.instance.getLocalization()["flyout"],
 			sandbox = me.instance.getSandbox();
 		
 		me.isAllowedMapClick = true;
@@ -93,13 +97,13 @@ function(instance, locale, conf) {
         var calculateCancelTool = me.templateCircleCalculateCancelTool.clone();
         var backCancelTool = me.templateCircleBackCancelTool.clone();
         
-        calculateCancelTool.find('#circle-calculate').html("Laske");
+        calculateCancelTool.find('#circle-calculate').html(localization.calculate);
         calculateCancelTool.find('#circle-calculate').unbind('click');
         calculateCancelTool.find('#circle-calculate').bind('click', function(){        	
         	me._calculateButtonClick();
         });
         
-        calculateCancelTool.find('#circle-cancel').html("Lopeta");
+        calculateCancelTool.find('#circle-cancel').html(localization.quit);
         calculateCancelTool.find('#circle-cancel').unbind('click');
         calculateCancelTool.find('#circle-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
@@ -110,13 +114,13 @@ function(instance, locale, conf) {
         	me._updateCalculateButtonVisibility(me);  
         });
         
-        backCancelTool.find('#circle-back').html("Takaisin");
+        backCancelTool.find('#circle-back').html(localization.back);
         backCancelTool.find('#circle-back').unbind('click');
         backCancelTool.find('#circle-back').bind('click', function(){        	
         	me._backButtonClick();
         });
         
-        backCancelTool.find('#circle-cancel').html("Lopeta");
+        backCancelTool.find('#circle-cancel').html(localization.quit);
         backCancelTool.find('#circle-cancel').unbind('click');
         backCancelTool.find('#circle-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
@@ -182,18 +186,19 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox(),
 			points = [],
-			requestForAddFeature;
+			requestForAddFeature,
+			localization = me.instance.getLocalization()["flyout"];
 		
 		if (me._validateRadiusValue()) {
 			me.isAllowedMapClick = false;
 			me._removeCircleFeature();
 			points.push({x: me.centerPointCircle.x, y: me.centerPointCircle.y});
 			var radiusType = $('input[name=radius-type]:checked').val();
-			var radius = $('#circle-radius-value').val();
+			var radius = parseFloat(this._convertCommasToDots($('#circle-radius-value').val()));
 			if (radiusType == "road") {
 				var ajaxUrl = "/biomass/roadbuffer/calculate";
 				if (parseInt(radius) > 65) {
-					alert("Tiereittiä pitkin laskettaessa säde saa olla korkeintaan 65 km. (väliaikainen rajoitus)");
+					alert(localization.error["roadRouteExceed"]);
 					return;
 				}
 			}
@@ -221,20 +226,20 @@ function(instance, locale, conf) {
 					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
 							{id: 'Main'}, null, null, true, style, false));
 					
-					var finalResult = "";					
+					var finalResult = "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 					for (var key in results.values) {
-						finalResult += key + ' : ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+						finalResult += "<tr><td>" + key + "</td><td>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 					}
+					finalResult += "</table>";
 					
 					var	queryData = JSON.stringify({
 							points: points, 
-							radius: $('#circle-radius-value').val(), 
+							radius: radius,
 							radiusType: radiusType,
 							attributes: me._getVisibleBiomassAttributeIds(sandbox)
 					});
 					
-					finalResult += 
-						"<br>Tallenna tulokset: "
+					finalResult += localization.saveResults + " : "
 						+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 						+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 						+ "<input type='submit' name='submit' value='XLSX' />" 
@@ -249,7 +254,7 @@ function(instance, locale, conf) {
 				}
 			});
 		} else {
-			alert("Kirjoita säteen arvo numeroina.");
+			alert(localization.error["radiusNotNumber"]);
 		}
 	},
 	
@@ -351,7 +356,7 @@ function(instance, locale, conf) {
 	},
 	
 	_convertCommasToDots: function(value) {
-		return num = value.replace(/,/g , ".");
+		return num = value.replace(/,/g , '.');
 	},
 	
 	_removeCircleFeature: function() {

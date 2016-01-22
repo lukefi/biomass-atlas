@@ -164,7 +164,9 @@ function(instance, locale, conf) {
 			attributeIds = me._getVisibleBiomassAttributeIds(),
 			points = [],
 			components = evt.geometry.components[0].components,
-			pointsForAreaCalculation = [];
+			pointsForAreaCalculation = [],
+			localization = me.instance.getLocalization()["flyout"];
+		
 		me.instance._latestGeometry = evt.geometry;
 		if (attributeIds.length == 0) {
 			return; // no layers selected
@@ -186,15 +188,13 @@ function(instance, locale, conf) {
 			data: queryData,
 			dataType: "json",
 			success: function(results, status, xhr) {
-				var finalResult = "",
-					localization = me.instance.getLocalization()["flyout"];
+				var finalResult = "";					
 				
 				if ('error' in results) {
 					finalResult += "<span class='error italic'>" + localization["error"].smallAreaSelected + "</span><br><br>";
 				}
 				finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 				for (var key in results.values) {
-					//finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
 					finalResult += "<tr><td>" + key + "</td><td>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 				}
 				finalResult += "</table>";

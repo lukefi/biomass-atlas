@@ -35,6 +35,12 @@ function() {
 		return this.sandbox;
 	},
 	/**
+     * @method getLocalization
+     */
+    getLocalization: function() {
+        return Oskari.getLocalization(this.getName());
+    },
+	/**
 	 * @method init
 	 * implements Module protocol init method - initializes request handlers and templates
 	 */
@@ -90,7 +96,7 @@ function() {
 		me.buttons = {
 			'bmaCircleCalculator' : {
 				iconCls : 'tool-circle',
-				tooltip : "Laske biomassa valitulta säteeltä",
+				tooltip : me.getLocalization()["toolbarTooltip"],
 				sticky : true,
 				callback : function() {
 					me._toolButtonClicked();
@@ -103,7 +109,7 @@ function() {
 			// Couldn't get the request, toolbar not loaded
 			return;
 		}
-		request = reqBuilder("bmaCircleCalculator", "basictools",	me.buttons['bmaCircleCalculator']);
+		request = reqBuilder("bmaCircleCalculator", "basictools", me.buttons['bmaCircleCalculator']);
 		sandbox.request(me.getName(), request);	
 		me._buttonsAdded = true;
 		

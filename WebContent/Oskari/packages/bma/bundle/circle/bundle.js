@@ -55,6 +55,11 @@ function() {
             "lang" : "en",
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/circle/resources/locale/en.js"
+        },
+        {
+            "lang" : "fi",
+            "type" : "text/javascript",
+            "src" : "../../../../bundles/bma/circle/resources/locale/fi.js"
         }]
     },
     "bundle" : {
