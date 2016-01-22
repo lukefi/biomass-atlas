@@ -49,7 +49,7 @@ function(instance, locale, conf) {
 		this.container.empty();
 	},
 	getTitle : function() {
-		return "Mittaustulokset";
+		return this.instance.getLocalization()["flyout"]["title"];
 	},
 	getDescription : function() {
 
@@ -63,7 +63,8 @@ function(instance, locale, conf) {
 	 * @public
 	 */
 	createUI: function(){
-		var me = this;
+		var me = this,
+		localization = me.instance.getLocalization()["flyout"];
 		
 		// clear container
 		var cel = jQuery(me.container);
@@ -75,7 +76,7 @@ function(instance, locale, conf) {
         var areaData = me.templateAreaData.clone();        
         var cancelTool = me.templateAreaCancelTool.clone();
                        
-        cancelTool.find('#area-cancel').html("Lopeta");
+        cancelTool.find('#area-cancel').html(localization.quit);
         cancelTool.find('#area-cancel').unbind('click');
         cancelTool.find('#area-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
@@ -185,16 +186,20 @@ function(instance, locale, conf) {
 			data: queryData,
 			dataType: "json",
 			success: function(results, status, xhr) {
-				var finalResult = "";
+				var finalResult = "",
+					localization = me.instance.getLocalization()["flyout"];
+				
 				if ('error' in results) {
-					finalResult += "<span class='error italic'>" + results.error + "</span><br><br>";
+					finalResult += "<span class='error italic'>" + localization["error"].smallAreaSelected + "</span><br><br>";
 				}
+				finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 				for (var key in results.values) {
-					finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+					//finalResult += key + ': ' + results.values[key].value + " " + results.values[key].unit + "<br>";
+					finalResult += "<tr><td>" + key + "</td><td>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 				}
-				finalResult += 
-					"<br>Tallenna tulokset: "
-					+ "<form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
+				finalResult += "</table>";
+				finalResult += localization.saveResults
+					+ " : <form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 					+ "<input type='hidden' name='query' value= " + queryData + "/>" 
 					+ "<input type='submit' name='submit' value='XLSX' />" 
 					+ "</form>&nbsp;"
@@ -237,8 +242,9 @@ function(instance, locale, conf) {
     },
     
     _displayInfoTip: function () {      
-        var title = "Title goes here",
-        	desc = "Description goes here",
+        var infoIconLocalization = this.instance.getLocalization()["flyout"].infoIcon,
+        	title = infoIconLocalization.title,
+        	desc = infoIconLocalization.description,
         	dialog = Oskari.clazz.create(
                 'Oskari.userinterface.component.Popup'
             ),

@@ -55,6 +55,11 @@ function() {
             "lang" : "en",
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/testbundle/resources/locale/en.js"
+        },
+        {
+            "lang" : "fi",
+            "type" : "text/javascript",
+            "src" : "../../../../bundles/bma/testbundle/resources/locale/fi.js"
         }]
     },
     "bundle" : {
