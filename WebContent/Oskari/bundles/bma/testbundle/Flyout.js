@@ -26,7 +26,7 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateAreaMessage = jQuery('<div id="area-message">Valitse alue, jonka biomassa lasketaan<div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
-	this.templateAreaCancelTool = jQuery('<div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
+	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
 	
 }, {	
 	/**
