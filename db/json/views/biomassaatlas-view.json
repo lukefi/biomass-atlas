@@ -67,7 +67,14 @@
         { "id" : "heatmap" },
         { "id" : "testbundle" },
         { "id" : "boundary" },
-        { "id" : "circle" }
+        { "id" : "circle" },
+        { "id" : "myplacesimport",
+        	"config" : {
+			    "name" : "MyPlacesImport",
+			    "sandbox" : "sandbox",
+			    "flyoutClazz" : "Oskari.mapframework.bundle.myplacesimport.Flyout" 
+			} 
+        }
         
     ]
 }
