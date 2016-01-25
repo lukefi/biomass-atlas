@@ -7,8 +7,6 @@
 <head>
     <title>Biomassa-atlas</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/Oskari${path}/icons/favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
-    </script>
     <!-- ############# css ################# -->
     <link
             rel="stylesheet"
@@ -22,11 +20,12 @@
             rel="stylesheet"
             type="text/css"
             href="${pageContext.request.contextPath}/Oskari${path}/css/portal.css"/>
-
     <link
             rel="stylesheet"
             type="text/css"
             href="${pageContext.request.contextPath}/Oskari${path}/css/overwritten.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+    </script>
     <style type="text/css">
         @media screen {
             body {
