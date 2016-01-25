@@ -113,7 +113,7 @@ public class GeometryService {
     
     /**
      * Geometry of bounded area (like: municipality, drainage basin, etc) is calculated.
-     * @param point is the point that specifies which area is to be returned
+     * @param points is list of points that specifies which areas are to be returned
      * @param gridId is an integer id of bounded area.
      * @return list of maps which includes id and geometry of bounded area.
      * @throws IOException if writing fails
