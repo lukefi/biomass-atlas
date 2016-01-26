@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biomassa-atlas</title>
+    <title><spring:message code="bma.title"/></title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/Oskari${path}/icons/favicon.ico" type="image/x-icon" />
     <!-- ############# css ################# -->
     <link
@@ -119,18 +119,17 @@
     </div>
     <div id="divider">
     </div>
+    <div id="toolbar">
+    </div>
     <div id="register">
    	    <c:if test="${empty _logout_uri}"> 
-    		<a href="#"><spring:message code="bma.logIn"/></a> <span style="color: white;">-</span>
-    		<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
+    		<a href="${pageContext.request.contextPath}/biomass/user/register"><spring:message code="bma.register"/></a>
    	    </c:if>
-    </div>
-    <div id="toolbar">
     </div>
     <div id="login">
         <c:choose>
             <c:when test="${!empty loginState}">
-                <p class="error">Invalid password or username!!</p>
+                <p class="error"><spring:message code="bma.invalidPassword"/></p>
             </c:when>
         </c:choose>
         <c:set var="user" value="fi.nls.oskari.domain.User" />
@@ -139,17 +138,17 @@
             <c:when test="${!empty _logout_uri}">
             	<if test="${!empty sessionScope[user]}">
 		   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
-		   	    	<span><a href="#" id="edit">(Muokkaa)</a></span><br>
+		   	    	<span><a href="#" id="edit">(<spring:message code="bma.edit"/>)</a></span><br>
 		   	    </if>  
-                <a href="${_logout_uri}">Kirjaudu ulos</a>
+                <a href="${_logout_uri}"><spring:message code="bma.logout"/></a>
             </c:when>
             
             <c:when test="${empty _logout_uri && !empty _login_uri}">
                 <form action='${_login_uri}' method="post" accept-charset="UTF-8">
-                    <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="Username" autofocus
+                    <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="<spring:message code="bma.username"/>" autofocus
                            required>
-                    <input size="16" id="password" name="${_login_field_pass}" type="password" placeholder="Password" required>
-                    <input type="submit" id="submit" value="Log in">
+                    <input size="16" id="password" name="${_login_field_pass}" type="password" placeholder="<spring:message code="bma.password"/>" required>
+                    <input type="submit" id="submit" value="<spring:message code="bma.login"/>">
                 </form>
             </c:when>
         </c:choose>
