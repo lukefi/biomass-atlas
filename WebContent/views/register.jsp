@@ -137,7 +137,7 @@
 			<span id="errorLastname" class="error"></span>
 		</span>
 		<span class="content-column">
-			<label class="column-field-label"><spring:message code="bma.username"/></label> <br>
+			<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
 			<span id="errorUsername" class="error"></span>
 		</span>
