@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biomassa-atlas</title>
+    <title><spring:message code="bma.title"/></title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
     </script>
@@ -113,7 +114,7 @@
 
 <nav id="maptools">    
     <div id="etusivu"> 	
-    	<a href="#" id="frontpage">Etusivu</a>
+    	<a href="#" id="frontpage"><spring:message code="bma.backToFrontpage"/></a>
     </div>   
 </nav>
 

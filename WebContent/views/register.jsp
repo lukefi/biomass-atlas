@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biomassa-atlas</title>
+    <title><spring:message code="bma.title"/></title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
     </script>
@@ -118,42 +119,42 @@
 
 <nav id="maptools">    
     <div id="etusivu"> 	
-    	<a href="#" id="frontpage">Etusivu</a>
+    	<a href="#" id="frontpage"><spring:message code="bma.backToFrontpage"/></a>
     </div>   
 </nav>
 
 <div id="content">
 	<div id="register">
-		<h1>Rekisteröidy palveluun</h1>
+		<h1><spring:message code="bma.registerTitle"/></h1>
 		<span class="content-column">
-			<label class="column-field-label">Etunimi</label> <br>
+			<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
 			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
 			<span id="errorFirstname" class="error"></span>
 		</span>
 		<span class="content-column">
-			<label class="column-field-label">Sukunimi</label> <br>
+			<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
 			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
 			<span id="errorLastname" class="error"></span>
 		</span>
 		<span class="content-column">
-			<label class="column-field-label">Käyttäjätunnus (käytetään kirjautumiseen)</label> <br>
+			<label class="column-field-label"><spring:message code="bma.username"/></label> <br>
 			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
 			<span id="errorUsername" class="error"></span>
 		</span>
 		<span class="content-column">
-			<label class="column-field-label">Sähköpostiosoite</label> <br>
+			<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
 			<input class="column-field-input" size="20" id="email" name="email" type="email" required>
 			<span id="errorEmail" class="error"></span>
 		</span>
 		<span>				
-			<input class="column-field-button" id="registerBtn" type="button" value="Rekisteröidy">
+			<input class="column-field-button" id="registerBtn" type="button" value="<spring:message code="bma.register"/>">
 		</span>			
 		<span>				
-			<input class="column-field-button" id="cancel" type="button" value="Peruuta">
+			<input class="column-field-button" id="cancel" type="button" value="<spring:message code="bma.cancel"/>">
 		</span>			
 		
 		<br><br>
-		<a href="#" id="forgotPassword"> Salasana unohtunut</a>
+		<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a>
 	
 	</div>
 </div>
