@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -120,7 +121,7 @@
     </div>
     <div id="register">
    	    <c:if test="${empty _logout_uri}"> 
-    		<a href="#">Kirjaudu</a> <span style="color: white;">-</span>
+    		<a href="#"><spring:message code="bma.logIn"/></a> <span style="color: white;">-</span>
     		<a href="${pageContext.request.contextPath}/biomass/user/register">Rekisteröidy</a>
    	    </c:if>
     </div>
