@@ -33,6 +33,7 @@
                     { "id" : "Oskari.mapframework.bundle.mapmodule.plugin.FullScreenPlugin" },
                     { "id" : "Oskari.mapframework.bundle.mapstats.plugin.StatsLayerPlugin" },
                     { "id" : "Oskari.mapframework.mapmodule.VectorLayerPlugin" },
+                    { "id" : "Oskari.mapframework.bundle.mapwfs2.plugin.WfsLayerPlugin" },
                     { "id" : "Oskari.mapframework.bundle.myplacesimport.plugin.UserLayersLayerPlugin"}
                 ],
                 "layers": []
@@ -69,6 +70,7 @@
         { "id" : "testbundle" },
         { "id" : "boundary" },
         { "id" : "circle" },
+        { "id" : "mapwfs2" },
         { "id" : "myplacesimport",
         	"config" : {
 			    "name" : "MyPlacesImport",
