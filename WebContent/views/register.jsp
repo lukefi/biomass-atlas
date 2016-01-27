@@ -125,43 +125,81 @@
 
 <div id="content">
 	<div id="register">
-		<h1><spring:message code="bma.registerTitle"/></h1>
-		<span class="content-column">
-			<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
-			<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
-			<span id="errorFirstname" class="error"></span>
-		</span>
-		<span class="content-column">
-			<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
-			<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
-			<span id="errorLastname" class="error"></span>
-		</span>
-		<span class="content-column">
-			<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
-			<input class="column-field-input" size="20" id="username" name="username" type="text" required>
-			<span id="errorUsername" class="error"></span>
-		</span>
-		<span class="content-column">
-			<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
-			<input class="column-field-input" size="20" id="email" name="email" type="email" required>
-			<span id="errorEmail" class="error"></span>
-		</span>
-		<span>				
-			<input class="column-field-button" id="registerBtn" type="button" value="<spring:message code="bma.register"/>">
-		</span>			
-		<span>				
-			<input class="column-field-button" id="cancel" type="button" value="<spring:message code="bma.cancel"/>">
-		</span>			
-		
-		<br><br>
-		<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a>
-	
+		<c:choose>
+			<c:when test="${editExisting}">
+				<h1><spring:message code="bma.editYourInformationTitle"/></h1>
+				<input type="hidden" id="userId" value="${id}" >
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
+					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${firstname}" required>
+					<span id="errorFirstname" class="error"></span>
+				</span>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
+					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${lastname}" required>
+					<span id="errorLastname" class="error"></span>
+				</span>
+				<%-- <span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
+					<input class="column-field-input" size="20" id="username" name="username" type="text" value="${username}" required>
+					<span id="errorUsername" class="error"></span>
+				</span> --%>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
+					<input class="column-field-input" size="20" id="email" name="email" type="email" value="${email}" required>
+					<span id="errorEmail" class="error"></span>
+				</span>
+				<span id="error" class="content-column error"></span>
+				<span>				
+					<input class="column-field-button" id="saveBtn" type="button" value="<spring:message code="bma.save"/>">
+				</span>			
+				<span>				
+					<input class="column-field-button" id="cancelBtn" type="button" value="<spring:message code="bma.cancel"/>">
+				</span>			
+				
+				<br><br><br>
+				<span class="content-column"> <a href="#" id="changePassword"><spring:message code="bma.passwordReset.submit"/></a> </span> 
+				(<spring:message code="bma.linkForPasswordResetHelp"/>)
+			</c:when>
+			<c:otherwise>
+				<h1><spring:message code="bma.registerTitle"/></h1>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
+					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
+					<span id="errorFirstname" class="error"></span>
+				</span>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
+					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
+					<span id="errorLastname" class="error"></span>
+				</span>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
+					<input class="column-field-input" size="20" id="username" name="username" type="text" required>
+					<span id="errorUsername" class="error"></span>
+				</span>
+				<span class="content-column">
+					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
+					<input class="column-field-input" size="20" id="email" name="email" type="email" required>
+					<span id="errorEmail" class="error"></span>
+				</span>
+				<span>				
+					<input class="column-field-button" id="registerBtn" type="button" value="<spring:message code="bma.register"/>">
+				</span>			
+				<span>				
+					<input class="column-field-button" id="cancelBtn" type="button" value="<spring:message code="bma.cancel"/>">
+				</span>			
+				
+				<br><br>
+				<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function () {
-	$('#frontpage, #cancel').click(function () {		
+	$('#frontpage, #cancelBtn').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		window.location.replace(host);
 	});
@@ -171,7 +209,22 @@ $(document).ready(function () {
 		window.location.replace(host);
 	});
 	
-	jQuery('#registerBtn').click(function () {
+	$('#changePassword').click(function () {		
+		var host = window.location.protocol + "//" + window.location.host;		
+		jQuery.ajax({
+			url: host + "/action?action_route=UserPasswordReset&email=${email}",
+			type: 'POST',			
+			success: function(data) {
+				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
+				window.location.replace(url);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				jQuery("#error").text("SERVER ERROR");
+			} 
+		});			
+	});
+	
+	$('#registerBtn').click(function () {
 		var data = { 
 					firstname: jQuery('#firstname').val(),
 				 	lastname: jQuery('#lastname').val(),				
@@ -193,6 +246,31 @@ $(document).ready(function () {
 				}
 			});
 		}
+	});
+	
+	$('#saveBtn').click(function () {
+		var data = { 
+					id: "${id}",
+					firstname: jQuery('#firstname').val(),
+				 	lastname: jQuery('#lastname').val(),				
+				 	/* username: jQuery('#username').val(), */				
+					email: jQuery('#email').val()
+				   };
+		var host = window.location.protocol + "//" + window.location.host;
+		if (validate()) { 
+			jQuery.ajax({
+				url: host + "/action?action_route=UserRegistration&update=yes",
+				type: 'POST',
+				data: data,
+				success: function(data) {
+					var url = window.location.protocol + "//" + window.location.host + "/biomass/user/updateSuccess"; 
+					window.location.replace(url);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert(jqXHR.responseText);
+				} 
+			});	
+		} 		
 	}); 
 });
 
@@ -211,22 +289,22 @@ function validate() {
 	clearErrorMessage();
 	
 	if(!firstname.trim()) {
-		$('#errorFirstname').html("*Required");	
+		$('#errorFirstname').html('<spring:message code="bma.fieldIsRequired"/>');	
 		flag = false;
 	} 
 	
 	if(!lastname.trim()) {
-		$('#errorLastname').html("*Required");
+		$('#errorLastname').html('<spring:message code="bma.fieldIsRequired"/>');
 		flag = false;
 	} 
 	
-	if(!username.trim()) {
-		$('#errorUsername').html("*Required");
+	if($('#username').length && !username.trim()) {
+		$('#errorUsername').html('<spring:message code="bma.fieldIsRequired"/>');
 		flag = false;
 	} 
 		
 	if(!isEmailValid(email)){
-		$('#errorEmail').html("*Please enter valid email address.");
+		$('#errorEmail').html('<spring:message code="bma.invalidEmailError"/>');
 		flag = false;
 	}
 	return flag;

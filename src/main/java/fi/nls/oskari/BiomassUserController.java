@@ -14,6 +14,7 @@ public class BiomassUserController {
     @RequestMapping(value="register", method=RequestMethod.GET)
     public ModelAndView register(){
        ModelAndView mv = new ModelAndView("register");
+       mv.addObject("editExisting", false);
        return mv;
     }
         
@@ -51,7 +52,8 @@ public class BiomassUserController {
     		@RequestParam(value = "lastname") String lastname,
     		/*@RequestParam(value = "username") String username, */
     		@RequestParam(value = "email") String email) {
-    	ModelAndView mv = new ModelAndView("editUserProfile");    	
+    	ModelAndView mv = new ModelAndView("register");
+    	mv.addObject("editExisting", true);
     	mv.addObject("id", id);
     	mv.addObject("firstname", firstname);
     	mv.addObject("lastname", lastname);

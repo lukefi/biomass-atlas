@@ -56,7 +56,7 @@
 <div id="content">
 	<c:if test="${!empty registrationSuccess}">
 		<div id="registrationSuccess">
-			<h2>Kiitos rekisteröinnistä. <br> Aktivoi käyttäjätunnuksesi sähköpostiisi lähetetyllä linkillä.</h2>		
+			<h2><spring:message code="bma.register.thanks"/> <br/> <spring:message code="bma.register.passwordLink"/></h2>		
 		</div>
 	</c:if>
 	
@@ -74,7 +74,7 @@
 	
 	<c:if test="${!empty updateSuccess}">
 		<div id="updateSuccess">
-			<h2>Tiedot on päivitetty.</h2>		
+			<h2><spring:message code="bma.register.informationUpdated"/></h2>		
 		</div>
 	</c:if>
 </div>
