@@ -56,19 +56,19 @@
 <div id="content">
 	<c:if test="${!empty registrationSuccess}">
 		<div id="registrationSuccess">
-			<h2>Kiitos rekisteröinnistä. <br> Aktivoi käyttäjätunnuksesi sähköpostiisi lähetyllä linkillä.</h2>		
+			<h2>Kiitos rekisteröinnistä. <br> Aktivoi käyttäjätunnuksesi sähköpostiisi lähetetyllä linkillä.</h2>		
 		</div>
 	</c:if>
 	
 	<c:if test="${!empty passwordChanged}">
 		<div id="passwordChanged">
-			<h2>Salasanasi on vaihdettu.</h2>		
+			<h2><spring:message code="bma.passwordReset.passwordChanged"/></h2>		
 		</div>
 	</c:if>
 	
 	<c:if test="${!empty emailSent}">
 		<div id="emailSent">
-			<h2>Sinulle on lähetetty sähköpostia. Käytä sähköpostissa olevaa linkkiä salasanan vaihtamiseen.</h2>		
+			<h2><spring:message code="bma.passwordReset.emailSentMessage"/></h2>		
 		</div>
 	</c:if>
 	

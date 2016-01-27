@@ -122,19 +122,19 @@
 	<div id="passwordReset">
 		<c:choose>
 			<c:when test="${!empty uuid}">
-				<h2>Salasanan vaihto</h2>
+				<h2><spring:message code="bma.passwordReset.title"/></h2>
 				<form:form>
 					<span class="content-column">
-						<span class="content-column"><label class="column-field-label">Uusi salasana</label></span>
+						<span class="content-column"><label class="column-field-label"><spring:message code="bma.passwordReset.new"/></label></span>
 						<span class="content-column"><input class="column-field-input" size="16" id="password" name="password" type="password" autofocus required></span>
 					</span>
 					<span class="content-column">
-						<span class="content-column"><label class="column-field-label">Vahvista uusi salasana</label></span>
+						<span class="content-column"><label class="column-field-label"><spring:message code="bma.passwordReset.confirmNew"/></label></span>
 						<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required>
 						<label id="unmatchedPassword" class="error"></label></span>
 					</span>			
 					<span>				
-						<span><input class="column-field-button" size="16" id="reset" type="button" value="Submit"></span>
+						<span><input class="column-field-button" size="16" id="reset" type="button" value="<spring:message code="bma.passwordReset.submit"/>"></span>
 					</span>					
 				</form:form>
 			</c:when>
@@ -157,7 +157,7 @@ $(document).ready(function () {
 		var confirmPassword = jQuery('#confirmPassword').val();
 		
 		if (password != confirmPassword) {
-			jQuery('#unmatchedPassword').text("Confirm password doesn't match.");
+			jQuery('#unmatchedPassword').text('<spring:message code="bma.passwordReset.doesNotMatch"/>');
 			return;
 		}
 		

@@ -124,17 +124,18 @@
 
 <div id="content">
 	<div id="emailAddress">
+	    <h2><spring:message code="bma.passwordReset.title"/></h2>
 		<span class="content-column">
-			<span class="content-column"><label class="column-field-label">Sähköpostiosoite</label></span>
+			<span class="content-column"><label class="column-field-label"><spring:message code="bma.email"/></label></span>
 			<span class="content-column"><input class="column-field-input" size="25" id="email" name="email" type="email" autofocus required>
 			<label id="error"></label>
 			</span>
 		</span>			
 		<span>				
-			<span><input class="column-field-button" size="16" id="submit" type="button" value="Seurava"></span>
+			<span><input class="column-field-button" size="16" id="submit" type="button" value='<spring:message code="bma.next"/>'></span>
 		</span>			
 		<span>				
-			<span><input class="column-field-button" size="16" id="cancel" type="button" value="Peruuta"></span>
+			<span><input class="column-field-button" size="16" id="cancel" type="button" value='<spring:message code="bma.cancel"/>'></span>
 		</span>			
 	</div>
 </div>
@@ -163,7 +164,7 @@ $(document).ready(function () {
 				}
 			});		
 		} else
-			jQuery("#error").html("Invalid email address.");
+			jQuery("#error").html('<spring:message code="bma.invalidEmailError"/>');
 	});
 });
 
