@@ -8,8 +8,11 @@
 <head>
     <title><spring:message code="bma.title"/></title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
-    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">   
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    
     <!-- ############# css ################# -->   
     <style type="text/css">
         @media screen {
@@ -99,8 +102,8 @@
 				padding-top: 20px;
 				text-align: center;				
 			}
-			#frontpage, #frontpage:visited {				
-				color: #3399FF;
+			#frontpage, #frontpage:visited, #deleteUser {				
+				color: #3399FF;				
 			}
 			
 			#forgotPassword {
@@ -110,7 +113,10 @@
 			}
 			.error {
 				color: red;
-			}		
+			}
+			.ui-dialog-titlebar {
+			    background:red;
+			}	
         
     </style>
     <!-- ############# /css ################# -->
@@ -119,7 +125,10 @@
 
 <nav id="maptools">    
     <div id="etusivu"> 	
-    	<a href="#" id="frontpage"><spring:message code="bma.backToFrontpage"/></a>
+    	<a href="#" id="frontpage"><spring:message code="bma.backToFrontpage"/></a><br><br>
+    	<c:if test="${!empty id}">
+    		<a href="#" id="deleteUser"><spring:message code="bma.deleteUserAccount"/></a>    		
+    	</c:if>    	
     </div>   
 </nav>
 
@@ -197,6 +206,16 @@
 	</div>
 </div>
 
+<div id="dialog-confirm" title=<spring:message code="bma.confirm"/> style="display: none;" >
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.userAccountWillBeDeleted"/></p>
+</div>
+<div id="dialogDeleteButtons">
+	<c:set var="yesBtnVal"><spring:message code="bma.yes"/></c:set>
+	<input id="yesButton" type="hidden" value="${yesBtnVal}"/>
+	<c:set var="noBtnVal"><spring:message code="bma.no"/></c:set>
+	<input id="noButton" type="hidden" value="${noBtnVal}"/>	
+</div>	
+
 <script type="text/javascript">
 $(document).ready(function () {
 	$('#frontpage, #cancelBtn').click(function () {		
@@ -271,7 +290,51 @@ $(document).ready(function () {
 				} 
 			});	
 		} 		
-	}); 
+	});
+	
+	$('#deleteUser').click(function () {		
+		var data = {id : '${id}'},
+			host = window.location.protocol + "//" + window.location.host,		
+			yesBtn = $('#yesButton').val(),
+			noBtn = $('#noButton').val(),		
+			buttonsDeleteUser = [,],
+			buttonArrayDeleteUser = {};
+		
+		buttonsDeleteUser[0] = yesBtn;
+		buttonsDeleteUser[1] = noBtn;		
+		
+		/* Delete User - 'Yes' button clicked event */
+		buttonArrayDeleteUser[buttonsDeleteUser[0]] = function(event){
+			event.preventDefault();			
+			jQuery.ajax({
+    			url: host + "/action?action_route=UserRegistration&delete",
+    			type: 'POST',
+    			data: data,
+    			success: function(data) {		    				
+    				window.location.href = '/logout';
+    			},
+    			error: function(jqXHR, textStatus, errorThrown) {
+    				alert(jqXHR.responseText);
+    			}
+    		});
+	        $(this).dialog('close');		
+		};
+			
+		/* Delete User - 'No' button clicked event */
+		buttonArrayDeleteUser[buttonsDeleteUser[1]] = function(event){
+			event.preventDefault();		
+	        $(this).dialog('close');		
+		};
+		
+		$('#dialog-confirm').dialog({			
+			resizable: false,
+		    modal: true,
+		    height: 200,
+		    width: 400, 
+		    buttons: buttonArrayDeleteUser	    
+		});	
+	});
+	
 });
 
 function isEmailValid(email) {
