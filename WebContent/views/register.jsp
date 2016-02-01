@@ -209,6 +209,15 @@
 <div id="dialog-confirm" title=<spring:message code="bma.confirm"/> style="display: none;" >
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.userAccountWillBeDeleted"/></p>
 </div>
+
+<div id="dialog-username-error" class="ui-state-error" title=<spring:message code="bma.error"/> style="display: none;" >
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.usernameExists"/></p>
+</div>
+
+<div id="dialog-email-error" class="ui-state-error" title=<spring:message code="bma.error"/> style="display: none;" >
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.emailExists"/></p>
+</div>
+
 <div id="dialogDeleteButtons">
 	<c:set var="yesBtnVal"><spring:message code="bma.yes"/></c:set>
 	<input id="yesButton" type="hidden" value="${yesBtnVal}"/>
@@ -261,7 +270,22 @@ $(document).ready(function () {
 					window.location.replace(url);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					alert(jqXHR.responseText);
+					var errorResponse = jqXHR.responseText;
+					if (errorResponse.toLowerCase().indexOf("email") >= 0) {
+						$('#dialog-email-error').dialog({
+							resizable: false,
+							width: 350,
+							position: { my: "center", at: "top+200", of: window }
+						});	
+					} else if (errorResponse.toLowerCase().indexOf("username") >= 0) {
+						$('#dialog-username-error').dialog({
+							resizable: false,
+							width: 350,
+							position: { my: "center", at: "top+200", of: window }
+						});						
+					} else {
+						alert(jqXHR.responseText);
+					}					
 				}
 			});
 		}
