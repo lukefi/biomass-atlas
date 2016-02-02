@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -140,12 +141,12 @@
 				<input type="hidden" id="userId" value="${id}" >
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
-					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${firstname}" required>
+					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${fn:escapeXml(firstname)}" required>
 					<span id="errorFirstname" class="error"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
-					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${lastname}" required>
+					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${fn:escapeXml(lastname)}" required>
 					<span id="errorLastname" class="error"></span>
 				</span>
 				<%-- <span class="content-column">
@@ -155,7 +156,7 @@
 				</span> --%>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
-					<input class="column-field-input" size="20" id="email" name="email" type="email" value="${email}" required>
+					<input class="column-field-input" size="20" id="email" name="email" type="email" value="${fn:escapeXml(email)}" required>
 					<span id="errorEmail" class="error"></span>
 				</span>
 				<span id="error" class="content-column error"></span>
