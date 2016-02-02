@@ -97,7 +97,7 @@
             .italic{
             	font-style: italic;
             }
-             #register{
+             #register, #feedback{
             	text-align: center;
             	padding-top: 20px;
             }
@@ -152,6 +152,9 @@
                 </form>
             </c:when>
         </c:choose>
+    </div>
+    <div id="feedback">   	    
+    	<a href="${pageContext.request.contextPath}/biomass/feedback">Feedback</a>
     </div>
 </nav>
 <div id="contentMap" class="oskariui container-fluid">
