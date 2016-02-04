@@ -517,8 +517,8 @@ function(instance, locale, conf) {
     },
     
     setContentState: function(state) {
-    	var me = this;    	
-    	if (state && (state.boundaryType !== undefined)) {
+    	var me = this;
+    	if (state && state.boundaryType) {
     		me._setSelectedBoundaryType(state.boundaryType);
     		setTimeout(function() {
     			me._showBoundary(me);
