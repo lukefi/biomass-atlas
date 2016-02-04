@@ -135,22 +135,19 @@
         <c:set var="user" value="fi.nls.oskari.domain.User" />
         <%-- when test="${!empty sessionScope[user]}" --%>
         <c:choose>
-            <c:when test="${!empty _logout_uri}">
-            	<if test="${!empty sessionScope[user]}">
-		   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
-		   	    	<span><a href="#" id="edit">(<spring:message code="bma.edit"/>)</a></span><br>
-		   	    </if>  
+           <c:when test="${!empty _logout_uri && empty _login_uri}">            
+	   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
+	   	    	<span><a href="#" id="edit">(<spring:message code="bma.edit"/>)</a></span><br>
                 <a href="${_logout_uri}"><spring:message code="bma.logout"/></a>
-            </c:when>
-            
-            <c:when test="${empty _logout_uri && !empty _login_uri}">
+            </c:when>            
+            <c:otherwise>
                 <form action='${_login_uri}' method="post" accept-charset="UTF-8">
                     <input size="16" id="username" name="${_login_field_user}" type="text" placeholder="<spring:message code="bma.username"/>" autofocus
                            required>
                     <input size="16" id="password" name="${_login_field_pass}" type="password" placeholder="<spring:message code="bma.password"/>" required>
                     <input type="submit" id="submit" value="<spring:message code="bma.login"/>">
                 </form>
-            </c:when>
+            </c:otherwise>           
         </c:choose>
     </div>
     <div id="feedback">   	    
