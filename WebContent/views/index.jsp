@@ -25,8 +25,13 @@
             rel="stylesheet"
             type="text/css"
             href="${pageContext.request.contextPath}/Oskari${path}/css/overwritten.css"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.10.2.js">
     </script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+   <!--  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style type="text/css">
         @media screen {
             body {
@@ -105,7 +110,44 @@
             	color: #c2c2c2;
             	font-style: italic;
             }
-            
+            #bmaLayerContent {
+            	z-index: 1000;
+            	position: absolute;
+            	bottom: 0;
+            	left: 50%;
+            	width: 600px;
+            	height: 500px;
+            }
+            #bmaLayerTabs {
+            	display:none;
+            	position: relative;
+            	background: #ffffff;
+            	height: 90%;
+            }
+            #bmaLayerSelectorBtn {
+            	position: absolute;
+            	bottom: 0;
+            	top: 90%;
+            	left: 63%;
+            	width: 200px;
+            	height: 50px;          	
+            }
+            .tab-content {
+			    height: 90%; 
+			    border-left: 2px solid #ccc ;
+			    border-right: 2px solid #ccc ;
+			    border-top: 2px solid #ccc ;
+			    overflow-y: auto;			    
+			}
+			#bmaLayerTabs > ul > li {
+				font-size: 18px;
+			}
+			.nav > li > a:hover,
+			.nav > li > a:focus {
+			    text-decoration: none;
+			    background-color: #e0e0d1;
+			} 
+			            
         }
     </style>
     <!-- ############# /css ################# -->
@@ -167,6 +209,23 @@
     </div>
 </div>
 
+<div id="bmaLayerContent">
+	<div id="bmaLayerTabs">
+		<ul class="nav nav-pills red">	   
+		    <li class="active" ><a data-toggle="tab" href="#forestLayer">Forest</a></li>
+		    <li><a data-toggle="tab" href="#fieldLayer">Field</a></li>	    
+		 </ul>
+		 <div class="tab-content" >
+	        <div id="forestLayer" class="tab-pane fade in active">
+	            <h4>Forest Layer</h4>	           
+	        </div>
+	        <div id="fieldLayer" class="tab-pane fade">
+	            <h4>Field Layer</h4>
+	        </div>
+	      </div>
+      </div>
+      <button type="button" class="btn btn-primary btn-lg glyphicon glyphicon-triangle-right" id="bmaLayerSelectorBtn" > BMA Layers</button>     	     
+ </div> 	
 
 <!-- ############# Javascript ################# -->
 
@@ -236,6 +295,12 @@ $(document).ready(function () {
 			}
 		});		
 	});
+	
+	$('#bmaLayerSelectorBtn').click(function () {
+		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
+		$('#bmaLayerTabs').toggle("slow", function() {
+		});	
+	});	
 });
 </script>
 
