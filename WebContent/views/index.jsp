@@ -137,7 +137,8 @@
 			    border-left: 2px solid #ccc ;
 			    border-right: 2px solid #ccc ;
 			    border-top: 2px solid #ccc ;
-			    overflow-y: auto;			    
+			    overflow-y: auto;
+			    padding-left: 10px;			    
 			}
 			#bmaLayerTabs > ul > li {
 				font-size: 18px;
@@ -146,7 +147,9 @@
 			.nav > li > a:focus {
 			    text-decoration: none;
 			    background-color: #e0e0d1;
-			} 
+			}
+			
+			
 			            
         }
     </style>
@@ -217,7 +220,9 @@
 		 </ul>
 		 <div class="tab-content" >
 	        <div id="forestLayer" class="tab-pane fade in active">
-	            <h4>Forest Layer</h4>	           
+	            <h4>Forest Layer</h4>
+	            <form id="forestLayerForm">		           
+		        </form>       
 	        </div>
 	        <div id="fieldLayer" class="tab-pane fade">
 	            <h4>Field Layer</h4>
@@ -296,12 +301,44 @@ $(document).ready(function () {
 		});		
 	});
 	
+	
 	$('#bmaLayerSelectorBtn').click(function () {
 		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
 		$('#bmaLayerTabs').toggle("slow", function() {
-		});	
+		});
+		var host = window.location.protocol + "//" + window.location.host; 
+		jQuery.ajax({
+			url: host + "/action?action_route=GetMapLayers",
+			type: 'POST',			
+			success: function(data) {				
+				for(var i = 0; i < data.layers.length; i++) {
+					$('#forestLayerForm').append('<input type="checkbox" name="forest" value='
+							+ data.layers[i].id +'>' + data.layers[i].name + '<br>');					  
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			}
+		});		
 	});	
+	
+	
+	$(document).on('change', '#forestLayerForm input:checkbox', function() {
+		var app = Oskari.app,
+		 	sandbox = app.bundleInstances.mapfull.sandbox; 
+		   /* 	mapLayerService = sandbox.getService('Oskari.mapframework.service.MapLayerService')
+	        layers = mapLayerService.getAllLayers();		   
+		   var layer = sandbox.findRegisteredModuleInstance('MainMapModuleLayersPlugin').getMap();
+		   console.log(layer);   */ 
+	             
+       if ($(this).is(':checked')) {
+           sandbox.postRequestByName('AddMapLayerRequest', [this.value, false, false]);
+       } else {
+           sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
+       }	    
+	});
 });
+
 </script>
 
 <!-- ############# /Javascript ################# -->
