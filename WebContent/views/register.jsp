@@ -9,10 +9,9 @@
 <head>
     <title><spring:message code="bma.title"/></title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">   
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     
     <!-- ############# css ################# -->   
     <style type="text/css">
@@ -55,49 +54,6 @@
             .column-field-input:focus{
             	background-color: #ECF9EC;
             }
-            		
-			.column-field-button{
-				-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-				box-shadow:inset 0px 1px 0px 0px #ffffff;
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
-				background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
-				background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
-				background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
-				background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
-				background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
-				background-color:#ededed;
-				-moz-border-radius:6px;
-				-webkit-border-radius:6px;
-				border-radius:6px;
-				border:1px solid #dcdcdc;
-				display:inline-block;
-				cursor:pointer;
-				color:#777777;
-				font-family:Arial;
-				font-size:15px;
-				font-weight:bold;
-				padding:6px 24px;
-				text-decoration:none;
-				text-shadow:0px 1px 0px #ffffff;
-				position: relative;
-				top: 20px;
-			}
-			.column-field-button:hover {
-				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
-				background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
-				background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
-				background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
-				background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
-				background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
-				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
-				background-color:#dfdfdf;
-			}
-			.column-field-button:active {
-				position:relative;
-				top:20px;
-			}
 			
 			#etusivu {
 				padding-top: 20px;
@@ -115,9 +71,6 @@
 			.error {
 				color: red;
 			}
-			.ui-dialog-titlebar {
-			    background:red;
-			}	
         
     </style>
     <!-- ############# /css ################# -->
@@ -135,6 +88,7 @@
 
 <div id="content">
 	<div id="register">
+		<div id="errorGeneral" class="alert alert-danger hidden" role="alert"></div>
 		<c:choose>
 			<c:when test="${editExisting}">
 				<h1><spring:message code="bma.editYourInformationTitle"/></h1>
@@ -142,12 +96,12 @@
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
 					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${fn:escapeXml(firstname)}" required>
-					<span id="errorFirstname" class="error"></span>
+					<span id="errorFirstname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
 					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${fn:escapeXml(lastname)}" required>
-					<span id="errorLastname" class="error"></span>
+					<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<%-- <span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
@@ -157,14 +111,14 @@
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
 					<input class="column-field-input" size="20" id="email" name="email" type="email" value="${fn:escapeXml(email)}" required>
-					<span id="errorEmail" class="error"></span>
+					<span id="errorEmail" class="alert alert-danger hidden" role="alert"></span>
 				</span>
-				<span id="error" class="content-column error"></span>
+				<br />
 				<span>				
-					<input class="column-field-button" id="saveBtn" type="button" value="<spring:message code="bma.save"/>">
+					<button class="btn btn-primary" id="saveBtn"><spring:message code="bma.save"/></button>
 				</span>			
 				<span>				
-					<input class="column-field-button" id="cancelBtn" type="button" value="<spring:message code="bma.cancel"/>">
+					<button class="btn btn-default" id="cancelBtn"><spring:message code="bma.cancel"/></button>
 				</span>			
 				
 				<br><br><br>
@@ -176,28 +130,29 @@
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
 					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
-					<span id="errorFirstname" class="error"></span>
+					<span id="errorFirstname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
 					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
-					<span id="errorLastname" class="error"></span>
+					<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
 					<input class="column-field-input" size="20" id="username" name="username" type="text" required>
-					<span id="errorUsername" class="error"></span>
+					<span id="errorUsername" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
 					<input class="column-field-input" size="20" id="email" name="email" type="email" required>
-					<span id="errorEmail" class="error"></span>
+					<span id="errorEmail" class="alert alert-danger hidden" role="alert"></span>
 				</span>
+				<br />
 				<span>				
-					<input class="column-field-button" id="registerBtn" type="button" value="<spring:message code="bma.register"/>">
+					<button id="registerBtn" class="btn btn-primary"><spring:message code="bma.register"/></button>
 				</span>			
 				<span>				
-					<input class="column-field-button" id="cancelBtn" type="button" value="<spring:message code="bma.cancel"/>">
+					<button id="cancelBtn" class="btn btn-default"><spring:message code="bma.cancel"/></button>
 				</span>			
 				
 				<br><br>
@@ -207,24 +162,20 @@
 	</div>
 </div>
 
-<div id="dialog-confirm" title=<spring:message code="bma.confirm"/> style="display: none;" >
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.userAccountWillBeDeleted"/></p>
+<div id="deleteDialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <spring:message code="bma.userAccountWillBeDeleted"/>
+      </div>
+      <div class="modal-footer">
+        <button id="deleteOk" class="btn btn-primary"><spring:message code="bma.yes"/></button>
+        <button class="btn btn-default" data-dismiss="modal"><spring:message code="bma.no"/></button>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div id="dialog-username-error" class="ui-state-error" title=<spring:message code="bma.error"/> style="display: none;" >
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.usernameExists"/></p>
-</div>
-
-<div id="dialog-email-error" class="ui-state-error" title=<spring:message code="bma.error"/> style="display: none;" >
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><spring:message code="bma.emailExists"/></p>
-</div>
-
-<div id="dialogDeleteButtons">
-	<c:set var="yesBtnVal"><spring:message code="bma.yes"/></c:set>
-	<input id="yesButton" type="hidden" value="${yesBtnVal}"/>
-	<c:set var="noBtnVal"><spring:message code="bma.no"/></c:set>
-	<input id="noButton" type="hidden" value="${noBtnVal}"/>	
-</div>	
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -248,7 +199,7 @@ $(document).ready(function () {
 				window.location.replace(url);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				jQuery("#error").text("SERVER ERROR");
+				errorMsg("#errorGeneral", "SERVER ERROR");
 			} 
 		});			
 	});
@@ -273,19 +224,11 @@ $(document).ready(function () {
 				error: function(jqXHR, textStatus, errorThrown) {
 					var errorResponse = jqXHR.responseText;
 					if (errorResponse.toLowerCase().indexOf("email") >= 0) {
-						$('#dialog-email-error').dialog({
-							resizable: false,
-							width: 350,
-							position: { my: "center", at: "top+200", of: window }
-						});	
+						errorMsg("#errorEmail", '<spring:message code="bma.emailExists"/>');
 					} else if (errorResponse.toLowerCase().indexOf("username") >= 0) {
-						$('#dialog-username-error').dialog({
-							resizable: false,
-							width: 350,
-							position: { my: "center", at: "top+200", of: window }
-						});						
+						errorMsg("#errorUsername", '<spring:message code="bma.usernameExists"/>');
 					} else {
-						alert(jqXHR.responseText);
+						errorMsg("#errorGeneral", jqXHR.responseText);
 					}					
 				}
 			});
@@ -311,7 +254,7 @@ $(document).ready(function () {
 					window.location.replace(url);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					alert(jqXHR.responseText);
+					errorMsg("#errorGeneral", jqXHR.responseText);
 				} 
 			});	
 		} 		
@@ -319,45 +262,30 @@ $(document).ready(function () {
 	
 	$('#deleteUser').click(function () {		
 		var data = {id : '${id}'},
-			host = window.location.protocol + "//" + window.location.host,		
-			yesBtn = $('#yesButton').val(),
-			noBtn = $('#noButton').val(),		
-			buttonsDeleteUser = [,],
-			buttonArrayDeleteUser = {};
+			host = window.location.protocol + "//" + window.location.host;
 		
-		buttonsDeleteUser[0] = yesBtn;
-		buttonsDeleteUser[1] = noBtn;		
-		
-		/* Delete User - 'Yes' button clicked event */
-		buttonArrayDeleteUser[buttonsDeleteUser[0]] = function(event){
-			event.preventDefault();			
-			jQuery.ajax({
-    			url: host + "/action?action_route=UserRegistration&delete",
-    			type: 'POST',
-    			data: data,
-    			success: function(data) {		    				
-    				window.location.href = '/logout';
-    			},
-    			error: function(jqXHR, textStatus, errorThrown) {
-    				alert(jqXHR.responseText);
-    			}
-    		});
-	        $(this).dialog('close');		
-		};
-			
-		/* Delete User - 'No' button clicked event */
-		buttonArrayDeleteUser[buttonsDeleteUser[1]] = function(event){
-			event.preventDefault();		
-	        $(this).dialog('close');		
-		};
-		
-		$('#dialog-confirm').dialog({			
-			resizable: false,
-		    modal: true,
-		    height: 200,
-		    width: 400, 
-		    buttons: buttonArrayDeleteUser	    
-		});	
+	    $("#deleteDialog").on("show.bs.modal", function() {
+	        $("#deleteOk").on("click", function(e) {
+	        	jQuery.ajax({
+	    			url: host + "/action?action_route=UserRegistration&delete",
+	    			type: 'POST',
+	    			data: data,
+	    			success: function(data) {		    				
+	    				window.location.href = '/logout';
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) {
+	    				errorMsg("#errorGeneral", jqXHR.responseText);
+	    			}
+	    		});
+	            $("#deleteDialog").modal('hide');
+	        });
+	    });
+	    
+	    $("#deleteDialog").on("hide.bs.modal", function() {
+	        $("#deleteDialog .btn").off("click");
+	    });
+	    
+		$("#deleteDialog").modal({"backdrop": "static", "keyboard": true, "show": true});
 	});
 	
 });
@@ -377,32 +305,33 @@ function validate() {
 	clearErrorMessage();
 	
 	if(!firstname.trim()) {
-		$('#errorFirstname').html('<spring:message code="bma.fieldIsRequired"/>');	
+		errorMsg('#errorFirstname', '<spring:message code="bma.fieldIsRequired"/>');	
 		flag = false;
 	} 
 	
 	if(!lastname.trim()) {
-		$('#errorLastname').html('<spring:message code="bma.fieldIsRequired"/>');
+		errorMsg('#errorLastname', '<spring:message code="bma.fieldIsRequired"/>');
 		flag = false;
 	} 
 	
 	if($('#username').length && !username.trim()) {
-		$('#errorUsername').html('<spring:message code="bma.fieldIsRequired"/>');
+		errorMsg('#errorUsername', '<spring:message code="bma.fieldIsRequired"/>');
 		flag = false;
 	} 
 		
 	if(!isEmailValid(email)){
-		$('#errorEmail').html('<spring:message code="bma.invalidEmailError"/>');
+		errorMsg('#errorEmail', '<spring:message code="bma.invalidEmailError"/>');
 		flag = false;
 	}
 	return flag;
 }
 
+function errorMsg(selector, str) {
+	$(selector).text(str).removeClass("hidden");
+}
+
 function clearErrorMessage() {
-	$('#errorFirstname').html("");
-	$('#errorLastname').html("");
-	$('#errorUsername').html("");
-	$('#errorEmail').html("");
+	$('.alert').text("").addClass("hidden");
 }
 </script>
 </body>
