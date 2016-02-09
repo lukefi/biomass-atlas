@@ -137,7 +137,8 @@
 			    border-left: 2px solid #ccc ;
 			    border-right: 2px solid #ccc ;
 			    border-top: 2px solid #ccc ;
-			    overflow-y: auto;			    
+			    overflow-y: auto;
+			    padding-left: 20px;			    
 			}
 			#bmaLayerTabs > ul > li {
 				font-size: 18px;
@@ -146,9 +147,23 @@
 			.nav > li > a:focus {
 			    text-decoration: none;
 			    background-color: #e0e0d1;
-			} 
-			            
-        }
+			}
+			#forestLayerTable, #fieldLayerTable {
+				margin-top: 20px; 			
+				width: 90%;
+			}			
+			#forestLayerTable td, #fieldLayerTable td {
+				text-align: center;
+			}			
+        	#forestLayerTable thead tr th {
+	        	background-color: #004c99;
+	        	color: #ffffff;
+	        	text-align: center;
+        	}
+        	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th  {
+        		background-color: #ffffff; 
+        	}
+        	
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -217,10 +232,128 @@
 		 </ul>
 		 <div class="tab-content" >
 	        <div id="forestLayer" class="tab-pane fade in active">
-	            <h4>Forest Layer</h4>	           
+	            <table class="table table-hover table-bordered" id="forestLayerTable">
+				  <thead class="thead-default">
+				    <tr>
+				      <th></th>
+				      <th>Kuusi</th>
+				      <th>Lehtipuut</th>
+				      <th>Mänty</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Elävät oksat</th>
+				      <td><input type="checkbox" name="forest" value='244'></td>
+				      <td><input type="checkbox" name="forest" value='251'></td>
+				      <td><input type="checkbox" name="forest" value='258'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Hukkapuuosa</th>
+				      <td><input type="checkbox" name="forest" value='245'></td>
+				      <td><input type="checkbox" name="forest" value='252'></td>
+				      <td><input type="checkbox" name="forest" value='259'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Juuret, d > 1 cm</th>
+				      <td><input type="checkbox" name="forest" value='246'></td>
+				      <td><input type="checkbox" name="forest" value='253'></td>
+				      <td><input type="checkbox" name="forest" value='260'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Kanto</th>
+				      <td><input type="checkbox" name="forest" value='247'></td>
+				      <td><input type="checkbox" name="forest" value='254'></td>
+				      <td><input type="checkbox" name="forest" value='261'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Kuolleet oksat</th>
+				      <td><input type="checkbox" name="forest" value='248'></td>
+				      <td><input type="checkbox" name="forest" value='255'></td>
+				      <td><input type="checkbox" name="forest" value='262'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Kuorellinen runkopuu</th>
+				      <td><input type="checkbox" name="forest" value='249'></td>
+				      <td><input type="checkbox" name="forest" value='256'></td>
+				      <td><input type="checkbox" name="forest" value='263'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Neulaset</th>
+				      <td><input type="checkbox" name="forest" value='250'></td>
+				      <td></td>
+				      <td><input type="checkbox" name="forest" value='264'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Lehvästö</th>
+				      <td></td>
+				      <td><input type="checkbox" name="forest" value='257'></td>
+				      <td></td>
+				    </tr>
+				  </tbody>
+				</table>	             
 	        </div>
 	        <div id="fieldLayer" class="tab-pane fade">
-	            <h4>Field Layer</h4>
+	           <table class="table table-hover table-bordered" id="fieldLayerTable">				  
+				  <tbody>
+				    <tr>
+				      <th scope="row">Juurekset ja vihannekset</th>
+				      <td><input type="checkbox" name="field" value='285'></td>				      
+				    </tr>
+				    <tr>
+				      <th scope="row">Kasvihuonekasvit</th>
+				      <td><input type="checkbox" name="field" value='286'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Kesanto</th>
+				      <td><input type="checkbox" name="field" value='287'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Kuitu- ja energiakasvit</th>
+				      <td><input type="checkbox" name="field" value='288'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Maisema- ja metsäpellot</th>
+				      <td><input type="checkbox" name="field" value='289'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Nurmi</th>
+				      <td><input type="checkbox" name="field" value='290'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Peruna</th>
+				      <td><input type="checkbox" name="field" value='291'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Siemenviljely</th>
+				      <td><input type="checkbox" name="field" value='292'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Sokerijuurikas</th>
+				      <td><input type="checkbox" name="field" value='293'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Suojavyöhyke- ja kaista</th>
+				      <td><input type="checkbox" name="field" value='294'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Valkuaiskasvit</th>
+				      <td><input type="checkbox" name="field" value='295'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Viljat</th>
+				      <td><input type="checkbox" name="field" value='296'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Viljelemätön</th>
+				      <td><input type="checkbox" name="field" value='297'></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Öljykasvit</th>
+				      <td><input type="checkbox" name="field" value='298'></td>
+				    </tr>
+				  </tbody>
+				</table>	  
 	        </div>
 	      </div>
       </div>
@@ -276,10 +409,21 @@
 $(document).ready(function () {
 	$('#bmaLayerSelectorBtn').click(function () {
 		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
-		$('#bmaLayerTabs').toggle("slow", function() {
-		});	
+		$('#bmaLayerTabs').toggle("slow", function() {});		
 	});	
+	
+	
+	$(document).on('change', '.tab-content input:checkbox', function() {
+		var app = Oskari.app,
+		 	sandbox = app.bundleInstances.mapfull.sandbox;		  
+       if ($(this).is(':checked')) {
+           sandbox.postRequestByName('AddMapLayerRequest', [this.value, false, false]);
+       } else {
+           sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
+       }	    
+	});
 });
+
 </script>
 
 <!-- ############# /Javascript ################# -->
