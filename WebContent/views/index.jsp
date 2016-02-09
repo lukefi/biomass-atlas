@@ -179,7 +179,7 @@
         <c:choose>
            <c:when test="${!empty _logout_uri && empty _login_uri}">            
 	   	    	<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
-	   	    	<span><a href="#" id="edit">(<spring:message code="bma.edit"/>)</a></span><br>
+	   	    	<span><a href="/biomass/user/edit">(<spring:message code="bma.edit"/>)</a></span><br>
                 <a href="${_logout_uri}"><spring:message code="bma.logout"/></a>
             </c:when>            
             <c:otherwise>
@@ -274,28 +274,6 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-	$('#edit').click(function () {		
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.ajax({
-			url: host + "/action?action_route=UserRegistration&edit=yes",
-			type: 'POST',			
-			success: function(data) {				
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/edit";				 
-				/* Create a dynamic form and submit it. This helps to move ahead 
-				 * to new view */				 
-				var form = $('<form>', {action: url, method: 'POST'}).appendTo('body');
-				form.append("<input type='text' name='userId' id='userId' value=" + data.id + ">");
-				form.append("<input type='text' name='firstname' id='firstname' value=" + data.firstName + ">");
-			    form.append("<input type='text' id='lastname' name='lastname' value=" + data.lastName + ">");
-			    form.append("<input type='text' id='email' name='email' value=" + data.email + ">");
-			    form.submit();
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.responseText);
-			}
-		});		
-	});
-	
 	$('#bmaLayerSelectorBtn').click(function () {
 		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
 		$('#bmaLayerTabs').toggle("slow", function() {

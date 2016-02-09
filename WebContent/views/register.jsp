@@ -92,15 +92,14 @@
 		<c:choose>
 			<c:when test="${editExisting}">
 				<h1><spring:message code="bma.editYourInformationTitle"/></h1>
-				<input type="hidden" id="userId" value="${id}" >
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
-					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" value="${fn:escapeXml(firstname)}" required>
+					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
 					<span id="errorFirstname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.lastname"/></label> <br>
-					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" value="${fn:escapeXml(lastname)}" required>
+					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
 					<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<%-- <span class="content-column">
@@ -110,7 +109,7 @@
 				</span> --%>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
-					<input class="column-field-input" size="20" id="email" name="email" type="email" value="${fn:escapeXml(email)}" required>
+					<input class="column-field-input" size="20" id="email" name="email" type="email" required>
 					<span id="errorEmail" class="alert alert-danger hidden" role="alert"></span>
 				</span>
 				<br />
@@ -179,6 +178,22 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
+	<c:if test="${editExisting}">
+	    $("body").hide();
+	    $.ajax({
+			url: "/action?action_route=UserRegistration&edit=yes",
+			type: 'POST',			
+			success: function(data) {				
+				$("#firstname").val(data.firstName);
+				$("#lastname").val(data.lastName);
+				$("#email").val(data.email);
+				$("body").show();
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			}
+		});	
+	</c:if>
 	$('#frontpage, #cancelBtn').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host; 
 		window.location.replace(host);
