@@ -227,8 +227,8 @@
 <div id="bmaLayerContent">
 	<div id="bmaLayerTabs">
 		<ul class="nav nav-pills red">	   
-		    <li class="active" ><a data-toggle="tab" href="#forestLayer">Forest</a></li>
-		    <li><a data-toggle="tab" href="#fieldLayer">Field</a></li>	    
+		    <li class="active" ><a data-toggle="tab" href="#forestLayer">Metsä</a></li>
+		    <li><a data-toggle="tab" href="#fieldLayer">Pelto</a></li>	    
 		 </ul>
 		 <div class="tab-content" >
 	        <div id="forestLayer" class="tab-pane fade in active">
@@ -357,7 +357,7 @@
 	        </div>
 	      </div>
       </div>
-      <button type="button" class="btn btn-primary btn-lg glyphicon glyphicon-triangle-right" id="bmaLayerSelectorBtn" > BMA Layers</button>     	     
+      <button type="button" class="btn btn-primary btn-lg glyphicon glyphicon-triangle-right" id="bmaLayerSelectorBtn" > Biomassat</button>     	     
  </div> 	
 
 <!-- ############# Javascript ################# -->
@@ -441,9 +441,20 @@ $(window).load(function() {
 });
 
 $(document).bind('afterReady', function() {
-	 var app = Oskari.app,
-	 	sandbox = app.bundleInstances.mapfull.sandbox;
-	 (function (sb) {
+	var initialSynchonizeLayersCheckbox = function(){		
+		var app = Oskari.app,
+			sandbox = app.bundleInstances.mapfull.sandbox,	 
+		 	selectedLayers = sandbox._modulesByName.LayerSelection.getPlugins()['Oskari.userinterface.Flyout']._sliders,
+		 	selectedLayersSize = _.size(selectedLayers);
+		for (var i = 0; i < selectedLayersSize ; i++){
+			$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+				if (this.value == Object.keys(selectedLayers)[i]) 
+					this.checked = true;			   
+			});
+		 }
+	}();
+		 
+	(function (sb) {
 		var removeLayerModule = {
 			init: function (sb) {
 		    	sb.registerForEventByName(this, 'AfterMapLayerRemoveEvent');
