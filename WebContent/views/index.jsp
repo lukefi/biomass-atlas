@@ -452,18 +452,36 @@ $(document).bind('afterReady', function() {
 		    	return 'removeLayerModule';
 		    }, 
 		    onEvent: function (event) {		        	
-		    	var mapLayer = event.getMapLayer();
-				if ((mapLayer.getLayerName().toLowerCase().indexOf("bma") >= 0) && 
-						(mapLayer.getLayerType().toLowerCase() == "wms")) {
-					var attributeId = mapLayer.getId();
-			       	$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
-					   if (this.value == attributeId) 
-						   this.checked = false;			   
-					});	        
-				}
+		    	setCheckboxState(event, false);
 			}
 		};
+		
+		var addLayerModule = {
+			init: function (sb) {
+		    	sb.registerForEventByName(this, 'AfterMapLayerAddEvent');
+		    },
+		    getName: function () {
+		    	return 'addLayerModule';
+		    }, 
+		    onEvent: function (event) {		        	
+		    	setCheckboxState(event, true);
+			}
+		};
+		
+		var setCheckboxState = function(event, state) {
+			var mapLayer = event.getMapLayer();
+			if ((mapLayer.getLayerName().toLowerCase().indexOf("bma") >= 0) && 
+					(mapLayer.getLayerType().toLowerCase() == "wms")) {							
+				var attributeId = mapLayer.getId();
+		       	$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+				   if (this.value == attributeId) 
+					   this.checked = state;			   
+				});	        
+			}
+		};
+		
 		sb.register(removeLayerModule);
+		sb.register(addLayerModule);
 	})(Oskari.getSandbox());	
 });
 
