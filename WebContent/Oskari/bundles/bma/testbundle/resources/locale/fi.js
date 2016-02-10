@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "fi",
     "key": "TestBundle",
     "value": {
-    	"toolbarTooltip": "Laske biomassa alueella",
+    	"toolbarTooltip": "Piirrä alue kartalle ja laske sen biomassa",
     	"flyout": {
     		"title": "Mittaustulokset",
     		"chooseAreaType": "Valitse alue, jonka biomassa lasketaan",    		

@@ -3,7 +3,6 @@ package fi.nls.oskari;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,20 +44,10 @@ public class BiomassUserController {
     	return mv;
     }
     
-    @RequestMapping(value="/edit", method=RequestMethod.POST)
-    public ModelAndView editUserInformation(
-    		@RequestParam(value = "userId") String id, 
-    		@RequestParam(value = "firstname") String firstname, 
-    		@RequestParam(value = "lastname") String lastname,
-    		/*@RequestParam(value = "username") String username, */
-    		@RequestParam(value = "email") String email) {
+    @RequestMapping(value="/edit", method=RequestMethod.GET)
+    public ModelAndView editUserInformation() {
     	ModelAndView mv = new ModelAndView("register");
     	mv.addObject("editExisting", true);
-    	mv.addObject("id", id);
-    	mv.addObject("firstname", firstname);
-    	mv.addObject("lastname", lastname);
-    	/*mv.addObject("username", username);*/
-    	mv.addObject("email", email);
     	return mv;
     }
     

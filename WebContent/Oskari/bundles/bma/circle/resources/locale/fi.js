@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "fi",
     "key": "Circle",
     "value": {
-    	"toolbarTooltip": "Laske biomassa valitulta säteeltä",
+    	"toolbarTooltip": "Vapaa-aluehaku: määritä keskipiste ja laske valittujen tasojen biomassa alueelta",
     	"flyout": {
     		"title": "Mittaustulokset",
     		"message": "Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen säde, jolta biomassa lasketaan.",
@@ -15,8 +15,8 @@ Oskari.registerLocalization({
     		"amount": "Määrä",
     		"saveResults": "Tallenna tulokset",
     		"selectionType": {
-    			"circle": "Linnuntietä pitkin",
-    			"road": "Tieverkostoa pitkin"    			
+    			"circle": "Etäisyys ympyrän säteenä (linnuntien etäisyys)",
+    			"road": "Etäisyys tieverkostoa pitkin (saavutettavuus)"    			
     		},
     		"selectionTypeInfo": {
     			"title": {

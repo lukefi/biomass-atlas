@@ -2,10 +2,10 @@ Oskari.registerLocalization({
     "lang": "fi",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Laske biomassa maantieteellisellä alueella",
+    	"toolbarTooltip": "Aluehaku: määritä alue ja laske biomassa valituilta tasoilta",
     	"flyout": {
     		"title": "Mittaustulokset",
-    		"chooseAreaType": "Valitse maantieteellinen alue, jonka biomassa lasketaan",
+    		"chooseAreaType": "Valitse alue, jolta biomassa lasketaan",
     		"next": "Seuraava",
     		"calculate": "Laske",
     		"quit": "Lopeta",
@@ -19,10 +19,10 @@ Oskari.registerLocalization({
     			"postalCode": "Postinumeroalue"
     		},
     		"selectAreaType": {
-    			"municipality": "Valitse kunta, jonka biomassa lasketaan",
-    			"province": "Valitse maakunta, jonka biomassa lasketaan",
-    			"drainageBasin": "Valitse valuma-alue, jonka biomassa lasketaan",
-    			"postalCode": "Valitse postinumeroalue, jonka biomassa lasketaan"
+    			"municipality": "Valitse kunnat, joilta biomassat lasketaan",
+    			"province": "Valitse maakunnat, joilta biomassat lasketaan",
+    			"drainageBasin": "Valitse valuma-alueet, joilta biomassat lasketaan",
+    			"postalCode": "Valitse postinumeroalueet, joilta biomassat lasketaan"
     		},
     		"areaTypeSelected": {
     			"municipality": "Valitut kunnat",
