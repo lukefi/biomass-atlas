@@ -445,6 +445,49 @@ $(document).ready(function () {
            sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
        }	    
 	});
+	
+	/* 	//close icon click event in layerselection
+		 $(document).on('click', '.layer-info .layer-tool-remove', function () {		
+		   var attributeId = $(this).parent().parent()[0].attributes.layer_id.nodeValue;
+		   $('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+			   if (this.value == attributeId) 
+				   this.checked = false;			   
+		   });		   
+	 }); 	 */	
+	 	
+});
+
+$(window).load(function() {
+	 setTimeout(function() {
+	        $(document).trigger('afterReady');
+	  }, 5000);	
+});
+
+$(document).bind('afterReady', function() {
+	 var app = Oskari.app,
+	 	sandbox = app.bundleInstances.mapfull.sandbox;
+	 (function (sb) {
+		var removeLayerModule = {
+			init: function (sb) {
+		    	sb.registerForEventByName(this, 'AfterMapLayerRemoveEvent');
+		    },
+		    getName: function () {
+		    	return 'removeLayerModule';
+		    }, 
+		    onEvent: function (event) {		        	
+		    	var mapLayer = event.getMapLayer();
+				if ((mapLayer.getLayerName().toLowerCase().indexOf("bma") >= 0) && 
+						(mapLayer.getLayerType().toLowerCase() == "wms")) {
+					var attributeId = mapLayer.getId();
+			       	$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+					   if (this.value == attributeId) 
+						   this.checked = false;			   
+					});	        
+				}
+			}
+		};
+		sb.register(removeLayerModule);
+	})(Oskari.getSandbox());	
 });
 
 </script>
