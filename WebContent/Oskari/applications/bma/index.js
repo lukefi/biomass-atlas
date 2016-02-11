@@ -81,6 +81,10 @@ jQuery(document).ready(function () {
             if (cb) {
                 cb(instance);
             }
+            
+            /* 'afterReady' is defined in 'index.jsp'. Triggering is needed to synchronize selected
+             *  layers in layer selection view and out own bma layers */
+            $(document).trigger('afterReady');
         });
 
     }

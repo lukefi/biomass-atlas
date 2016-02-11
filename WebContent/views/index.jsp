@@ -411,8 +411,7 @@ $(document).ready(function () {
 		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
 		$('#bmaLayerTabs').toggle("slow", function() {});		
 	});	
-	
-	
+		
 	$(document).on('change', '.tab-content input:checkbox', function() {
 		var app = Oskari.app,
 		 	sandbox = app.bundleInstances.mapfull.sandbox;		  
@@ -421,27 +420,7 @@ $(document).ready(function () {
        } else {
            sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
        }	    
-	});
-	
-	/* 	//close icon click event in layerselection
-		 $(document).on('click', '.layer-info .layer-tool-remove', function () {		
-		   var attributeId = $(this).parent().parent()[0].attributes.layer_id.nodeValue;
-		   $('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
-			   if (this.value == attributeId) 
-				   this.checked = false;			   
-		   });		   
-	 }); 	 */	
-	 	
-});
-
-/* Continuously monitoring (1 sec time interval) if oskari's mapfull bundle is loaded or not. */
-$(window).load(function() {	
-	var trigger = setInterval(function() { 
-		if(Oskari.app.bundleInstances.mapfull){
-			$(document).trigger('afterReady');
-			clearInterval(trigger);
-	  	}
-	}, 1000);
+	});	 	
 });
 
 $(document).bind('afterReady', function() {
