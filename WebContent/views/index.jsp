@@ -434,10 +434,14 @@ $(document).ready(function () {
 	 	
 });
 
-$(window).load(function() {
-	 setTimeout(function() {
-	        $(document).trigger('afterReady');
-	  }, 5000);	
+/* Continuously monitoring (1 sec time interval) if oskari's mapfull bundle is loaded or not. */
+$(window).load(function() {	
+	var trigger = setInterval(function() { 
+		if(Oskari.app.bundleInstances.mapfull){
+			$(document).trigger('afterReady');
+			clearInterval(trigger);
+	  	}
+	}, 1000);
 });
 
 $(document).bind('afterReady', function() {
