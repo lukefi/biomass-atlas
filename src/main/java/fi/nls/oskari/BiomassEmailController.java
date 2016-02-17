@@ -2,6 +2,8 @@ package fi.nls.oskari;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
@@ -23,7 +25,9 @@ public class BiomassEmailController {
     @Resource private SimpleMailMessage templateMessage;
     
     private final String FEEDBACK_SUBJECT = "Biomassas Atlas - Palaute";
-    private final String SEND_TO = "anil.maharjan@luke.fi";
+    
+    @Autowired
+    private Environment env;  
     
 	public MailSender getMailSender() {
         return mailSender;
@@ -58,8 +62,20 @@ public class BiomassEmailController {
             message += "\nLähettäjän sähköpostiosoite : " + email;
         }       
         msg.setText(message);
-        msg.setSubject(FEEDBACK_SUBJECT);
-        msg.setTo(SEND_TO);
+        
+        //Sender and receiver are set to be same (Because of feedback)
+        String receiver = env.getProperty("email.sender");
+        if(receiver == null){
+            return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+        }
+        
+        String subject = env.getProperty("email.subject");
+        if(subject == null){
+            subject = FEEDBACK_SUBJECT;
+        }
+        
+        msg.setSubject(subject);
+        msg.setTo(receiver);
         try {
             this.mailSender.send(msg);           
         }
