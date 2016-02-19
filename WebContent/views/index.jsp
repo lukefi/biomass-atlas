@@ -244,50 +244,50 @@
 				  <tbody>
 				    <tr>
 				      <th scope="row">Elävät oksat</th>
-				      <td><input type="checkbox" name="forest" value='244'></td>
-				      <td><input type="checkbox" name="forest" value='251'></td>
-				      <td><input type="checkbox" name="forest" value='258'></td>
+				      <td><input type="checkbox" name="forest" value='1002'></td>
+				      <td><input type="checkbox" name="forest" value='1009'></td>
+				      <td><input type="checkbox" name="forest" value='1016'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Hukkapuuosa</th>
-				      <td><input type="checkbox" name="forest" value='245'></td>
-				      <td><input type="checkbox" name="forest" value='252'></td>
-				      <td><input type="checkbox" name="forest" value='259'></td>
+				      <td><input type="checkbox" name="forest" value='1003'></td>
+				      <td><input type="checkbox" name="forest" value='1010'></td>
+				      <td><input type="checkbox" name="forest" value='1017'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Juuret, d > 1 cm</th>
-				      <td><input type="checkbox" name="forest" value='246'></td>
-				      <td><input type="checkbox" name="forest" value='253'></td>
-				      <td><input type="checkbox" name="forest" value='260'></td>
+				      <td><input type="checkbox" name="forest" value='1004'></td>
+				      <td><input type="checkbox" name="forest" value='1011'></td>
+				      <td><input type="checkbox" name="forest" value='1018'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Kanto</th>
-				      <td><input type="checkbox" name="forest" value='247'></td>
-				      <td><input type="checkbox" name="forest" value='254'></td>
-				      <td><input type="checkbox" name="forest" value='261'></td>
+				      <td><input type="checkbox" name="forest" value='1005'></td>
+				      <td><input type="checkbox" name="forest" value='1012'></td>
+				      <td><input type="checkbox" name="forest" value='1019'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Kuolleet oksat</th>
-				      <td><input type="checkbox" name="forest" value='248'></td>
-				      <td><input type="checkbox" name="forest" value='255'></td>
-				      <td><input type="checkbox" name="forest" value='262'></td>
+				      <td><input type="checkbox" name="forest" value='1006'></td>
+				      <td><input type="checkbox" name="forest" value='1013'></td>
+				      <td><input type="checkbox" name="forest" value='1020'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Kuorellinen runkopuu</th>
-				      <td><input type="checkbox" name="forest" value='249'></td>
-				      <td><input type="checkbox" name="forest" value='256'></td>
-				      <td><input type="checkbox" name="forest" value='263'></td>
+				      <td><input type="checkbox" name="forest" value='1007'></td>
+				      <td><input type="checkbox" name="forest" value='1014'></td>
+				      <td><input type="checkbox" name="forest" value='1021'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Neulaset</th>
-				      <td><input type="checkbox" name="forest" value='250'></td>
+				      <td><input type="checkbox" name="forest" value='1008'></td>
 				      <td></td>
-				      <td><input type="checkbox" name="forest" value='264'></td>
+				      <td><input type="checkbox" name="forest" value='1022'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Lehvästö</th>
 				      <td></td>
-				      <td><input type="checkbox" name="forest" value='257'></td>
+				      <td><input type="checkbox" name="forest" value='1015'></td>
 				      <td></td>
 				    </tr>
 				  </tbody>
@@ -298,59 +298,59 @@
 				  <tbody>
 				    <tr>
 				      <th scope="row">Juurekset ja vihannekset</th>
-				      <td><input type="checkbox" name="field" value='285'></td>				      
+				      <td><input type="checkbox" name="field" value='1043'></td>				      
 				    </tr>
 				    <tr>
 				      <th scope="row">Kasvihuonekasvit</th>
-				      <td><input type="checkbox" name="field" value='286'></td>
+				      <td><input type="checkbox" name="field" value='1044'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Kesanto</th>
-				      <td><input type="checkbox" name="field" value='287'></td>
+				      <td><input type="checkbox" name="field" value='1045'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Kuitu- ja energiakasvit</th>
-				      <td><input type="checkbox" name="field" value='288'></td>
+				      <td><input type="checkbox" name="field" value='1046'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Maisema- ja metsäpellot</th>
-				      <td><input type="checkbox" name="field" value='289'></td>
+				      <td><input type="checkbox" name="field" value='1047'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Nurmi</th>
-				      <td><input type="checkbox" name="field" value='290'></td>
+				      <td><input type="checkbox" name="field" value='1048'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Peruna</th>
-				      <td><input type="checkbox" name="field" value='291'></td>
+				      <td><input type="checkbox" name="field" value='1049'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Siemenviljely</th>
-				      <td><input type="checkbox" name="field" value='292'></td>
+				      <td><input type="checkbox" name="field" value='1050'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Sokerijuurikas</th>
-				      <td><input type="checkbox" name="field" value='293'></td>
+				      <td><input type="checkbox" name="field" value='1051'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Suojavyöhyke- ja kaista</th>
-				      <td><input type="checkbox" name="field" value='294'></td>
+				      <td><input type="checkbox" name="field" value='1052'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Valkuaiskasvit</th>
-				      <td><input type="checkbox" name="field" value='295'></td>
+				      <td><input type="checkbox" name="field" value='1053'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Viljat</th>
-				      <td><input type="checkbox" name="field" value='296'></td>
+				      <td><input type="checkbox" name="field" value='1054'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Viljelemätön</th>
-				      <td><input type="checkbox" name="field" value='297'></td>
+				      <td><input type="checkbox" name="field" value='1055'></td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Öljykasvit</th>
-				      <td><input type="checkbox" name="field" value='298'></td>
+				      <td><input type="checkbox" name="field" value='1056'></td>
 				    </tr>
 				  </tbody>
 				</table>	  
@@ -358,7 +358,7 @@
 	      </div>
       </div>
       <button type="button" class="btn btn-primary btn-lg glyphicon glyphicon-triangle-right" id="bmaLayerSelectorBtn" > Biomassat</button>     	     
- </div> 	
+ </div> 	 
 
 <!-- ############# Javascript ################# -->
 
@@ -420,7 +420,8 @@ $(document).ready(function () {
        } else {
            sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
        }	    
-	});	 	
+	});
+	
 });
 
 $(document).bind('afterReady', function() {
@@ -436,7 +437,8 @@ $(document).bind('afterReady', function() {
 			});
 		 }
 	}();
-		 
+	
+	
 	(function (sb) {
 		var removeLayerModule = {
 			init: function (sb) {
