@@ -231,9 +231,13 @@
         </c:choose>
     </div>
     <div id="feedback">   	    
-    	<a href="${pageContext.request.contextPath}/biomass/feedback">Feedback</a>
+    	<a href="${pageContext.request.contextPath}/biomass/feedback">Palaute</a>
+    </div>
+    <div id="registerLeaflet">   	    
+    	<a href="${pageContext.request.contextPath}/download/registerLeaflet">Henkilörekisteriseloste</a>
     </div>
 </nav>
+
 <div id="contentMap" class="oskariui container-fluid">
     <div id="menutoolbar" class="container-fluid"></div>
     <div class="row-fluid oskariui-mode-content" style="height: 100%; background-color:white;">
