@@ -28,8 +28,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.10.2.js">
     </script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-   <!--  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+  
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style type="text/css">
@@ -114,24 +113,47 @@
             	z-index: 1000;
             	position: absolute;
             	bottom: 0;
-            	left: 50%;
-            	width: 600px;
-            	height: 500px;
+            	right: 250px;  /* 100 + 150 (#bmaLayerButton +  #bmaLayerSelectorBtn ) */
+            	height: 450px;
+            	width: 500px;
+            	display: none;
+            	background-color: #ffffff;
             }
-            #bmaLayerTabs {
-            	display:none;
-            	position: relative;
-            	background: #ffffff;
-            	height: 90%;
-            }
-            #bmaLayerSelectorBtn {
+            #bmaLayerButtonDiv {
+            	z-index: 1001;
             	position: absolute;
+            	float: right;
             	bottom: 0;
-            	top: 90%;
-            	left: 63%;
-            	width: 200px;
-            	height: 50px;          	
+            	right: 100px;
             }
+            /* Style for button */
+            #bmaLayerSelectorBtn {
+            	width: 150px;
+            	background: #017a24;
+				background-image: -webkit-linear-gradient(top, #017a24, #034710);
+				background-image: -moz-linear-gradient(top, #017a24, #034710);
+				background-image: -ms-linear-gradient(top, #017a24, #034710);
+				background-image: -o-linear-gradient(top, #017a24, #034710);
+				background-image: linear-gradient(to bottom, #017a24, #034710);
+				-webkit-border-radius:10;
+				-moz-border-radius: 10;
+				border-radius: 10px;
+				font-family: Arial;
+				color: #ffffff;
+				font-size: 20px;
+				padding: 10px 25px 10px 25px;
+				text-decoration: none;
+			}
+			#bmaLayerSelectorBtn:hover {
+				background: #034710;
+				background-image: -webkit-linear-gradient(top, #034710, #017a24);
+				background-image: -moz-linear-gradient(top, #034710, #017a24);
+				background-image: -ms-linear-gradient(top, #034710, #017a24);
+				background-image: -o-linear-gradient(top, #034710, #017a24);
+				background-image: linear-gradient(to bottom, #034710, #017a24);
+				text-decoration: none;
+			}
+           
             .tab-content {
 			    height: 90%; 
 			    border-left: 2px solid #ccc ;
@@ -140,7 +162,8 @@
 			    overflow-y: auto;
 			    padding-left: 20px;			    
 			}
-			#bmaLayerTabs > ul > li {
+			/* BMA tabs */
+			#bmaLayerContent > ul > li {
 				font-size: 18px;
 			}
 			.nav > li > a:hover,
@@ -222,15 +245,14 @@
             <div id="mapdivB"></div>
         </div>
     </div>
-</div>
-
-<div id="bmaLayerContent">
-	<div id="bmaLayerTabs">
-		<ul class="nav nav-pills red">	   
+    
+    <!-- BMA Layer Content div -->
+    <div id="bmaLayerContent">
+		<ul class="nav nav-pills">	   
 		    <li class="active" ><a data-toggle="tab" href="#forestLayer">Metsä</a></li>
 		    <li><a data-toggle="tab" href="#fieldLayer">Pelto</a></li>	    
 		 </ul>
-		 <div class="tab-content" >
+		 <div class="tab-content table-responsive" >
 	        <div id="forestLayer" class="tab-pane fade in active">
 	            <table class="table table-hover table-bordered" id="forestLayerTable">
 				  <thead class="thead-default">
@@ -292,7 +314,7 @@
 				    </tr>
 				  </tbody>
 				</table>	             
-	        </div>
+	        </div> <!-- forestLayer div ends -->
 	        <div id="fieldLayer" class="tab-pane fade">
 	           <table class="table table-hover table-bordered" id="fieldLayerTable">				  
 				  <tbody>
@@ -354,11 +376,16 @@
 				    </tr>
 				  </tbody>
 				</table>	  
-	        </div>
-	      </div>
-      </div>
-      <button type="button" class="btn btn-primary btn-lg glyphicon glyphicon-triangle-right" id="bmaLayerSelectorBtn" > Biomassat</button>     	     
- </div> 	 
+	        </div><!-- fieldLayer div ends -->
+	     </div> <!-- tab-content div ends -->
+    </div> <!-- BMA Layer Content div ends -->
+    
+ 	<div id="bmaLayerButtonDiv">   
+    	<button type="button" id="bmaLayerSelectorBtn" > Biomassat </button>     	     
+ 	</div> 
+ 	
+</div> <!-- ContentMap div ends -->
+
 
 <!-- ############# Javascript ################# -->
 
@@ -408,8 +435,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	$('#bmaLayerSelectorBtn').click(function () {
-		$(this).toggleClass('glyphicon-triangle-right glyphicon-triangle-top');
-		$('#bmaLayerTabs').toggle("slow", function() {});		
+		$('#bmaLayerContent').toggle("slow", function() {});		
 	});	
 		
 	$(document).on('change', '.tab-content input:checkbox', function() {
