@@ -381,6 +381,10 @@ Oskari.clazz.define('Oskari.mapframework.bundle.layerselector2.Flyout',
                     // skip published layers
                     continue;
                 }
+                if ("bma" in layer.getOptions()) {
+                	// skip biomass layers
+                	continue;
+                }
                 groupAttr = layer[groupingMethod]();
                 if (!group || group.getTitle() !== groupAttr) {
                     group = Oskari.clazz.create(
