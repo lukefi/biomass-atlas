@@ -3,7 +3,7 @@ Oskari.registerLocalization(
     "lang": "en",
     "key": "LayerSelector",
     "value": {
-        "title": "Map Layers",
+        "title": "Background maps",
         "desc": "",
         "errors": {
             "title": "Error!",

@@ -3,7 +3,7 @@ Oskari.registerLocalization(
     "lang": "fi",
     "key": "LayerSelector",
     "value": {
-        "title": "Karttatasot",
+        "title": "Taustakartat",
         "desc": "",
         "errors": {
             "title": "Virhe!",
