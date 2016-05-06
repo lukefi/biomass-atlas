@@ -242,7 +242,11 @@ function(instance, locale, conf) {
 					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
 							{id: 'Main'}, null, null, true, style, false));
 					
-					var finalResult = "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
+					var finalResult = "";
+					if (radiusType == me.SELECTION_ROAD) {
+						finalResult += "<div>" + radius + " " + localization.roadExtraInformation + "</div><br>"; 
+					}
+					finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 					for (var key in results.values) {
 						finalResult += "<tr><td>" + key + "</td><td>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
 					}
