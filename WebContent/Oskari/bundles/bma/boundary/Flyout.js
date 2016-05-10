@@ -199,6 +199,10 @@ function(instance, locale, conf) {
     	}
     	me._updateMessage(me, selectedValue);
     	me._addWmsLayer(sandbox);
+    	
+    	// Changes the title of flyout 
+    	/*me.container[0].offsetParent.firstElementChild.children[1].innerText = 
+    		me.instance.getLocalization()["flyout"].secondTitle;*/
     },
     
     _updateMessage : function(me, selectedBoundary) {

@@ -24,7 +24,7 @@ function(instance, locale, conf) {
 	this.container = null;
 	
 	this.template = null;
-	this.templateAreaMessage = jQuery('<div id="area-message">Valitse alue, jonka biomassa lasketaan<div class="icon-info" id="area-info-tool"></div></div>');
+	this.templateAreaMessage = jQuery('<div id="area-message"><span id="description"></span><div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
 	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
 	
@@ -52,7 +52,7 @@ function(instance, locale, conf) {
 		return this.instance.getLocalization()["flyout"]["title"];
 	},
 	getDescription : function() {
-
+		
 	},
 	getOptions : function() {
 
@@ -80,8 +80,9 @@ function(instance, locale, conf) {
         cancelTool.find('#area-cancel').unbind('click');
         cancelTool.find('#area-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
-        });        
-       
+        });
+        
+        areaMessage.find('#description').text(localization.chooseAreaType);
         areaMessage.find('#area-info-tool').unbind('click');
         areaMessage.find('#area-info-tool').bind('click', function(){        	
         	me._displayInfoTip();     	
