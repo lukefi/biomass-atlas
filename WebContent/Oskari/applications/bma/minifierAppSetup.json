@@ -109,6 +109,9 @@
                     },
                     "circle": {
                         "bundlePath": "../../packages/bma/bundle/"
+                    },
+                    "welcometour": {
+                        "bundlePath": "../../packages/bma/bundle/"
                     }
                 },
                 "Require-Bundle-Instance": []
@@ -613,6 +616,22 @@
 			"metadata": {
 				"Import-Bundle": {
 					"circle": {
+						"bundlePath": "../../packages/bma/bundle/"
+					}
+				},
+				"Require-Bundle-Instance": []
+			}	
+		}, {
+        	"instanceProps": {},
+			"title": "Welcome",
+			"fi": "Tervetuloa",
+			"sv": "Välkommen",
+			"en": "Welcome",
+			"bundlename": "welcometour",
+			"bundleinstancename": "welcometour",
+			"metadata": {
+				"Import-Bundle": {
+					"welcometour": {
 						"bundlePath": "../../packages/bma/bundle/"
 					}
 				},

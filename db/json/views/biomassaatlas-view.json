@@ -70,6 +70,7 @@
         { "id" : "testbundle" },
         { "id" : "boundary" },
         { "id" : "circle" },
+        { "id" : "welcometour" },
         { "id" : "mapwfs2" },
         { "id" : "myplacesimport",
         	"config" : {
