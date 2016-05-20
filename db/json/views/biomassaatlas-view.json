@@ -71,6 +71,7 @@
         { "id" : "boundary" },
         { "id" : "circle" },
         { "id" : "welcometour" },
+        { "id" : "biomassmenubar" },
         { "id" : "mapwfs2" },
         { "id" : "myplacesimport",
         	"config" : {

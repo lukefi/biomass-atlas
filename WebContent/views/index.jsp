@@ -113,21 +113,21 @@
             	z-index: 1000;
             	position: absolute;
             	bottom: 0;
-            	right: 250px;  /* 100 + 150 (#bmaLayerButton +  #bmaLayerSelectorBtn ) */
+            	right: 20px;
             	height: 450px;
             	width: 500px;
             	display: none;
             	background-color: #ffffff;
             }
-            #bmaLayerButtonDiv {
+            /* #bmaLayerButtonDiv {
             	z-index: 1001;
             	position: absolute;
             	float: right;
             	bottom: 0;
             	right: 100px;
-            }
+            } */
             /* Style for button */
-            #bmaLayerSelectorBtn {
+            /* #bmaLayerSelectorBtn {
             	width: 150px;
             	background: #017a24;
 				background-image: -webkit-linear-gradient(top, #017a24, #034710);
@@ -152,7 +152,7 @@
 				background-image: -o-linear-gradient(top, #034710, #017a24);
 				background-image: linear-gradient(to bottom, #034710, #017a24);
 				text-decoration: none;
-			}
+			} */
            
             .tab-content {
 			    height: 90%; 
@@ -384,9 +384,9 @@
 	     </div> <!-- tab-content div ends -->
     </div> <!-- BMA Layer Content div ends -->
     
- 	<div id="bmaLayerButtonDiv">   
+ 	<!-- <div id="bmaLayerButtonDiv">   
     	<button type="button" id="bmaLayerSelectorBtn" > Biomassat </button>     	     
- 	</div> 
+ 	</div>  -->
  	
 </div> <!-- ContentMap div ends -->
 
@@ -438,9 +438,9 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-	$('#bmaLayerSelectorBtn').click(function () {
+	/* $('#bmaLayerSelectorBtn').click(function () {
 		$('#bmaLayerContent').toggle("slow", function() {});		
-	});	
+	});	 */
 		
 	$(document).on('change', '.tab-content input:checkbox', function() {
 		var app = Oskari.app,
