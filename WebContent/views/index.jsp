@@ -113,7 +113,7 @@
             	z-index: 1000;
             	position: absolute;
             	bottom: 0;
-            	right: 20px;
+            	/* right: 20px; */
             	height: 450px;
             	width: 500px;
             	display: none;
@@ -186,7 +186,11 @@
         	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th  {
         		background-color: #ffffff; 
         	}
-        	
+        	#closeBmaLayerContent {
+        		position: absolute;
+        		top:10px;		
+        		right: 10px;
+        	}
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -254,8 +258,11 @@
     <div id="bmaLayerContent">
 		<ul class="nav nav-pills">	   
 		    <li class="active" ><a data-toggle="tab" href="#forestLayer">Metsä</a></li>
-		    <li><a data-toggle="tab" href="#fieldLayer">Pelto</a></li>	    
+		    <li><a data-toggle="tab" href="#fieldLayer">Pelto</a></li>
+		    <div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
+		      
 		 </ul>
+		 
 		 <div class="tab-content table-responsive" >
 	        <div id="forestLayer" class="tab-pane fade in active">
 	            <table class="table table-hover table-bordered" id="forestLayerTable">
@@ -450,6 +457,10 @@ $(document).ready(function () {
        } else {
            sandbox.postRequestByName('RemoveMapLayerRequest', [this.value]);
        }	    
+	});
+	
+	$('#closeBmaLayerContent').click(function () {
+		 $('#biomass_layer_selector').trigger('click');	 
 	});
 	
 });
