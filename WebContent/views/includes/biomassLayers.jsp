@@ -14,6 +14,21 @@
 			<li><a data-toggle="tab" href="#kokonaistuotantoLayer">Kokonaistuotanto</a></li>
 			<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs">Sivuvirtapotentiaali</a></li>
 		</ul>
+		<div class="tab-content">
+			<div id="maanpeiteLayer" class="tab-pane fade in active">
+			</div>
+			<div id="kokonaistuotantoLayer" class="tab-pane fade">
+			</div>
+			<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
+				<ul class="nav nav-pills">
+					<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
+					<li><a data-toggle="tab" href="#sivuvirtaBiojatteetLayer">Biojätteet</a></li>
+					<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
+					<li><a data-toggle="tab" href="#sivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
+					<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<div id="originTabs" class="tab-pane fade">
 		<ul class="nav nav-pills">
