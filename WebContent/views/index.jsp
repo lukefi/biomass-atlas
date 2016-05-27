@@ -332,7 +332,7 @@ $(document).bind('afterReady', function() {
 		 	selectedLayers = sandbox._modulesByName.LayerSelection.getPlugins()['Oskari.userinterface.Flyout']._sliders,
 		 	selectedLayersSize = _.size(selectedLayers);
 		for (var i = 0; i < selectedLayersSize ; i++){
-			$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+			$('#bmaLayerContent input[type=checkbox]').each(function () {
 				if (this.value == Object.keys(selectedLayers)[i]) 
 					this.checked = true;			   
 			});
@@ -370,7 +370,7 @@ $(document).bind('afterReady', function() {
 			if ((mapLayer.getLayerName().toLowerCase().indexOf("bma") >= 0) && 
 					(mapLayer.getLayerType().toLowerCase() == "wms")) {							
 				var attributeId = mapLayer.getId();
-		       	$('#forestLayerTable input[type=checkbox], #fieldLayerTable input[type=checkbox]').each(function () {
+		       	$('#bmaLayerContent input[type=checkbox]').each(function () {
 				   if (this.value == attributeId) 
 					   this.checked = state;			   
 				});	        
