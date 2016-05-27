@@ -7,6 +7,12 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
+	var createIcon = function() {
+		var icon = jQuery("<span/>");
+		icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
+		icon.attr("title", "Valitse kaikki");
+		return icon;
+	};
 	var addSelectRowFunctionality = function(table) {
 		table.find("tr").each(function() {
 			var row = jQuery(this);
@@ -14,9 +20,7 @@ $(document).ready(function () {
 				return;
 			}
 			var th = row.find("th").first();
-			var icon = jQuery("<span/>");
-			icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
-			icon.attr("title", "Valitse kaikki");
+			var icon = createIcon();
 			th.append(icon);
 			icon.click(function() {
 				if (row.find("input:not(:checked)").length == 0) {
@@ -28,7 +32,55 @@ $(document).ready(function () {
 			});
 		});
 	};
+	var addSelectColumnFunctionality = function(table) {
+		table.find("tr").each(function() {
+			var row = jQuery(this);
+			var colIndex = 0;
+			row.find("th,td").each(function() {
+				var cell = jQuery(this);
+				var span = cell.attr("colspan");
+				if (!span) {
+					span = 1;
+				}
+				for (var i = 0; i < span; i++) {
+					cell.addClass("colIndex" + colIndex++);
+				}
+			});
+		});
+		table.find("tr").first().find("th").each(function() {
+			var th = jQuery(this);
+			var classes = th.prop("class").split(" ");
+			var colIndexes = [];
+			for (var i = 0; i < classes.length; i++) {
+				var clazz = classes[i];
+				if (clazz.startsWith("colIndex")) {
+					colIndexes.push(clazz);
+				}
+			}
+			var hasBox = false;
+			for (var i = 0; i < colIndexes.length; i++) {
+				if (table.find("." + colIndexes[i] + " input[type='checkbox']").length > 0) {
+					hasBox = true;
+					break;
+				}
+			}
+			if (hasBox) {
+				var icon = createIcon();
+				th.append(icon);
+				icon.click(function() {
+					var cells = table.find("." + colIndexes[i]);
+					if (cells.find("input:not(:checked)").length == 0) {
+						cells.find("input[type='checkbox']").prop("checked", false);
+					}
+					else {
+						cells.find("input[type='checkbox']").prop("checked", true);
+					}
+				});
+			}
+		});
+	};
 	addSelectRowFunctionality(jQuery("#forestLayerTable"));
+	addSelectColumnFunctionality(jQuery("#forestLayerTable"));
 });
 </script>
 
