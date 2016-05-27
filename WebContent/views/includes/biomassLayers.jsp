@@ -13,6 +13,14 @@ $(document).ready(function () {
 		icon.attr("title", "Valitse kaikki");
 		return icon;
 	};
+	var toggleBoxes = function(boxes) {
+		if (boxes.filter(":not(:checked)").length == 0) {
+			boxes.filter(":checked").click();
+		}
+		else {
+			boxes.filter(":not(:checked)").click();
+		}
+	};
 	var addSelectRowFunctionality = function(table) {
 		table.find("tr").each(function() {
 			var row = jQuery(this);
@@ -23,12 +31,7 @@ $(document).ready(function () {
 			var icon = createIcon();
 			th.append(icon);
 			icon.click(function() {
-				if (row.find("input:not(:checked)").length == 0) {
-					row.find("input[type='checkbox']").prop("checked", false);
-				}
-				else {
-					row.find("input[type='checkbox']").prop("checked", true);
-				}
+				toggleBoxes(row.find("input[type='checkbox']"));
 			});
 		});
 	};
@@ -68,13 +71,7 @@ $(document).ready(function () {
 				var icon = createIcon();
 				th.append(icon);
 				icon.click(function() {
-					var cells = table.find("." + colIndexes[i]);
-					if (cells.find("input:not(:checked)").length == 0) {
-						cells.find("input[type='checkbox']").prop("checked", false);
-					}
-					else {
-						cells.find("input[type='checkbox']").prop("checked", true);
-					}
+					toggleBoxes(table.find("." + colIndexes[i] + " input[type='checkbox']"));
 				});
 			}
 		});
