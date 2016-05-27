@@ -1,3 +1,37 @@
+<style type="text/css">
+	.selectAllIcon {
+		margin-left: 10px;
+		cursor: pointer;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	var addSelectRowFunctionality = function(table) {
+		table.find("tr").each(function() {
+			var row = jQuery(this);
+			if (row.find("input[type='checkbox']").length == 0) {
+				return;
+			}
+			var th = row.find("th").first();
+			var icon = jQuery("<span/>");
+			icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
+			icon.attr("title", "Valitse kaikki");
+			th.append(icon);
+			icon.click(function() {
+				if (row.find("input:not(:checked)").length == 0) {
+					row.find("input[type='checkbox']").prop("checked", false);
+				}
+				else {
+					row.find("input[type='checkbox']").prop("checked", true);
+				}
+			});
+		});
+	};
+	addSelectRowFunctionality(jQuery("#forestLayerTable"));
+});
+</script>
+
 <div id="bmaLayerContent">
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaalin
