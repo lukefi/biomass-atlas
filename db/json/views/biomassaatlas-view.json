@@ -58,6 +58,7 @@
         { "id" : "search" },
         { "id" : "metadatacatalogue" },
         { "id" : "layerselector2" },
+        { "id" : "biomassmenubar" },
         { "id" : "layerselection2" },
         { "id" : "coordinatedisplay" },
         { "id" : "metadataflyout" },
@@ -71,7 +72,6 @@
         { "id" : "boundary" },
         { "id" : "circle" },
         { "id" : "welcometour" },
-        { "id" : "biomassmenubar" },
         { "id" : "mapwfs2" },
         { "id" : "myplacesimport",
         	"config" : {
