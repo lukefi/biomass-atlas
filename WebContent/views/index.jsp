@@ -160,7 +160,6 @@
 			    border-right: 2px solid #ccc ;
 			    border-top: 2px solid #ccc ;
 			    overflow-y: auto;
-			    padding-left: 20px;			    
 			}
 			/* BMA tabs */
 			#bmaLayerContent > ul > li {

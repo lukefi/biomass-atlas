@@ -7,8 +7,13 @@
 			id="closeBmaLayerContent"></div>
 
 	</ul>
+	<div class="tab-content">
 	<div id="potentialTabs" class="tab-pane fade in active">
-	
+		<ul class="nav nav-pills">
+			<li class="active"><a data-toggle="tab" href="#maanpeiteLayer">Maanpeite</a></li>
+			<li><a data-toggle="tab" href="#kokonaistuotantoLayer">Kokonaistuotanto</a></li>
+			<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs">Sivuvirtapotentiaali</a></li>
+		</ul>
 	</div>
 	<div id="originTabs" class="tab-pane fade">
 		<ul class="nav nav-pills">
@@ -147,4 +152,5 @@
 		</div>
 	</div>
 	<!-- tab-content div ends -->
+	</div>
 </div>
