@@ -182,7 +182,8 @@
 	        	color: #ffffff;
 	        	text-align: center;
         	}
-        	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th, #elainJaKasvijätteetLayerTable tbody tr th  {
+        	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th, #elainJaKasvijätteetLayerTable tbody tr th,
+        	#lietteetLayerTable tbody tr th  {
         		background-color: #ffffff; 
         	}
         	#closeBmaLayerContent {
