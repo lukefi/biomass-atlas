@@ -174,8 +174,9 @@
 				margin-top: 20px; 			
 				width: 90%;
 			}			
-			#forestLayerTable td, #fieldLayerTable td {
+			#forestLayerTable td, #fieldLayerTable td, #sivuvirtaMetsahakeLayerTable td {
 				text-align: center;
+				font-weight: bold;
 			}			
         	#forestLayerTable thead tr th {
 	        	background-color: #004c99;
@@ -189,6 +190,12 @@
         		position: absolute;
         		top:10px;		
         		right: 10px;
+        	}
+        	.styled-heading {
+        		background-color: #004c99;
+	        	color: #ffffff;
+	        	text-align: center;
+	        	font-weight: bold; 
         	}
     </style>
     <!-- ############# /css ################# -->

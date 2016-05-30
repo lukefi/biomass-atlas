@@ -113,9 +113,11 @@ $(document).ready(function () {
 						<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
 					</ul>
 					<div class="tab-content">
+						<jsp:include page="includes/forestPotentialLayers.jsp"></jsp:include>
+					
 						<div id="sivuvirtaYritystenBiojatteetLayerTabs" class="tab-pane fade">
 							<ul class="nav nav-pills">
-								<li class="active"><a data-toggle="tab" href="#elainJaKasvijätteetLayer">Elain- ja kasvijätteet t/v 2014</a></li>
+								<li class="active"><a data-toggle="tab" href="#elainJaKasvijätteetLayer">Eläin- ja kasvijätteet t/v 2014</a></li>
 								<li><a data-toggle="tab" href="#lietteetLayer">Lietteet t/v 2015</a></li>
 								<li><a data-toggle="tab" href="#paperijätteetLayer">Paperi- ja pahvijätteet t/v 2015</a></li>
 								<li><a data-toggle="tab" href="#puujätteetLayer">Puujätteet t/v 2015</a></li>
