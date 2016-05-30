@@ -114,8 +114,8 @@
             	position: absolute;
             	bottom: 0;
             	/* right: 20px; */
-            	height: 450px;
-            	width: 500px;
+            	height: 650px;
+            	width: 700px;
             	display: none;
             	background-color: #ffffff;
             }
@@ -182,7 +182,7 @@
 	        	color: #ffffff;
 	        	text-align: center;
         	}
-        	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th  {
+        	#forestLayerTable tbody tr th, #fieldLayerTable tbody tr th, #elainJaKasvijätteetLayerTable tbody tr th  {
         		background-color: #ffffff; 
         	}
         	#closeBmaLayerContent {
