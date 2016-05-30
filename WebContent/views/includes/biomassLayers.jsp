@@ -115,6 +115,9 @@ $(document).ready(function () {
 					<div class="tab-content">
 						<jsp:include page="includes/forestPotentialLayers.jsp"></jsp:include>
 					
+						<div id="sivuvirtaYhdyskuntienBiojatteetLayer" class="tab-pane fade">
+						</div>
+						
 						<div id="sivuvirtaYritystenBiojatteetLayerTabs" class="tab-pane fade">
 							<ul class="nav nav-pills">
 								<li class="active"><a data-toggle="tab" href="#elainJaKasvijätteetLayer">Eläin- ja kasvijätteet t/v 2014</a></li>
@@ -406,9 +409,18 @@ $(document).ready(function () {
 										</tbody>
 									</table>
 								</div>	<!-- yhdyskuntienSekalainenBiohajoavaLayer tab-pane ends -->
-								
 							</div>	<!-- sivuvirtaYritystenBiojatteetLayerTabs tab-content ends -->
 						</div> 	<!-- sivuvirtaYritystenBiojatteetLayerTabs tab-pane ends -->
+						
+						<div id="sivuvirtaBiojatteetLayer" class="tab-pane fade">
+						</div>
+						<div id="sivuvirtaPeltokasvitLayer" class="tab-pane fade">
+						</div>
+						<div id="sivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
+						</div>
+						<div id="sivuvirtaLantaVarastoLayer" class="tab-pane fade">
+						</div>
+						
 					</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
 				</div>	<!-- sivuvirtapotentiaaliTabs tab-pane ends  -->
 			</div>	<!-- potentialTabs tab-content ends -->
