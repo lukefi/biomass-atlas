@@ -134,217 +134,11 @@ $(document).ready(function () {
 							</ul>
 							<div class="tab-content table-responsive">
 								<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
-									<table class="table table-hover table-bordered" id="elainJaKasvijätteetLayerTable">
-										<tbody>
-											<tr>
-												<th scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät pesu- ja puhdistuslietteet</th>
-												<td><input type="checkbox" name="waste" value='1057'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät eläinkudosjätteet</th>
-												<td><input type="checkbox" name="waste" value='1058'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät kasvijätteet</th>
-												<td><input type="checkbox" name="waste" value='1059'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Eläinten ulosteet, virtsa ja lanta (likaantunut olki mukaan luettuna) sekä erikseen kootut ja muualla käsiteltävät nestemäiset jätteet</th>
-												<td><input type="checkbox" name="waste" value='1060'></td>
-											</tr>
-											<tr>
-												<th scope="row">Metsätalouden jätteet</th>
-												<td><input type="checkbox" name="waste" value='1061'></td>
-											</tr>
-											<tr>
-												<th scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät jätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1062'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläinperäisten elintarvikkeiden valmistuksessa ja jalostuksessa syntyvät jätteet pesu- ja puhdistuslietteet</th>
-												<td><input type="checkbox" name="waste" value='1063'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläinperäisten elintarvikkeiden valmistuksessa ja jalostuksessa syntyvät jätteet eläinkudosjätteet</th>
-												<td><input type="checkbox" name="waste" value='1064'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläinperäisten elintarvikkeiden valmistuksessa ja jalostuksessa syntyvät jätteet kulutukseen tai jalostukseen soveltumattomat aineet</th>
-												<td><input type="checkbox" name="waste" value='1065'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläinperäisten elintarvikkeiden valmistuksessa ja jalostuksessa syntyvät jätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1066'></td>
-											</tr>
-											<tr>
-												<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksessa ja jalostuksessa, säilykkeiden valmistuksessa, hiivan ja hiivauutteen valmistuksessa sekä melassin valmistuksessa ja käymisessä syntyvät jätteet pesu-, puhdistus-, kuorinta-, sentrifugointi- ja erotuslietteet</th>
-												<td><input type="checkbox" name="waste" value='1067'></td>
-											</tr>
-											<tr>
-												<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksessa ja jalostuksessa, säilykkeiden valmistuksessa, hiivan ja hiivauutteen valmistuksessa sekä melassin valmistuksessa ja käymisessä syntyvät jätteet liuotinuuton jätteet</th>
-												<td><input type="checkbox" name="waste" value='1068'></td>
-											</tr>
-											<tr>
-												<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksessa ja jalostuksessa, säilykkeiden valmistuksessa, hiivan ja hiivauutteen valmistuksessa sekä melassin valmistuksessa ja käymisessä syntyvät jätteet kulutukseen tai jalostukseen soveltumattomat aineet</th>
-												<td><input type="checkbox" name="waste" value='1069'></td>
-											</tr>
-											<tr>
-												<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksessa ja jalostuksessa, säilykkeiden valmistuksessa, hiivan ja hiivauutteen valmistuksessa sekä melassin valmistuksessa ja käymisessä syntyvät jätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1070'></td>
-											</tr>
-											<tr>
-												<th scope="row">Sokerin jalostuksessa syntyvät jätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1071'></td>
-											</tr>
-											<tr>
-												<th scope="row">Maidonjalostusteollisuudessa syntyvät jätteet kulutukseen tai jalostukseen soveltumattomat aineet</th>
-												<td><input type="checkbox" name="waste" value='1072'></td>
-											</tr>
-											<tr>
-												<th scope="row">Maidonjalostusteollisuudessa syntyvät jätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1073'></td>
-											</tr>
-											<tr>
-												<th scope="row">Leipomo-, konditoria- ja makeisteollisuudessa syntyvät jätteet kulutukseen tai jalostukseen soveltumattomat aineet</th>
-												<td><input type="checkbox" name="waste" value='1074'></td>
-											</tr>
-											<tr>
-												<th scope="row">Leipomo-, konditoria- ja makeisteollisuudessa syntyvät jätteet säilöntäainejätteet</th>
-												<td><input type="checkbox" name="waste" value='1075'></td>
-											</tr>
-											<tr>
-												<th scope="row">Alkoholijuomien ja alkoholittomien juomien valmistuksessa (ei kahvi, tee tai kaakao) raaka-aineiden pesussa ja puhdistuksessa sekä mekaanisessa käsittelyssä syntyvät jätteet</th>
-												<td><input type="checkbox" name="waste" value='1076'></td>
-											</tr>
-											<tr>
-												<th scope="row">Alkoholijuomien juomien valmistuksessa syntyvät tislausjätteet</th>
-												<td><input type="checkbox" name="waste" value='1077'></td>
-											</tr>
-											<tr>
-												<th scope="row">Alkoholijuomien ja alkoholittomien juomien valmistuksessa syntyvät (ei kahvi, tee ja kaakao) kulutukseen tai jalostukseen soveltumattomat aineet</th>
-												<td><input type="checkbox" name="waste" value='1078'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntien biohajoavat keittiö- ja ruokalajätteet</th>
-												<td><input type="checkbox" name="waste" value='1079'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntien ruokaöljyt ja ravintorasvat</th>
-												<td><input type="checkbox" name="waste" value='1080'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntien biohajoavat puutarha- ja puistojätteet (myös hautausmaan hoito)</th>
-												<td><input type="checkbox" name="waste" value='1081'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntien torikaupassa syntyvät jätteet</th>
-												<td><input type="checkbox" name="waste" value='1082'></td>
-											</tr>
-										</tbody>
-									</table>
+									<jsp:include page="includes/animalAndPlantWasteLayers.jsp"></jsp:include>
 								</div> <!-- elainJaKasvijätteetLayer div ends -->
 							
 								<div id="lietteetLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered" id="lietteetLayerTable">
-										<tbody>
-											<tr>
-												<th scope="row">Eläinperäisten elintarvikkeiden valmistuksen ja jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1083'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksen ja jalostuksen, säilykkeiden valmistuksen,hiivan ja hiivauutteen valmistuksen sekä melassin valmistuksen ja käymisen jätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1084'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Sokerin jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1085'></td>	
-											</tr>
-											<tr>
-												<th scope="row">Maidonjalostusteollisuuden jätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1086'></td>
-											</tr>
-											<tr>
-												<th scope="row">Leipomo-, konditoria- ja makeisteollisuuden jätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1087'></td>
-											</tr>
-											<tr>
-												<th scope="row">Alkoholijuomien ja alkoholittomien juomien (ei kahvi, tee tai kaakao) valmistuksen jätevesien käsittelyssä toimipaikalla syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1088'></td>
-											</tr>
-											<tr>
-												<th scope="row">Keräyspaperin siistauslietteet</th>
-												<td><input type="checkbox" name="waste" value='1089'></td>
-											</tr>
-											<tr>
-												<th scope="row">Massojen, paperin ja kartongin valmistuksen jätevesien käsittelyssä syntyvät lietteet, ei kuitenkaan mekaanisessa erotuksessa syntyvät kuitujätteet sekä kuitu-, täyteaine- ja päällystysainelietteet</th>
-												<td><input type="checkbox" name="waste" value='1090'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä neste</th>
-												<td><input type="checkbox" name="waste" value='1091'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä liete</th>
-												<td><input type="checkbox" name="waste" value='1092'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä neste</th>
-												<td><input type="checkbox" name="waste" value='1093'></td>
-											</tr>
-											<tr>
-												<th scope="row">Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä liete</th>
-												<td><input type="checkbox" name="waste" value='1094'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1095'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyn ei stabiloitu liete</th>
-												<td><input type="checkbox" name="waste" value='1096'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyn lahotettu liete</th>
-												<td><input type="checkbox" name="waste" value='1097'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyn mädätetty liete</th>
-												<td><input type="checkbox" name="waste" value='1098'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyn kalkkistabiloitu liete</th>
-												<td><input type="checkbox" name="waste" value='1099'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyn termisesti käsitelty liete</th>
-												<td><input type="checkbox" name="waste" value='1100'></td>
-											</tr>
-											<tr>
-												<th scope="row">Asumisjätevesien käsittelyssä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1101'></td>
-											</tr>
-											<tr>
-												<th scope="row">Kompostoitu asumisjätevesien käsittelyssä muodostunut liete</th>
-												<td><input type="checkbox" name="waste" value='1102'></td>
-											</tr>
-											<tr>
-												<th scope="row">Teollisuuden jätevesien biologisessa käsittelyssä syntyvät lietteet, jotka eivät sisällä vaarallisia aineita</th>
-												<td><input type="checkbox" name="waste" value='1103'></td>
-											</tr>
-											<tr>
-												<th scope="row">Ihmisten käyttöön tai teollisuuskäyttöön tarkoitetun veden valmistuksen selkeytyksessä syntyvät lietteet</th>
-												<td><input type="checkbox" name="waste" value='1104'></td>
-											</tr>
-											<tr>
-												<th scope="row">Sakokaivolietteet</th>
-												<td><input type="checkbox" name="waste" value='1105'></td>
-											</tr>
-											<tr>
-												<th scope="row">Viemäreiden puhdistuksessa syntyvät jätteet</th>
-												<td><input type="checkbox" name="waste" value='1106'></td>
-											</tr>
-										</tbody>
-									</table>
+									<jsp:include page="includes/lietteetLayers.jsp"></jsp:include>
 								</div> <!-- lietteetLayer div ends -->
 								
 								<div id="paperijätteetLayer" class="tab-pane fade">
@@ -367,38 +161,7 @@ $(document).ready(function () {
 								</div> <!-- paperijätteetLayer tab-pane ends -->
 								
 								<div id="puujätteetLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered" id="puujätteetLayerTable">
-										<tbody>
-											<tr>
-												<th scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät kuori- ja korkkijätteet</th>
-												<td><input type="checkbox" name="waste" value='1110'></td>
-											</tr>
-											<tr>
-												<th scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät sahajauho, lastut, palaset, puu ja puupohjaiset levyt (kuten lastulevy ja vaneri), jotka eivät sisällä vaarallisia aineita</th>
-												<td><input type="checkbox" name="waste" value='1111'></td>
-											</tr>
-											<tr>
-												<th scope="row">Massojen, paperin ja kartongin valmistuksessa ja jalostuksessa syntyvät kuori- ja puujätteet</th>
-												<td><input type="checkbox" name="waste" value='1112'></td>
-											</tr>
-											<tr>
-												<th scope="row">Puupakkaukset</th>
-												<td><input type="checkbox" name="waste" value='1113'></td>
-											</tr>
-											<tr>
-												<th scope="row">Rakentamisessa ja purkamisessa syntyvä puujäte</th>
-												<td><input type="checkbox" name="waste" value='1114'></td>
-											</tr>
-											<tr>
-												<th scope="row">Jätteiden mekaanisessa käsittelyssä syntyvä puujäte, joka ei sisällä vaarallisia aineita</th>
-												<td><input type="checkbox" name="waste" value='1115'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntajätteen puujäte, joka ei sisällä vaarallisia aineita</th>
-												<td><input type="checkbox" name="waste" value='1116'></td>
-											</tr>
-										</tbody>
-									</table>
+									<jsp:include page="includes/woodWasteLayers.jsp"></jsp:include>
 								</div>	<!-- puujätteetLayer tab-pane ends -->
 								
 								<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
@@ -448,67 +211,7 @@ $(document).ready(function () {
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="kokonaisvarantoLayer" class="tab-pane fade in active">
-							<table class="table table-hover table-bordered"
-								id="kokonaisvarantoLayerTable">
-								<thead class="thead-default">
-									<tr>
-										<th></th>
-										<th>Kuusi</th>
-										<th>Lehtipuut</th>
-										<th>Mänty</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">Elävät oksat</th>
-										<td><input type="checkbox" name="forest" value='1002'></td>
-										<td><input type="checkbox" name="forest" value='1009'></td>
-										<td><input type="checkbox" name="forest" value='1016'></td>
-									</tr>
-									<tr>
-										<th scope="row">Hukkapuuosa</th>
-										<td><input type="checkbox" name="forest" value='1003'></td>
-										<td><input type="checkbox" name="forest" value='1010'></td>
-										<td><input type="checkbox" name="forest" value='1017'></td>
-									</tr>
-									<tr>
-										<th scope="row">Juuret, d > 1 cm</th>
-										<td><input type="checkbox" name="forest" value='1004'></td>
-										<td><input type="checkbox" name="forest" value='1011'></td>
-										<td><input type="checkbox" name="forest" value='1018'></td>
-									</tr>
-									<tr>
-										<th scope="row">Kanto</th>
-										<td><input type="checkbox" name="forest" value='1005'></td>
-										<td><input type="checkbox" name="forest" value='1012'></td>
-										<td><input type="checkbox" name="forest" value='1019'></td>
-									</tr>
-									<tr>
-										<th scope="row">Kuolleet oksat</th>
-										<td><input type="checkbox" name="forest" value='1006'></td>
-										<td><input type="checkbox" name="forest" value='1013'></td>
-										<td><input type="checkbox" name="forest" value='1020'></td>
-									</tr>
-									<tr>
-										<th scope="row">Kuorellinen runkopuu</th>
-										<td><input type="checkbox" name="forest" value='1007'></td>
-										<td><input type="checkbox" name="forest" value='1014'></td>
-										<td><input type="checkbox" name="forest" value='1021'></td>
-									</tr>
-									<tr>
-										<th scope="row">Neulaset</th>
-										<td><input type="checkbox" name="forest" value='1008'></td>
-										<td></td>
-										<td><input type="checkbox" name="forest" value='1022'></td>
-									</tr>
-									<tr>
-										<th scope="row">Lehvästö</th>
-										<td></td>
-										<td><input type="checkbox" name="forest" value='1015'></td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
+							<jsp:include page="includes/totalStorageForestLayers.jsp"></jsp:include>
 						</div>	<!-- kokonaisvarantoLayer div ends -->
 						
 						<div id="metsähakepotentiaaliLayer" class="tab-pane fade">
@@ -527,67 +230,8 @@ $(document).ready(function () {
 						<li><a data-toggle="tab" href="#biomassatLayer">Biomassat</a></li>
 					</ul>
 					<div id="maankäyttöLayer" class="tab-pane fade in active">
-						<table class="table table-hover table-bordered" id="maankäyttöLayerTable">
-							<tbody>
-								<tr>
-									<th scope="row">Juurekset ja vihannekset</th>
-									<td><input type="checkbox" name="field" value='1043'></td>
-								</tr>
-								<tr>
-									<th scope="row">Kasvihuonekasvit</th>
-									<td><input type="checkbox" name="field" value='1044'></td>
-								</tr>
-								<tr>
-									<th scope="row">Kesanto</th>
-									<td><input type="checkbox" name="field" value='1045'></td>
-								</tr>
-								<tr>
-									<th scope="row">Kuitu- ja energiakasvit</th>
-									<td><input type="checkbox" name="field" value='1046'></td>
-								</tr>
-								<tr>
-									<th scope="row">Maisema- ja metsäpellot</th>
-									<td><input type="checkbox" name="field" value='1047'></td>
-								</tr>
-								<tr>
-									<th scope="row">Nurmi</th>
-									<td><input type="checkbox" name="field" value='1048'></td>
-								</tr>
-								<tr>
-									<th scope="row">Peruna</th>
-									<td><input type="checkbox" name="field" value='1049'></td>
-								</tr>
-								<tr>
-									<th scope="row">Siemenviljely</th>
-									<td><input type="checkbox" name="field" value='1050'></td>
-								</tr>
-								<tr>
-									<th scope="row">Sokerijuurikas</th>
-									<td><input type="checkbox" name="field" value='1051'></td>
-								</tr>
-								<tr>
-									<th scope="row">Suojavyöhyke- ja kaista</th>
-									<td><input type="checkbox" name="field" value='1052'></td>
-								</tr>
-								<tr>
-									<th scope="row">Valkuaiskasvit</th>
-									<td><input type="checkbox" name="field" value='1053'></td>
-								</tr>
-								<tr>
-									<th scope="row">Viljat</th>
-									<td><input type="checkbox" name="field" value='1054'></td>
-								</tr>
-								<tr>
-									<th scope="row">Viljelemätön</th>
-									<td><input type="checkbox" name="field" value='1055'></td>
-								</tr>
-								<tr>
-									<th scope="row">Öljykasvit</th>
-									<td><input type="checkbox" name="field" value='1056'></td>
-								</tr>
-							</tbody>
-						</table>
-					</div><!-- maankäyttöLayer div ends -->
+						<jsp:include page="includes/landUseFieldLayers.jsp"></jsp:include>
+					</div>
 					
 					<div id="biomassatLayer" class="tab-pane fade">
 					</div>
@@ -605,7 +249,8 @@ $(document).ready(function () {
 					</div>
 					<div id="companyWasteLayer" class="tab-pane fade">
 					</div>
-				</div>
+				</div><!-- companiesTabs tab-pane ends -->
+				
 			</div>	<!-- originTab tab-content ends -->
 		</div>	<!-- originTab tab-pane ends -->
 	</div> <!-- bmaLayerContent tab-content ends -->
