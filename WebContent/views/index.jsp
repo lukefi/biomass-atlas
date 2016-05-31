@@ -170,15 +170,15 @@
 			    text-decoration: none;
 			    background-color: #e0e0d1;
 			}
-			#forestLayerTable, #fieldLayerTable {
+			#kokonaisvarantoLayerTable, #maankäyttöLayerTable {
 				margin-top: 20px; 			
 				width: 90%;
 			}			
-			#forestLayerTable td, #fieldLayerTable td, #sivuvirtaMetsahakeLayerTable td {
+			#kokonaisvarantoLayerTable td, #maankäyttöLayerTable td, #sivuvirtaMetsahakeLayerTable td {
 				text-align: center;
 				font-weight: bold;
 			}			
-        	#forestLayerTable thead tr th {
+        	#kokonaisvarantoLayerTable thead tr th {
 	        	background-color: #004c99;
 	        	color: #ffffff;
 	        	text-align: center;
