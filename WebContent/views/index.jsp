@@ -119,40 +119,6 @@
             	display: none;
             	background-color: #ffffff;
             }
-            /* #bmaLayerButtonDiv {
-            	z-index: 1001;
-            	position: absolute;
-            	float: right;
-            	bottom: 0;
-            	right: 100px;
-            } */
-            /* Style for button */
-            /* #bmaLayerSelectorBtn {
-            	width: 150px;
-            	background: #017a24;
-				background-image: -webkit-linear-gradient(top, #017a24, #034710);
-				background-image: -moz-linear-gradient(top, #017a24, #034710);
-				background-image: -ms-linear-gradient(top, #017a24, #034710);
-				background-image: -o-linear-gradient(top, #017a24, #034710);
-				background-image: linear-gradient(to bottom, #017a24, #034710);
-				-webkit-border-radius:10;
-				-moz-border-radius: 10;
-				border-radius: 10px;
-				font-family: Arial;
-				color: #ffffff;
-				font-size: 20px;
-				padding: 10px 25px 10px 25px;
-				text-decoration: none;
-			}
-			#bmaLayerSelectorBtn:hover {
-				background: #034710;
-				background-image: -webkit-linear-gradient(top, #034710, #017a24);
-				background-image: -moz-linear-gradient(top, #034710, #017a24);
-				background-image: -ms-linear-gradient(top, #034710, #017a24);
-				background-image: -o-linear-gradient(top, #034710, #017a24);
-				background-image: linear-gradient(to bottom, #034710, #017a24);
-				text-decoration: none;
-			} */
            
             .tab-content {
 			    height: 90%; 
@@ -162,9 +128,6 @@
 			    overflow-y: auto;
 			}
 			/* BMA tabs */
-			#bmaLayerContent > ul > li {
-				font-size: 18px;
-			}
 			.nav > li > a:hover,
 			.nav > li > a:focus {
 			    text-decoration: none;

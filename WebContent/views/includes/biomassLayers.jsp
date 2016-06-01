@@ -4,6 +4,19 @@
 		cursor: pointer;
 		float: right;
 	}
+	
+	#bmaLayerContent .nav-pills {
+		font-size: 18px;
+	}
+	#bmaLayerContent .tab-content .nav-pills {
+		font-size: 16px;
+	}
+	#bmaLayerContent .tab-content .tab-content .nav-pills {
+		font-size: 14px;
+	}
+	#bmaLayerContent .tab-content .tab-content .tab-content .nav-pills {
+		font-size: 12px;
+	}
 </style>
 
 <script type="text/javascript">
