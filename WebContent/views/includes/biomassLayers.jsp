@@ -8,14 +8,20 @@
 	#bmaLayerContent .nav-pills {
 		font-size: 18px;
 	}
-	#bmaLayerContent .tab-content .nav-pills {
+	#bmaLayerContent .tab-content .nav-pills a {
 		font-size: 16px;
+		padding-left: 12px;
+		padding-right: 12px;
 	}
-	#bmaLayerContent .tab-content .tab-content .nav-pills {
+	#bmaLayerContent .tab-content .tab-content .nav-pills a {
 		font-size: 14px;
+		padding-left: 9px;
+		padding-right: 9px;
 	}
-	#bmaLayerContent .tab-content .tab-content .tab-content .nav-pills {
+	#bmaLayerContent .tab-content .tab-content .tab-content .nav-pills a {
 		font-size: 12px;
+		padding-left: 7px;
+		padding-right: 7px;
 	}
 </style>
 
