@@ -2,6 +2,7 @@
 	.selectAllIcon {
 		margin-left: 10px;
 		cursor: pointer;
+		float: right;
 	}
 </style>
 
