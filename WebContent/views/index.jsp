@@ -133,10 +133,6 @@
 			    text-decoration: none;
 			    background-color: #e0e0d1;
 			}
-			#kokonaisvarantoLayerTable, #maankäyttöLayerTable {
-				margin-top: 20px; 			
-				width: 90%;
-			}			
 			#kokonaisvarantoLayerTable td, #maankäyttöLayerTable td, #sivuvirtaMetsahakeLayerTable td {
 				text-align: center;
 				font-weight: bold;

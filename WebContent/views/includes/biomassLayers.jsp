@@ -41,8 +41,8 @@ $(document).ready(function () {
 			boxes.filter(":not(:checked)").click();
 		}
 	};
-	var addSelectRowFunctionality = function(table) {
-		table.find("tr").each(function() {
+	var addSelectRowFunctionality = function(rows) {
+		rows.each(function() {
 			var row = jQuery(this);
 			if (row.find("input[type='checkbox']").length == 0) {
 				return;
@@ -96,8 +96,10 @@ $(document).ready(function () {
 			}
 		});
 	};
-	addSelectRowFunctionality(jQuery("#kokonaisvarantoLayerTable"));
-	addSelectColumnFunctionality(jQuery("#kokonaisvarantoLayerTable"));
+	addSelectRowFunctionality(jQuery("#bmaLayerContent tr.select-row"));
+	jQuery("#bmaLayerContent table.select-column").each(function() {
+		addSelectColumnFunctionality(jQuery(this));
+	});
 });
 </script>
 
