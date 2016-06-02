@@ -70,8 +70,12 @@ $(document).ready(function () {
 				}
 			});
 		});
-		table.find("tr").first().find("th").each(function() {
+		table.find("tr").find("th").each(function() {
 			var th = jQuery(this);
+			var span = th.attr("colspan");
+			if (!span) {
+				span = 1;
+			}
 			var classes = th.prop("class").split(" ");
 			var colIndexes = [];
 			for (var i = 0; i < classes.length; i++) {
@@ -91,7 +95,11 @@ $(document).ready(function () {
 				var icon = createIcon();
 				th.append(icon);
 				icon.click(function() {
-					toggleBoxes(table.find("." + colIndexes[i] + " input[type='checkbox']"));
+					var boxes = jQuery([]);
+					for (var j = 0; j < colIndexes.length; j++) {
+						boxes = boxes.add(table.find("." + colIndexes[j] + " input[type='checkbox']"));
+					}
+					toggleBoxes(boxes);
 				});
 			}
 		});
@@ -137,9 +145,7 @@ $(document).ready(function () {
 					<div class="tab-content">
 						<div id="sivuvirtaMetsahakeLayer" class="tab-pane fade in active">
 							<div class="tab-content table-responsive">
-								<table class="table table-hover table-bordered" id="sivuvirtaMetsahakeLayerTable">
-									<jsp:include page="includes/forestPotentialLayers.jsp"></jsp:include>
-								</table>
+								<jsp:include page="includes/forestPotentialLayers.jsp"></jsp:include>
 							</div>
 						</div>
 					
@@ -238,7 +244,7 @@ $(document).ready(function () {
 						
 						<div id="metsähakepotentiaaliLayer" class="tab-pane fade">
 							<div class="tab-content table-responsive">
-								<table class="table table-hover table-bordered" id="sivuvirtaMetsahakeLayerTable">
+								<table class="table table-hover table-bordered">
 									<jsp:include page="includes/forestPotentialLayers.jsp"></jsp:include>
 								</table>
 							</div>

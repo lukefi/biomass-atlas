@@ -1,33 +1,38 @@
-
+<table class="table table-hover table-bordered">
 <tbody>
 	<tr>
 		<td></td>
-		<td class="styled-heading">Korjuu rankana</td>
+		<th class="styled-heading">Korjuu rankana</th>
 		<td class="styled-heading">Korjuu kokopuuna</td>
 		<td class="styled-heading">Korjuu integroituna</td>
 		<td colspan="3" rowspan="2"></td>
 	</tr>
-	<tr>
-		<td scope="row">Pienpuu</td>
+	<tr class="select-row">
+		<th scope="row">Pienpuu</th>
 		<td><input type="checkbox" name="forestPotential" value='1130'></td>
 		<td><input type="checkbox" name="forestPotential" value='1124'></td>
 		<td><input type="checkbox" name="forestPotential" value='1119'></td>
 	</tr>
+</tbody>
+</table>
+<table class="table table-hover table-bordered select-column">
+<tbody>
 	<tr>
-		<td rowspan="2"></td>
-		<td colspan="3" class="styled-heading">Toteutuneet hakkuut</td>
-		<td colspan="3" class="styled-heading">Suurin kestävä aines- ja energiapuun hakkuukertymä</td>
+		<td></td>
+		<th colspan="3" class="styled-heading">Toteutuneet hakkuut</th>
+		<th colspan="3" class="styled-heading">Suurin kestävä aines- ja energiapuun hakkuukertymä</th>
 	</tr>
 	<tr>
-		<td class="styled-heading">Mänty</td>
-		<td class="styled-heading">Kuusi</td>
-		<td class="styled-heading">Lehtipuu</td>
-		<td class="styled-heading">Mänty</td>
-		<td class="styled-heading">Kuusi</td>
-		<td class="styled-heading">Lehtipuu</td>
+		<td></td>
+		<th class="styled-heading">Mänty</th>
+		<th class="styled-heading">Kuusi</th>
+		<th class="styled-heading">Lehtipuu</th>
+		<th class="styled-heading">Mänty</th>
+		<th class="styled-heading">Kuusi</th>
+		<th class="styled-heading">Lehtipuu</th>
 	</tr>
-	<tr>
-		<td scope="row">Latvusmassa</td>
+	<tr class="select-row">
+		<th scope="row">Latvusmassa</th>
 		<td><input type="checkbox" name="forestPotential" value='1129'></td>
 		<td><input type="checkbox" name="forestPotential" value='1042'></td>
 		<td><input type="checkbox" name="forestPotential" value='1127'></td>
@@ -35,8 +40,8 @@
 		<td><input type="checkbox" name="forestPotential" value='1125'></td>
 		<td><input type="checkbox" name="forestPotential" value='1126'></td>
 	</tr>
-	<tr>
-		<td scope="row">Kannot</td>
+	<tr class="select-row">
+		<th scope="row">Kannot</th>
 		<td><input type="checkbox" name="forestPotential" value='1123'></td>
 		<td><input type="checkbox" name="forestPotential" value='1121'></td>
 		<td></td>
@@ -45,3 +50,4 @@
 		<td></td>
 	</tr>
 </tbody>
+</table>

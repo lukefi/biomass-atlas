@@ -133,17 +133,14 @@
 			    text-decoration: none;
 			    background-color: #e0e0d1;
 			}
-			#kokonaisvarantoLayerTable td, #maankäyttöLayerTable td, #sivuvirtaMetsahakeLayerTable td {
+			#bmaLayerContent table td {
 				text-align: center;
 				font-weight: bold;
 			}			
-        	#kokonaisvarantoLayerTable thead tr th {
+        	#bmaLayerContent table tr th {
 	        	background-color: #004c99;
 	        	color: #ffffff;
 	        	text-align: center;
-        	}
-        	#bmaLayerContent .tab-content table tbody tr th {
-        		background-color: #ffffff; 
         	}
         	#closeBmaLayerContent {
         		position: absolute;
