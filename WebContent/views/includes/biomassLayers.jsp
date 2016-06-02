@@ -1,8 +1,12 @@
 <style type="text/css">
 	.selectAllIcon {
-		margin-left: 10px;
+		margin-left: -30px;
 		cursor: pointer;
 		float: right;
+	}
+	.textInSelectAllHeader {
+		margin-right: 30px;
+		display: inline-block;
 	}
 	
 	#bmaLayerContent .nav-pills {
@@ -27,10 +31,16 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-	var createIcon = function() {
+	var insertIcon = function(th) {
 		var icon = jQuery("<span/>");
 		icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
 		icon.attr("title", "Valitse kaikki");
+		var span = jQuery("<span/>");
+		span.text(th.text());
+		span.addClass("textInSelectAllHeader");
+		th.empty();
+		th.append(span);
+		th.append(icon);
 		return icon;
 	};
 	var toggleBoxes = function(boxes) {
@@ -48,8 +58,7 @@ $(document).ready(function () {
 				return;
 			}
 			var th = row.find("th").first();
-			var icon = createIcon();
-			th.append(icon);
+			var icon = insertIcon(th);
 			icon.click(function() {
 				toggleBoxes(row.find("input[type='checkbox']"));
 			});
@@ -92,8 +101,7 @@ $(document).ready(function () {
 				}
 			}
 			if (hasBox) {
-				var icon = createIcon();
-				th.append(icon);
+				var icon = insertIcon(th);
 				icon.click(function() {
 					var boxes = jQuery([]);
 					for (var j = 0; j < colIndexes.length; j++) {
