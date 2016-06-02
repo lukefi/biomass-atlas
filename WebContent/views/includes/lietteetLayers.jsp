@@ -1,5 +1,6 @@
-<table class="table table-hover table-bordered" id="lietteetLayerTable">
+<table class="table table-hover table-bordered select-column" id="lietteetLayerTable">
 	<tbody>
+	    <tr><td></td><th></th></tr>
 		<tr>
 			<th scope="row">Eläinperäisten elintarvikkeiden valmistuksen ja jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
 			<td><input type="checkbox" name="waste" value='1083'></td>	

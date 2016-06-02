@@ -170,8 +170,9 @@ $(document).ready(function () {
 								</div> <!-- lietteetLayer div ends -->
 								
 								<div id="paperijätteetLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered" id="paperijätteetLayerTable">
+									<table class="table table-hover table-bordered select-column" id="paperijätteetLayerTable">
 										<tbody>
+										    <tr><td></td><th></th></tr>
 											<tr>
 												<th scope="row">Paperi- ja kartonkipakkaukset</th>
 												<td><input type="checkbox" name="waste" value='1107'></td>
@@ -193,8 +194,9 @@ $(document).ready(function () {
 								</div>	<!-- puujätteetLayer tab-pane ends -->
 								
 								<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
+									<table class="table table-hover table-bordered select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
 										<tbody>
+										    <tr><td></td><th></th></tr>
 											<tr>
 												<th scope="row">Sekalaiset yhdyskuntajätteet</th>
 												<td><input type="checkbox" name="waste" value='1117'></td>

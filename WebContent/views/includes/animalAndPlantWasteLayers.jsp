@@ -1,5 +1,6 @@
-<table class="table table-hover table-bordered" id="elainJaKasvijätteetLayerTable">
+<table class="table table-hover table-bordered select-column" id="elainJaKasvijätteetLayerTable">
 	<tbody>
+		<tr><td></td><th></th></tr>
 		<tr>
 			<th scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät pesu- ja puhdistuslietteet</th>
 			<td><input type="checkbox" name="waste" value='1057'></td>	

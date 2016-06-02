@@ -1,5 +1,6 @@
-<table class="table table-hover table-bordered" id="puujätteetLayerTable">
+<table class="table table-hover table-bordered select-column" id="puujätteetLayerTable">
 	<tbody>
+	    <tr><td></td><th></th></tr>
 		<tr>
 			<th scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät kuori- ja korkkijätteet</th>
 			<td><input type="checkbox" name="waste" value='1110'></td>

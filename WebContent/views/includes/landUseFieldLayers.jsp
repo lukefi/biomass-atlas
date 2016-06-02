@@ -1,5 +1,6 @@
-<table class="table table-hover table-bordered" id="maankäyttöLayerTable">
+<table class="table table-hover table-bordered select-column" id="maankäyttöLayerTable">
 	<tbody>
+	    <tr><td></td><th></th></tr>
 		<tr>
 			<th scope="row">Juurekset ja vihannekset</th>
 			<td><input type="checkbox" name="field" value='1043'></td>
