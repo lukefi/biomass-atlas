@@ -32,8 +32,17 @@ table, tr, th, td {
 
 th {
 	background-color: #e0e0e0;
+	text-align: center;
 }
 
 #boundary-message, #boundary-info-tool { 
     display: inline-block;
+}
+
+.biomass-amount {
+	border-right-color: transparent;
+	text-align: right;
+}
+.biomass-unit {
+	border-left-color: transparent;
 }

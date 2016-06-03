@@ -331,7 +331,7 @@ function(instance, locale, conf) {
 		var localization = this.instance.getLocalization()["flyout"]
 		var totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
 		totalResult += "<table><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
-		totalResult += localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
+		totalResult += localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
 		
 		for (var boundaryName in results.boundedAreas) {
 			var boundedArea = results.boundedAreas[boundaryName];
@@ -343,7 +343,8 @@ function(instance, locale, conf) {
 					continue;
 				} 
 				var attributeInfo = results.attributes[attributeId];
-				totalResult += "<td>" + attributeInfo.name + "</td><td>" + boundedArea[attributeId] + " " + attributeInfo.unit + "</td> </tr>";
+				totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + boundedArea[attributeId] +
+					"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
 			}
 		}					
 		totalResult += "</table>";
