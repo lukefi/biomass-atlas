@@ -1,8 +1,10 @@
 package fi.luke.bma.service.calculator;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -65,7 +67,8 @@ public class BoundedAreaCalculator extends Calculator {
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
             Map<String, Object> boundedArea = boundedAreaMap.get(result.getAreaId());
             Long calculatedResult = Math.round(result.getValue());
-            boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
+            String resultWithThousandSeparator = String.format(Locale.US, "%,d", calculatedResult).replace(',', ' ');
+            boundedArea.put(Long.toString(result.getAttributeId()), resultWithThousandSeparator);
         }
         return root;
     }
@@ -108,7 +111,7 @@ public class BoundedAreaCalculator extends Calculator {
                 List<DataCell> row = new ArrayList<>();
                 row.add(new DataCell(boundedArea.get("name")));
                 row.add(new DataCell(attributeInfo.get("name")));
-                row.add(new DataCell((Long)entry.getValue()));
+                row.add(new DataCell(Long.parseLong(entry.getValue().toString().replaceAll("\\s", ""))));
                 row.add(new DataCell(attributeInfo.get("unit")));
                 data.add(row);
             }

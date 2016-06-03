@@ -2,6 +2,7 @@ package fi.luke.bma.service.calculator;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,14 +26,15 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
         Map<String, String> value = new HashMap<String, String>();
         value.put("geo", geometryAsWkt);
         
-        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
+        TreeMap<String, ValueAndUnit<String>> attributeValues = new TreeMap<>();
         TreeMap<String, Object> result = new TreeMap<>();
         for(long attributeId : requestBody.getAttributes()){
             double calculatedResult =  calculationService.getTotalBiomassForAttribute(attributeId, GRID_ID_1KM_BY_1KM, geometryAsWkt);
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
             String attributeName = attributeNameAndUnit.get(0);
             String attributeUnit = attributeNameAndUnit.get(1);
-            attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
+            String resultWithThousandSeparator = String.format(Locale.US, "%,d", Math.round(calculatedResult)).replace(',', ' ');
+            attributeValues.put(attributeName, new ValueAndUnit<String>(resultWithThousandSeparator, attributeUnit));
         }
         result.put("values", attributeValues);
         result.put("geo", geometryAsWkt);
