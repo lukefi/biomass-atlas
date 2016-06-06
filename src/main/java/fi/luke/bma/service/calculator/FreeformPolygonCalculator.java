@@ -1,7 +1,6 @@
 package fi.luke.bma.service.calculator;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -37,14 +36,13 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
             result.put("error",
                     "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.");
         }
-        TreeMap<String, ValueAndUnit<String>> attributeValues = new TreeMap<>();
+        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
         for (long attributeId : requestModel.getAttributes()) {
             double calculatedResult = calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
             String attributeName = attributeNameAndUnit.get(0);
             String attributeUnit = attributeNameAndUnit.get(1);
-            String resultWithThousandSeparator = String.format(Locale.US, "%,d", Math.round(calculatedResult)).replace(',', ' ');
-            attributeValues.put(attributeName, new ValueAndUnit<String>(resultWithThousandSeparator, attributeUnit));
+            attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
         }
         result.put("values", attributeValues);
         return result;

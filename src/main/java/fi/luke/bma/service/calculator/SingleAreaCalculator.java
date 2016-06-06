@@ -14,7 +14,7 @@ public abstract class SingleAreaCalculator extends Calculator {
     @Override
     public TabularReportData calculateBiomassInTabularFormat() {
         @SuppressWarnings("unchecked")
-        Map<String, ValueAndUnit<String>> biomassData = (Map<String, ValueAndUnit<String>>) calculateBiomass().get("values");
+        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomass().get("values");
         
         List<String> plainColumnNames = new ArrayList<>();
         List<List<DataCell>> data = new ArrayList<>();
@@ -22,12 +22,12 @@ public abstract class SingleAreaCalculator extends Calculator {
         List<DataCell> unitRow = new ArrayList<>();
         data.add(dataRow);
         data.add(unitRow);
-        for (Entry<String, ValueAndUnit<String>> attributeEntry : biomassData.entrySet()) {
+        for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
             plainColumnNames.add(attributeEntry.getKey());
-            dataRow.add(new DataCell(Long.parseLong((attributeEntry.getValue().getValue().replaceAll("\\s", "")))));
+            dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
             unitRow.add(new DataCell(attributeEntry.getValue().getUnit()));
         }
         return new TabularReportData(plainColumnNames, data);
     }
 
-} 
+}
