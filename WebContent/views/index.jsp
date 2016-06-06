@@ -313,6 +313,9 @@ $(document).bind('afterReady', function() {
 		    }, 
 		    onEvent: function (event) {		        	
 		    	setCheckboxState(event, false);
+		    	if (jQuery("#bmaLayerContent input[type='checkbox']:checked").length == 0) {
+		    		jQuery("#closeAllBmaLayersBtn").addClass("hidden");
+		    	}
 			}
 		};
 		
@@ -325,6 +328,9 @@ $(document).bind('afterReady', function() {
 		    }, 
 		    onEvent: function (event) {		        	
 		    	setCheckboxState(event, true);
+		    	if (jQuery("#bmaLayerContent input[type='checkbox']:checked").length > 0) {
+		    		jQuery("#closeAllBmaLayersBtn").removeClass("hidden");
+		    	}
 			}
 		};
 		

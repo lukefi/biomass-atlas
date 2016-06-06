@@ -27,6 +27,12 @@
 		padding-left: 7px;
 		padding-right: 7px;
 	}
+	#closeAllBmaLayersBtn {
+		position: absolute;
+		right: 40px;
+		top: 8px;
+		cursor: pointer;
+	}
 </style>
 
 <script type="text/javascript">
@@ -116,6 +122,9 @@ $(document).ready(function () {
 	jQuery("#bmaLayerContent table.select-column").each(function() {
 		addSelectColumnFunctionality(jQuery(this));
 	});
+	jQuery("#closeAllBmaLayersBtn").click(function() {
+		toggleBoxes(jQuery("#bmaLayerContent input[type='checkbox']:checked"));
+	});
 });
 </script>
 
@@ -124,6 +133,7 @@ $(document).ready(function () {
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaalin
 				mukaan</a></li>
 		<li><a data-toggle="tab" href="#originTabs">Alkuperän mukaan</a></li>
+		<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
 		<div class='oskari-flyouttool-close icon-close icon-close'
 			id="closeBmaLayerContent"></div>
 
