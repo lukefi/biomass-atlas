@@ -120,3 +120,10 @@ jQuery(document).ready(function () {
         }
     });
 });
+
+function formatBiomassValue(num) {
+	if (num) {
+		return num.toLocaleString("fi");
+	}
+	return num;
+}

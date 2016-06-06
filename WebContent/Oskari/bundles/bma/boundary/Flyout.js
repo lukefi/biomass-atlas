@@ -343,7 +343,7 @@ function(instance, locale, conf) {
 					continue;
 				} 
 				var attributeInfo = results.attributes[attributeId];
-				totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + boundedArea[attributeId] +
+				totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + formatBiomassValue(boundedArea[attributeId]) +
 					"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
 			}
 		}					

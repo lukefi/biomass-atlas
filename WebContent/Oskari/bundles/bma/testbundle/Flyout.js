@@ -196,7 +196,7 @@ function(instance, locale, conf) {
 				}
 				finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
 				for (var key in results.values) {
-					finalResult += "<tr><td>" + key + "</td><td>" + results.values[key].value + " " + results.values[key].unit + "</td></tr>";
+					finalResult += "<tr><td>" + key + "</td><td>" + formatBiomassValue(results.values[key].value) + " " + results.values[key].unit + "</td></tr>";
 				}
 				finalResult += "</table>";
 				finalResult += localization.saveResults
