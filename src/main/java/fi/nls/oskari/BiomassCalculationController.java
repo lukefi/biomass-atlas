@@ -26,6 +26,7 @@ import fi.luke.bma.service.calculator.CircleCalculator;
 import fi.luke.bma.service.calculator.FreeformPolygonCalculator;
 import fi.luke.bma.service.calculator.RoadBufferCalculator;
 import fi.rktl.common.model.DataCell;
+import fi.rktl.common.reporting.TooManyRowsException;
 import fi.rktl.common.reporting.XlsxWriter;
 
 @RestController
@@ -70,16 +71,12 @@ public class BiomassCalculationController {
     public void exportXslx(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
         BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
     	
-    	response.addHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    	response.addHeader("Content-Disposition", "attachment; filename=areaReport.xlsx");
-    	
     	TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormat();
     	String searchDescription = calculatorFactory.getInstance(requestModel).getSearchDescription();
     	
     	try {
-    	    new XlsxWriter().writeWithMetadata(response.getOutputStream(), reportData.getHeaders(), reportData.getData(),
-    	            "areaReport", searchDescription);
-    	} catch (IOException e) {
+    	    new XlsxWriter().writeWithMetadata(response, reportData.getHeaders(), reportData, "areaReport", searchDescription);
+    	} catch (IOException | TooManyRowsException e) {
     		throw new RuntimeException(e);
     	}
     }
