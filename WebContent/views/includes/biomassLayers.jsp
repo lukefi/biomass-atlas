@@ -171,63 +171,8 @@ $(document).ready(function () {
 						</div>
 						
 						<div id="sivuvirtaYritystenBiojatteetLayerTabs" class="tab-pane fade">
-							<ul class="nav nav-pills">
-								<li class="active"><a data-toggle="tab" href="#elainJaKasvijätteetLayer">Eläin- ja kasvijätteet t/v 2014</a></li>
-								<li><a data-toggle="tab" href="#lietteetLayer">Lietteet t/v 2015</a></li>
-								<li><a data-toggle="tab" href="#paperijätteetLayer">Paperi- ja pahvijätteet t/v 2015</a></li>
-								<li><a data-toggle="tab" href="#puujätteetLayer">Puujätteet t/v 2015</a></li>
-								<li><a data-toggle="tab" href="#yhdyskuntienSekalainenBiohajoavaLayer">Yhdyskuntien sekalainen biohajoava jäte t/v 2015</a></li>
-							</ul>
-							<div class="tab-content table-responsive">
-								<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
-									<jsp:include page="includes/animalAndPlantWasteLayers.jsp"></jsp:include>
-								</div> <!-- elainJaKasvijätteetLayer div ends -->
-							
-								<div id="lietteetLayer" class="tab-pane fade">
-									<jsp:include page="includes/lietteetLayers.jsp"></jsp:include>
-								</div> <!-- lietteetLayer div ends -->
-								
-								<div id="paperijätteetLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered select-column" id="paperijätteetLayerTable">
-										<tbody>
-										    <tr><td></td><th></th></tr>
-											<tr>
-												<th scope="row">Paperi- ja kartonkipakkaukset</th>
-												<td><input type="checkbox" name="waste" value='1107'></td>
-											</tr>
-											<tr>
-												<th scope="row">Jätteiden mekaanisessa käsittelyssä syntyvät paperi- ja kartonkijätteet</th>
-												<td><input type="checkbox" name="waste" value='1108'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntajätteen paperi ja kartonki</th>
-												<td><input type="checkbox" name="waste" value='1109'></td>
-											</tr>
-										</tbody>
-									</table>
-								</div> <!-- paperijätteetLayer tab-pane ends -->
-								
-								<div id="puujätteetLayer" class="tab-pane fade">
-									<jsp:include page="includes/woodWasteLayers.jsp"></jsp:include>
-								</div>	<!-- puujätteetLayer tab-pane ends -->
-								
-								<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
-									<table class="table table-hover table-bordered select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
-										<tbody>
-										    <tr><td></td><th></th></tr>
-											<tr>
-												<th scope="row">Sekalaiset yhdyskuntajätteet</th>
-												<td><input type="checkbox" name="waste" value='1117'></td>
-											</tr>
-											<tr>
-												<th scope="row">Yhdyskuntajätteet, joita ei ole mainittu muualla</th>
-												<td><input type="checkbox" name="waste" value='1118'></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>	<!-- yhdyskuntienSekalainenBiohajoavaLayer tab-pane ends -->
-							</div>	<!-- sivuvirtaYritystenBiojatteetLayerTabs tab-content ends -->
-						</div> 	<!-- sivuvirtaYritystenBiojatteetLayerTabs tab-pane ends -->
+							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
+						</div>
 						
 						<div id="sivuvirtaBiojatteetLayer" class="tab-pane fade">
 						</div>
@@ -293,7 +238,10 @@ $(document).ready(function () {
 						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojätteet</a></li>
 						<li><a data-toggle="tab" href="#companyWasteLayer">Jätteet yritysten varastoissa</a></li>
 					</ul>
-					<div id="workBiowasteLayer" class="tab-pane fade">
+					<div id="workBiowasteLayer" class="tab-pane fade in active">
+						<div class="tab-content table-responsive">
+							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
+						</div>	<!-- workBiowasteLayer tab-pane ends -->
 					</div>
 					<div id="companyWasteLayer" class="tab-pane fade">
 					</div>
