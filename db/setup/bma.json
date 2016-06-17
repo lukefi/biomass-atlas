@@ -14,7 +14,9 @@
         "bma" : [        
             "testbundle.sql",
             "boundary.sql",
-            "circle.sql"           
+            "circle.sql",
+            "welcometour.sql",
+            "biomassmenubar.sql"           
         ]
     },
     "views" : [
