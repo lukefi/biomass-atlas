@@ -1,0 +1,1 @@
+INSERT INTO portti_inspiretheme (locale) values ('{ "fi":{"name":"Tausta-aineistot"},"sv":{"name":"Bakgrunder"},"en":{"name":"Backgrounds"}}');

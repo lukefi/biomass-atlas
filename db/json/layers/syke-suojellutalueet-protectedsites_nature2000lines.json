@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_SuojellutAlueet/MapServer/WMSServer",
     "name":"ProtectedSites.Natura2000Lines",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Natura2000 viivamaiset kohteet"

@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Maanpeite/MapServer/WMSServer",
     "name":"CorineLandCover2000_25ha",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "CorineLandCover 2000 25ha"

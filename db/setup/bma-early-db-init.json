@@ -1,5 +1,6 @@
 {
     "sql" : [
-        "bma-layergroups.sql"
+        "bma-layergroups.sql",
+        "bma-theme.sql"
     ]
 }

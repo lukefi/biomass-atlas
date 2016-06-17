@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_SuojellutAlueet/MapServer/WMSServer",
     "name":"ProtectedSites.NatureConservation",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Luonnonsuojelu- ja erämaa-alueet"

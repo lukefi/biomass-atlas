@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_Geologia/MapServer/WMSServer",
     "name":"Pohjavesialuerajat",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Pohjavesialuerajat"

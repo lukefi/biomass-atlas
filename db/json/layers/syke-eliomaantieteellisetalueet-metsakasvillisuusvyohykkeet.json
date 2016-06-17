@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_EliomaantieteellisetAlueet/MapServer/WMSServer",
     "name":"Metsakasvillisuusvyohykkeet",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Metsakasvillisuusvyohykkeet"

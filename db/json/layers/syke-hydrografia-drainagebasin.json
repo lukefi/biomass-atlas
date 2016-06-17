@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGIS/services/INSPIRE/SYKE_Hydrografia/MapServer/WMSServer",
     "name":"PhysicalWaters.Catchments.DrainageBasin",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Valuma-alueet"

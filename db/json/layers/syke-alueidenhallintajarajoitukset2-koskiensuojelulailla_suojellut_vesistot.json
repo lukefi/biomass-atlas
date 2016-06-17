@@ -3,7 +3,7 @@
     "url":"http://paikkatieto.ymparisto.fi/ArcGis/services/INSPIRE/SYKE_AlueidenHallintaJaRajoitukset2/MapServer/WMSServer",
     "name":"Koskiensuojelulailla_suojellut_vesistot",
     "organization": "Syke",
-    "inspiretheme": "Others",
+    "inspiretheme": "Backgrounds",
     "locale": {
         "fi": {
             "name": "Koskiensuojelulailla suojellut vesistot"
