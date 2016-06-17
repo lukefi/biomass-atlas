@@ -290,7 +290,7 @@ $(document).ready(function () {
 				
 				<div id="companiesTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojatteet</a></li>
+						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojätteet</a></li>
 						<li><a data-toggle="tab" href="#companyWasteLayer">Jätteet yritysten varastoissa</a></li>
 					</ul>
 					<div id="workBiowasteLayer" class="tab-pane fade">

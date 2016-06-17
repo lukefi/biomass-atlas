@@ -45,16 +45,10 @@
 			<td><input type="checkbox" name="forest" value='1021'></td>
 		</tr>
 		<tr class="select-row">
-			<th scope="row">Neulaset</th>
-			<td><input type="checkbox" name="forest" value='1008'></td>
-			<td></td>
-			<td><input type="checkbox" name="forest" value='1022'></td>
-		</tr>
-		<tr class="select-row">
-			<th scope="row">Lehvästö</th>
-			<td></td>
-			<td><input type="checkbox" name="forest" value='1015'></td>
-			<td></td>
+			<th scope="row">Neulaset / Lehvästö</th>
+			<td><input type="checkbox" name="forest" value='1008'></td> <!-- Neulaset  -->
+			<td><input type="checkbox" name="forest" value='1015'></td> <!-- Lehvästö  -->
+			<td><input type="checkbox" name="forest" value='1022'></td> <!-- Neulaset  -->
 		</tr>
 	</tbody>
 </table>
