@@ -220,13 +220,16 @@ $(document).ready(function () {
 				<div id="fieldTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#maankäyttöLayer">Maankäyttö</a></li>
-						<li><a data-toggle="tab" href="#biomassatLayer">Biomassat</a></li>
+						<li><a data-toggle="tab" href="#fieldBiomassLayer">Biomassat</a></li>
 					</ul>
-					<div id="maankäyttöLayer" class="tab-pane fade in active">
-						<jsp:include page="includes/landUseFieldLayers.jsp"></jsp:include>
-					</div>
-					
-					<div id="biomassatLayer" class="tab-pane fade">
+					<div class="tab-content table-responsive">
+						<div id="maankäyttöLayer" class="tab-pane fade in active">
+							<jsp:include page="includes/landUseFieldLayers.jsp"></jsp:include>
+						</div>
+						
+						<div id="fieldBiomassLayer" class="tab-pane fade">
+							<jsp:include page="includes/fieldBiomassLayers.jsp"></jsp:include>
+						</div>
 					</div>
 				</div>	<!-- fieldTabs div ends -->
 				
