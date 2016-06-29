@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fi.luke</groupId>
 	<artifactId>bma</artifactId>
-	<version>0.1.20160613.1-SNAPSHOT</version>
+	<version>0.1.20160629.0</version>
 	<name>Biomassa-atlas</name>
 	<inceptionYear>2015</inceptionYear>
 	<packaging>war</packaging>
@@ -14,7 +14,7 @@
 
 	<scm>
 		<developerConnection>scm:git:${env.GIT_SERVER}/tietohallinto/bma</developerConnection>
-		<tag>HEAD</tag>
+		<tag>0.1.20160629.0</tag>
 	</scm>
 
 	<distributionManagement>
