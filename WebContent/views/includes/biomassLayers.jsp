@@ -37,6 +37,14 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
+	//Polyfill for supporting startsWith in IE
+	if (!String.prototype.startsWith) {
+	    String.prototype.startsWith = function(searchString, position){
+	      position = position || 0;
+	      return this.substr(position, searchString.length) === searchString;
+	  };
+	}
+	
 	var insertIcon = function(th) {
 		var icon = jQuery("<span/>");
 		icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
@@ -125,6 +133,7 @@ $(document).ready(function () {
 	jQuery("#closeAllBmaLayersBtn").click(function() {
 		toggleBoxes(jQuery("#bmaLayerContent input[type='checkbox']:checked"));
 	});
+	
 });
 </script>
 
