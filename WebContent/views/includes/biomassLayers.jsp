@@ -188,7 +188,9 @@ $(document).ready(function () {
 						</div>
 						
 						<div id="sivuvirtaPeltokasvitLayer" class="tab-pane fade">
+							<jsp:include page="includes/sivuvirtaFieldLayers.jsp"></jsp:include>
 						</div>
+						
 						<div id="sivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
 						</div>
 						<div id="sivuvirtaLantaVarastoLayer" class="tab-pane fade">
