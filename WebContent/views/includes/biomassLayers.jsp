@@ -164,7 +164,7 @@ $(document).ready(function () {
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien biojätteet</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten toiminnassa muodostuvat biojätteet</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaBiojatteetLayer">Biojätteet</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaBiojatteetLayer">Jätteet yritysten varastoissa</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
@@ -184,7 +184,9 @@ $(document).ready(function () {
 						</div>
 						
 						<div id="sivuvirtaBiojatteetLayer" class="tab-pane fade">
+							<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
 						</div>
+						
 						<div id="sivuvirtaPeltokasvitLayer" class="tab-pane fade">
 						</div>
 						<div id="sivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
@@ -248,14 +250,15 @@ $(document).ready(function () {
 				<div id="companiesTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojätteet</a></li>
-						<li><a data-toggle="tab" href="#companyWasteLayer">Jätteet yritysten varastoissa</a></li>
+						<li><a data-toggle="tab" href="#industrialWasteLayer">Jätteet yritysten varastoissa</a></li>
 					</ul>
-					<div id="workBiowasteLayer" class="tab-pane fade in active">
-						<div class="tab-content table-responsive">
+					<div class="tab-content table-responsive">
+						<div id="workBiowasteLayer" class="tab-pane fade in active">
 							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
-						</div>	<!-- workBiowasteLayer tab-pane ends -->
-					</div>
-					<div id="companyWasteLayer" class="tab-pane fade">
+						</div>
+						<div id="industrialWasteLayer" class="tab-pane fade">
+							<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
+						</div>
 					</div>
 				</div><!-- companiesTabs tab-pane ends -->
 				
