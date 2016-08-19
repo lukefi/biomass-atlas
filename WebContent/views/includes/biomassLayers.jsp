@@ -156,8 +156,10 @@ $(document).ready(function () {
 			</ul>
 			<div class="tab-content">
 				<div id="maanpeiteLayer" class="tab-pane fade in active">
+					<jsp:include page="includes/maanpeiteLayers.jsp"></jsp:include>
 				</div>
 				<div id="kokonaistuotantoLayer" class="tab-pane fade">
+					<jsp:include page="includes/kokonaistuotantoLayers.jsp"></jsp:include>
 				</div>
 				<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">

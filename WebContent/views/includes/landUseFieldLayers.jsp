@@ -30,6 +30,10 @@
 			<td><input type="checkbox" name="field" value='1049'></td>
 		</tr>
 		<tr>
+			<th scope="row">Pysyvät kasvit</th>
+			<td><input type="checkbox" name="field" value='1157'></td>
+		</tr>
+		<tr>
 			<th scope="row">Siemenviljely</th>
 			<td><input type="checkbox" name="field" value='1050'></td>
 		</tr>
