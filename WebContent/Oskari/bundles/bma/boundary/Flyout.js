@@ -61,6 +61,7 @@ function(instance, locale, conf) {
 	{
 		var flyoutLocalization = this.instance.getLocalization()["flyout"];
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
+		messageString += '<div id="boundary-select-all" style="display: none"><button class="boundary-button">' + flyoutLocalization["selectAll"] + '</button></div>';
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
@@ -203,7 +204,7 @@ function(instance, locale, conf) {
     		alert("Error: Select the proper boundary type");
     		return;
     	}
-    	me._updateMessage(me, selectedValue);
+    	me._updateMessageForBoundarySelection(me, selectedValue);
     	me._addWmsLayer(sandbox);
     	
     	// Changes the title of flyout 
@@ -211,10 +212,11 @@ function(instance, locale, conf) {
     		me.instance.getLocalization()["flyout"].secondTitle;*/
     },
     
-    _updateMessage : function(me, selectedBoundary) {
+    _updateMessageForBoundarySelection : function(me, selectedBoundary) {
     	var localization = me.instance.getLocalization()["flyout"].selectAreaType;
     	$('#boundary-message').html(localization[selectedBoundary]);
     	me._createInfoIcon(selectedBoundary);
+    	jQuery("#boundary-select-all").show();
     	me._hideNextButton();
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
@@ -503,6 +505,7 @@ function(instance, locale, conf) {
 	
 	_showResult: function(result){	
 		jQuery("#boundary-message").hide();
+		jQuery("#boundary-select-all").hide();
 		jQuery("#boundary-data").html(result);
 	},
 	

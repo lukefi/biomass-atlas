@@ -6,6 +6,7 @@ Oskari.registerLocalization({
     	"flyout": {
     		"title": "Aluevalinta",
     		"chooseAreaType": "Biomassatasojen tiedot voidaan laskea seuraaville ennakkoon määritelyille alueille. Valitse alue joilta biomassa lasketaan:",
+    		"selectAll": "Valitse kaikki",
     		"next": "Seuraava",
     		"calculate": "Laske",
     		"quit": "Lopeta",
