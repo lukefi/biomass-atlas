@@ -59,4 +59,13 @@ public class GridCellService extends BaseStoreNonInsertableLongIdEntityManager<G
         return entityManager.createQuery(query).getResultList();
     }
 
+    public List<GridCell> getGrid(long gridId) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<GridCell> query = cb.createQuery(GridCell.class);
+        Root<GridCell> from = query.from(GridCell.class);
+        query.select(from);
+        query.where(cb.equal(from.get("grid").get("id"), gridId));
+        return entityManager.createQuery(query).getResultList();
+    }
+
 }

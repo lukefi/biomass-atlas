@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -25,20 +26,20 @@ import fi.luke.bma.model.Roadsegment;
 @Service
 public class GeometryService {
 
-    @PersistenceContext
     private EntityManager entityManager;
     
-    private BoundedAreaService boundedAreaService;
+    private GridCellService gridCellService;
     
+    @PersistenceContext
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Autowired
-    public void setBoundedAreaService(BoundedAreaService boundedAreaService) {
-        this.boundedAreaService = boundedAreaService;
+    public void setGridCellService(GridCellService gridCellService) {
+        this.gridCellService = gridCellService;
     }
-
+    
     public String getCircle(Point point, float radius) {
         String sql = "SELECT ST_ASTEXT(the_geom) FROM (SELECT ST_Buffer(" + toPoint(point) + "," + radius*1000 + ")) AS foo(the_geom)";
         Query query = entityManager.createNativeQuery(sql);
@@ -119,20 +120,32 @@ public class GeometryService {
      * @throws IOException if writing fails
      */
     public List<Map<String, Object>> getBoundedAreas(List<Point> points, long gridId) throws IOException {
+        Iterator<GridCell> cells = points.stream()
+                .map(p -> gridCellService.getByLocation(gridId, p.getX().intValue(), p.getY().intValue())).iterator();
+        return cellsToWkt(cells);
+    }
+    
+    public List<Map<String, Object>> getBoundedAreas(long gridId) throws IOException {
+        return cellsToWkt(gridCellService.getGrid(gridId).iterator());
+    }
+
+    private List<Map<String, Object>> cellsToWkt(Iterator<GridCell> cells) throws IOException {
         List<Map<String, Object>> result = new ArrayList<>();
-        for (Point point : points) {
+        cells.forEachRemaining(cell -> {
             Map<String, Object> geometryMap = new HashMap<>();
-            GridCell boundedArea = boundedAreaService.getBoundedAreaByLocation(point.getX().intValue(), 
-                    point.getY().intValue(), gridId);
-            geometryMap.put("id", boundedArea.getCellId());
+            geometryMap.put("id", cell.getCellId());
             
             StringWriter stringWriter = new StringWriter();
             WKTWriter wktWriter = new WKTWriter();
-            wktWriter.write(boundedArea.getGeometry(), stringWriter);
+            try {
+                wktWriter.write(cell.getGeometry(), stringWriter);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             
             geometryMap.put("geometry", stringWriter.toString());
             result.add(geometryMap);
-        }
+        });
         return result;
     }
     
