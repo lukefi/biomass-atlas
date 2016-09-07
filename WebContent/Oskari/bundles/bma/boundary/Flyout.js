@@ -26,20 +26,23 @@ function(instance, locale, conf) {
 	/* These string values must be same as value for radio button. */
 	this.BOUNDARY_MUNICIPALITY = "municipality";
 	this.BOUNDARY_PROVINCE = "province";
+	this.BOUNDARY_ELY = "ely";
 	this.BOUNDARY_DRAINAGE_BASIN = "drainageBasin";
 	this.BOUNDARY_POSTAL_CODE = "postalCode";
 	
-	this.AREA_TYPES = [this.BOUNDARY_MUNICIPALITY, this.BOUNDARY_PROVINCE, this.BOUNDARY_DRAINAGE_BASIN, this.BOUNDARY_POSTAL_CODE];
+	this.AREA_TYPES = [this.BOUNDARY_MUNICIPALITY, this.BOUNDARY_PROVINCE, this.BOUNDARY_ELY, this.BOUNDARY_DRAINAGE_BASIN, this.BOUNDARY_POSTAL_CODE];
 	
 	this.GRID_IDS = {};
 	this.GRID_IDS[this.BOUNDARY_MUNICIPALITY] = 2;
 	this.GRID_IDS[this.BOUNDARY_PROVINCE] = 3;
+	this.GRID_IDS[this.BOUNDARY_ELY] = 6;
 	this.GRID_IDS[this.BOUNDARY_DRAINAGE_BASIN] = 4;
 	this.GRID_IDS[this.BOUNDARY_POSTAL_CODE] = 5;
 	
 	this.selectedIds = {};
 	this.selectedIds[this.BOUNDARY_MUNICIPALITY] = [];
 	this.selectedIds[this.BOUNDARY_PROVINCE] = [];
+	this.selectedIds[this.BOUNDARY_ELY] = [];
 	this.selectedIds[this.BOUNDARY_DRAINAGE_BASIN] = [];
 	this.selectedIds[this.BOUNDARY_POSTAL_CODE] = [];
 	this.selectedPoints = [];
@@ -187,7 +190,10 @@ function(instance, locale, conf) {
     	} else if (selectedValue === this.BOUNDARY_PROVINCE) {
     		this.wmsName = "bma:view_province_borders";
     		this.wmsId = "provinceBorderId";
-    	} else if (selectedValue === this.BOUNDARY_DRAINAGE_BASIN){
+    	} else if (selectedValue === this.BOUNDARY_ELY) {
+    		this.wmsName = "bma:view_ely_borders";
+    		this.wmsId = "elyBorderId";
+    	}else if (selectedValue === this.BOUNDARY_DRAINAGE_BASIN){
     		this.wmsName = "bma:view_drainage_basin_borders";
     		this.wmsId = "drainageBasinBorderId";
     	} else if (selectedValue === this.BOUNDARY_POSTAL_CODE){
