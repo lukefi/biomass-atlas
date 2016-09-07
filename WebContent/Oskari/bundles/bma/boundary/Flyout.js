@@ -54,7 +54,7 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
-			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-next" disabled></button></div>' +
+			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-prev" disabled></button></div>' +
 			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
 			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
 	
@@ -127,7 +127,7 @@ function(instance, locale, conf) {
         
         boundaryMessage.find('input[name="boundary"]').unbind('click');
         boundaryMessage.find('input[name="boundary"]').bind('click', function(){
-        	$("#boundary-next").prop('disabled', false);     	
+        	me._showBoundary(me);  	
         });
         
         boundaryMessage.find('#boundary-select-all-button').unbind('click');
@@ -135,10 +135,10 @@ function(instance, locale, conf) {
         	me._selectAllBoundaries(me);
         });
         
-        calclulateCancelTool.find('#boundary-next').html(localization.next);
-        calclulateCancelTool.find('#boundary-next').unbind('click');
-        calclulateCancelTool.find('#boundary-next').bind('click', function(){        	
-        	me._showBoundary(me);
+        calclulateCancelTool.find('#boundary-prev').html(localization.prev);
+        calclulateCancelTool.find('#boundary-prev').unbind('click');
+        calclulateCancelTool.find('#boundary-prev').bind('click', function(){        	
+        	// TODO go back
         });
         
         calclulateCancelTool.find('#boundary-calculate').html(localization.calculate);
