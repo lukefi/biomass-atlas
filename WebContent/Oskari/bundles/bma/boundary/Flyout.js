@@ -54,8 +54,7 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
-			'<div id="boundary-next-tool"><button class="boundary-button" id="boundary-prev" disabled></button></div>' +
-			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-calculate"></button>' +
+			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-prev"></button><button class="boundary-button" id="boundary-calculate"></button>' +
 			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
 	
 	{
@@ -65,8 +64,8 @@ function(instance, locale, conf) {
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
-			messageString += '<label><input type="radio" name="boundary" value="' + areaType;
-			messageString += '">' + flyoutLocalization["areaType"][areaType] + '</label><br>';
+			messageString += '<button name="boundary" value="' + areaType;
+			messageString += '">' + flyoutLocalization["areaType"][areaType] + ' »</button><br>';
 		}
 		messageString += '</div>';
 		this.templateBoundaryMessage = jQuery(messageString);
@@ -125,8 +124,9 @@ function(instance, locale, conf) {
         var boundaryData = me.templateBoundaryData.clone();
         var calclulateCancelTool = me.templateBoundaryCalculateCancelTool.clone();       
         
-        boundaryMessage.find('input[name="boundary"]').unbind('click');
-        boundaryMessage.find('input[name="boundary"]').bind('click', function(){
+        boundaryMessage.find('button[name="boundary"]').unbind('click');
+        boundaryMessage.find('button[name="boundary"]').bind('click', function(){
+        	me._setSelectedBoundaryType(jQuery(this).val());
         	me._showBoundary(me);  	
         });
         
@@ -137,8 +137,11 @@ function(instance, locale, conf) {
         
         calclulateCancelTool.find('#boundary-prev').html(localization.prev);
         calclulateCancelTool.find('#boundary-prev').unbind('click');
-        calclulateCancelTool.find('#boundary-prev').bind('click', function(){        	
-        	// TODO go back
+        calclulateCancelTool.find('#boundary-prev').bind('click', function() {
+        	me._clearAllIdList();
+        	me.stopPlugin();
+        	me.startPlugin();
+        	me.createUI();
         });
         
         calclulateCancelTool.find('#boundary-calculate').html(localization.calculate);
@@ -162,7 +165,6 @@ function(instance, locale, conf) {
         content.append(boundaryMessage);
         content.append(boundaryData);
         content.append(calclulateCancelTool);    
-        me._refreshSelectedBoundaryType();
         
     	me._closeIconClickHandler();
 	},
@@ -185,9 +187,8 @@ function(instance, locale, conf) {
     },
 	
     _showBoundary : function(me) {
-    	var sandbox = me.instance.getSandbox(),
-    		selectedValue = $('input[name="boundary"]:checked').val();
-    	me._setSelectedBoundaryType(selectedValue);
+    	var sandbox = me.instance.getSandbox();
+    	var selectedValue = me._getSelectedBoundaryType();
     	
     	me._removeWmsLayer(sandbox);    	
     	if (selectedValue === this.BOUNDARY_MUNICIPALITY) {
@@ -222,19 +223,10 @@ function(instance, locale, conf) {
     	$('#boundary-message').html(localization[selectedBoundary]);
     	me._createInfoIcon(selectedBoundary);
     	jQuery("#boundary-select-all").show();
-    	me._hideNextButton();
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
     	me._updateCalculateButtonVisibility(me);
     	return;
-	},
-	
-	_showNextButton : function() {
-		$("#boundary-next-tool").show();
-	},
-	
-	_hideNextButton : function() {
-		$("#boundary-next-tool").hide();
 	},
 	
 	_showBoundaryOption : function() {
@@ -551,11 +543,6 @@ function(instance, locale, conf) {
 	
 	_setSelectedBoundaryType: function(selectedType) {
 		this.selectedBoundaryType = selectedType;
-		this._refreshSelectedBoundaryType();
-	},
-	
-	_refreshSelectedBoundaryType: function() {
-		$('input[name="boundary"]').val([this._getSelectedBoundaryType()]);
 	},
 	
 	getContentState: function() {
