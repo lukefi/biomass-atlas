@@ -342,7 +342,7 @@ function(instance, locale, conf) {
 		for (var boundaryName in results.boundedAreas) {
 			var boundedArea = results.boundedAreas[boundaryName];
 			var rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name. 
-			totalResult += "<tr><td rowspan=" + rowspanSize + ">" + boundedArea.name + "</td>";
+			totalResult += "<tr><td rowspan=" + rowspanSize + ">" + boundedArea.id + " " + boundedArea.name + "</td>";
 			for (var attributeId in boundedArea) {
 				// TODO this should be easier after we switch to JSON-stat
 				if (attributeId == "id" || attributeId == "name"){
