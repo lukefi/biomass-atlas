@@ -61,7 +61,7 @@ function(instance, locale, conf) {
 	{
 		var flyoutLocalization = this.instance.getLocalization()["flyout"];
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
-		messageString += '<div id="boundary-select-all" style="display: none"><button class="boundary-button">' + flyoutLocalization["selectAll"] + '</button></div>';
+		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' + flyoutLocalization["selectAll"] + '</button></div>';
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
@@ -128,6 +128,11 @@ function(instance, locale, conf) {
         boundaryMessage.find('input[name="boundary"]').unbind('click');
         boundaryMessage.find('input[name="boundary"]').bind('click', function(){
         	$("#boundary-next").prop('disabled', false);     	
+        });
+        
+        boundaryMessage.find('#boundary-select-all-button').unbind('click');
+        boundaryMessage.find('#boundary-select-all-button').bind('click', function(){        	
+        	me._selectAllBoundaries(me);
         });
         
         calclulateCancelTool.find('#boundary-next').html(localization.next);
@@ -444,6 +449,36 @@ function(instance, locale, conf) {
 			}
 		});		
 	},
+	
+    _selectAllBoundaries : function(me) {
+    	var boundaryType = me._getSelectedBoundaryType();
+    	jQuery.ajax({
+			url: "/biomass/boundedarea/allGeometries",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({
+				boundedAreaGridId: me.GRID_IDS[boundaryType]
+			}),
+			dataType: "json",
+			success: function(results, status, xhr) {
+				for (var i = 0; i < results.length; i++) {
+					var result = results[i];
+					var point = null; // TODO point is needed for restoring tool state
+					var indexId = me.selectedIds[boundaryType].indexOf(result.id);
+					if (indexId > -1) {					
+						me._removeSelectedBoundedAreaFromMap(me, result.id);
+						me.selectedIds[boundaryType].splice(indexId, 1);
+						me.selectedPoints.splice(indexId, 1);
+					} else {					
+						me._addSelectionForBoundedAreaOnMap(me, result);
+						me.selectedIds[boundaryType].push(result.id);
+						me.selectedPoints.push(point);
+					}
+				}
+				me._updateCalculateButtonVisibility(me);
+			}
+		});	
+    },
 	
 	_removeSelectedBoundedAreaFromMap : function(me, selectedAreaId) {
 		var instance = me.instance,
