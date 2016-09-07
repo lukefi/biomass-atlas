@@ -93,6 +93,7 @@ public class BoundedAreaCalculator extends Calculator {
         List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
         Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass().get("attributes");
         List<String> columnNames = new ArrayList<>();
+        columnNames.add("Aluetunnus");
         columnNames.add("Alue");
         columnNames.add("Biomassan tyyppi");
         columnNames.add("Määrä");
@@ -106,6 +107,7 @@ public class BoundedAreaCalculator extends Calculator {
                 long attributeId = Long.parseLong(entry.getKey());
                 Map<String, String> attributeInfo = attributeMap.get(attributeId);
                 List<DataCell> row = new ArrayList<>();
+                row.add(new DataCell(boundedArea.get("id")));
                 row.add(new DataCell(boundedArea.get("name")));
                 row.add(new DataCell(attributeInfo.get("name")));
                 row.add(new DataCell((Long)entry.getValue()));
