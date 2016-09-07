@@ -236,6 +236,7 @@ $(document).ready(function () {
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#maankäyttöLayer">Maankäyttö</a></li>
 						<li><a data-toggle="tab" href="#fieldBiomassLayer">Biomassat</a></li>
+						<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirrat">Sivuvirrat</a></li>
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="maankäyttöLayer" class="tab-pane fade in active">
@@ -244,6 +245,30 @@ $(document).ready(function () {
 						
 						<div id="fieldBiomassLayer" class="tab-pane fade">
 							<jsp:include page="includes/fieldBiomassLayers.jsp"></jsp:include>
+						</div>
+						
+						<div id="alkuperaMaatilaSivuvirrat" class="tab-pane fade">
+							<ul class="nav nav-pills">
+								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaBiojatteetLayer">Jätteet yritysten varastoissa</a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="alkuperaMaatilaSivuvirtaBiojatteetLayer" class="tab-pane fade in active">
+									<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
+								</div>
+								
+								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade">
+									<jsp:include page="includes/sivuvirtaFieldLayers.jsp"></jsp:include>
+								</div>
+								
+								<div id="alkuperaMaatilaSivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
+								</div>
+								<div id="alkuperaMaatilaSivuvirtaLantaVarastoLayer" class="tab-pane fade">
+								</div>
+								
+							</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
 						</div>
 					</div>
 				</div>	<!-- fieldTabs div ends -->
