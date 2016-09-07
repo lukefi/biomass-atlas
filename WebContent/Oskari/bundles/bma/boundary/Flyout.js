@@ -463,13 +463,14 @@ function(instance, locale, conf) {
 			success: function(results, status, xhr) {
 				for (var i = 0; i < results.length; i++) {
 					var result = results[i];
-					var point = null; // TODO point is needed for restoring tool state
 					var indexId = me.selectedIds[boundaryType].indexOf(result.id);
 					if (indexId > -1) {					
 						me._removeSelectedBoundedAreaFromMap(me, result.id);
 						me.selectedIds[boundaryType].splice(indexId, 1);
 						me.selectedPoints.splice(indexId, 1);
-					} else {					
+					} else {
+						// Selections are restored by point so choose the centroid as the point that was "clicked"
+						var point = new OpenLayers.Format.WKT().read(result.geometry).geometry.getCentroid();
 						me._addSelectionForBoundedAreaOnMap(me, result);
 						me.selectedIds[boundaryType].push(result.id);
 						me.selectedPoints.push(point);
