@@ -340,16 +340,25 @@ function(instance, locale, conf) {
 		
 		for (var boundaryName in results.boundedAreas) {
 			var boundedArea = results.boundedAreas[boundaryName];
-			var rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name. 
-			totalResult += "<tr><td rowspan=" + rowspanSize + ">" + boundedArea.id + " " + boundedArea.name + "</td>";
-			for (var attributeId in boundedArea) {
-				// TODO this should be easier after we switch to JSON-stat
-				if (attributeId == "id" || attributeId == "name"){
-					continue;
-				} 
-				var attributeInfo = results.attributes[attributeId];
-				totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + formatBiomassValue(boundedArea[attributeId]) +
-					"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+			var rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name.
+			totalResult += "<tr><td";
+			if (rowspanSize > 1) {
+				totalResult += " rowspan='" + rowspanSize + "'";
+			}
+			totalResult += ">" + boundedArea.id + " " + boundedArea.name + "</td>";
+			if (rowspanSize >= 1) { // at least some data exists for the area
+				for (var attributeId in boundedArea) {
+					// TODO this should be easier after we switch to JSON-stat
+					if (attributeId == "id" || attributeId == "name"){
+						continue;
+					} 
+					var attributeInfo = results.attributes[attributeId];
+					totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + formatBiomassValue(boundedArea[attributeId]) +
+						"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+				}
+			}
+			else {
+				totalResult += "<td>-</td><td colspan='2'>-</td></tr>";
 			}
 		}					
 		totalResult += "</table>";
