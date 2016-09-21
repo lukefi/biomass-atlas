@@ -194,8 +194,10 @@ $(document).ready(function () {
 						</div>
 						
 						<div id="sivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
+							<jsp:include page="includes/sivuvirtaLantaElainsuojaLayers.jsp"></jsp:include>
 						</div>
 						<div id="sivuvirtaLantaVarastoLayer" class="tab-pane fade">
+							<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
 						</div>
 						
 					</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
