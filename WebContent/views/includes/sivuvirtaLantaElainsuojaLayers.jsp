@@ -31,5 +31,35 @@
 		<td><input type="checkbox" value='1194'></td>
 		<td><input type="checkbox" value='1177'></td>
 	</tr>
+	<tr class="select-row">
+		<th scope="row">Munituskanat</th>
+		<td><input type="checkbox" value='1178'></td>
+		<td><input type="checkbox" value='1195'></td>
+		<td></td>
+	</tr>
+	<tr class="select-row">
+		<th scope="row">Broilerit, kalkkunat ja muu siipikarja</th>
+		<td><input type="checkbox" value='1182'></td>
+		<td><input type="checkbox" value='1196'></td>
+		<td></td>
+	</tr>
+	<tr class="select-row">
+		<th scope="row">Lampaat ja vuohet</th>
+		<td></td>
+		<td><input type="checkbox" value='1197'></td>
+		<td></td>
+	</tr>
+	<tr class="select-row">
+		<th scope="row">Hevoset ja ponit</th>
+		<td></td>
+		<td><input type="checkbox" value='1198'></td>
+		<td></td>
+	</tr>
+	<tr class="select-row">
+		<th scope="row">Turkiseläimet</th>
+		<td></td>
+		<td><input type="checkbox" value='1190'></td>
+		<td></td>
+	</tr>
 </tbody>
 </table>
