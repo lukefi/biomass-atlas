@@ -77,12 +77,12 @@ public class CalculationService {
     	if (attributeIds.isEmpty() || boundedAreaIds.isEmpty()) {
     		return Collections.emptyList();
     	}
-    	String jpql = "SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value)"
+    	String jpql = "SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value, a.displayOrder)"
     			+ " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, " + Attribute.class.getName() + " a"
     			+ " WHERE d.cell.id = c.id AND d.attribute.id = a.id AND c.grid.id = " + gridId
     			+ " AND d.validity.id = a.latestValidity.id "
     			+ " AND a.id IN (" + Joiner.on(',').join(attributeIds) + ")"
-    			+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ")";
+    			+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ") ORDER BY a.displayOrder";
     	
     	Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
     	return query. getResultList();

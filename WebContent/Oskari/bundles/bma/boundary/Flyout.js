@@ -333,14 +333,18 @@ function(instance, locale, conf) {
 	
 	_createTabularResult : function(results, boundaryType) {
 		// TODO - should find better way to show calculation results and selected layers' names
-		var localization = this.instance.getLocalization()["flyout"]
-		var totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
+		var localization = this.instance.getLocalization()["flyout"],
+			totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
+		
 		totalResult += "<table><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
 		totalResult += localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
 		
+		var originalDisplayOrders = results.displayOrders;
 		for (var boundaryName in results.boundedAreas) {
-			var boundedArea = results.boundedAreas[boundaryName];
-			var rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name.
+			var displayOrders = jQuery.extend({}, originalDisplayOrders),	//shallow clone
+				boundedArea = results.boundedAreas[boundaryName],
+				rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name.
+			
 			totalResult += "<tr><td";
 			if (rowspanSize > 1) {
 				totalResult += " rowspan='" + rowspanSize + "'";
@@ -352,15 +356,23 @@ function(instance, locale, conf) {
 					if (attributeId == "id" || attributeId == "name"){
 						continue;
 					} 
-					var attributeInfo = results.attributes[attributeId];
-					totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" + formatBiomassValue(boundedArea[attributeId]) +
-						"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+					for (var property in displayOrders) {
+					    if (displayOrders.hasOwnProperty(property)) {
+				    		var attributeInfo = results.attributes[displayOrders[property]];
+				    		totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
+				    		 	+ formatBiomassValue(boundedArea[displayOrders[property]]) +
+								"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+				    		 delete displayOrders[property];
+				    		 break;
+					    }
+					}
 				}
 			}
 			else {
 				totalResult += "<td>-</td><td colspan='2'>-</td></tr>";
 			}
-		}					
+		}				
+		
 		totalResult += "</table>";
 		totalResult = this._createExportPanel(totalResult, boundaryType);
 		this._showResult(totalResult);				

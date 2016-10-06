@@ -7,11 +7,14 @@ public final class AdministrativeAreaBiomassCalculationResult {
     private long areaId;
     
     private Double value;
+    
+    private long displayOrder;
 
-    public AdministrativeAreaBiomassCalculationResult(long attributeId, long areaId, Double value) {
+    public AdministrativeAreaBiomassCalculationResult(long attributeId, long areaId, Double value, long displayOrder) {
         this.attributeId = attributeId;
         this.areaId = areaId;
         this.value = value;
+        this.displayOrder = displayOrder;
     }
 
     public long getAttributeId() {
@@ -36,6 +39,14 @@ public final class AdministrativeAreaBiomassCalculationResult {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public long getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(long displayOrder) {
+        this.displayOrder = displayOrder;
     }
     
 }

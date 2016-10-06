@@ -1,13 +1,14 @@
 package fi.luke.bma.service.calculator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
+import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.TabularReportData;
@@ -36,15 +37,21 @@ public class BoundedAreaCalculator extends Calculator {
 
     @Override
     public Map<String, ?> calculateBiomass() {
+        Map<Long, Map<String, String>> attributeMap = new LinkedHashMap<>();
+        
+        List<Long> requestedAttibuteIds = requestModel.getAttributes();
+        List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
+        List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
+        
         List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses = calculationService
-                .getTotalBiomassForBoundedArea(requestModel.getAttributes(), requestModel.getAreaIds(),
+                .getTotalBiomassForBoundedArea(sortedAttributeIds, requestModel.getAreaIds(),
                         requestModel.getBoundedAreaGridId());
-        Map<String, Object> root = new TreeMap<>();
+        Map<String, Object> root = new LinkedHashMap<>();
         List<Map<String, ?>> boundedAreaList = new ArrayList<>();
-        Map<Long, Map<String, Object>> boundedAreaMap = new TreeMap<>();
+        Map<Long, Map<String, Object>> boundedAreaMap = new LinkedHashMap<>();
         for (GridCell cell : boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
                 requestModel.getBoundedAreaGridId())) {
-            Map<String, Object> boundedArea = new TreeMap<>();
+            Map<String, Object> boundedArea = new LinkedHashMap<>();
             boundedArea.put("name", cell.getName());
             boundedArea.put("id", cell.getCellId());
             boundedAreaList.add(boundedArea);
@@ -52,10 +59,9 @@ public class BoundedAreaCalculator extends Calculator {
         }
         root.put("boundedAreas", boundedAreaList);
         
-        Map<Long, Map<String, String>> attributeMap = new HashMap<>();
-        for (Long attributeId : requestModel.getAttributes()) {
+        for (Long attributeId : sortedAttributeIds) {
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
-            Map<String, String> m = new HashMap<>();
+            Map<String, String> m = new LinkedHashMap<>();
             m.put("name", attributeNameAndUnit.get(0));
             m.put("unit", attributeNameAndUnit.get(1));
             attributeMap.put(attributeId, m);
@@ -67,6 +73,13 @@ public class BoundedAreaCalculator extends Calculator {
             Long calculatedResult = Math.round(result.getValue());
             boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
         }
+        
+        Map<String, String> displayOrders = new LinkedHashMap<>();
+        for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
+            displayOrders.put(Long.toString(result.getDisplayOrder()), Long.toString(result.getAttributeId()));
+        }
+        root.put("displayOrders", displayOrders);
+        
         return root;
     }
 
@@ -99,6 +112,7 @@ public class BoundedAreaCalculator extends Calculator {
         columnNames.add("Määrä");
         columnNames.add("Yksikkö");
         List<List<DataCell>> data = new ArrayList<>();
+        
         for (Map<String, ?> boundedArea : biomassData) {
             for (Entry<String, ?> entry : boundedArea.entrySet()) {
                 if ("id".equals(entry.getKey()) || "name".equals(entry.getKey())) {
@@ -115,6 +129,7 @@ public class BoundedAreaCalculator extends Calculator {
                 data.add(row);
             }
         }
+        
         return new TabularReportData(columnNames, data);
     }
 
