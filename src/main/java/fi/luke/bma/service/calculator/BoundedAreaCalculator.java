@@ -76,7 +76,7 @@ public class BoundedAreaCalculator extends Calculator {
         
         Map<String, String> displayOrders = new LinkedHashMap<>();
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
-            displayOrders.put(Long.toString(result.getDisplayOrder()), Long.toString(result.getAttributeId()));
+            displayOrders.put(Double.toString(result.getDisplayOrder()), Long.toString(result.getAttributeId()));
         }
         root.put("displayOrders", displayOrders);
         

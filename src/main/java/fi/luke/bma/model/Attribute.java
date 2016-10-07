@@ -22,7 +22,7 @@ public class Attribute extends NonInsertableEntityWithLongId {
 	private String unitEN;
 	
 	@Column(name = "display_order")
-	private Long displayOrder;
+	private Double displayOrder;
 	
 	@ManyToOne
 	@JoinColumn(name = "biomass_category_id")
@@ -64,11 +64,11 @@ public class Attribute extends NonInsertableEntityWithLongId {
 		this.unitEN = unitEN;
 	}
 
-	public Long getDisplayOrder() {
+	public Double getDisplayOrder() {
         return displayOrder;
     }
 
-    public void setDisplayOrder(Long displayOrder) {
+    public void setDisplayOrder(Double displayOrder) {
         this.displayOrder = displayOrder;
     }
 

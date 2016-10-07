@@ -44,7 +44,7 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
         
         Map<String, String> displayOrders = new LinkedHashMap<>();
         for (Attribute attribute : sortedAttributes) {
-            displayOrders.put(Long.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
+            displayOrders.put(Double.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
         }
         result.put("displayOrders", displayOrders);
         
