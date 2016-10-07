@@ -246,9 +246,21 @@ function(instance, locale, conf) {
 					if (radiusType == me.SELECTION_ROAD) {
 						finalResult += "<div>" + radius + " " + localization.roadExtraInformation + "</div><br>"; 
 					}
-					finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th>" + localization.amount + "</th></tr>";
-					for (var key in results.values) {
-						finalResult += "<tr><td>" + key + "</td><td>" + formatBiomassValue(results.values[key].value) + " " + results.values[key].unit + "</td></tr>";
+					finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
+					
+					var displayOrders = results.displayOrders;
+					for (var property in displayOrders) {
+					    if (displayOrders.hasOwnProperty(property)) {
+					    	for (var key in results.values) {
+					    		if (key == displayOrders[property]) {
+						    		finalResult += "<tr><td>" + key + "</td><td class='biomass-amount'>" 
+						    			+ formatBiomassValue(results.values[key].value)
+						    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].unit + "</td></tr>";
+						    		delete results.values[key];
+						    		break;
+						    	}
+							}
+					    }
 					}
 					finalResult += "</table>";
 					
