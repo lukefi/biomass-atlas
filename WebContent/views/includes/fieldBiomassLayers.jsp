@@ -14,6 +14,10 @@
 			<td><input type="checkbox" name="field" value='1133'></td>
 		</tr>
 		<tr>
+			<th scope="row">Kevätruis</th>
+			<td><input type="checkbox" name="field" value='1241'></td>
+		</tr>
+		<tr>
 			<th scope="row">Muu ohra</th>
 			<td><input type="checkbox" name="field" value='1134'></td>
 		</tr>
