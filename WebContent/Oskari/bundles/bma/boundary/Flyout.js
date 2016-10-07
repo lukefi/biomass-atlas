@@ -360,8 +360,8 @@ function(instance, locale, conf) {
 					    if (displayOrders.hasOwnProperty(property)) {
 				    		var attributeInfo = results.attributes[displayOrders[property]];
 				    		totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
-				    		 	+ formatBiomassValue(boundedArea[displayOrders[property]]) +
-								"&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+				    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
+								+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
 				    		 delete displayOrders[property];
 				    		 break;
 					    }
