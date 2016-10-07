@@ -73,5 +73,17 @@
 			<th scope="row">Seosvilja</th>
 			<td><input type="checkbox" name="field" value='1242'></td>
 		</tr>
+		<tr>
+			<th scope="row">Säilörehunurmet</th>
+			<td><input type="checkbox" name="field" value='1243'></td>
+		</tr>
+		<tr>
+			<th scope="row">Kuivaheinänurmet</th>
+			<td><input type="checkbox" name="field" value='1244'></td>
+		</tr>
+		<tr>
+			<th scope="row">Tuorerehunurmet</th>
+			<td><input type="checkbox" name="field" value='1245'></td>
+		</tr>
 	</tbody>
 </table>
