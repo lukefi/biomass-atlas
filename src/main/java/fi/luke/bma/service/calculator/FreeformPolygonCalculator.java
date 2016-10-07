@@ -1,9 +1,12 @@
 package fi.luke.bma.service.calculator;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
+import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.ValueAndUnit;
@@ -36,8 +39,13 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
             result.put("error",
                     "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.");
         }
-        TreeMap<String, ValueAndUnit<Long>> attributeValues = new TreeMap<>();
-        for (long attributeId : requestModel.getAttributes()) {
+        
+        List<Long> requestedAttibuteIds = requestModel.getAttributes();
+        List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
+        List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
+        
+        LinkedHashMap<String, ValueAndUnit<Long>> attributeValues = new LinkedHashMap<>();
+        for (long attributeId : sortedAttributeIds) {
             double calculatedResult = calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
             String attributeName = attributeNameAndUnit.get(0);
@@ -45,6 +53,12 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
             attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
         }
         result.put("values", attributeValues);
+        
+        Map<String, String> displayOrders = new LinkedHashMap<>();
+        for (Attribute attribute : sortedAttributes) {
+            displayOrders.put(Long.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
+        }
+        result.put("displayOrders", displayOrders);
         return result;
     }
 
