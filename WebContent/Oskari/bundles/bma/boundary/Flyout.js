@@ -358,12 +358,15 @@ function(instance, locale, conf) {
 					} 
 					for (var property in displayOrders) {
 					    if (displayOrders.hasOwnProperty(property)) {
-				    		var attributeInfo = results.attributes[displayOrders[property]];
-				    		totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
-				    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
-								+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
-				    		 delete displayOrders[property];
-				    		 break;
+					    	// Null check is needed because boundedAdrea might not include area value for particular attribute (Say waste data with 0 amount is not displayed in UI.)
+					    	if (boundedArea[displayOrders[property]] != null) { 
+					    		var attributeInfo = results.attributes[displayOrders[property]];
+					    		totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
+					    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
+									+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+					    		 delete displayOrders[property];
+					    		 break;
+					    	}
 					    }
 					}
 				}
