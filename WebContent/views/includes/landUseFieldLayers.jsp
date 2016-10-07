@@ -18,6 +18,10 @@
 			<td><input type="checkbox" name="field" value='1046'></td>
 		</tr>
 		<tr>
+			<th scope="row">Laidunnurmi</th>
+			<td><input type="checkbox" name="field" value='1240'></td>
+		</tr>
+		<tr>
 			<th scope="row">Maisema- ja metsäpellot</th>
 			<td><input type="checkbox" name="field" value='1047'></td>
 		</tr>
@@ -34,7 +38,7 @@
 			<td><input type="checkbox" name="field" value='1157'></td>
 		</tr>
 		<tr>
-			<th scope="row">Siemenviljely</th>
+			<th scope="row">Nurmen siemenviljely</th>
 			<td><input type="checkbox" name="field" value='1050'></td>
 		</tr>
 		<tr>
