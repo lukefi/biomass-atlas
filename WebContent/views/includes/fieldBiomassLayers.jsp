@@ -69,5 +69,9 @@
 			<th scope="row">Suojavyöhyke ja -kaista</th>
 			<td><input type="checkbox" name="field" value='1146'></td>
 		</tr>
+		<tr>
+			<th scope="row">Seosvilja</th>
+			<td><input type="checkbox" name="field" value='1242'></td>
+		</tr>
 	</tbody>
 </table>
