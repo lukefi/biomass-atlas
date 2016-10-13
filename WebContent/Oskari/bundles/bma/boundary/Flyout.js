@@ -342,15 +342,11 @@ function(instance, locale, conf) {
 		var originalDisplayOrders = results.displayOrders;
 		for (var boundaryName in results.boundedAreas) {
 			var displayOrders = jQuery.extend({}, originalDisplayOrders),	//shallow clone
-				boundedArea = results.boundedAreas[boundaryName],
-				rowspanSize = _.size(boundedArea) - 2; // minus 2 is for attributeName id and name.
+				boundedArea = results.boundedAreas[boundaryName];
 			
-			totalResult += "<tr><td";
-			if (rowspanSize > 1) {
-				totalResult += " rowspan='" + rowspanSize + "'";
-			}
-			totalResult += ">" + boundedArea.id + " " + boundedArea.name + "</td>";
-			if (rowspanSize >= 1) { // at least some data exists for the area
+			var rowResult = "";
+			var rowspanSize = 0;
+			if (_.size(boundedArea) > 2) { // at least some data exists for the area (in addition to attribute id and name)
 				for (var attributeId in boundedArea) {
 					// TODO this should be easier after we switch to JSON-stat
 					if (attributeId == "id" || attributeId == "name"){
@@ -361,19 +357,26 @@ function(instance, locale, conf) {
 					    	// Null check is needed because boundedAdrea might not include area value for particular attribute (Say waste data with 0 amount is not displayed in UI.)
 					    	if (boundedArea[displayOrders[property]] != null) { 
 					    		var attributeInfo = results.attributes[displayOrders[property]];
-					    		totalResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
+					    		rowResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
 					    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
 									+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
-					    		 delete displayOrders[property];
-					    		 break;
+					    		rowspanSize++;
+					    		delete displayOrders[property];
+					    		break;
 					    	}
 					    }
 					}
 				}
 			}
 			else {
-				totalResult += "<td>-</td><td colspan='2'>-</td></tr>";
+				rowResult += "<td>-</td><td colspan='2'>-</td></tr>";
 			}
+			
+			totalResult += "<tr><td";
+			if (rowspanSize > 1) {
+				totalResult += " rowspan='" + rowspanSize + "'";
+			}
+			totalResult += ">" + boundedArea.id + " " + boundedArea.name + "</td>" + rowResult;
 		}				
 		
 		totalResult += "</table>";
