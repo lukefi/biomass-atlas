@@ -179,6 +179,7 @@ $(document).ready(function () {
 						</div>
 					
 						<div id="sivuvirtaYhdyskuntienBiojatteetLayer" class="tab-pane fade">
+							<jsp:include page="includes/municipalBioWasteLayers.jsp"></jsp:include>
 						</div>
 						
 						<div id="sivuvirtaYritystenBiojatteetLayerTabs" class="tab-pane fade">
@@ -276,6 +277,7 @@ $(document).ready(function () {
 				</div>	<!-- fieldTabs div ends -->
 				
 				<div id="communitiesLayer" class="tab-pane fade">
+					<jsp:include page="includes/municipalBioWasteLayers.jsp"></jsp:include>
 				</div>
 				
 				<div id="companiesTabs" class="tab-pane fade">
