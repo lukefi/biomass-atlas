@@ -1,9 +1,10 @@
-<table class="table table-hover table-bordered select-column" id="maankäyttöLayerTable">
+<h4>Otsikko?</h4>
+<table style="width: 60%" class="table table-hover table-bordered select-column">
 	<tbody>
 	    <tr><td></td><th></th></tr>
 		<tr>
-			<th scope="row">Juurekset ja vihannekset</th>
-			<td><input type="checkbox" name="field" value='1043'></td>
+			<th style="width:66.6%;" scope="row">Juurekset ja vihannekset</th>
+			<td style="width:33.3%;"><input type="checkbox" name="field" value='1043'></td>
 		</tr>
 		<tr>
 			<th scope="row">Kasvihuonekasvit</th>

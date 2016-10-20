@@ -1,5 +1,5 @@
 <h4>Pienpuu</h4>
-<table style="width: 30%"class="table table-hover table-bordered select-column">
+<table style="width: 30%" class="table table-hover table-bordered select-column">
 <tbody>
 	<tr><td></td><th></th></tr>
 	<tr><th style="width:55%;">Korjuu rankana</th><td style="width:45%;"><input type="checkbox" value='1130'></td></tr>
