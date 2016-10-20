@@ -1,11 +1,11 @@
 <style type="text/css">
 	.selectAllIcon {
-		margin-left: -30px;
+		margin-left: -10px;
 		cursor: pointer;
 		float: right;
 	}
 	.textInSelectAllHeader {
-		margin-right: 30px;
+		margin-right: 10px;
 		display: inline-block;
 	}
 	

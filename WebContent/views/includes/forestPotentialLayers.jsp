@@ -1,20 +1,14 @@
-<table class="table table-hover table-bordered">
+<h4>Pienpuu</h4>
+<table style="width: 30%"class="table table-hover table-bordered select-column">
 <tbody>
-	<tr>
-		<td></td>
-		<th class="styled-heading">Korjuu rankana</th>
-		<td class="styled-heading">Korjuu kokopuuna</td>
-		<td class="styled-heading">Korjuu integroituna</td>
-		<td colspan="3" rowspan="2"></td>
-	</tr>
-	<tr class="select-row">
-		<th scope="row">Pienpuu</th>
-		<td><input type="checkbox" name="forestPotential" value='1130'></td>
-		<td><input type="checkbox" name="forestPotential" value='1124'></td>
-		<td><input type="checkbox" name="forestPotential" value='1119'></td>
-	</tr>
+	<tr><td></td><th></th></tr>
+	<tr><th style="width:55%;">Korjuu rankana</th><td style="width:45%;"><input type="checkbox" value='1130'></td></tr>
+	<tr><th>Korjuu kokopuuna</th><td><input type="checkbox" value='1124'></td></tr>
+	<tr><th>Korjuu integroituna</th><td><input type="checkbox" value='1119'></td></tr>
 </tbody>
 </table>
+
+<h4>Otsikko?</h4>
 <table class="table table-hover table-bordered select-column">
 <tbody>
 	<tr>
@@ -32,21 +26,21 @@
 		<th class="styled-heading">Lehtipuu</th>
 	</tr>
 	<tr class="select-row">
-		<th scope="row">Latvusmassa</th>
-		<td><input type="checkbox" name="forestPotential" value='1129'></td>
-		<td><input type="checkbox" name="forestPotential" value='1042'></td>
-		<td><input type="checkbox" name="forestPotential" value='1127'></td>
-		<td><input type="checkbox" name="forestPotential" value='1128'></td>
-		<td><input type="checkbox" name="forestPotential" value='1125'></td>
-		<td><input type="checkbox" name="forestPotential" value='1126'></td>
+		<th style="width:16%;" scope="row">Latvusmassa</th>
+		<td style="width:14%;"><input type="checkbox" value='1129'></td>
+		<td style="width:14%;"><input type="checkbox" value='1042'></td>
+		<td style="width:14%;"><input type="checkbox" value='1127'></td>
+		<td style="width:14%;"><input type="checkbox" value='1128'></td>
+		<td style="width:14%;"><input type="checkbox" value='1125'></td>
+		<td style="width:14%;"><input type="checkbox" value='1126'></td>
 	</tr>
 	<tr class="select-row">
 		<th scope="row">Kannot</th>
-		<td><input type="checkbox" name="forestPotential" value='1123'></td>
-		<td><input type="checkbox" name="forestPotential" value='1121'></td>
+		<td><input type="checkbox" value='1123'></td>
+		<td><input type="checkbox" value='1121'></td>
 		<td></td>
-		<td><input type="checkbox" name="forestPotential" value='1122'></td>
-		<td><input type="checkbox" name="forestPotential" value='1120'></td>
+		<td><input type="checkbox" value='1122'></td>
+		<td><input type="checkbox" value='1120'></td>
 		<td></td>
 	</tr>
 </tbody>
