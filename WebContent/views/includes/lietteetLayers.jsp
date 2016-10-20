@@ -1,9 +1,10 @@
+<h4>Lietteet t/v 2015</h4>
 <table class="table table-hover table-bordered select-column" id="lietteetLayerTable">
 	<tbody>
 	    <tr><td></td><th></th></tr>
 		<tr>
-			<th scope="row">Eläinperäisten elintarvikkeiden valmistuksen ja jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
-			<td><input type="checkbox" name="waste" value='1083'></td>	
+			<th style="width:80%;" scope="row">Eläinperäisten elintarvikkeiden valmistuksen ja jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
+			<td style="width:20%;"><input type="checkbox" name="waste" value='1083'></td>	
 		</tr>
 		<tr>
 			<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksen ja jalostuksen, säilykkeiden valmistuksen,hiivan ja hiivauutteen valmistuksen sekä melassin valmistuksen ja käymisen jätevesien käsittelyssä syntyvät lietteet</th>
