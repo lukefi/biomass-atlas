@@ -53,5 +53,3 @@
 		</tr>
 	</tbody>
 </table>
-
-<jsp:include page="landUseForestLayers.jsp"></jsp:include>

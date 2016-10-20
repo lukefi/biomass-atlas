@@ -1,9 +1,10 @@
-<table class="table table-hover table-bordered select-column">
+<h4>Otsikko?</h4>
+<table style="width: 60%" class="table table-hover table-bordered select-column">
 	<tbody>
 	    <tr><td></td><th></th></tr>
 		<tr>
-			<th scope="row">Syysvehnä</th>
-			<td><input type="checkbox" name="field" value='1131'></td>
+			<th style="width:66.6%;" scope="row">Syysvehnä</th>
+			<td style="width:33.3%;"><input type="checkbox" name="field" value='1131'></td>
 		</tr>
 		<tr>
 			<th scope="row">Kevätvehnä</th>

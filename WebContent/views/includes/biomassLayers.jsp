@@ -159,7 +159,8 @@ $(document).ready(function () {
 					<jsp:include page="includes/maanpeiteLayers.jsp"></jsp:include>
 				</div>
 				<div id="kokonaistuotantoLayer" class="tab-pane fade">
-					<jsp:include page="includes/kokonaistuotantoLayers.jsp"></jsp:include>
+					<jsp:include page="includes/totalStorageForestLayers.jsp"></jsp:include>
+					<jsp:include page="includes/fieldBiomassLayers.jsp"></jsp:include>
 				</div>
 				<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
@@ -223,6 +224,7 @@ $(document).ready(function () {
 					<div class="tab-content table-responsive">
 						<div id="kokonaisvarantoLayer" class="tab-pane fade in active">
 							<jsp:include page="includes/totalStorageForestLayers.jsp"></jsp:include>
+							<jsp:include page="includes/landUseForestLayers.jsp"></jsp:include>
 						</div>	<!-- kokonaisvarantoLayer div ends -->
 						
 						<div id="metsähakepotentiaaliLayer" class="tab-pane fade">
