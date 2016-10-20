@@ -1,9 +1,10 @@
-<table class="table table-hover table-bordered select-column" id="sivuvirtaPeltokasvitLayerTable">
+<h4>Peltokasvien sivuvirrat</h4>
+<table style="width: 60%" class="table table-hover table-bordered select-column" id="sivuvirtaPeltokasvitLayerTable">
 	<tbody>
 	    <tr><td></td><th></th></tr>
 		<tr>
-			<th scope="row">Kesantonurmi</th>
-			<td><input type="checkbox" name="field" value='1145'></td>
+			<th style="width: 66.6%" scope="row">Kesantonurmi</th>
+			<td style="width: 33.3%"><input type="checkbox" name="field" value='1145'></td>
 		</tr>
 		<tr>
 			<th scope="row">Olki</th>

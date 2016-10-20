@@ -1,3 +1,4 @@
+<h4>Lanta varastosta</h4>
 <table class="table table-hover table-bordered select-column">
 <tbody>
 	<tr>
@@ -8,10 +9,10 @@
 
 	</tr>
 	<tr class="select-row">
-		<th scope="row">Lypsykarja</th>
-		<td><input type="checkbox" value='1199'></td>
-		<td><input type="checkbox" value='1232'></td>
-		<td><input type="checkbox" value='1203'></td>
+		<th style="width: 40%" scope="row">Lypsykarja</th>
+		<td style="width: 20%"><input type="checkbox" value='1199'></td>
+		<td style="width: 20%"><input type="checkbox" value='1232'></td>
+		<td style="width: 20%"><input type="checkbox" value='1203'></td>
 	</tr>
 	<tr class="select-row">
 		<th scope="row">Lihakarja</th>
