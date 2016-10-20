@@ -254,23 +254,19 @@ $(document).ready(function () {
 						
 						<div id="alkuperaMaatilaSivuvirrat" class="tab-pane fade">
 							<ul class="nav nav-pills">
-								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaBiojatteetLayer">Jätteet yritysten varastoissa</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
+								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
 								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
 								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
 							</ul>
 							<div class="tab-content">
-								<div id="alkuperaMaatilaSivuvirtaBiojatteetLayer" class="tab-pane fade in active">
-									<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
-								</div>
-								
-								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade">
+								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade in active">
 									<jsp:include page="includes/sivuvirtaFieldLayers.jsp"></jsp:include>
 								</div>
-								
 								<div id="alkuperaMaatilaSivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
+									<jsp:include page="includes/sivuvirtaLantaElainsuojaLayers.jsp"></jsp:include>
 								</div>
 								<div id="alkuperaMaatilaSivuvirtaLantaVarastoLayer" class="tab-pane fade">
+									<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
 								</div>
 								
 							</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
