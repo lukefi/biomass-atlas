@@ -16,9 +16,11 @@
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
 		<h4>Paperi- ja pahvijätteet t/v 2015</h4>
-		<table class="table table-hover table-bordered select-column" id="paperijätteetLayerTable">
+		<table class="table select-column" id="paperijätteetLayerTable">
+			<thead>
+				<tr><td></td><th></th></tr>
+			</thead>
 			<tbody>
-			    <tr><td></td><th></th></tr>
 				<tr>
 					<th style="width:80%;" scope="row">Paperi- ja kartonkipakkaukset</th>
 					<td style="width:20%;"><input type="checkbox" name="waste" value='1107'></td>
@@ -41,9 +43,11 @@
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<h4>Yhdyskuntien sekalainen biohajoava jäte t/v 2015</h4>
-		<table class="table table-hover table-bordered select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
+		<table class="table select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
+			<thead>
+				<tr><td></td><th></th></tr>
+			</thead>
 			<tbody>
-			    <tr><td></td><th></th></tr>
 				<tr>
 					<th style="width:80%;" scope="row">Sekalaiset yhdyskuntajätteet</th>
 					<td style="width:20%;"><input type="checkbox" name="waste" value='1117'></td>

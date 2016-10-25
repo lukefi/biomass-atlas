@@ -1,5 +1,5 @@
 <h4>Yhdyskuntien biojätteet</h4>
-<table style="width: 60%" class="table table-hover table-bordered">
+<table style="width: 60%" class="table">
 	<tbody>
 		<tr>
 			<th style="width:66.6%;" scope="row">Yhdyskuntien biojätteet</th>

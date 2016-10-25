@@ -1,13 +1,15 @@
 <h4>Lanta eläinsuojasta</h4>
-<table class="table table-hover table-bordered select-column">
-<tbody>
+<table class="table select-column">
+<thead>
 	<tr>
 		<td></td>
 		<th class="styled-heading">Lietelanta</th>
-		<th class="styled-heading">Kuivalanta</th>
+		<th class="styled-heading even-col">Kuivalanta</th>
 		<th class="styled-heading">Virtsa</th>
 
 	</tr>
+</thead>
+<tbody>
 	<tr class="select-row">
 		<th style="width: 40%" scope="row">Lypsykarja</th>
 		<td style="width: 20%"><input type="checkbox" value='1158'></td>

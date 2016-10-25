@@ -1,10 +1,10 @@
 <h4>Otsikko? Puut?</h4>
-<table class="table table-hover table-bordered select-column" id="kokonaisvarantoLayerTable">
-	<thead class="thead-default">
+<table class="table select-column" id="kokonaisvarantoLayerTable">
+	<thead>
 		<tr>
 			<th style="width:40%;"></th>
 			<th style="width:20%;">Kuusi</th>
-			<th style="width:20%;">Lehtipuut</th>
+			<th style="width:20%;" class="even-col">Lehtipuut</th>
 			<th style="width:20%;">Mänty</th>
 		</tr>
 	</thead>

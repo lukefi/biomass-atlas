@@ -1,7 +1,9 @@
 <h4>Pienpuu</h4>
-<table style="width: 30%" class="table table-hover table-bordered select-column">
+<table style="width: 40%" class="table select-column">
+	<thead>
+		<tr><td></td><th></th></tr>
+	</thead>
 <tbody>
-	<tr><td></td><th></th></tr>
 	<tr><th style="width:55%;">Korjuu rankana</th><td style="width:45%;"><input type="checkbox" value='1130'></td></tr>
 	<tr><th>Korjuu kokopuuna</th><td><input type="checkbox" value='1124'></td></tr>
 	<tr><th>Korjuu integroituna</th><td><input type="checkbox" value='1119'></td></tr>
@@ -9,8 +11,8 @@
 </table>
 
 <h4>Otsikko?</h4>
-<table class="table table-hover table-bordered select-column">
-<tbody>
+<table class="table select-column">
+<thead>
 	<tr>
 		<td></td>
 		<th colspan="3" class="styled-heading">Toteutuneet hakkuut</th>
@@ -19,12 +21,14 @@
 	<tr>
 		<td></td>
 		<th class="styled-heading">Mänty</th>
-		<th class="styled-heading">Kuusi</th>
+		<th class="styled-heading even-col">Kuusi</th>
 		<th class="styled-heading">Lehtipuu</th>
 		<th class="styled-heading">Mänty</th>
-		<th class="styled-heading">Kuusi</th>
+		<th class="styled-heading even-col">Kuusi</th>
 		<th class="styled-heading">Lehtipuu</th>
 	</tr>
+</thead>
+<tbody>
 	<tr class="select-row">
 		<th style="width:16%;" scope="row">Latvusmassa</th>
 		<td style="width:14%;"><input type="checkbox" value='1129'></td>

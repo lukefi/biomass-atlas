@@ -1,7 +1,9 @@
 <h4>Puujätteet t/v 2015</h4>
-<table class="table table-hover table-bordered select-column" id="puujätteetLayerTable">
+<table class="table select-column" id="puujätteetLayerTable">
+	<thead>
+		<tr><td></td><th></th></tr>
+	</thead>
 	<tbody>
-	    <tr><td></td><th></th></tr>
 		<tr>
 			<th style="width:80%;" scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät kuori- ja korkkijätteet</th>
 			<td style="width:20%;"><input type="checkbox" name="waste" value='1110'></td>

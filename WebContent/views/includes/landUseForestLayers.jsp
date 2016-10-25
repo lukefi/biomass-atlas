@@ -1,7 +1,9 @@
 <h4>Maaluokka 2011</h4>
-<table style="width: 60%" class="table table-hover table-bordered select-column">
-<tbody>
+<table style="width: 60%" class="table select-column">
+<thead>
 	<tr><td></td><th></th></tr>
+</thead>
+<tbody>
 	<tr><th style="width:66.6%;">Mets‰maa</th><td style="width:33.3%;"><input type="checkbox" value='1035'></td></tr>
 	<tr><th>Kitumaa</th><td><input type="checkbox" value='1036'></td></tr>
 	<tr><th>Joutomaa</th><td><input type="checkbox" value='1037'></td></tr>
@@ -9,9 +11,11 @@
 </table>
 
 <h4>Maaluokka FAO:n FRA-m‰‰ritelm‰n mukaan 2011</h4>
-<table style="width: 60%" class="table table-hover table-bordered select-column">
-<tbody>
+<table style="width: 60%" class="table select-column">
+<thead>
 	<tr><td></td><th></th></tr>
+</thead>
+<tbody>
 	<tr><th style="width:66.6%;">Mets‰</th><td style="width:33.3%;"><input type="checkbox" value='1038'></td></tr>
 	<tr><th>Muu puustoinen maa</th><td><input type="checkbox" value='1039'></td></tr>
 	<tr><th>Muu maa</th><td><input type="checkbox" value='1040'></td></tr>
@@ -20,9 +24,11 @@
 </table>
 
 <h4>Kasvupaikan p‰‰tyyppi 2011</h4>
-<table style="width: 60%" class="table table-hover table-bordered select-column">
-<tbody>
+<table style="width: 60%" class="table select-column">
+<thead>
 	<tr><td></td><th></th></tr>
+</thead>
+<tbody>
 	<tr><th style="width:66.6%;">Kivenn‰ismaa</th><td style="width:33.3%;"><input type="checkbox" name="forest" value='1023'></td></tr>
 	<tr><th>Korpi</th><td><input type="checkbox" name="forest" value='1024'></td></tr>
 	<tr><th>R‰me</th><td><input type="checkbox" name="forest" value='1025'></td></tr>
@@ -31,9 +37,11 @@
 </table>
 
 <h4>Kasvupaikka 2011</h4>
-<table style="width: 60%"class="table table-hover table-bordered select-column">
-<tbody>
+<table style="width: 60%"class="table select-column">
+<thead>
 	<tr><td></td><th></th></tr>
+</thead>
+<tbody>
 	<tr><th style="width:66.6%;">Lehto</th><td style="width:33.3%;"><input type="checkbox" value='1027'></td></tr>
 	<tr><th>Lehtomainen kangas</th><td><input type="checkbox" value='1028'></td></tr>
 	<tr><th>Tuore kangas</th><td><input type="checkbox" value='1029'></td></tr>

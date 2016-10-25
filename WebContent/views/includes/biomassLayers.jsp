@@ -33,6 +33,28 @@
 		top: 8px;
 		cursor: pointer;
 	}
+	.table th, .table td {
+	    border: none !important;
+	    text-align: left;
+	}
+	.fixed-table-container {
+	    border:0px;
+	}
+	.table thead th {
+	    text-align: center;
+	} 
+	.even-row, .even-col {
+    	background-color: #F0F0F0;
+    }
+   	.even-col-even-cell {
+   		background-color: #E5E5E5;
+   	}
+	th {
+    	background-color: #FFFFFF;
+	}    	
+	.even-row > th {
+    	background-color: #F0F0F0;
+	}    	
 </style>
 
 <script type="text/javascript">
@@ -126,12 +148,36 @@ $(document).ready(function () {
 			}
 		});
 	};
+	
 	addSelectRowFunctionality(jQuery("#bmaLayerContent tr.select-row"));
 	jQuery("#bmaLayerContent table.select-column").each(function() {
 		addSelectColumnFunctionality(jQuery(this));
 	});
+	
 	jQuery("#closeAllBmaLayersBtn").click(function() {
 		toggleBoxes(jQuery("#bmaLayerContent input[type='checkbox']:checked"));
+	});
+	
+	var tables = $(".table");
+	$.each(tables, function(tableIndex, table) {
+		var rows = $("tbody tr", $(table));
+		$(rows).each(function(rowIndex, row) {
+			var cells = $("td", $(row));
+			if (rowIndex % 2 == 1) {
+				$(this).addClass("even-row"); 
+				$(cells).each(function(cellIndex, cell) {
+					if (cellIndex == 1) {
+						$(this).addClass("even-col-even-cell"); 
+					}
+				});
+			} else {
+				$(cells).each(function(cellIndex, cell) {
+					if (cellIndex == 1 || cellIndex == 4) {
+						$(this).addClass("even-col"); 
+					}
+				});
+			}
+		});	
 	});
 	
 });

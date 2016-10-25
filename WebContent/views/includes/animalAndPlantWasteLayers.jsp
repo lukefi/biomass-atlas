@@ -1,7 +1,9 @@
 <h4>Eläin- ja kasvijätteet t/v 2014</h4>
-<table class="table table-hover table-bordered select-column" id="elainJaKasvijätteetLayerTable">
-	<tbody>
+<table class="table select-column" id="elainJaKasvijätteetLayerTable">
+	<thead>
 		<tr><td></td><th></th></tr>
+	</thead>
+	<tbody>
 		<tr>
 			<th style="width:80%;" scope="row">Maataloudessa, puutarhataloudessa, vesiviljelyssä, metsätaloudessa, metsästyksessä ja kalastuksessa syntyvät pesu- ja puhdistuslietteet</th>
 			<td style="width:20%;"><input type="checkbox" name="waste" value='1057'></td>	
