@@ -246,7 +246,8 @@ function(instance, locale, conf) {
 					if (radiusType == me.SELECTION_ROAD) {
 						finalResult += "<div>" + radius + " " + localization.roadExtraInformation + "</div><br>"; 
 					}
-					finalResult += "<table><tr><th>"+ localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
+					finalResult += "<table class='biomass-result-table'><tr><th>"+ localization.biomassType + "</th>" +
+							"<th colspan='2'>" + localization.amount + "</th></tr>";
 					
 					var displayOrders = results.displayOrders;
 					for (var property in displayOrders) {

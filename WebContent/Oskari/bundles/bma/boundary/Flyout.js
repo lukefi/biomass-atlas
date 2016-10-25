@@ -336,7 +336,7 @@ function(instance, locale, conf) {
 		var localization = this.instance.getLocalization()["flyout"],
 			totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
 		
-		totalResult += "<table><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
+		totalResult += "<table class='biomass-result-table'><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
 		totalResult += localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
 		
 		var originalDisplayOrders = results.displayOrders;
