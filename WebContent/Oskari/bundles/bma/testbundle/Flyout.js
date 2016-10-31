@@ -180,6 +180,11 @@ function(instance, locale, conf) {
 		for (var i = 0; i < points.length - 1; i++) { // condition has minus 1. Since there was one extra point because of double click.
 			pointsForAreaCalculation.push(new OpenLayers.Geometry.Point(points[i].x, points[i].y));
 		}
+		
+		if (pointsForAreaCalculation.length < 3) {
+			me._showResult(localization.error.notEnoughPoints);
+			return;
+		}
 				
 		var queryData = JSON.stringify({ points: points, attributes: attributeIds });
 		jQuery.ajax({

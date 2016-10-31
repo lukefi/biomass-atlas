@@ -18,7 +18,8 @@ Oskari.registerLocalization({
     					"sijaitsee piirretyn alueen sisällä, huomioidaan ao. ruudun tieto laskennassa."
     		},
     		"error": {
-    			"smallAreaSelected": "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä."
+    			"smallAreaSelected": "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.",
+    			"notEnoughPoints": "Vähintään kolme kulmapistettä on valittava, yritä uudelleen."
     		}
     	}
     }
