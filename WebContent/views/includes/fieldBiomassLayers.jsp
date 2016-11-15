@@ -60,10 +60,10 @@
 			<th scope="row">Nurmet</th>
 			<td><input type="checkbox" name="field" value='1143'></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th scope="row">Timotein siemen</th>
 			<td><input type="checkbox" name="field" value='1144'></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th scope="row">Kesantonurmi</th>
 			<td><input type="checkbox" name="field" value='1145'></td>
