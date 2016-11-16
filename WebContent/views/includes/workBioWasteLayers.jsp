@@ -1,9 +1,9 @@
 <ul class="nav nav-pills workBiowasteLayersNavPills">
 	<li class="active"><a data-toggle="tab" href="#" id="elainJaKasvijätteetLayer_anchor">Eläin- ja kasvijätteet t/v 2014</a></li>
-	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor">Lietteet t/v 2015</a></li>
-	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja pahvijätteet t/v 2015</a></li>
-	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujätteet t/v 2015</a></li>
-	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Yhdyskuntien sekalainen biohajoava jäte t/v 2015</a></li>
+	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor">Lietteet t/v 2014</a></li>
+	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja pahvijätteet t/v 2014</a></li>
+	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujätteet t/v 2014</a></li>
+	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Yhdyskuntien sekalainen biohajoava jäte t/v 2014</a></li>
 </ul>
 <div class="tab-content table-responsive workBioWasteLayers">
 	<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
@@ -15,7 +15,7 @@
 	</div> <!-- lietteetLayer div ends -->
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
-		<h4>Paperi- ja pahvijätteet t/v 2015</h4>
+		<h4>Paperi- ja pahvijätteet t/v 2014</h4>
 		<table class="table select-column" id="paperijätteetLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
@@ -42,7 +42,7 @@
 	</div>	<!-- puujätteetLayer tab-pane ends -->
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
-		<h4>Yhdyskuntien sekalainen biohajoava jäte t/v 2015</h4>
+		<h4>Yhdyskuntien sekalainen biohajoava jäte t/v 2014</h4>
 		<table class="table select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
