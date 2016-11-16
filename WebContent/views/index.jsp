@@ -32,7 +32,6 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style type="text/css">
-        @media screen {
             body {
                 margin: 0;
                 padding: 0;
@@ -108,16 +107,6 @@
             #user{
             	color: #c2c2c2;
             	font-style: italic;
-            }
-            #bmaLayerContent {
-            	z-index: 1000;
-            	position: absolute;
-            	bottom: 0;
-            	/* right: 20px; */
-            	height: 650px;
-            	width: 700px;
-            	display: none;
-            	background-color: #ffffff;
             }
            
             .tab-content {

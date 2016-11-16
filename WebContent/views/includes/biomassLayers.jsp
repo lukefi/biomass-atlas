@@ -9,6 +9,15 @@
 		display: inline-block;
 	}
 	
+	#bmaLayerContent {
+    	z-index: 1000;
+    	position: absolute;
+    	height: 650px;
+    	width: 588px;
+    	display: none;
+    	bottom: 0;
+    	background-color: #ffffff;
+    }
 	#bmaLayerContent .nav-pills {
 		font-size: 18px;
 	}
