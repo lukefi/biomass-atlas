@@ -22,7 +22,18 @@
     	box-shadow: 5px 7px 4px 0px rgba(0,0,0,0.34);
     }
     #bmaLayerContent .bmaLayerInner {
+    	background-color: #54585a;
+    	color: #ffffff;
+    	padding-left: 7px;
+    	padding-right: 7px;
+    }
+    #bmaLayerContent .bmaLayerInner h3 {
+    	margin-top: 0;
+    	padding-top: 15px;
+    }
+    #bmaLayerContent .bmaLayerInner > .tab-content {
     	background-color: #ffffff;
+    	color: #000000;
     }
 	#bmaLayerContent .nav-pills {
 		font-size: 18px;
@@ -199,14 +210,13 @@ $(document).ready(function () {
 </script>
 
 <div id="bmaLayerContent"><div class="bmaLayerInner">
+	<h3>BIOMASSAT</h3>
+	<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
+	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaalin
 				mukaan</a></li>
 		<li><a data-toggle="tab" href="#originTabs">Alkuperän mukaan</a></li>
-		<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
-		<div class='oskari-flyouttool-close icon-close icon-close'
-			id="closeBmaLayerContent"></div>
-
 	</ul>
 	<div class="tab-content">
 		<div id="potentialTabs" class="tab-pane fade in active">
