@@ -47,22 +47,17 @@
     	color: #000000;
     }
 	#bmaLayerContent .nav-pills {
-		font-size: 18px;
+		font-size: 16px;
 	}
 	#bmaLayerContent .tab-content .nav-pills a {
 		font-size: 16px;
-		padding-left: 12px;
-		padding-right: 12px;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: transparent;
+		color: #000000;
 	}
-	#bmaLayerContent .tab-content .tab-content .nav-pills a {
-		font-size: 14px;
-		padding-left: 9px;
-		padding-right: 9px;
-	}
-	#bmaLayerContent .tab-content .tab-content .tab-content .nav-pills a {
-		font-size: 12px;
-		padding-left: 7px;
-		padding-right: 7px;
+	#bmaLayerContent .tab-content .nav-pills li.active > a {
+		color: #78be20;
 	}
 	#closeAllBmaLayersBtn {
 		position: absolute;

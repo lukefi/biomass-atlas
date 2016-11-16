@@ -1,9 +1,9 @@
 <ul class="nav nav-pills workBiowasteLayersNavPills">
-	<li class="active"><a data-toggle="tab" href="#" id="elainJaKasvijätteetLayer_anchor">Eläin- ja kasvijätteet t/v 2014</a></li>
-	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor">Lietteet t/v 2014</a></li>
-	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja pahvijätteet t/v 2014</a></li>
-	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujätteet t/v 2014</a></li>
-	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Yhdyskuntien sekalainen biohajoava jäte t/v 2014</a></li>
+	<li class="active"><a data-toggle="tab" href="#" id="elainJaKasvijätteetLayer_anchor">Eläin- ja kasvijätteet</a></li>
+	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor">Lietteet</a></li>
+	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja pahvijätteet</a></li>
+	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujätteet</a></li>
+	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Yhdyskuntien sekalainen biohajoava jäte</a></li>
 </ul>
 <div class="tab-content table-responsive workBioWasteLayers">
 	<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
