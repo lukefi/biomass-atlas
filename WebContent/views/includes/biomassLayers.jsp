@@ -12,10 +12,16 @@
 	#bmaLayerContent {
     	z-index: 1000;
     	position: absolute;
-    	height: 650px;
+    	height: 738px;
     	width: 588px;
     	display: none;
-    	bottom: 0;
+    	bottom: 80px;
+    	background-color: #333438;
+    	padding: 7px;
+    	border-radius: 4px;
+    	box-shadow: 5px 7px 4px 0px rgba(0,0,0,0.34);
+    }
+    #bmaLayerContent .bmaLayerInner {
     	background-color: #ffffff;
     }
 	#bmaLayerContent .nav-pills {
@@ -192,7 +198,7 @@ $(document).ready(function () {
 });
 </script>
 
-<div id="bmaLayerContent">
+<div id="bmaLayerContent"><div class="bmaLayerInner">
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaalin
 				mukaan</a></li>
@@ -351,4 +357,4 @@ $(document).ready(function () {
 			</div>	<!-- originTab tab-content ends -->
 		</div>	<!-- originTab tab-pane ends -->
 	</div> <!-- bmaLayerContent tab-content ends -->
-</div>	<!-- bmaLayerContent ends -->
+</div></div>	<!-- bmaLayerContent ends -->
