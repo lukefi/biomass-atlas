@@ -5,31 +5,31 @@
 	</thead>
 	<tbody>
 		<tr>
-			<th style="width:80%;" scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät kuori- ja korkkijätteet</th>
+			<th style="width:80%;" scope="row">030101 Puutuoteteollisuuden kuori- ja korkkijätteet</th>
 			<td style="width:20%;"><input type="checkbox" name="waste" value='1110'></td>
 		</tr>
 		<tr>
-			<th scope="row">Puun käsittelyssä sekä levyjen  ja huonekalujen valmistuksessa syntyvät sahajauho, lastut, palaset, puu ja puupohjaiset levyt (kuten lastulevy ja vaneri), jotka eivät sisällä vaarallisia aineita</th>
+			<th scope="row">030105 Puutuoteteollisuuden vaarattomat sahajauho, lastut, palaset ja puupohjaiset levyt</th>
 			<td><input type="checkbox" name="waste" value='1111'></td>
 		</tr>
 		<tr>
-			<th scope="row">Massojen, paperin ja kartongin valmistuksessa ja jalostuksessa syntyvät kuori- ja puujätteet</th>
+			<th scope="row">030301 Massa- ja paperiteollisuuden kuori- ja puujätteet</th>
 			<td><input type="checkbox" name="waste" value='1112'></td>
 		</tr>
 		<tr>
-			<th scope="row">Puupakkaukset</th>
+			<th scope="row">150103 Puupakkaukset</th>
 			<td><input type="checkbox" name="waste" value='1113'></td>
 		</tr>
 		<tr>
-			<th scope="row">Rakentamisessa ja purkamisessa syntyvä puujäte</th>
+			<th scope="row">170201 Rakentamisessa ja purkamisessa syntyvä puujäte</th>
 			<td><input type="checkbox" name="waste" value='1114'></td>
 		</tr>
 		<tr>
-			<th scope="row">Jätteiden mekaanisessa käsittelyssä syntyvä puujäte, joka ei sisällä vaarallisia aineita</th>
+			<th scope="row">191207 Jätteiden mekaanisen käsittelyn vaaraton puujäte</th>
 			<td><input type="checkbox" name="waste" value='1115'></td>
 		</tr>
 		<tr>
-			<th scope="row">Yhdyskuntajätteen puujäte, joka ei sisällä vaarallisia aineita</th>
+			<th scope="row">200138 Yhdyskuntajätteen vaaraton puujäte</th>
 			<td><input type="checkbox" name="waste" value='1116'></td>
 		</tr>
 	</tbody>

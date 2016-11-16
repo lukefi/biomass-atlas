@@ -5,99 +5,99 @@
 	</thead>
 	<tbody>
 		<tr>
-			<th style="width:80%;" scope="row">Eläinperäisten elintarvikkeiden valmistuksen ja jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
+			<th style="width:80%;" scope="row">020204 Lihatuotteiden tuotannon jätevesilietteet</th>
 			<td style="width:20%;"><input type="checkbox" name="waste" value='1083'></td>	
 		</tr>
 		<tr>
-			<th scope="row">Hedelmien, vihannesten, viljojen, ruokaöljyjen, kaakaon, kahvin, teen ja tupakan valmistuksen ja jalostuksen, säilykkeiden valmistuksen,hiivan ja hiivauutteen valmistuksen sekä melassin valmistuksen ja käymisen jätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">020305 Kasvistuotteiden valmistuksen jätevesilietteet</th>
 			<td><input type="checkbox" name="waste" value='1084'></td>	
 		</tr>
 		<tr>
-			<th scope="row">Sokerin jalostuksen jätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">020403 Sokerinjalostuksen jätevesilietteet</th>
 			<td><input type="checkbox" name="waste" value='1085'></td>	
 		</tr>
 		<tr>
-			<th scope="row">Maidonjalostusteollisuuden jätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">020502 Maidonjalostusteollisuuden jätevesilietteet</th>
 			<td><input type="checkbox" name="waste" value='1086'></td>
 		</tr>
 		<tr>
-			<th scope="row">Leipomo-, konditoria- ja makeisteollisuuden jätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">020603 Leipomotuotteiden ja makeisten valmistuksen jätevesilietteet</th>
 			<td><input type="checkbox" name="waste" value='1087'></td>
 		</tr>
 		<tr>
-			<th scope="row">Alkoholijuomien ja alkoholittomien juomien (ei kahvi, tee tai kaakao) valmistuksen jätevesien käsittelyssä toimipaikalla syntyvät lietteet</th>
+			<th scope="row">020705 Juomien valmistuksen jätevesilietteet</th>
 			<td><input type="checkbox" name="waste" value='1088'></td>
 		</tr>
 		<tr>
-			<th scope="row">Keräyspaperin siistauslietteet</th>
+			<th scope="row">030305 Keräyspaperin siistauslietteet</th>
 			<td><input type="checkbox" name="waste" value='1089'></td>
 		</tr>
 		<tr>
-			<th scope="row">Massojen, paperin ja kartongin valmistuksen jätevesien käsittelyssä syntyvät lietteet, ei kuitenkaan mekaanisessa erotuksessa syntyvät kuitujätteet sekä kuitu-, täyteaine- ja päällystysainelietteet</th>
+			<th scope="row">030311 Massa- ja paperiteollisuuden jätevesilietteet lukuunottamatta kuitujätteitä sekä kuitu-, täyteaine- ja päällystysainelietteitä</th>
 			<td><input type="checkbox" name="waste" value='1090'></td>
 		</tr>
 		<tr>
-			<th scope="row">Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä neste</th>
+			<th scope="row">190603 Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä neste</th>
 			<td><input type="checkbox" name="waste" value='1091'></td>
 		</tr>
 		<tr>
-			<th scope="row">Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä liete</th>
+			<th scope="row">190604 Yhdyskuntajätteiden anaerobisessa käsittelyssä syntyvä liete</th>
 			<td><input type="checkbox" name="waste" value='1092'></td>
 		</tr>
 		<tr>
-			<th scope="row">Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä neste</th>
+			<th scope="row">190605 Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä neste</th>
 			<td><input type="checkbox" name="waste" value='1093'></td>
 		</tr>
 		<tr>
-			<th scope="row">Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä liete</th>
+			<th scope="row">190606 Eläin- ja kasvijätteiden anaerobisessa käsittelyssä syntyvä liete</th>
 			<td><input type="checkbox" name="waste" value='1094'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">190805 Asumisjätevesien käsittelyssä syntyvät lietteet</th>
 			<td><input type="checkbox" name="waste" value='1095'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyn ei stabiloitu liete</th>
+			<th scope="row">190805A Asumisjätevesien käsittelyn ei stabiloitu liete</th>
 			<td><input type="checkbox" name="waste" value='1096'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyn lahotettu liete</th>
+			<th scope="row">190805B Asumisjätevesien käsittelyn lahotettu liete</th>
 			<td><input type="checkbox" name="waste" value='1097'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyn mädätetty liete</th>
+			<th scope="row">190805C Asumisjätevesien käsittelyn mädätetty liete</th>
 			<td><input type="checkbox" name="waste" value='1098'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyn kalkkistabiloitu liete</th>
+			<th scope="row">190805D Asumisjätevesien käsittelyn kalkkistabiloitu liete</th>
 			<td><input type="checkbox" name="waste" value='1099'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyn termisesti käsitelty liete</th>
+			<th scope="row">190805E Asumisjätevesien käsittelyn termisesti käsitelty liete</th>
 			<td><input type="checkbox" name="waste" value='1100'></td>
 		</tr>
 		<tr>
-			<th scope="row">Asumisjätevesien käsittelyssä syntyvät lietteet</th>
+			<th scope="row">190805F Asumisjätevesien käsittelyssä syntyvät lietteet</th>
 			<td><input type="checkbox" name="waste" value='1101'></td>
 		</tr>
 		<tr>
-			<th scope="row">Kompostoitu asumisjätevesien käsittelyssä muodostunut liete</th>
+			<th scope="row">190805G Kompostoitu asumisjätevesien käsittelyssä muodostunut liete</th>
 			<td><input type="checkbox" name="waste" value='1102'></td>
 		</tr>
 		<tr>
-			<th scope="row">Teollisuuden jätevesien biologisessa käsittelyssä syntyvät lietteet, jotka eivät sisällä vaarallisia aineita</th>
+			<th scope="row">190812 Teollisuuden jätevesien biologisen käsittelyn vaarattomat lietteet</th>
 			<td><input type="checkbox" name="waste" value='1103'></td>
 		</tr>
 		<tr>
-			<th scope="row">Ihmisten käyttöön tai teollisuuskäyttöön tarkoitetun veden valmistuksen selkeytyksessä syntyvät lietteet</th>
+			<th scope="row">190902 Veden valmistuksen selkeytyslietteet</th>
 			<td><input type="checkbox" name="waste" value='1104'></td>
 		</tr>
 		<tr>
-			<th scope="row">Sakokaivolietteet</th>
+			<th scope="row">200304 Sakokaivolietteet</th>
 			<td><input type="checkbox" name="waste" value='1105'></td>
 		</tr>
 		<tr>
-			<th scope="row">Viemäreiden puhdistuksessa syntyvät jätteet</th>
+			<th scope="row">200306 Viemäreiden puhdistuksessa syntyvät jätteet</th>
 			<td><input type="checkbox" name="waste" value='1106'></td>
 		</tr>
 	</tbody>

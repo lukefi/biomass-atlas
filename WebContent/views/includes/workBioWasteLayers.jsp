@@ -22,15 +22,15 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th style="width:80%;" scope="row">Paperi- ja kartonkipakkaukset</th>
+					<th style="width:80%;" scope="row">150101 Paperi- ja kartonkipakkaukset</th>
 					<td style="width:20%;"><input type="checkbox" name="waste" value='1107'></td>
 				</tr>
 				<tr>
-					<th scope="row">Jätteiden mekaanisessa käsittelyssä syntyvät paperi- ja kartonkijätteet</th>
+					<th scope="row">191201 Jätteiden mekaanisen käsittelyn paperi- ja kartonkijätteet</th>
 					<td><input type="checkbox" name="waste" value='1108'></td>
 				</tr>
 				<tr>
-					<th scope="row">Yhdyskuntajätteen paperi ja kartonki</th>
+					<th scope="row">200101 Yhdyskuntajätteen paperi ja kartonki</th>
 					<td><input type="checkbox" name="waste" value='1109'></td>
 				</tr>
 			</tbody>
@@ -49,11 +49,11 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th style="width:80%;" scope="row">Sekalaiset yhdyskuntajätteet</th>
+					<th style="width:80%;" scope="row">200301 Sekalaiset yhdyskuntajätteet</th>
 					<td style="width:20%;"><input type="checkbox" name="waste" value='1117'></td>
 				</tr>
 				<tr>
-					<th scope="row">Yhdyskuntajätteet, joita ei ole mainittu muualla</th>
+					<th scope="row">200399 Yhdyskuntajätteet, joita ei ole mainittu muualla</th>
 					<td><input type="checkbox" name="waste" value='1118'></td>
 				</tr>
 			</tbody>
