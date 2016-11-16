@@ -31,6 +31,17 @@
     	margin-top: 0;
     	padding-top: 15px;
     }
+    #bmaLayerContent .bmaLayerInner > .nav-pills > li {
+    	padding-right: 7px;
+    	width: 203px;
+    }
+    #bmaLayerContent .bmaLayerInner > .nav-pills > li > a {
+    	background-color: #00b5e2;
+    	color: #ffffff;
+    }
+    #bmaLayerContent .bmaLayerInner > .nav-pills > li.active > a {
+    	background-color: #78be20;
+    }
     #bmaLayerContent .bmaLayerInner > .tab-content {
     	background-color: #ffffff;
     	color: #000000;
@@ -214,9 +225,8 @@ $(document).ready(function () {
 	<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
 	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
-		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaalin
-				mukaan</a></li>
-		<li><a data-toggle="tab" href="#originTabs">Alkuperän mukaan</a></li>
+		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaali</a></li>
+		<li><a data-toggle="tab" href="#originTabs">Alkuperä</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="potentialTabs" class="tab-pane fade in active">
