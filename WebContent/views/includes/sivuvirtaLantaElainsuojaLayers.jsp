@@ -1,5 +1,5 @@
 <h4>Lanta eläinsuojasta</h4>
-<table class="table select-column">
+<table class="table select-column standard-width">
 <thead>
 	<tr>
 		<td></td>
@@ -11,10 +11,10 @@
 </thead>
 <tbody>
 	<tr class="select-row">
-		<th style="width: 40%" scope="row">Lypsykarja</th>
-		<td style="width: 20%"><input type="checkbox" value='1158'></td>
-		<td style="width: 20%"><input type="checkbox" value='1191'></td>
-		<td style="width: 20%"><input type="checkbox" value='1162'></td>
+		<th scope="row">Lypsykarja</th>
+		<td><input type="checkbox" value='1158'></td>
+		<td><input type="checkbox" value='1191'></td>
+		<td><input type="checkbox" value='1162'></td>
 	</tr>
 	<tr class="select-row">
 		<th scope="row">Lihakarja</th>

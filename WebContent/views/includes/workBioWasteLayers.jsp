@@ -16,14 +16,14 @@
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
 		<h4>Paperi- ja pahvijätteet t/v 2014</h4>
-		<table class="table select-column" id="paperijätteetLayerTable">
+		<table class="table select-column standard-width" id="paperijätteetLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th style="width:80%;" scope="row">150101 Paperi- ja kartonkipakkaukset</th>
-					<td style="width:20%;"><input type="checkbox" name="waste" value='1107'></td>
+					<th scope="row">150101 Paperi- ja kartonkipakkaukset</th>
+					<td><input type="checkbox" name="waste" value='1107'></td>
 				</tr>
 				<tr>
 					<th scope="row">191201 Jätteiden mekaanisen käsittelyn paperi- ja kartonkijätteet</th>
@@ -43,14 +43,14 @@
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<h4>Yhdyskuntien sekalainen biohajoava jäte t/v 2014</h4>
-		<table class="table select-column" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
+		<table class="table select-column standard-width" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th style="width:80%;" scope="row">200301 Sekalaiset yhdyskuntajätteet</th>
-					<td style="width:20%;"><input type="checkbox" name="waste" value='1117'></td>
+					<th scope="row">200301 Sekalaiset yhdyskuntajätteet</th>
+					<td><input type="checkbox" name="waste" value='1117'></td>
 				</tr>
 				<tr>
 					<th scope="row">200399 Yhdyskuntajätteet, joita ei ole mainittu muualla</th>

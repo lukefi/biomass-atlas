@@ -1,10 +1,10 @@
 <h4>Pienpuu</h4>
-<table style="width: 40%" class="table select-column">
+<table class="table select-column standard-width">
 	<thead>
 		<tr><td></td><th></th></tr>
 	</thead>
 <tbody>
-	<tr><th style="width:55%;">Korjuu rankana</th><td style="width:45%;"><input type="checkbox" value='1130'></td></tr>
+	<tr><th>Korjuu rankana</th><td><input type="checkbox" value='1130'></td></tr>
 	<tr><th>Korjuu kokopuuna</th><td><input type="checkbox" value='1124'></td></tr>
 	<tr><th>Korjuu integroituna</th><td><input type="checkbox" value='1119'></td></tr>
 </tbody>

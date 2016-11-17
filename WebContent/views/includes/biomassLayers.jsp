@@ -1,14 +1,4 @@
 <style type="text/css">
-	.selectAllIcon {
-		margin-left: -10px;
-		cursor: pointer;
-		float: right;
-	}
-	.textInSelectAllHeader {
-		margin-right: 10px;
-		display: inline-block;
-	}
-	
 	#bmaLayerContent {
     	z-index: 1000;
     	position: absolute;
@@ -96,13 +86,30 @@
 	}
 	.table thead th {
 	    text-align: center;
-	} 
+	}
 	.even-row, .even-col {
     	background-color: #F0F0F0;
     }
    	.even-col-even-cell {
    		background-color: #E5E5E5;
    	}
+   	#bmaLayerContent table.standard-width tr th:first-child {
+   		width: 298px;
+   	}
+   	#bmaLayerContent table.standard-width tr th:first-child ~ td {
+   		padding-left: 25px;
+   		padding-right: 25px;
+   	}
+   	#bmaLayerContent .selectAllIcon {
+		cursor: pointer;
+	}
+	#bmaLayerContent table.standard-width th:first-child .selectAllIcon {
+		float: right;
+	}
+	#bmaLayerContent .textInSelectAllHeader {
+		margin-right: 4px;
+		display: inline-block;
+	}
 	th {
     	background-color: #FFFFFF;
 	}    	
