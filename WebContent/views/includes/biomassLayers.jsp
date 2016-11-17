@@ -26,10 +26,16 @@
     	color: #ffffff;
     	padding-left: 7px;
     	padding-right: 7px;
+    	height: 100%;
     }
     #bmaLayerContent .bmaLayerInner h3 {
-    	margin-top: 0;
+    	margin: 0;
     	padding-top: 15px;
+    	padding-bottom: 15px;
+    	height: 60px;
+    }
+    #bmaLayerContent .bmaLayerInner > .nav-pills {
+    	height: 43px;
     }
     #bmaLayerContent .bmaLayerInner > .nav-pills > li {
     	padding-right: 7px;
@@ -59,11 +65,18 @@
 	#bmaLayerContent .tab-content .nav-pills li.active > a {
 		color: #78be20;
 	}
+	#bmaLayerContent .tab-content .tab-content .nav-pills {
+		border-top: 2px solid #d4e5ee;
+	}
 	#closeAllBmaLayersBtn {
 		position: absolute;
 		right: 40px;
 		top: 8px;
 		cursor: pointer;
+	}
+	#bmaLayerContent .bmaLayerInner > .tab-content {
+		height: 614px;
+		overflow-y: scroll;
 	}
 	.table th, .table td {
 	    border: none !important;

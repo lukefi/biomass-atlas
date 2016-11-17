@@ -109,13 +109,6 @@
             	font-style: italic;
             }
            
-            .tab-content {
-			    height: 90%; 
-			    border-left: 2px solid #ccc ;
-			    border-right: 2px solid #ccc ;
-			    border-top: 2px solid #ccc ;
-			    overflow-y: auto;
-			}
 			/* BMA tabs */
 			.nav > li > a:hover,
 			.nav > li > a:focus {
