@@ -101,7 +101,14 @@
    		padding-right: 25px;
    	}
    	#bmaLayerContent .selectAllIcon {
+   		background-image: url("Oskari/resources/koko_rivi_ja_sarake_checkbox.png");
 		cursor: pointer;
+		display: inline-block;
+		width: 13px;
+		height: 12px;
+	}
+	#bmaLayerContent .selectAllIcon:hover {
+		background-image: url("Oskari/resources/valittu_koko_rivi_ja_sarake_checkbox_hover.png");
 	}
 	#bmaLayerContent table.standard-width th:first-child .selectAllIcon {
 		float: right;
@@ -130,7 +137,7 @@ $(document).ready(function () {
 	
 	var insertIcon = function(th) {
 		var icon = jQuery("<span/>");
-		icon.addClass("glyphicon").addClass("glyphicon-check").addClass("selectAllIcon");
+		icon.addClass("selectAllIcon");
 		icon.attr("title", "Valitse kaikki");
 		var span = jQuery("<span/>");
 		span.text(th.text());
