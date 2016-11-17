@@ -78,9 +78,18 @@
 		height: 614px;
 		overflow-y: scroll;
 	}
-	.table th, .table td {
+	#bmaLayerContent h4 {
+		color: #00b5e2;
+		margin-left: 9px;
+		padding-bottom: 0;
+	}
+	#bmaLayerContent .table th, #bmaLayerContent .table td {
 	    border: none !important;
 	    text-align: left;
+	    padding-top: 0;
+	    padding-bottom: 0;
+	    height: 22px;
+	    vertical-align: middle;
 	}
 	.fixed-table-container {
 	    border:0px;
@@ -300,7 +309,7 @@ $(document).ready(function () {
 			<ul class="nav nav-pills">
 				<li class="active"><a data-toggle="tab" href="#forestTabs">Metsä</a></li>
 				<li><a data-toggle="tab" href="#fieldTabs">Maatila</a></li>
-				<li><a data-toggle="tab" href="#communitiesLayer">Yhdyskunnat (asutus, kaupat ja julkiset palvelut)</a></li>
+				<li><a data-toggle="tab" href="#communitiesLayer">Yhdyskunnat (asutus, kaupat<br /> ja julkiset palvelut)</a></li>
 				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
 			</ul>
 			
