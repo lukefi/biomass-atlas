@@ -273,7 +273,7 @@ $(document).ready(function () {
 	<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
 	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
-		<li class="active"><a data-toggle="tab" href="#potentialTabs">Biomassapotentiaali</a></li>
+		<li class="active"><a data-toggle="tab" href="#potentialTabs">Potentiaali</a></li>
 		<li><a data-toggle="tab" href="#originTabs">Alkuperä</a></li>
 	</ul>
 	<div class="tab-content">
