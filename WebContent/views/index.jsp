@@ -119,16 +119,28 @@
 				text-align: center;
 				font-weight: bold;
 			}			
-        	/* #bmaLayerContent table tr th {
-	        	background-color: #004c99;
-	        	color: #ffffff;
-	        	text-align: center;
-        	} */
         	.styled-heading {
         		/*background-color: #004c99;
 	        	color: #ffffff;*/
 	        	text-align: center;
 	        	font-weight: bold; 
+        	}
+        	
+        	/* Overrides for Oskari styles */
+        	body .oskari-flyoutheading {
+        		background-color: #2c2c2c;
+        		height: 25px;
+        		border: none;
+        	}
+        	body .oskari-flyouttoolbar {
+        		height: 55px;
+        		background-color: #fafafa;
+        		color: #00b4e1;
+        		font-size: 16px;
+        		font-weight: bold;
+        	}
+        	body .oskari-flyoutcontent {
+        		font-size: 12px;
         	}
     </style>
     <!-- ############# /css ################# -->
