@@ -102,6 +102,9 @@
    	.even-col-even-cell {
    		background-color: #E5E5E5;
    	}
+   	#bmaLayerContent table.standard-width tr th {
+   		padding-right: 0;
+   	}
    	#bmaLayerContent table.standard-width tr th:first-child {
    		width: 298px;
    	}
@@ -127,6 +130,9 @@
 	}
 	#bmaLayerContent table.standard-width th:first-child .selectAllIcon {
 		float: right;
+	}
+	#bmaLayerContent table.standard-width .selectAllIcon.emptyCell {
+		margin-left: 13px;
 	}
 	#bmaLayerContent .textInSelectAllHeader {
 		margin-right: 4px;
@@ -156,6 +162,9 @@ $(document).ready(function () {
 		icon.attr("title", "Valitse kaikki");
 		var span = jQuery("<span/>");
 		span.text(th.text());
+		if (!th.text()) {
+			icon.addClass("emptyCell");
+		}
 		span.addClass("textInSelectAllHeader");
 		th.empty();
 		th.append(span);
