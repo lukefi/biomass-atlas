@@ -294,7 +294,7 @@ $(document).ready(function () {
 				<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien biojätteet</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien<br/>biojätteet</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten biojäte</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat">Pelto</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer">Lanta</a></li>
@@ -400,14 +400,7 @@ $(document).ready(function () {
 				</div>
 				
 				<div id="companiesTabs" class="tab-pane fade">
-					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Yritysten biojäte</a></li>
-					</ul>
-					<div class="tab-content table-responsive">
-						<div id="workBiowasteLayer" class="tab-pane fade in active">
-							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
-						</div>
-					</div>
+					<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
 				</div><!-- companiesTabs tab-pane ends -->
 				
 			</div>	<!-- originTab tab-content ends -->
