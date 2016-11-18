@@ -294,7 +294,7 @@ $(document).ready(function () {
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien biojätteet</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten toiminnassa muodostuvat biojätteet</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten biojäte</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
@@ -403,7 +403,7 @@ $(document).ready(function () {
 				
 				<div id="companiesTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojätteet</a></li>
+						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Yritysten biojäte</a></li>
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="workBiowasteLayer" class="tab-pane fade in active">
