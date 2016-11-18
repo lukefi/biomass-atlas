@@ -124,11 +124,6 @@
 	        	color: #ffffff;
 	        	text-align: center;
         	} */
-        	#closeBmaLayerContent {
-        		position: absolute;
-        		top:10px;		
-        		right: 10px;
-        	}
         	.styled-heading {
         		/*background-color: #004c99;
 	        	color: #ffffff;*/

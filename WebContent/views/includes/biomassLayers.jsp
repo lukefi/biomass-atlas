@@ -70,9 +70,20 @@
 	#closeAllBmaLayersBtn {
 		position: absolute;
 		right: 40px;
-		top: 8px;
+		top: 12px;
+		width: 14px;
+		height: 16px;
+		background-image: url("Oskari/resources/bma-close-layers.png");
 		cursor: pointer;
 	}
+	#bmaLayerContent #closeBmaLayerContent {
+    	position: absolute;
+    	top: 12px;		
+    	right: 10px;
+    	background-image: url("Oskari/resources/bma-close.png") !important;
+    	background-position: top !important;
+    	background-repeat: no-repeat !imporant;
+    }
 	#bmaLayerContent .bmaLayerInner > .tab-content {
 		height: 614px;
 		overflow-y: scroll;
@@ -279,7 +290,7 @@ $(document).ready(function () {
 
 <div id="bmaLayerContent"><div class="bmaLayerInner">
 	<h3>BIOMASSAT</h3>
-	<div id="closeAllBmaLayersBtn" class="glyphicon glyphicon-unchecked hidden" title="Sulje kaikki biomassatasot"></div>
+	<div id="closeAllBmaLayersBtn" class="hidden" title="Sulje kaikki biomassatasot"></div>
 	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Potentiaali</a></li>
