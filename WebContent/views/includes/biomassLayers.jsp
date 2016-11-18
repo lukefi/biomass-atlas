@@ -49,8 +49,16 @@
 		font-size: 16px;
 		padding-left: 10px;
 		padding-right: 10px;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin-top: 10px;
+		margin-bottom: 10px;
 		background-color: transparent;
 		color: #000000;
+	}
+	#bmaLayerContent .tab-content .nav-pills li:not(:first-child) a {
+		border-left: 2px solid #d4e5ee;
+		border-radius: 0;
 	}
 	#bmaLayerContent .tab-content .nav-pills li.active > a {
 		color: #78be20;
@@ -101,14 +109,20 @@
    		padding-right: 25px;
    	}
    	#bmaLayerContent .selectAllIcon {
-   		background-image: url("Oskari/resources/koko_rivi_ja_sarake_checkbox.png");
+   		background-image: url("Oskari/resources/valittu_koko_rivi_ja_sarake_checkbox.png");
+   		filter: grayscale(100%);
+   		filter: gray; /* FIXME: IE 11 */
 		cursor: pointer;
 		display: inline-block;
 		width: 13px;
 		height: 12px;
 	}
+	#bmaLayerContent .selectAllIcon.selected {
+		filter: none;
+	}
 	#bmaLayerContent .selectAllIcon:hover {
 		background-image: url("Oskari/resources/valittu_koko_rivi_ja_sarake_checkbox_hover.png");
+		filter: none;
 	}
 	#bmaLayerContent table.standard-width th:first-child .selectAllIcon {
 		float: right;
@@ -147,12 +161,14 @@ $(document).ready(function () {
 		th.append(icon);
 		return icon;
 	};
-	var toggleBoxes = function(boxes) {
+	var toggleBoxes = function(button, boxes) {
 		if (boxes.filter(":not(:checked)").length == 0) {
 			boxes.filter(":checked").click();
+			button.removeClass("selected");
 		}
 		else {
 			boxes.filter(":not(:checked)").click();
+			button.addClass("selected");
 		}
 	};
 	var addSelectRowFunctionality = function(rows) {
@@ -164,7 +180,7 @@ $(document).ready(function () {
 			var th = row.find("th").first();
 			var icon = insertIcon(th);
 			icon.click(function() {
-				toggleBoxes(row.find("input[type='checkbox']"));
+				toggleBoxes($(this), row.find("input[type='checkbox']"));
 			});
 		});
 	};
@@ -211,7 +227,7 @@ $(document).ready(function () {
 					for (var j = 0; j < colIndexes.length; j++) {
 						boxes = boxes.add(table.find("." + colIndexes[j] + " input[type='checkbox']"));
 					}
-					toggleBoxes(boxes);
+					toggleBoxes($(this), boxes);
 				});
 			}
 		});
@@ -223,7 +239,7 @@ $(document).ready(function () {
 	});
 	
 	jQuery("#closeAllBmaLayersBtn").click(function() {
-		toggleBoxes(jQuery("#bmaLayerContent input[type='checkbox']:checked"));
+		toggleBoxes($(this), jQuery("#bmaLayerContent input[type='checkbox']:checked"));
 	});
 	
 	var tables = $(".table");
@@ -279,7 +295,6 @@ $(document).ready(function () {
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien biojätteet</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten toiminnassa muodostuvat biojätteet</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaBiojatteetLayer">Jätteet yritysten varastoissa</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
@@ -297,10 +312,6 @@ $(document).ready(function () {
 						
 						<div id="sivuvirtaYritystenBiojatteetLayerTabs" class="tab-pane fade">
 							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
-						</div>
-						
-						<div id="sivuvirtaBiojatteetLayer" class="tab-pane fade">
-							<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
 						</div>
 						
 						<div id="sivuvirtaPeltokasvitLayer" class="tab-pane fade">
@@ -393,14 +404,10 @@ $(document).ready(function () {
 				<div id="companiesTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#workBiowasteLayer">Toiminnassa muodostuvat biojätteet</a></li>
-						<li><a data-toggle="tab" href="#industrialWasteLayer">Jätteet yritysten varastoissa</a></li>
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="workBiowasteLayer" class="tab-pane fade in active">
 							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
-						</div>
-						<div id="industrialWasteLayer" class="tab-pane fade">
-							<jsp:include page="includes/industrialWasteLayers.jsp"></jsp:include>
 						</div>
 					</div>
 				</div><!-- companiesTabs tab-pane ends -->
