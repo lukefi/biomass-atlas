@@ -1,7 +1,7 @@
 <h4>Otsikko?</h4>
 <table class="table select-column standard-width">
 	<thead>
-		<tr><td> </td><th> </th></tr>
+		<tr><td></td><th></th></tr>
 	</thead>
 	<tbody>
 		<tr>
