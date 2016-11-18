@@ -34,6 +34,7 @@
     #bmaLayerContent .bmaLayerInner > .nav-pills > li > a {
     	background-color: #00b5e2;
     	color: #ffffff;
+    	font-weight: bold;
     }
     #bmaLayerContent .bmaLayerInner > .nav-pills > li.active > a {
     	background-color: #78be20;
@@ -295,9 +296,8 @@ $(document).ready(function () {
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien biojätteet</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten biojäte</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat">Pelto</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer">Lanta</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="sivuvirtaMetsahakeLayer" class="tab-pane fade in active">
@@ -318,10 +318,8 @@ $(document).ready(function () {
 							<jsp:include page="includes/sivuvirtaFieldLayers.jsp"></jsp:include>
 						</div>
 						
-						<div id="sivuvirtaLantaElainsuojaLayer" class="tab-pane fade">
+						<div id="sivuvirtaLantaLayer" class="tab-pane fade">
 							<jsp:include page="includes/sivuvirtaLantaElainsuojaLayers.jsp"></jsp:include>
-						</div>
-						<div id="sivuvirtaLantaVarastoLayer" class="tab-pane fade">
 							<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
 						</div>
 						
@@ -334,7 +332,7 @@ $(document).ready(function () {
 			<ul class="nav nav-pills">
 				<li class="active"><a data-toggle="tab" href="#forestTabs">Metsä</a></li>
 				<li><a data-toggle="tab" href="#fieldTabs">Maatila</a></li>
-				<li><a data-toggle="tab" href="#communitiesLayer">Yhdyskunnat (asutus, kaupat<br /> ja julkiset palvelut)</a></li>
+				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer">Yhdyskunnat</a></li>
 				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
 			</ul>
 			
