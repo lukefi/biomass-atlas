@@ -338,6 +338,19 @@ $(document).bind('afterReady', function() {
 					   else {
 						   boxesRow.find(".selectAllIcon").addClass("selected");
 					   }
+					   var cellClasses = $(this).parents("td").first().prop("class").split(" ");
+					   for (var i = 0; i < cellClasses.length; i++) {
+						   var cellClass = cellClasses[i];
+						   if (cellClass.startsWith("colIndex")) {
+							   var columnCells = $(this).parents("table").first().find("." + cellClass);
+							   if (columnCells.find("input[type='checkbox']:not(:checked)").length) {
+								   columnCells.find(".selectAllIcon").removeClass("selected");
+							   }
+							   else {
+								   columnCells.find(".selectAllIcon").addClass("selected");
+							   }
+						   }
+					   }
 				   }
 				});	        
 			}
