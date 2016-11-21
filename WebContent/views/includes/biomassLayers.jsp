@@ -124,19 +124,17 @@
    		padding-right: 25px;
    	}
    	#bmaLayerContent .selectAllIcon {
-   		background-image: url("Oskari/resources/valittu_koko_rivi_ja_sarake_checkbox.png");
-   		filter: grayscale(100%);
-   		filter: gray; /* FIXME: IE 11 */
+   		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAMAAACOacfrAAAAaVBMVEX///+EhIQAAACEhISEhITw8PCEhISOjo6urq7AwMCBgYGJiYmioqKkpKS2trbe3t57e3uEhISEhISEhISEhISBgYF6enp7e3uBgYGoqKiDg4PHx8d0dHR0dHTQ0NCZmZmEhISEhISEhISnc7U9AAAAI3RSTlOAfwB3e4g+4GCpHOfGw7GSkXVoZVMJ4tPIv7mjn52bb286LvoY3zwAAABkSURBVAjXRc5HFoNAEANRtYb2mAEMxmByvP8hyVC7v9ETeJcXDkzN0S9JiFTO2n9OeII9LbuZMOJ/NlW19yK+Egcx0AfDIfhW1TbvTUaAKIxC3FJr9RHWoVUTkcnV6Ahm1xdHLmTOBBPzlrMcAAAAAElFTkSuQmCC");
 		cursor: pointer;
 		display: inline-block;
 		width: 13px;
 		height: 12px;
 	}
 	#bmaLayerContent .selectAllIcon.selected {
-		filter: none;
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAMAAACOacfrAAAAe1BMVEX///8AteIAAAAAteIAteIAteIAteJO3E7d+N0AteJWzuwc0hwk0ySB5oEAvogAzAQAteIAteIAteIAyhcj0yMl0yUAzAAPzClX3VcUzDhy43Jx43GJ54mS6ZKl7aW88rzC88Lu/O4AteJDzrkAteIAteIAzAAAteIAzADfExLnAAAAKXRSTlOAfwB3dnw+xYpnYOfgqp6Re1Mc4uHf08i/ubGxpqObk5GEb286Lh4MB/ZYMvMAAABmSURBVAjXPc5HFoMwAANRWYHEpkM6vcP9T4gNhr+bp43Ay/qZQXU7qDgmlLCi50K4Ajv5jSbCEWVu6vdP7qZavwFqf3D3QhhIGVSeLTw0XNW9XxJeYgthAb2NRCpOfUYwdTTzJSM3lwMEv+PAgb4AAAAASUVORK5CYII=");
 	}
 	#bmaLayerContent .selectAllIcon:hover {
-		background-image: url("Oskari/resources/valittu_koko_rivi_ja_sarake_checkbox_hover.png");
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAMAAACOacfrAAAAY1BMVEX///8AAAAAteIAteIAteIAteKnp6fy8vIAteJWzuy5ubnIyMjR0dGlpaU9qsXm5uYAteIAteKJnKCZmZmNoqe3t7e8vLyJpa3b29uUmpyZmZkAteJkw9oAteIAteKZmZkAteIhbF72AAAAIXRSTlOAAH92ez7gimdgxLCm556SUxzi08jGv7mblI1vbzouHgwSL9eTAAAAX0lEQVQI103ORQLEIAAEwRlggQViK3H7/ytjRPpWtwbvvhNoldyzTUtYEUs/M6EE9swvHQkpgt9UVuq1KUsyoE76QwjaGB3eUXB/53AJWpuHvMeqgcjFWVcQzGV8KcgFOT0DpCQSrakAAAAASUVORK5CYII=");
 		filter: none;
 	}
 	#bmaLayerContent table.standard-width th:first-child .selectAllIcon {
