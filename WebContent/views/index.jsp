@@ -329,8 +329,16 @@ $(document).bind('afterReady', function() {
 					(mapLayer.getLayerType().toLowerCase() == "wms")) {							
 				var attributeId = mapLayer.getId();
 		       	$('#bmaLayerContent input[type=checkbox]').each(function () {
-				   if (this.value == attributeId) 
-					   this.checked = state;			   
+				   if (this.value == attributeId) {
+					   this.checked = state;
+					   var boxesRow = $(this).parents("tr").first();
+					   if (boxesRow.find("input[type='checkbox']:not(:checked)").length) {
+						   boxesRow.find(".selectAllIcon").removeClass("selected");
+					   }
+					   else {
+						   boxesRow.find(".selectAllIcon").addClass("selected");
+					   }
+				   }
 				});	        
 			}
 		};
