@@ -35,6 +35,8 @@
     	background-color: #00b5e2;
     	color: #ffffff;
     	font-weight: bold;
+    	border-bottom-right-radius: 0;
+    	border-bottom-left-radius: 0;
     }
     #bmaLayerContent .bmaLayerInner > .nav-pills > li.active > a {
     	background-color: #78be20;
