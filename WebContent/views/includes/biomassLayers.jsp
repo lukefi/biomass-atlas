@@ -11,6 +11,12 @@
     	border-radius: 4px;
     	box-shadow: 5px 7px 4px 0px rgba(0,0,0,0.34);
     }
+    @media only screen and (max-height: 818px) {
+    	body #bmaLayerContent {
+    		top: 0;
+    		bottom: auto;
+    	}
+    }
     #bmaLayerContent .bmaLayerInner {
     	background-color: #54585a;
     	color: #ffffff;
