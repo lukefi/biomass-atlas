@@ -311,6 +311,9 @@ $(document).ready(function () {
 });
 
 $(document).bind('afterReady', function() {
+	// Overrides for localization
+	$("#oskari_toolbar_viewtools_save_view").attr("title", "Tallenna karttahaku ja biomassavalinta");
+	
 	var initialSynchonizeLayersCheckbox = function(){		
 		var app = Oskari.app,
 			sandbox = app.bundleInstances.mapfull.sandbox,	 
