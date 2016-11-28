@@ -357,7 +357,7 @@ $(document).ready(function () {
 		<div id="originTabs" class="tab-pane fade">
 			<ul class="nav nav-pills">
 				<li class="active"><a data-toggle="tab" href="#forestTabs">Metsä</a></li>
-				<li><a data-toggle="tab" href="#fieldTabs">Maatila</a></li>
+				<li><a data-toggle="tab" href="#fieldTabs">Maatalous</a></li>
 				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer">Yhdyskunnat</a></li>
 				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
 			</ul>
