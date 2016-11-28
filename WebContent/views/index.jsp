@@ -142,6 +142,39 @@
         	body .oskari-flyoutcontent {
         		font-size: 12px;
         	}
+        	body div.divmanazerpopup h3.popupHeader {
+        		background-color: transparent;
+        		border-bottom: 1px solid #c0d0d0;
+        		padding-left: 0;
+        		padding-right: 0;
+        		padding-bottom: 20px;
+        		margin-left: 8px;
+        		margin-right: 8px;
+        		margin-top: 8px;
+        		font-size: 15px;
+        		font-weight: bold;
+        		color: #00b4e1;
+        	}
+        	body div.divmanazerpopup h4.indicator-msg-popup {
+        		margin-top: 2px;
+        		margin-bottom: 0;
+        	}
+        	body button.oskari-button, body input.oskari-button {
+        		background-image: none;
+        		background-color: #00b4e1;
+        		color: #ffffff;
+        		font-size: 15px;
+        		border: none;
+        		border-radius: 0;
+        		text-shadow: none;
+        	}
+        	body button.oskari-button:hover:enabled, body input.oskari-button:hover:enabled {
+        		background-image: none;
+        		border: none;
+        	}
+        	body div.divmanazerpopup p {
+        		font-size: 12px;
+        	}
     </style>
     <!-- ############# /css ################# -->
 </head>
