@@ -64,11 +64,31 @@ function() {
 		me._registerTools();
 		
 		me._latestGeometry = null;
+		
+		var toolSymbolizers = {
+		        "Line": {
+		            strokeWidth: 3,
+		            strokeColor: "#eda740"
+		        },
+		        "Polygon": {
+		            strokeWidth: 2,
+		            strokeColor: "#eda740",
+		            fillColor: "#ffff00"
+		        }
+		};
+		var toolStyle = new OpenLayers.Style();
+		toolStyle.addRules([
+		    new OpenLayers.Rule({symbolizer: toolSymbolizers})
+		]);
 		me._measureControl = new OpenLayers.Control.Measure(
 				OpenLayers.Handler.Polygon,
 				{
 					handlerOptions: {
-						persist: true
+						persist: true,
+						style: "default",
+						layerOptions: {
+							styleMap: new OpenLayers.StyleMap({"default": toolStyle})
+						}
 					},
 						immediate: true
 					});

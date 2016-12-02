@@ -236,7 +236,7 @@ function(instance, locale, conf) {
 					requestForAddFeature = sandbox.getRequestBuilder(
 							"MapModulePlugin.AddFeaturesToMapRequest" );				
 					var style = OpenLayers.Util.applyDefaults(
-					        {fillColor: '#9900FF', fillOpacity: 0.5, strokeColor: '#000000'},
+					        {fillColor: '#ffff00', fillOpacity: 0.5, strokeColor: '#eda740'},
 					        OpenLayers.Feature.Vector.style["default"]);
 		
 					sandbox.request(me.instance, requestForAddFeature( results.geo, 'WKT', 
