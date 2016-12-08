@@ -16,7 +16,8 @@
             "boundary.sql",
             "circle.sql",
             "welcometour.sql",
-            "biomassmenubar.sql"           
+            "biomassmenubar.sql",
+			"biomassuserguide.sql"           
         ]
     },
     "views" : [

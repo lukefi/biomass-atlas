@@ -64,7 +64,12 @@
         { "id" : "personaldata" },
         { "id" : "publisher" },
         { "id" : "maplegend" },
-        { "id" : "userguide" },
+        { "id" : "biomassuserguide",
+			"config" : {
+				"tags" : "userguide",
+    			"flyoutClazz" : "Oskari.bma.bundle.biomassuserguide.Flyout"
+			}
+		},
         { "id" : "printout" },
         { "id" : "heatmap" },
         { "id" : "testbundle" },
