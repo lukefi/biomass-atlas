@@ -175,12 +175,19 @@
         	body div.divmanazerpopup p {
         		font-size: 12px;
         	}
+        	#logo {
+        		margin-left: 10px;
+        		top: 20px;
+        	}
     </style>
     <!-- ############# /css ################# -->
 </head>
 <body>
 
 <nav id="maptools">
+	<div id="logo">
+    	<a href="http://www.luke.fi" target="_blank"><img alt="luke_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo.png"></a>
+    </div>
     <div id="loginbar">
     </div>
     <div id="menubar">
@@ -224,6 +231,7 @@
     <div id="registerLeaflet">   	    
     	<a href="${pageContext.request.contextPath}/download/registerLeaflet">Henkilörekisteriseloste</a>
     </div>
+    
 </nav>
 
 <div id="contentMap" class="oskariui container-fluid">
