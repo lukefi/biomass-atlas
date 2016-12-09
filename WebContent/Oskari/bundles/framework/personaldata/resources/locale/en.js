@@ -45,7 +45,7 @@ Oskari.registerLocalization(
                     "ok": "OK",
                     "save": "Save",
                     "cancel": "Cancel",
-                    "toolbarsave": "Save the map view"
+                    "toolbarsave": "Save the map view to store map searches and biomass options"
                 },
                 "error": {
                     "title": "Error!",

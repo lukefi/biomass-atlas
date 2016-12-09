@@ -45,7 +45,7 @@ Oskari.registerLocalization(
                     "ok": "OK",
                     "save": "Tallenna",
                     "cancel": "Peruuta",
-                    "toolbarsave": "Tallenna näkymä"
+                    "toolbarsave": "Tallenna karttanäkymä tallentaa karttahaun ja biomassavalinnat"
                 },
                 "error": {
                     "title": "Virhe!",
