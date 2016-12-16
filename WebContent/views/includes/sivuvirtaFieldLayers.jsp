@@ -1,4 +1,4 @@
-<h4>Peltokasvien sivuvirrat</h4>
+<h4>Peltokasvien sivuvirrat 2015, t(k-a)/a</h4>
 <table class="table select-column standard-width" id="sivuvirtaPeltokasvitLayerTable">
 	<thead>
 		 <tr><td></td><th></th></tr>

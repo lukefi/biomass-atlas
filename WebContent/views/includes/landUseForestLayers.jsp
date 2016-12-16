@@ -1,4 +1,4 @@
-<h4>Maaluokka 2011</h4>
+<h4>Maaluokka 2013, ha</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -10,7 +10,7 @@
 </tbody>
 </table>
 
-<h4>Maaluokka FAO:n FRA-m‰‰ritelm‰n mukaan 2011</h4>
+<h4>Maaluokka FAO:n FRA-m‰‰ritelm‰n mukaan 2013, ha</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -23,7 +23,7 @@
 </tbody>
 </table>
 
-<h4>Kasvupaikan p‰‰tyyppi 2011</h4>
+<h4>Kasvupaikan p‰‰tyyppi 2013, ha</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -36,7 +36,7 @@
 </tbody>
 </table>
 
-<h4>Kasvupaikka 2011</h4>
+<h4>Kasvupaikka 2013, ha</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -47,7 +47,7 @@
 	<tr><th>Tuore kangas</th><td><input type="checkbox" value='1029'></td></tr>
 	<tr><th>Kuivahko kangas</th><td><input type="checkbox" value='1030'></td></tr>
 	<tr><th>Kuiva kangas</th><td><input type="checkbox" value='1031'></td></tr>
-	<tr><th>Karukko kangas</th><td><input type="checkbox" value='1032'></td></tr>
+	<tr><th>Karukkokangas</th><td><input type="checkbox" value='1032'></td></tr>
 	<tr><th>Kalliomaa, hietikko tai vesij‰ttˆmaa</th><td><input type="checkbox" value='1033'></td></tr>
 	<tr><th>Lakimets‰ tai tunturi</th><td><input type="checkbox" value='1034'></td></tr>
 </tbody>

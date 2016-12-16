@@ -1,4 +1,4 @@
-<h4>Lanta varastosta</h4>
+<h4>Lanta varastosta 2015, t/a</h4>
 <table class="table select-column standard-width">
 	<thead>
 		<tr>

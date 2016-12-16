@@ -1,3 +1,6 @@
+
+<!-- THIS PAGE IS NOT USED. -->
+
 <h4>Jätteet yritysten varastoissa</h4>
 <table class="table select-column standard-width" id="industrialWasteLayerTable">
 	<thead>

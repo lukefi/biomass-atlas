@@ -1,4 +1,4 @@
-<h4>Eläin- ja kasvijätteet t/v 2014</h4>
+<h4>Eläin- ja kasvijätteet 2014, t/a </h4>
 <table class="table select-column standard-width" id="elainJaKasvijätteetLayerTable">
 	<thead>
 		<tr><td></td><th></th></tr>

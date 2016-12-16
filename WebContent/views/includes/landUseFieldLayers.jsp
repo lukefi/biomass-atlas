@@ -1,4 +1,4 @@
-<h4>Pellon käyttö 2015</h4>
+<h4>Pellon käyttö 2015, ha</h4>
 <table class="table select-column standard-width">
 	<thead>
 		<tr><td></td><th></th></tr>

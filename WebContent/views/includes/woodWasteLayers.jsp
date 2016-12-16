@@ -1,4 +1,4 @@
-<h4>Puujätteet t/v 2014</h4>
+<h4>Puujätteet 2014, t/a</h4>
 <table class="table select-column standard-width" id="puujätteetLayerTable">
 	<thead>
 		<tr><td></td><th></th></tr>

@@ -15,7 +15,7 @@
 	</div> <!-- lietteetLayer div ends -->
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
-		<h4>Paperi- ja pahvijätteet t/v 2014</h4>
+		<h4>Paperi- ja pahvijätteet 2014, t/a</h4>
 		<table class="table select-column standard-width" id="paperijätteetLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
@@ -42,7 +42,7 @@
 	</div>	<!-- puujätteetLayer tab-pane ends -->
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
-		<h4>Yhdyskuntien sekalainen biohajoava jäte t/v 2014</h4>
+		<h4>Yhdyskuntien sekalainen biohajoava jäte 2014, t/a</h4>
 		<table class="table select-column standard-width" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>

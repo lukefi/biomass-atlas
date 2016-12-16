@@ -1,4 +1,4 @@
-<h4>Pienpuu</h4>
+<h4>Pienpuu, 2004-2008, m<sup>3</sup>/a</h4>
 <table class="table select-column standard-width">
 	<thead>
 		<tr><td></td><th></th></tr>
@@ -10,7 +10,7 @@
 </tbody>
 </table>
 
-<h4>Toteutuneet hakkuut</h4>
+<h4>Latvusmassa, 2010-2019, m<sup>3</sup>/a</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr>
@@ -22,21 +22,21 @@
 </thead>
 <tbody>
 	<tr class="select-row">
-		<th scope="row">Latvusmassa</th>
+		<th scope="row">Toteutuneet hakkuut</th>
 		<td><input type="checkbox" value='1129'></td>
 		<td><input type="checkbox" value='1042'></td>
 		<td><input type="checkbox" value='1127'></td>
 	</tr>
 	<tr class="select-row">
-		<th scope="row">Kannot</th>
-		<td><input type="checkbox" value='1123'></td>
-		<td><input type="checkbox" value='1121'></td>
-		<td></td>
+		<th scope="row">Suurin kestävä aines- ja energiapuun hakkuukertymä</th>
+		<td><input type="checkbox" value='1128'></td>
+		<td><input type="checkbox" value='1125'></td>
+		<td><input type="checkbox" value='1126'></td>
 	</tr>
 </tbody>
 </table>
 
-<h4>Suurin kestävä aines- ja energiapuun hakkuukertymä</h4>
+<h4>Kannot, 2010-2019, m<sup>3</sup>/a</h4>
 <table class="table select-column standard-width">
 <thead>
 	<tr>
@@ -48,13 +48,13 @@
 </thead>
 <tbody>
 	<tr class="select-row">
-		<th scope="row">Latvusmassa</th>
-		<td><input type="checkbox" value='1128'></td>
-		<td><input type="checkbox" value='1125'></td>
-		<td><input type="checkbox" value='1126'></td>
+		<th scope="row">Toteutuneet hakkuut</th>
+		<td><input type="checkbox" value='1123'></td>
+		<td><input type="checkbox" value='1121'></td>
+		<td></td>
 	</tr>
 	<tr class="select-row">
-		<th scope="row">Kannot</th>
+		<th scope="row">Suurin kestävä aines- ja energiapuun hakkuukertymä</th>
 		<td><input type="checkbox" value='1122'></td>
 		<td><input type="checkbox" value='1120'></td>
 		<td></td>

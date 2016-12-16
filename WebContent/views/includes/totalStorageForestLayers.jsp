@@ -1,4 +1,4 @@
-<h4>Metsäbiomassat 2013</h4>
+<h4>Metsäbiomassat 2013, t/a</h4>
 <table class="table select-column standard-width" id="kokonaisvarantoLayerTable">
 	<thead>
 		<tr>
