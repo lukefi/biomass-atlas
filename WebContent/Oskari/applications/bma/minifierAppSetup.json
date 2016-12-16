@@ -112,6 +112,12 @@
                     },
                     "welcometour": {
                         "bundlePath": "../../packages/bma/bundle/"
+                    },
+                    "biomassmenubar": {
+                        "bundlePath": "../../packages/bma/bundle/"
+                    },
+                    "biomassuserguide": {
+                        "bundlePath": "../../packages/bma/bundle/"
                     }
                 },
                 "Require-Bundle-Instance": []
@@ -632,6 +638,38 @@
 			"metadata": {
 				"Import-Bundle": {
 					"welcometour": {
+						"bundlePath": "../../packages/bma/bundle/"
+					}
+				},
+				"Require-Bundle-Instance": []
+			}	
+		}, {
+        	"instanceProps": {},
+			"title": "Biomass Menubar",
+			"fi": "Biomassavalikko",
+			"sv": "Biomass meny",
+			"en": "Biomass menubar",
+			"bundlename": "biomassmenubar",
+			"bundleinstancename": "biomassmenubar",
+			"metadata": {
+				"Import-Bundle": {
+					"biomassmenubar": {
+						"bundlePath": "../../packages/bma/bundle/"
+					}
+				},
+				"Require-Bundle-Instance": []
+			}	
+		}, {
+        	"instanceProps": {},
+			"title": "Biomass-atlas User Guide",
+			"fi": "Biomassa-atlas käyttöohjeet",
+			"sv": "Biomass-atlas användarguide",
+			"en": "Biomass-atlas user guide",
+			"bundlename": "biomassuserguide",
+			"bundleinstancename": "biomassuserguide",
+			"metadata": {
+				"Import-Bundle": {
+					"biomassuserguide": {
 						"bundlePath": "../../packages/bma/bundle/"
 					}
 				},
