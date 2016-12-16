@@ -165,6 +165,43 @@
 		<finalName>bma</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<id>exec-npm-install</id>
+						<phase>prepare-package</phase>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>${basedir}/WebContent/Oskari/tools</workingDirectory>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>exec-grunt</id>
+						<phase>prepare-package</phase>
+						<configuration>
+							<executable>grunt</executable>
+							<arguments>
+								<argument>--force</argument>
+								<argument>release:0.1.0:../applications/bma/minifierAppSetup.json</argument>
+							</arguments>
+							<workingDirectory>${basedir}/WebContent/Oskari/tools</workingDirectory>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.18.1</version>
