@@ -319,18 +319,19 @@ $(document).ready(function () {
 });
 
 $(document).bind('afterReady', function() {
-	var initialSynchonizeLayersCheckbox = function(){		
+	var initialClearAllSelectedBiomassLayersCheckbox = function(){		
 		var app = Oskari.app,
 			sandbox = app.bundleInstances.mapfull.sandbox,	 
 		 	selectedLayers = sandbox._modulesByName.LayerSelection.getPlugins()['Oskari.userinterface.Flyout']._sliders,
 		 	selectedLayersSize = _.size(selectedLayers);
-		for (var i = 0; i < selectedLayersSize ; i++){
+		for (var i = 0; i < selectedLayersSize; i++){
 			$('#bmaLayerContent input[type=checkbox]').each(function () {
-				if (this.value == Object.keys(selectedLayers)[i]) 
-					this.checked = true;			   
+				if (this.value == Object.keys(selectedLayers)[i]){
+					this.checked = false;
+				} 
 			});
 		 }
-	}();
+	}(); 
 	
 	
 	(function (sb) {
