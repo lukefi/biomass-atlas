@@ -155,10 +155,10 @@
 		margin-right: 4px;
 		display: inline-block;
 	}
-	th {
+	#bmaLayerContent th {
     	background-color: #FFFFFF;
 	}    	
-	.even-row > th {
+	#bmaLayerContent .even-row > th {
     	background-color: #F0F0F0;
 	}    	
 </style>
