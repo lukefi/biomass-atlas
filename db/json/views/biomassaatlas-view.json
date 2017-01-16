@@ -46,7 +46,7 @@
             }
         },
         { "id" : "divmanazer" },
-    	{ "id" : "toolbar",
+    		{ "id" : "toolbar",
 	        "config" : {
 	            "viewtools": {
 	                "link" : true
@@ -55,21 +55,21 @@
         },
         { "id" : "infobox" },
         { "id" : "statehandler" },
+				{ "id" : "biomassmenubar" },
+				{ "id" : "layerselection2" },
+				{ "id" : "maplegend" },
+				{ "id" : "layerselector2" },
+				{ "id" : "metadataflyout" },
         { "id" : "search" },
-        { "id" : "layerselector2" },
-        { "id" : "biomassmenubar" },
-        { "id" : "layerselection2" },
-        { "id" : "coordinatedisplay" },
-        { "id" : "metadataflyout" },
         { "id" : "personaldata" },
         { "id" : "publisher" },
-        { "id" : "maplegend" },
-        { "id" : "biomassuserguide",
-			"config" : {
-				"tags" : "userguide",
-    			"flyoutClazz" : "Oskari.bma.bundle.biomassuserguide.Flyout"
-			}
-		},
+				{ "id" : "biomassuserguide",
+					"config" : {
+						"tags" : "userguide",
+						"flyoutClazz" : "Oskari.bma.bundle.biomassuserguide.Flyout"
+					}
+				},
+        { "id" : "coordinatedisplay" },
         { "id" : "printout" },
         { "id" : "heatmap" },
         { "id" : "testbundle" },
@@ -79,11 +79,10 @@
         { "id" : "mapwfs2" },
         { "id" : "myplacesimport",
         	"config" : {
-			    "name" : "MyPlacesImport",
-			    "sandbox" : "sandbox",
-			    "flyoutClazz" : "Oskari.mapframework.bundle.myplacesimport.Flyout" 
-			} 
+						"name" : "MyPlacesImport",
+						"sandbox" : "sandbox",
+						"flyoutClazz" : "Oskari.mapframework.bundle.myplacesimport.Flyout" 
+					} 
         }
-        
     ]
 }
