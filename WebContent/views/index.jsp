@@ -184,6 +184,10 @@
         		padding: 10px 0px 10px 10px;
         		font-size: 16px;
         	}
+					#toolbar {
+						display: none;
+					}        	
+        	
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -407,9 +411,19 @@ $(document).bind('afterReady', function() {
 		sb.register(addLayerModule);
 	})(Oskari.getSandbox());	
 	
-	if($('#oskari_toolbar_basictools_bmacalculator').length) {
+	if ($('#oskari_toolbar_basictools_bmacalculator').length) {
 		$('<div id="biomass_selection_tool_title">Aluevalinta</div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
 	}
+	
+	var movePositionOfBiomassSelectionTools = function() {
+		$('.toolrow:nth-child(2)').insertBefore('.toolrow:first-child');
+		$('#biomass_selection_tool_title').insertBefore('.toolrow:first-child .tool:first-child');
+		$('#oskari_toolbar_basictools_bmacalculator').insertBefore('.toolrow:first-child .tool:nth-child(2)');
+		$('#oskari_toolbar_basictools_bmaBoundaryCalculator').insertBefore('.toolrow:first-child .tool:nth-child(3)');
+		$('#oskari_toolbar_basictools_bmaCircleCalculator').insertBefore('.toolrow:first-child .tool:nth-child(4)');
+		$('.toolrow:first-child .tool:nth-child(4)').after('<div><br><br></div>');
+		$('#toolbar').css('display', 'block');
+	}();
 	
 });
 
