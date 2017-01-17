@@ -179,6 +179,11 @@
         		margin-left: 10px;
         		top: 20px;
         	}
+        	#biomass_selection_tool_title {
+        		color: #F8FF42;
+        		padding: 10px 0px 10px 10px;
+        		font-size: 16px;
+        	}
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -401,6 +406,11 @@ $(document).bind('afterReady', function() {
 		sb.register(removeLayerModule);
 		sb.register(addLayerModule);
 	})(Oskari.getSandbox());	
+	
+	if($('#oskari_toolbar_basictools_bmacalculator').length) {
+		$('<div id="biomass_selection_tool_title">Aluevalinta</div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
+	}
+	
 });
 
 </script>
