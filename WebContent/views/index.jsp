@@ -325,6 +325,102 @@ $(document).ready(function () {
 		 $('#biomass_layer_selector').trigger('click');	 
 	});
 	
+	/* Click event for menubar's tile */
+	$(document).on('click', '#menubar .oskari-tile', function() {
+		var rootTile = $(this),
+				TIME_OUT_MILLISECONDS = 100;
+		
+		if (rootTile.find('#biomass_layer_selector').length) {	// For biomass selector tile
+			closeAllVisibleFlyouts();
+			deactivateAllTilesExceptBiomassSelectorTile();
+			
+		} else {		// For all other tiles except biomass selector tile  
+			$('#bmaLayerContent').hide();
+			var biomassLayerSelectorTile = rootTile.closest('#menubar').find('#biomass_layer_selector').closest('.oskari-tile'),
+					tileTitleName = rootTile.find('.oskari-tile-title').text();
+			
+			deactivateTile(biomassLayerSelectorTile);
+
+			/* Time out is used to pause for some milli second so that internal Oskari code executes first
+					and then out code run to workaround for activating tile and showing flyout */
+			setTimeout(function () {
+				showFlyoutForActiveTile(rootTile, tileTitleName);
+			}, TIME_OUT_MILLISECONDS);
+			
+			/* Deactivate all attached tiles which are not active currently */
+			$('#menubar .oskari-tile-attached').each(function() {
+				var thisAttachedTile = $(this),
+						thisAttachedTileName = thisAttachedTile.find('.oskari-tile-title').text();
+				
+				if (thisAttachedTileName != tileTitleName) {
+					deactivateTile(thisAttachedTile);
+				}
+			});
+			
+			/* When a tile is clicked, but it is in active state and its flyout is also visible, 
+				then deactivate current tile and hide its flyout */
+			if (rootTile.hasClass('oskari-tile-attached')) {
+				setTimeout(function () {
+					deactivateTile(rootTile);
+					closeAllVisibleFlyouts();
+				}, TIME_OUT_MILLISECONDS);
+			}
+		}
+	});
+	
+	var deactivateTile = function(object) {
+		object.removeClass('oskari-tile-attached');
+		object.addClass('oskari-tile-closed');
+	}
+	
+	var activateTile = function(object) {
+		object.removeClass('oskari-tile-closed');
+		object.addClass('oskari-tile-attached');
+	}
+	
+	var hideFlyout = function(object) {
+		object.removeClass('oskari-attached');
+		object.addClass('oskari-closed');
+	}
+	
+	var showFlyout = function(object) {
+		object.removeClass('oskari-closed');
+		object.addClass('oskari-attached');
+	}
+	
+	var closeAllVisibleFlyouts = function() {
+		$('.oskari-flyout.oskari-attached').each(function() {
+			var thisVisibleFlyout = $(this);
+			hideFlyout(thisVisibleFlyout);
+		});
+	}
+	
+	var deactivateAllTilesExceptBiomassSelectorTile = function() {
+		$('#menubar .oskari-tile').each(function() {
+			var thisTile = $(this)
+			if (!thisTile.find('#biomass_layer_selector').length) {
+				deactivateTile(thisTile);
+			}
+		});
+	}
+	
+	var showFlyoutForActiveTile = function(tile, tileName) {
+		$('.oskari-flyout').each(function() {
+			var thisFlyout = $(this),
+					flyoutTitleText = thisFlyout.find('.oskari-flyout-title p').text();
+			
+			/* The later condition in if-clause is needed because the tile name and flyout title name
+			   is not same for user guide. Tile name = Käyttöohjeet while flyout title = Käyttöohje */
+			if (flyoutTitleText == tileName || (tileName.indexOf(flyoutTitleText) >= 0)) {
+				showFlyout(thisFlyout);
+				activateTile(tile);
+				
+			} else {
+				hideFlyout(thisFlyout);
+			}
+		});
+	}
+	
 });
 
 $(document).bind('afterReady', function() {

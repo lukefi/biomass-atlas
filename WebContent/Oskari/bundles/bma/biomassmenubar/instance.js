@@ -161,6 +161,14 @@ Oskari.clazz.define("Oskari.bma.bundle.biomassmenubar.BiomassMenubarInstance",
                     // not me -> do nothing
                     return;
                 }
+                
+                if (!jQuery('#bmaLayerContent').is(':visible') && 
+                		jQuery('#biomass_layer_selector').closest('.oskari-tile').hasClass('oskari-tile-closed')) {
+                	event.setViewState('attach');
+                	jQuery('#biomass_layer_selector').closest('.oskari-tile').removeClass('oskari-tile-closed');
+                	jQuery('#biomass_layer_selector').closest('.oskari-tile').addClass('oskari-tile-attached');
+                }
+               
                 var isOpen = event.getViewState() !== 'close';
                 me._hideShowBmaLayerContent(isOpen);
             }
