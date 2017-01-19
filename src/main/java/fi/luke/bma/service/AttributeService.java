@@ -33,7 +33,7 @@ public class AttributeService {
 		Attribute attribute = attributeDao.get(attributeId);
 		List<String> result = new ArrayList<String>();
 		result.add(attribute.getNameFI()); //TODO: Based on locale set
-		result.add(attribute.getUnitFI());
+		result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
 		return result;
 	}
 	
@@ -43,5 +43,30 @@ public class AttributeService {
 	    Query query = entityManager.createQuery(sql);
 	    query.setParameter("attributeIds", attributeIds);
 	    return (List<Attribute>)query.getResultList();
+	}
+	
+	/**
+	 * Creates superscript for attribute passed. ONLY one superscript conversion is possible and that should be 2 or 3.
+	 * @param value attribute unit as input
+	 * @return String  
+	 */
+	private String getAttributeValueWithSuperscript(String value) {
+		String superscriptSymbol = "^";
+		if (value.contains(superscriptSymbol)) {
+			String firstPart, secondPart, superscriptValue;
+			int index = value.indexOf(superscriptSymbol);
+			firstPart = value.substring(0, index);
+			secondPart = value.substring(index+2, value.length());
+			superscriptValue = value.substring(index+1, index+2);
+			if (superscriptValue.equals("2")) {
+				superscriptValue = "\u00b2";
+			} else if (superscriptValue.equals("3")) {
+				superscriptValue = "\u00b3";
+			} else {
+				//Nothing
+			}
+			value = firstPart + superscriptValue + secondPart;
+		}
+		return value;
 	}
 }
