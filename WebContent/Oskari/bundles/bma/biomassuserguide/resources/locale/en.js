@@ -17,11 +17,12 @@ Oskari.registerLocalization(
             "generic": "Loading user guide failed. Please try again later."
         },
         "tabs": [
+        	{"title": "Get Started", "tags": "guide_get_started"},
             {"title": "Map Tools", "tags": "guide_tools"},
             {"title": "Search", "tags": "guide_search"}
         ],
         "help": {
-            "tags": "guide_tools, guide_search",
+            "tags": "guide_get_started, guide_tools, guide_search",
             "contentPart": "body"
         }
     }
