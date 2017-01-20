@@ -291,6 +291,9 @@ $(document).ready(function () {
 		});	
 	});
 	
+	// Make bma layer seletor div movable.
+	$("#bmaLayerContent").draggable();
+	
 });
 </script>
 
