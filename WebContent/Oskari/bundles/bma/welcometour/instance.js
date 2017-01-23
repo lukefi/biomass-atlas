@@ -102,6 +102,14 @@ Oskari.clazz.define("Oskari.bma.bundle.welcometour.WelcomeTourInstance",
             getContent: function () {
                 var content = jQuery('<div></div>');
                 content.append(this.ref._localization['page1'].message);
+                content.append('<br><br>');
+                content.append(this.ref._localization['page1'].listtitle);
+                content.append('<ol type="1"> \
+                		<li>'+this.ref._localization['page1'].listitem1+'</li> \
+                		<li>'+this.ref._localization['page1'].listitem2+'<br> \
+                		<img src="/resources/images/area_selection_tools.png" \
+                		alt="'+this.ref._localization['page1'].imagealt+'" width="98" height="62"></li></ol>');      
+                content.append(this.ref._localization['page1'].tip);
                 return content;
             }
         }, {

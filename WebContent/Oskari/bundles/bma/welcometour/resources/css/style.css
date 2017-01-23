@@ -1,7 +1,9 @@
 /* Override popup styles */
 .divmanazerpopup.welcometour {
   font-family: Arial, sans-serif;
-  left: 50%; }
+  left: 25%; 
+  top: 25%; 
+}
 
 .divmanazerpopup.welcometour h3 {
   margin: 0;
@@ -25,6 +27,15 @@ div.divmanazerpopup.welcometour h3 span {
   color: #0090ff;
   text-decoration: underline; }
 
+.divmanazerpopup.welcometour .content ol {
+	list-style-position: inside; 
+	padding-left:0; 
+	margin-top:0;
+}
+.divmanazerpopup.welcometour .content img {
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
 .divmanazerpopup.welcometour .actions input {
   display: inline-block;
   zoom: 1;
