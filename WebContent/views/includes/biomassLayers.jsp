@@ -294,6 +294,13 @@ $(document).ready(function () {
 	// Make bma layer seletor div movable.
 	$("#bmaLayerContent").draggable();
 	
+	// Sticking and moving Scroll bar problem is fixed.
+	$("#bmaLayerContent .bmaLayerInner > .tab-content").mousedown(function(event) {
+		if($(event.target).is($(this))) {
+	  	event.stopPropagation ? event.stopPropagation() : (event.cancelBubble=true);
+	 	}
+	});
+	
 });
 </script>
 
