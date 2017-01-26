@@ -62,7 +62,6 @@
 				{ "id" : "metadataflyout" },
         { "id" : "search" },
         { "id" : "personaldata" },
-        { "id" : "publisher" },
 				{ "id" : "biomassuserguide",
 					"config" : {
 						"tags" : "userguide",
