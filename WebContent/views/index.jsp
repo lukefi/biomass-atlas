@@ -515,7 +515,7 @@ $(document).bind('afterReady', function() {
 	})(Oskari.getSandbox());	
 	
 	if ($('#oskari_toolbar_basictools_bmacalculator').length) {
-		$('<div id="biomass_selection_tool_title" class="oskari-tile-title">Aluevalinta</div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
+		$('<div id="biomass_selection_tool_title" class="oskari-tile-title"><spring:message code="bma.areaSelectionTools.title"/></div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
 	}
 	
 	var movePositionOfBiomassSelectionTools = function() {
@@ -524,7 +524,7 @@ $(document).bind('afterReady', function() {
 		$('#oskari_toolbar_basictools_bmacalculator').insertBefore('.toolrow:first-child .tool:nth-child(2)');
 		$('#oskari_toolbar_basictools_bmaBoundaryCalculator').insertBefore('.toolrow:first-child .tool:nth-child(3)');
 		$('#oskari_toolbar_basictools_bmaCircleCalculator').insertBefore('.toolrow:first-child .tool:nth-child(4)');
-		$('.toolrow:first-child .tool:nth-child(4)').after('<div><div class="oskari-tile-title maptools_title">Karttatyökalut</div></div>');
+		$('.toolrow:first-child .tool:nth-child(4)').after('<div><div class="oskari-tile-title maptools_title"><spring:message code="bma.mapTools.title"/></div></div>');
 		$('#toolbar').css('display', 'block');
 	}();
 	
