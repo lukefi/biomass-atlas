@@ -185,6 +185,11 @@
         		color: #F8FF42;
         		margin-left: 7px;
         	}
+        	.maptools_title {
+        		color: #FFF;
+        		margin-left: 7px !important;
+        		margin-top: 20px !important;
+        	}
 			#toolbar {
 				margin-top: 20px !important;
 				display: none;
@@ -519,7 +524,7 @@ $(document).bind('afterReady', function() {
 		$('#oskari_toolbar_basictools_bmacalculator').insertBefore('.toolrow:first-child .tool:nth-child(2)');
 		$('#oskari_toolbar_basictools_bmaBoundaryCalculator').insertBefore('.toolrow:first-child .tool:nth-child(3)');
 		$('#oskari_toolbar_basictools_bmaCircleCalculator').insertBefore('.toolrow:first-child .tool:nth-child(4)');
-		$('.toolrow:first-child .tool:nth-child(4)').after('<div><br><br></div>');
+		$('.toolrow:first-child .tool:nth-child(4)').after('<div><div class="oskari-tile-title maptools_title">Karttatyökalut</div></div>');
 		$('#toolbar').css('display', 'block');
 	}();
 	
