@@ -183,12 +183,12 @@
         	}
         	#biomass_selection_tool_title {
         		color: #F8FF42;
-        		padding: 10px 0px 10px 10px;
-        		font-size: 16px;
+        		margin-left: 7px;
         	}
-					#toolbar {
-						display: none;
-					}        	
+			#toolbar {
+				margin-top: 20px !important;
+				display: none;
+			}        	
         	
     </style>
     <!-- ############# /css ################# -->
@@ -510,7 +510,7 @@ $(document).bind('afterReady', function() {
 	})(Oskari.getSandbox());	
 	
 	if ($('#oskari_toolbar_basictools_bmacalculator').length) {
-		$('<div id="biomass_selection_tool_title">Aluevalinta</div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
+		$('<div id="biomass_selection_tool_title" class="oskari-tile-title">Aluevalinta</div>').insertBefore('#oskari_toolbar_basictools_bmacalculator');
 	}
 	
 	var movePositionOfBiomassSelectionTools = function() {
