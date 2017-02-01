@@ -7,7 +7,7 @@
 <html>
 <head>
     <title><spring:message code="bma.title"/></title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/Oskari${path}/icons/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/Oskari${path}/icons/favicon.ico" type="image/x-icon" />
     <!-- ############# css ################# -->
     <link
             rel="stylesheet"
@@ -38,11 +38,9 @@
                 margin: 0;
                 padding: 0;
             }
-
             #mapdiv {
                 width: 100%;
             }
-
             #maptools {
                 background-color: #333438;
                 height: 100%;
@@ -51,16 +49,14 @@
                 width: 153px;
                 z-index: 2;
             }
-
             #contentMap {
                 height: 100%;
                 margin-left: 153px;
             }
-
             #login {
-                margin-left: 5px;
+                margin-top: 10px;
+                margin-left: 10px;
             }
-
             #login input[type="text"], #login input[type="password"] {
                 width: 90%;
                 margin-bottom: 5px;
@@ -90,118 +86,116 @@
                 color : red;
                 margin-bottom: 10px;
             }
-
             #login a {
                 color: #FFF;
                 padding: 5px;
             }
-            
-            .error{
+            .error {
             	color: red;
             }
-            .italic{
+            .italic {
             	font-style: italic;
             }
-             #register, #feedback{
-            	text-align: center;
-            	padding-top: 20px;
-            }
+           /*  #register, #feedback {
+            	padding-top: 10px;
+            } */
             #user{
             	color: #c2c2c2;
             	font-style: italic;
             }
-           
-			/* BMA tabs */
-			.nav > li > a:hover,
-			.nav > li > a:focus {
-			    text-decoration: none;
-			    background-color: #e0e0d1;
-			}
-			#bmaLayerContent table td {
-				text-align: center;
-				font-weight: bold;
-			}			
-        	.styled-heading {
-        		/*background-color: #004c99;
-	        	color: #ffffff;*/
-	        	text-align: center;
-	        	font-weight: bold; 
-        	}
-        	
-        	/* Overrides for Oskari styles */
-        	body .oskari-flyoutheading {
-        		background-color: #2c2c2c;
-        		height: 25px;
-        		border: none;
-        	}
-        	body .oskari-flyouttoolbar {
-        		height: 55px;
-        		background-color: #fafafa;
-        		color: #00b4e1;
-        		font-size: 16px;
-        		font-weight: bold;
-        	}
-        	body .oskari-flyoutcontent {
-        		font-size: 12px;
-        	}
-        	body div.divmanazerpopup h3.popupHeader {
-        		background-color: transparent;
-        		border-bottom: 1px solid #c0d0d0;
-        		padding-left: 0;
-        		padding-right: 0;
-        		padding-bottom: 20px;
-        		margin-left: 8px;
-        		margin-right: 8px;
-        		margin-top: 8px;
-        		font-size: 15px;
-        		font-weight: bold;
-        		color: #00b4e1;
-        	}
-        	body div.divmanazerpopup h4.indicator-msg-popup {
-        		margin-top: 2px;
-        		margin-bottom: 0;
-        	}
-        	body button.oskari-button, body input.oskari-button {
-        		background-image: none;
-        		background-color: #00b4e1;
-        		color: #ffffff;
-        		font-size: 15px;
-        		border: none;
-        		border-radius: 0;
-        		text-shadow: none;
-        	}
-        	body button.oskari-button:hover:enabled, body input.oskari-button:hover:enabled {
-        		background-image: none;
-        		border: none;
-        	}
-        	body div.divmanazerpopup p {
-        		font-size: 12px;
-        	}
-        	#logo {
-        		margin-left: 10px;
-        		top: 20px;
-        	}
-        	#biomass_selection_tool_title {
-        		color: #F8FF42;
-        		margin-left: 7px;
-        	}
-        	.maptools_title {
-        		color: #FFF;
-        		margin-left: 7px !important;
-        		margin-top: 20px !important;
-        	}
-			#toolbar {
-				margin-top: 20px !important;
-				display: none;
-			}        	
-        	
+						/* BMA tabs */
+						.nav > li > a:hover,
+						.nav > li > a:focus {
+						    text-decoration: none;
+						    background-color: #e0e0d1;
+						}
+						#bmaLayerContent table td {
+							text-align: center;
+							font-weight: bold;
+						}			
+	        	.styled-heading {
+	        		/*background-color: #004c99;
+		        	color: #ffffff;*/
+		        	text-align: center;
+		        	font-weight: bold; 
+	        	}
+	        	/* Overrides for Oskari styles */
+	        	body .oskari-flyoutheading {
+	        		background-color: #2c2c2c;
+	        		height: 25px;
+	        		border: none;
+	        	}
+	        	body .oskari-flyouttoolbar {
+	        		height: 55px;
+	        		background-color: #fafafa;
+	        		color: #00b4e1;
+	        		font-size: 16px;
+	        		font-weight: bold;
+	        	}
+	        	body .oskari-flyoutcontent {
+	        		font-size: 12px;
+	        	}
+	        	body div.divmanazerpopup h3.popupHeader {
+	        		background-color: transparent;
+	        		border-bottom: 1px solid #c0d0d0;
+	        		padding-left: 0;
+	        		padding-right: 0;
+	        		padding-bottom: 20px;
+	        		margin-left: 8px;
+	        		margin-right: 8px;
+	        		margin-top: 8px;
+	        		font-size: 15px;
+	        		font-weight: bold;
+	        		color: #00b4e1;
+	        	}
+	        	body div.divmanazerpopup h4.indicator-msg-popup {
+	        		margin-top: 2px;
+	        		margin-bottom: 0;
+	        	}
+	        	body button.oskari-button, body input.oskari-button {
+	        		background-image: none;
+	        		background-color: #00b4e1;
+	        		color: #ffffff;
+	        		font-size: 15px;
+	        		border: none;
+	        		border-radius: 0;
+	        		text-shadow: none;
+	        	}
+	        	body button.oskari-button:hover:enabled, body input.oskari-button:hover:enabled {
+	        		background-image: none;
+	        		border: none;
+	        	}
+	        	body div.divmanazerpopup p {
+	        		font-size: 12px;
+	        	}
+	        	#logo {
+	        		margin-left: 10px;
+	        		top: 20px;
+	        	}
+	        	#biomass_selection_tool_title {
+	        		color: #F8FF42;
+	        		margin-left: 7px;
+	        	}
+	        	.maptools_title {
+	        		color: #FFF;
+	        		margin-left: 7px !important;
+	        		margin-top: 20px !important;
+	        	}
+						#toolbar {
+							margin-top: 20px !important;
+							display: none;
+						}
+						.customLink {
+							margin-top: 5px;
+							margin-left: 10px;
+						}        	
     </style>
     <!-- ############# /css ################# -->
 </head>
 <body>
 
 <nav id="maptools">
-	<div id="logo">
+		<div id="logo">
     	<a href="http://www.luke.fi" target="_blank"><img alt="luke_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo.png"></a>
     </div>
     <div id="loginbar">
@@ -211,11 +205,6 @@
     <div id="divider">
     </div>
     <div id="toolbar">
-    </div>
-    <div id="register">
-   	    <c:if test="${empty _logout_uri}"> 
-    		<a href="${pageContext.request.contextPath}/biomass/user/register"><spring:message code="bma.register"/></a>
-   	    </c:if>
     </div>
     <div id="login">
         <c:choose>
@@ -241,16 +230,20 @@
             </c:otherwise>           
         </c:choose>
     </div>
-    <div id="feedback">   	    
+    <div id="register" class="customLink">
+   	    <c:if test="${empty _logout_uri}"> 
+    		<a href="${pageContext.request.contextPath}/biomass/user/register"><spring:message code="bma.register"/></a>
+   	    </c:if>
+    </div>
+    <div id="feedback" class="customLink">   	    
     	<a href="${pageContext.request.contextPath}/biomass/feedback">Palaute</a>
     </div>
-    <div id="registerLeaflet">   	    
+    <div id="registerLeaflet" class="customLink">   	    
     	<a href="${pageContext.request.contextPath}/download/registerLeaflet">Henkilörekisteriseloste</a>
     </div>
-    <div id="biomassWebPage">   	    
+    <div id="biomassWebPage" class="customLink">   	    
     	<a href="http://www.biomassa-atlas.fi"><spring:message code="bma.webpageLink"/></a>
     </div>
-    
 </nav>
 
 <div id="contentMap" class="oskariui container-fluid">
