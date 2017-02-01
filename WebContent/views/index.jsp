@@ -247,6 +247,9 @@
     <div id="registerLeaflet">   	    
     	<a href="${pageContext.request.contextPath}/download/registerLeaflet">Henkilörekisteriseloste</a>
     </div>
+    <div id="biomassWebPage">   	    
+    	<a href="http://www.biomassa-atlas.fi"><spring:message code="bma.webpageLink"/></a>
+    </div>
     
 </nav>
 
