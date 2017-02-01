@@ -236,10 +236,10 @@
    	    </c:if>
     </div>
     <div id="feedback" class="customLink">   	    
-    	<a href="${pageContext.request.contextPath}/biomass/feedback">Palaute</a>
+    	<a href="${pageContext.request.contextPath}/biomass/feedback"><spring:message code="bma.feedback"/></a>
     </div>
     <div id="registerLeaflet" class="customLink">   	    
-    	<a href="${pageContext.request.contextPath}/download/registerLeaflet">Henkilörekisteriseloste</a>
+    	<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
     </div>
     <div id="biomassWebPage" class="customLink">   	    
     	<a href="http://www.biomassa-atlas.fi"><spring:message code="bma.webpageLink"/></a>
