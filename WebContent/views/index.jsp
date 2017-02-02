@@ -523,8 +523,22 @@ $(document).bind('afterReady', function() {
 		$('.toolrow:first-child .tool:nth-child(4)').after('<div><div class="oskari-tile-title maptools_title"><spring:message code="bma.mapTools.title"/></div></div>');
 		$('#toolbar').css('display', 'block');
 	}();
-	
 });
+
+/* On unloading page */
+$(window).on('unload', function() {
+	deleteCookie("oskaristate");
+}); 
+
+var deleteCookie = function(cookieName) {
+	var cookies = document.cookie.split(';');
+	for (var i = 0; i < cookies.length; i++) {
+		var cookie = cookies[i];
+		if (cookie.indexOf(cookieName)) {
+			document.cookie = cookieName + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+		}
+	}
+};
 
 </script>
 
