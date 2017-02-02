@@ -527,6 +527,7 @@ $(document).bind('afterReady', function() {
 
 /* On unloading page */
 $(window).on('unload', function() {
+	clearAllBmaLayerCheckboxes();
 	deleteCookie("oskaristate");
 }); 
 
@@ -539,6 +540,14 @@ var deleteCookie = function(cookieName) {
 		}
 	}
 };
+
+var clearAllBmaLayerCheckboxes = function() {
+	$("#bmaLayerContent input[type=checkbox]").each(function() {
+		if ($(this).is(':checked')) {
+			$(this).prop('checked', false);
+		}
+	});
+}
 
 </script>
 
