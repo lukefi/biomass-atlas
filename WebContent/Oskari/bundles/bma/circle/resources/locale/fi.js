@@ -25,8 +25,8 @@ Oskari.registerLocalization({
 	    			"road": "Biomassan laskenta määritellyltä etäisyydeltä tieverkostoa pitkin"	    			
     			},
     			"description": {
-    				"circle": "Valitusta keskipisteestä piirretään annetun etäisyyden perusteella säde jonka perusteella muodostetaan ympyrän muotoinen hakualue. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli yksittäisen ruudun keskipiste osuu ympyrän muotoisen hakualueen sisälle, huomioidaan ao. ruudun tiedot laskennassa.",
-	    			"road": "Valitusta keskipisteen perusteella etsitään ensin lähin sijainti tieverkostosta. Tämän jälkeen tieverkostoa pitkin muodostetaan jokaiseen mahdolliseen suuntaan annetun etäisyyden perusteella monitahoinen verkosto. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli muodostettu verkosto leikkaa yksittäistä ruutua, sen tiedot huomioidaan laskennassa. Analyysin tieaineistona käytetään kansallista digiroad-aineistoa (<a href='http://www.digiroad.fi/fi_FI/' target='_blank'>http://www.digiroad.fi/fi_FI/</a>)."	    			
+    				"circle": "Valitusta keskipisteestä piirretään annetun etäisyyden perusteella säde, jonka perusteella muodostetaan ympyrän muotoinen hakualue. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli yksittäisen ruudun keskipiste osuu ympyrän muotoisen hakualueen sisälle, huomioidaan ao. ruudun tiedot laskennassa.",
+	    			"road": "Valitun keskipisteen perusteella etsitään ensin lähin sijainti tieverkostosta. Tämän jälkeen tieverkostoa pitkin muodostetaan jokaiseen mahdolliseen suuntaan annetun etäisyyden perusteella monitahoinen verkosto. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli muodostettu verkosto leikkaa yksittäistä ruutua, sen tiedot huomioidaan laskennassa. Analyysin tieaineistona käytetään kansallista digiroad-aineistoa (<a href='http://www.digiroad.fi/fi_FI/' target='_blank'>http://www.digiroad.fi/fi_FI/</a>)."	    			
     			}
     		},
     		"error": {
