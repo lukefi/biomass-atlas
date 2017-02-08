@@ -242,7 +242,7 @@
     	<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
     </div>
     <div id="biomassWebPage" class="customLink">   	    
-    	<a href="http://www.biomassa-atlas.fi"><spring:message code="bma.webpageLink"/></a>
+    	<a href="http://www.biomassa-atlas.fi" target="_blank"><spring:message code="bma.webpageLink"/></a>
     </div>
 </nav>
 
