@@ -5,7 +5,7 @@ Oskari.registerLocalization(
     "value": {
         "title": "Omat tiedot",
         "desc": "Omat tiedot",
-        "notLoggedIn": "Omat tiedot sisältävät tiedot omista käyttäjätiedoistasi sekä tallentamistasi omista kohteista, karttanäkymistä, julkaistuista kartoista, indikaattoreista, analyyseista ja aineistoista sekä linkit näihin.",
+        "notLoggedIn": "Omat tiedot –osiosta löydät omat käyttäjätietosi sekä tallentamasi haut ja karttanäkymät.",
         "notLoggedInText": "Kirjaudu palveluun tarkistaaksesi omat tietosi.",
         "tabs": {
             "myviews": {

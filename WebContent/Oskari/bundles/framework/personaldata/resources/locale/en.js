@@ -5,7 +5,7 @@ Oskari.registerLocalization(
     "value": {
         "title": "My Data",
         "desc": "My Data",
-        "notLoggedIn": "My data contains your user profile and all your saved features, map views, embedded maps, indicators, analysis and datasets.",
+        "notLoggedIn": "My data contains your user profile, all your saved features and map views.",
         "notLoggedInText": "Log in to check your data.",
         "tabs": {
             "myviews": {
