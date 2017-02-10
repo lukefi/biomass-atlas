@@ -52,7 +52,12 @@ function() {
 	 * BundleInstance protocol method
 	 */
 	start : function() {
-		var me = this;		
+		var me = this;
+		if (me.started) {
+            return;
+        }
+        me.started = true;
+        
 		var conf = me.conf;		
 		
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
@@ -75,10 +80,18 @@ function() {
 		sandbox.registerAsStateful(this.mediator.bundleId, this);
 	},
 
-	_toolButtonClicked : function(sandbox) {
+	_toolButtonClicked : function() {
 		// here you can insert code that needs to be run exactly once after toolbar button has been clicked
+		
+		//Bundles' flyout, other than the current, are closed by calling respective cancel button click event.
+		var	sandbox = this.getSandbox(),
+			freeSelection = sandbox._modulesByName.TestBundle,
+			boundarySelection = sandbox._modulesByName.Boundary;
+		freeSelection.plugins['Oskari.userinterface.Flyout']._cancelButtonClick();
+		boundarySelection.plugins['Oskari.userinterface.Flyout']._cancelButtonClick();
+		
 		this.plugins['Oskari.userinterface.Flyout'].createUI();
-		this.getSandbox().requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
+		sandbox.requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
 	},
 	
 	/**

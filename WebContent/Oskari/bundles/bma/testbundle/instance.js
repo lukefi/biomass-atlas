@@ -52,7 +52,11 @@ function() {
 	 */
 	start : function() {
 		var me = this;
-
+		if (me.started) {
+            return;
+        }
+        me.started = true;
+        
 		// Should this not come as a param?
 		var conf = me.conf;
 		var sandboxName = (conf ? conf.sandbox : null) || 'sandbox';
@@ -105,8 +109,16 @@ function() {
 
 	_toolButtonClicked : function() {
 		// here you can insert code that needs to be run exactly once after toolbar button has been clicked
+		
+		//Bundles' flyout, other than the current, are closed by calling respective cancel button click event.
+		var sandbox = this.getSandbox(),
+			boundarySelection = sandbox._modulesByName.Boundary,
+			circleSelection = sandbox._modulesByName.Circle;
+		boundarySelection.plugins['Oskari.userinterface.Flyout']._cancelButtonClick();
+		circleSelection.plugins['Oskari.userinterface.Flyout']._cancelButtonClick();
+		
 		this.plugins['Oskari.userinterface.Flyout'].createUI();
-		this.getSandbox().requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
+		sandbox.requestByName(this, 'userinterface.UpdateExtensionRequest', [this, 'detach']);
 	},
 	
 	/**
