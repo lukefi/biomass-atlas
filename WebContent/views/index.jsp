@@ -188,6 +188,10 @@
 						.customLink {
 							margin-top: 5px;
 							margin-left: 10px;
+						}
+						.personaldata .account tr > th {
+							color: #000;
+							font-size: 10px;
 						}        	
     </style>
     <!-- ############# /css ################# -->
