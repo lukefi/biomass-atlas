@@ -39,10 +39,10 @@
                 "layers": []
             },
             "state" : {
-                "east": "517620",
-                "north": "6874042",
+                "east": "426781",
+                "north": "6904075",
                 "selectedLayers": [],
-                "zoom": 1
+                "zoom": 3
             }
         },
         { "id" : "divmanazer" },
