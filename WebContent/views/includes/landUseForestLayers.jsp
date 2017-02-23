@@ -42,12 +42,12 @@
 	<tr><td></td><th></th></tr>
 </thead>
 <tbody>
-	<tr><th>Lehto</th><td><input type="checkbox" value='1027'></td></tr>
-	<tr><th>Lehtomainen kangas</th><td><input type="checkbox" value='1028'></td></tr>
-	<tr><th>Tuore kangas</th><td><input type="checkbox" value='1029'></td></tr>
-	<tr><th>Kuivahko kangas</th><td><input type="checkbox" value='1030'></td></tr>
+	<tr><th>Lehto (tai vastaava suo = tvs)</th><td><input type="checkbox" value='1027'></td></tr>
+	<tr><th>Lehtomainen kangas (tvs)</th><td><input type="checkbox" value='1028'></td></tr>
+	<tr><th>Tuore kangas (tvs)</th><td><input type="checkbox" value='1029'></td></tr>
+	<tr><th>Kuivahko kangas (tvs)</th><td><input type="checkbox" value='1030'></td></tr>
 	<tr><th>Kuiva kangas</th><td><input type="checkbox" value='1031'></td></tr>
-	<tr><th>Karukkokangas</th><td><input type="checkbox" value='1032'></td></tr>
+	<tr><th>Karukkokangas (tvs)</th><td><input type="checkbox" value='1032'></td></tr>
 	<tr><th>Kalliomaa, hietikko tai vesijättömaa</th><td><input type="checkbox" value='1033'></td></tr>
 	<tr><th>Lakimetsä tai tunturi</th><td><input type="checkbox" value='1034'></td></tr>
 </tbody>
