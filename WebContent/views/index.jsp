@@ -240,7 +240,7 @@
    	    </c:if>
     </div>
     <div id="feedback" class="customLink">   	    
-    	<a href="${pageContext.request.contextPath}/biomass/feedback"><spring:message code="bma.feedback"/></a>
+    	<a href="${pageContext.request.contextPath}/biomass/feedback" target="_blank"><spring:message code="bma.feedback"/></a>
     </div>
     <div id="registerLeaflet" class="customLink">   	    
     	<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
