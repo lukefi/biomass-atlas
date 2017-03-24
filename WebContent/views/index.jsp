@@ -168,8 +168,11 @@
 	        	body div.divmanazerpopup p {
 	        		font-size: 12px;
 	        	}
-	        	#logo {
+	        	#luke_logo {
  	        		padding: 15px 0 0 10px;
+	        	}
+	        	#biomass_logo {
+ 	        		padding: 20px 0 25px 10px;
 	        	}
 	        	#biomass_selection_tool_title {
 	        		color: #F8FF42;
@@ -198,6 +201,10 @@
 <body>
 
 <nav id="maptools">
+ 		<div id="biomass_logo">
+    	<a href="https://www.luke.fi/biomassa-atlas" target="_blank">
+    		<img alt="biomass_atlas_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/biomass_atlas.png"></a>
+    </div>
     <div id="loginbar">
     </div>
     <div id="menubar">
@@ -244,8 +251,9 @@
     <div id="biomassWebPage" class="customLink">   	    
     	<a href="http://www.biomassa-atlas.fi" target="_blank"><spring:message code="bma.webpageLink"/></a>
     </div>
-    <div id="logo">
-    	<a href="http://www.luke.fi" target="_blank"><img alt="luke_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo.png"></a>
+    <div id="luke_logo">
+    	<a href="https://www.luke.fi" target="_blank">
+    		<img alt="luke_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo.png"></a>
     </div>
 </nav>
 
