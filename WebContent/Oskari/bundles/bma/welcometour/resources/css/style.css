@@ -12,7 +12,8 @@
 div.divmanazerpopup.welcometour h3.popupHeader {
   color: #fff;
   background-color: #1995fd;
-  border-radius: 3px 3px 0 0; }
+  border-radius: 3px 3px 0 0;
+  padding: 10px 0 10px 12px; }
 
 div.divmanazerpopup.welcometour h3 span {
   float: right;
@@ -21,7 +22,9 @@ div.divmanazerpopup.welcometour h3 span {
 
 .divmanazerpopup.welcometour .content {
   font-size: 13px;
-  line-height: 18px; }
+  line-height: 18px;
+  margin: 15px 20px 0 20px;
+  text-align: justify; } 
 
 .divmanazerpopup.welcometour .content a {
   color: #0090ff;
