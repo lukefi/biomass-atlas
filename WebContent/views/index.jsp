@@ -169,10 +169,10 @@
 	        		font-size: 12px;
 	        	}
 	        	#luke_logo {
- 	        		padding: 15px 0 0 10px;
+ 	        		padding: 15px 0 0 15px;
 	        	}
 	        	#biomass_logo {
- 	        		padding: 20px 0 25px 10px;
+ 	        		padding: 15px 0 20px 15px;
 	        	}
 	        	#biomass_selection_tool_title {
 	        		color: #F8FF42;
