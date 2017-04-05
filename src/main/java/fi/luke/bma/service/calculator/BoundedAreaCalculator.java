@@ -137,4 +137,9 @@ public class BoundedAreaCalculator extends Calculator {
         return new TabularReportData(columnNames, data);
     }
 
+    @Override
+    public TabularReportData calculateBiomassInTabularFormatForReport() {
+        return calculateBiomassInTabularFormat();
+    }
+
 }

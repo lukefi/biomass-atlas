@@ -17,6 +17,8 @@ public abstract class Calculator {
     
     public abstract TabularReportData calculateBiomassInTabularFormat();
     
+    public abstract TabularReportData calculateBiomassInTabularFormatForReport();
+    
     /**
      * Return human readable description of the search parameters used by this Calculator
      */

@@ -76,9 +76,9 @@ public class BiomassCalculationController {
     public void exportXslx(@RequestParam String query, HttpServletResponse response) throws JsonMappingException, IOException {
         BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
     	
-    	TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormat();
+    	TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormatForReport();
     	String searchDescription = calculatorFactory.getInstance(requestModel).getSearchDescription();
-    	
+
     	try {
     	    new XlsxWriter().writeWithMetadata(response, reportData.getHeaders(), reportData, "areaReport", searchDescription);
     	} catch (IOException | TooManyRowsException e) {
@@ -96,7 +96,7 @@ public class BiomassCalculationController {
         response.addHeader("Content-Type", "text/csv;Charset=" + response.getCharacterEncoding());
         response.addHeader("Content-Disposition", "attachment; filename=areaReport.csv");
 
-        TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormat();
+        TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormatForReport();
         
         try (CSVWriter writer = new CSVWriter(response.getWriter(), ';')) {
             writer.writeNext(reportData.getHeaders().toArray(new String[reportData.getHeaders().size()]));
@@ -111,5 +111,5 @@ public class BiomassCalculationController {
             throw new RuntimeException(e);
         }
     }
-
+    
 }

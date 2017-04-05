@@ -29,5 +29,25 @@ public abstract class SingleAreaCalculator extends Calculator {
         }
         return new TabularReportData(plainColumnNames, data);
     }
+    
+    @Override
+    public TabularReportData calculateBiomassInTabularFormatForReport() {
+        @SuppressWarnings("unchecked")
+        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomass().get("values");
+        
+        List<String> plainColumnNames = new ArrayList<String>();
+        plainColumnNames.add("Biomassan tyyppi");
+        plainColumnNames.add("Määrä");
+        plainColumnNames.add("Yksikkö");
+        List<List<DataCell>> data = new ArrayList<>();
+        for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
+            List<DataCell> dataRow = new ArrayList<>();
+            dataRow.add(new DataCell(attributeEntry.getKey()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getUnit()));
+            data.add(dataRow);
+        }
+        return new TabularReportData(plainColumnNames, data);
+    }
 
 }
