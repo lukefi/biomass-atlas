@@ -80,7 +80,7 @@ public class BiomassCalculationController {
     	String searchDescription = calculatorFactory.getInstance(requestModel).getSearchDescription();
 
     	try {
-    	    new XlsxWriter().writeWithMetadata(response, reportData.getHeaders(), reportData, "areaReport", searchDescription);
+    	    new XlsxWriter().writeWithMetadata(response, reportData.getHeaders(), reportData, "BiomassReport", searchDescription);
     	} catch (IOException | TooManyRowsException e) {
     		throw new RuntimeException(e);
     	}
@@ -94,7 +94,7 @@ public class BiomassCalculationController {
         BiomassCalculationRequestModel requestModel = new ObjectMapper().readValue(query, BiomassCalculationRequestModel.class);
         
         response.addHeader("Content-Type", "text/csv;Charset=" + response.getCharacterEncoding());
-        response.addHeader("Content-Disposition", "attachment; filename=areaReport.csv");
+        response.addHeader("Content-Disposition", "attachment; filename=BiomassReport.csv");
 
         TabularReportData reportData = calculatorFactory.getInstance(requestModel).calculateBiomassInTabularFormatForReport();
         
