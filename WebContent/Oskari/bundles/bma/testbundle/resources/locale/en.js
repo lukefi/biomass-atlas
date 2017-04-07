@@ -5,7 +5,7 @@ Oskari.registerLocalization({
     	"toolbarTooltip": "Piirrä alue kartalle ja laske sen biomassa (en)",
     	"flyout": {
     		"title": "Piirrä alue kartalle ja laske sen biomassa",
-    		"chooseAreaType": "Piirrä alue ja kartalle ja sovellus laskee biomassan. Aloita piirto klikkaammalla ja päätä se kaksoisklikkaukseen.",    		
+    		"chooseAreaType": "Piirrä alue ja kartalle ja sovellus laskee biomassan. Aloita piirto klikkaamalla ja päätä se kaksoisklikkaukseen.",    		
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
