@@ -15,9 +15,9 @@ Oskari.registerLocalization({
             "label": "Do not show this message again"
         },
         "page1": {
-            "title": "Tervetuloa käyttämään Biomassa-atlasta",
+            "title": "Tervetuloa testaamaan Biomassa-atlasta",
             "message" : "Biomassa-atlas on metsä-, pelto-, lanta- ja jätebiomassojen paikkatiedon katselu-, analysointi ja raportointipalvelu. Voit tarkastella ja valita biomassa-tietotasoja vasemmalta sivupalkista löytyvästä BIOMASSAT-valikosta. VALITUT TASOT toiminnon kautta löydät lisätietoja biomassoista ja pääset säätämään karttatasojen läpinäkyvyyttä ja järjestystä. Vasemmasta palkista löytyvät myös karttaselitteet sekä työkalut alueiden rajaamiseen ja biomassojen laskentaan sekä haku-toiminto paikan etsimiseen kartalta. <br><br>" +
-						"Biomassojen määrät perustuvat maastohavaintojen, mittausten, rekisteriaineistojen, satelliittikuvien ja kirjallisuuden perusteella muodostettuihin malleihin ja ovat perusteltuja arvioita muodostuvista määristä ja saatavilla olevasta potentiaalista. Jatkamalla hyväksyt aineistojen ja palvelun käyttöehdot",
+						"Biomassojen määrät perustuvat maastohavaintojen, mittausten, rekisteriaineistojen, satelliittikuvien ja kirjallisuuden perusteella muodostettuihin malleihin ja ovat perusteltuja arvioita muodostuvista määristä ja saatavilla olevasta potentiaalista.",
 			"listtitle" : "Näin käytät Biomassa-atlasta",
             "listitem1" : "Valitse haluamasi jakeet BIOMASSAT-valikosta",
             "listitem2" : "Piirrä tai valitse alue ALUEVALINNAT-kuvakkeiden työkaluilla ja laske tulokset",
