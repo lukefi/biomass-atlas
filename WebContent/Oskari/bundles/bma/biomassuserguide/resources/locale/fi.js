@@ -18,11 +18,12 @@ Oskari.registerLocalization(
         },
         "tabs": [
         	{"title": "Aloitusopas", "tags": "ohje_aloitusopas"},
+        	{"title": "Biomassat", "tags": "ohje_biomassat"},
             {"title": "Työkalut", "tags": "ohje_tyokalut"},
             {"title": "Haku", "tags": "ohje_haku"}
         ],
         "help": {
-            "tags": "ohje_aloitusopas, ohje_tyokalut, ohje_haku",
+            "tags": "ohje_aloitusopas, ohje_biomassat, ohje_tyokalut, ohje_haku",
             "contentPart": "body"
         }
     }
