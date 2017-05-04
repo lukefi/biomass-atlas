@@ -88,4 +88,21 @@ public class CalculationService {
     	return query. getResultList();
     }
     
+    public double getTotalSumOfBoundedArea(Collection<Long> boundedAreaIds, long gridId) {
+        if (boundedAreaIds.isEmpty()) {
+            return 0L;
+        }
+        String sql = "SELECT SUM(boundedArea.area) FROM"
+                + " (SELECT ST_AREA(the_geom) AS area FROM"
+                + " (SELECT ST_GEOMFROMTEXT(ST_ASTEXT(c.geometry), 3067)"
+                + " FROM grid_cell c"
+                + " WHERE c.grid_id = " + gridId
+                + " AND c.cell_id IN (" + Joiner.on(',').join(boundedAreaIds) + "))"
+                + " AS foo(the_geom))"
+                + " AS boundedArea";
+        
+        Query query = entityManager.createNativeQuery(sql);
+        return (double) query.getSingleResult();
+    }
+    
 }

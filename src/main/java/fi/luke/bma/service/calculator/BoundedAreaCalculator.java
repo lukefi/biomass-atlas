@@ -83,6 +83,9 @@ public class BoundedAreaCalculator extends Calculator {
             displayOrders.put(Double.toString(displayOrder.doubleValue()), Long.toString(result.getAttributeId()));
         }
         root.put("displayOrders", displayOrders);
+        double totalSumOfBoundedArea = calculationService.getTotalSumOfBoundedArea(requestModel.getAreaIds(),
+                requestModel.getBoundedAreaGridId()) / 10000; // For m2 converted to hectare
+        root.put("selectedArea", Math.round(totalSumOfBoundedArea));
         
         return root;
     }
