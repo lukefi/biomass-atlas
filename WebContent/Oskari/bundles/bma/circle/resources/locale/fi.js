@@ -13,6 +13,7 @@ Oskari.registerLocalization({
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
+    		"selectedArea": "Valittu alue",
     		"saveResults": "Tallenna tulokset",
     		"roadExtraInformation": "km hakualue säteenä tai tieverkostoa pitkin. Mikäli hakualue muodostetaan tieverkostoa pitkin on se aina pienempi kuin linnuntie-etäisyys. Tällöin etäisyydet huomioidaan realistisemmin ja esimerkiksi tiettömät alueet (vesistöt) huomioidaan alueen määrittelyssä.",
     		"selectionType": {

@@ -1,13 +1,11 @@
 package fi.luke.bma.service.calculator;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.ValueAndUnit;
@@ -47,6 +45,8 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
             displayOrders.put(Double.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
         }
         result.put("displayOrders", displayOrders);
+        double areaOfPolygon = calculationService.getAreaOfPolygon(geometryAsWkt) / 10000; // For m2 converted to hectare
+        result.put("selectedArea", Math.round(areaOfPolygon));
         
         return result;
     }
