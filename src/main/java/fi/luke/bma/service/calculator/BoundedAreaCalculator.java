@@ -112,12 +112,14 @@ public class BoundedAreaCalculator extends Calculator {
     public TabularReportData calculateBiomassInTabularFormat() {
         List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
         Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass().get("attributes");
+        Long selectedArea = (Long) calculateBiomass().get("selectedArea");
         List<String> columnNames = new ArrayList<>();
         columnNames.add("Aluetunnus");
         columnNames.add("Alue");
         columnNames.add("Biomassan tyyppi");
         columnNames.add("Määrä");
         columnNames.add("Yksikkö");
+        columnNames.add("Valittu alue = " + selectedArea + " ha");
         List<List<DataCell>> data = new ArrayList<>();
         
         for (Map<String, ?> boundedArea : biomassData) {
@@ -133,6 +135,7 @@ public class BoundedAreaCalculator extends Calculator {
                 row.add(new DataCell(attributeInfo.get("name")));
                 row.add(new DataCell((Long)entry.getValue()));
                 row.add(new DataCell(attributeInfo.get("unit")));
+                row.add(new DataCell(""));  // Empty string for 6th column
                 data.add(row);
             }
         }
