@@ -59,6 +59,7 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
             displayOrders.put(Double.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
         }
         result.put("displayOrders", displayOrders);
+        result.put("selectedArea", Math.round(areaOfPolygon * 100)); // Area in hectare, 1 sq/km = 100 hectare
         return result;
     }
 

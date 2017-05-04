@@ -9,6 +9,7 @@ Oskari.registerLocalization({
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
+    		"selectedArea": "Valittu alue",
     		"saveResults": "Tallenna tulokset",    		
     		"infoIcon": {
     			"title": "Alueen biomassan laskenta",
