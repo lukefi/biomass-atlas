@@ -32,7 +32,6 @@
     </script>
   
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <%-- <script src="${pageContext.request.contextPath}/resources/json/attributeid_metadata.json"></script> --%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style type="text/css">
             body {
@@ -197,7 +196,6 @@
 							font-size: 10px;
 						}
 						div.biomass_info_icon {
-						   background-image: url("${pageContext.request.contextPath}/Oskari${path}/icons/icon_info.png");
 						   display: inline-block;
 						}      	
     </style>

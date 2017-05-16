@@ -128,8 +128,8 @@
    		width: 298px;
    	}
    	#bmaLayerContent table.standard-width tr th:first-child ~ td {
-   		padding-left: 25px;
-   		padding-right: 25px;
+   		padding-left: 24px;
+   		padding-right: 22px;
    	}
    	#bmaLayerContent .selectAllIcon {
    		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAMAAACOacfrAAAAaVBMVEX///+EhIQAAACEhISEhITw8PCEhISOjo6urq7AwMCBgYGJiYmioqKkpKS2trbe3t57e3uEhISEhISEhISEhISBgYF6enp7e3uBgYGoqKiDg4PHx8d0dHR0dHTQ0NCZmZmEhISEhISEhISnc7U9AAAAI3RSTlOAfwB3e4g+4GCpHOfGw7GSkXVoZVMJ4tPIv7mjn52bb286LvoY3zwAAABkSURBVAjXRc5HFoNAEANRtYb2mAEMxmByvP8hyVC7v9ETeJcXDkzN0S9JiFTO2n9OeII9LbuZMOJ/NlW19yK+Egcx0AfDIfhW1TbvTUaAKIxC3FJr9RHWoVUTkcnV6Ahm1xdHLmTOBBPzlrMcAAAAAElFTkSuQmCC");
