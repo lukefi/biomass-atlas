@@ -36,9 +36,9 @@ function(instance, locale, conf) {
 	this.templateCircleRadius = jQuery('<div id="circle-radius" style="display:none;"> <label id="circle-radius-label">' + flyoutLocalization.radius + ': </label>' + 
 			'<input id="circle-radius-value" size="10" ></input> km</div>');
 	this.templateRadiusType = jQuery('<div id="radius-type" style="display:none;"> <br>' + 
-			'<label><input type="radio" name="radius-type" value="circle" checked /> '+ flyoutLocalization["selectionType"][this.SELECTION_CIRCLE] + 
+			'<label><input type="radio" name="radius-type" value="circle" checked id="circle-type"/> '+ flyoutLocalization["selectionType"][this.SELECTION_CIRCLE] + 
 			'</label><div class="icon-info" id="circle-info-tool"></div><br />' +
-			'<label><input type="radio" name="radius-type" value="road" /> '+ flyoutLocalization["selectionType"][this.SELECTION_ROAD] + 
+			'<label><input type="radio" name="radius-type" value="road" id="road-type"/> '+ flyoutLocalization["selectionType"][this.SELECTION_ROAD] + 
 			'</label><div class="icon-info" id="road-info-tool"></div></div> <div class="horizontal-line">.</div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label"> '+ flyoutLocalization.point + 
 			': </label><span id="circle-point-value"></span></div>');
@@ -141,6 +141,11 @@ function(instance, locale, conf) {
         radiusType.find('#road-info-tool').bind('click', function(){        	
         	me._displayInfoTip(me.SELECTION_ROAD);     	
         });
+        
+        radiusType.find('#road-type, #circle-type').unbind('change');
+        radiusType.find('#road-type, #circle-type').bind('change', function(){        	
+        	me._updateCalculateButtonVisibility(me);  
+        });
 	
         content.addClass('bma-circle-main-div');
         content.append(circleMessage);
@@ -175,11 +180,12 @@ function(instance, locale, conf) {
 		
 	_updateCalculateButtonVisibility : function(me) {
 		var btn = $("#circle-calculate");
-		if ($.trim($("#circle-radius-value").val()) != '')  {
-			btn.attr("disabled", false);
+		if ($.trim($("#circle-radius-value").val()) == '' || 
+				($('#road-type').is(':checked') && $.trim($("#circle-radius-value").val()) > 65)) {
+			btn.attr("disabled", true);
 		}
 		else {
-			btn.attr("disabled", true);
+			btn.attr("disabled", false);
 		}
 	},
 	
@@ -214,7 +220,7 @@ function(instance, locale, conf) {
 			if (radiusType == me.SELECTION_ROAD) {
 				var ajaxUrl = "/biomass/roadbuffer/calculate";
 				if (parseInt(radius) > 65) {
-					alert(localization.error["roadRouteExceed"]);
+					//alert(localization.error["roadRouteExceed"]);
 					return;
 				}
 			}
