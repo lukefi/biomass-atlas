@@ -217,7 +217,7 @@ function(instance, locale, conf) {
 				    }
 				}
 				finalResult += "</table>";
-				finalResult += localization.selectedArea + " : " + results.selectedArea + " ha <br><br>";
+				finalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha <br><br>";
 				finalResult += localization.saveResults
 					+ " : <form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 					+ "<input type='hidden' name='query' value= " + queryData + "/>" 

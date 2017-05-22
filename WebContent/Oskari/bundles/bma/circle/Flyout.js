@@ -270,7 +270,7 @@ function(instance, locale, conf) {
 					    }
 					}
 					finalResult += "</table>";
-					finalResult += localization.selectedArea + " : " + results.selectedArea  + " ha <br><br>";
+					finalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha <br><br>";
 					
 					var	queryData = JSON.stringify({
 							points: points, 

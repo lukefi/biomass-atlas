@@ -380,7 +380,7 @@ function(instance, locale, conf) {
 		}				
 		
 		totalResult += "</table>";
-		totalResult += localization.selectedArea + " : " + results.selectedArea  + " ha <br><br>";
+		totalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea)  + " ha <br><br>";
 		totalResult = this._createExportPanel(totalResult, boundaryType);
 		this._showResult(totalResult);				
 	},
