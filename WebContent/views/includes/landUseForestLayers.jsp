@@ -1,4 +1,9 @@
-<h4>Maaluokka 2013, ha</h4>
+<div>
+	<h4 class="biomass_layer_title">Maaluokka 2013, ha</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="1fc3619b-9543-4c1a-924b-e34b6bc3f5a4">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -10,7 +15,12 @@
 </tbody>
 </table>
 
-<h4>Maaluokka FAO:n FRA-m‰‰ritelm‰n mukaan 2013, ha</h4>
+<div>
+	<h4 class="biomass_layer_title">Maaluokka FAO:n FRA-m‰‰ritelm‰n mukaan 2013, ha</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="1fc3619b-9543-4c1a-924b-e34b6bc3f5a4">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -23,7 +33,12 @@
 </tbody>
 </table>
 
-<h4>Kasvupaikan p‰‰tyyppi 2013, ha</h4>
+<div>
+	<h4 class="biomass_layer_title">Kasvupaikan p‰‰tyyppi 2013, ha</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="1fc3619b-9543-4c1a-924b-e34b6bc3f5a4">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>
@@ -36,7 +51,12 @@
 </tbody>
 </table>
 
-<h4>Kasvupaikka 2013, ha</h4>
+<div>
+	<h4 class="biomass_layer_title">Kasvupaikka 2013, ha</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="1fc3619b-9543-4c1a-924b-e34b6bc3f5a4">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr><td></td><th></th></tr>

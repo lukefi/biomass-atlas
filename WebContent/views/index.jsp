@@ -196,8 +196,12 @@
 							font-size: 10px;
 						}
 						div.biomass_info_icon {
-						   display: inline-block;
-						}      	
+						 	display: inline-block;
+						 	margin-left: 15px;
+						}
+						h4.biomass_layer_title {
+							display: inline-block;
+						}    	
     </style>
     <!-- ############# /css ################# -->
 </head>
@@ -323,20 +327,7 @@
 </script>
 
 <script type="text/javascript">
-//GLOBAL variable for holding atribute_id and metadata_id for info icon.
-var attributeId_metadataId_JSON;
-
 $(document).ready(function () {
-	// Loads JSON file and parse it, which is set as value for attributeId_metadataId_JSON. 
-	loadJSON(function(response) {
-		// Parse JSON string into object
-		attributeId_metadataId_JSON = JSON.parse(response);
-	});
-	
-	var insertInfoIconAfterCheckbox = function() {
-		$('table td input[type="checkbox"]').after(' <div class="biomass_info_icon icon-info"></div>');
-	}();
-	
 	$(document).on('change', '.tab-content input:checkbox', function() {
 		var app = Oskari.app,
 		 	sandbox = app.bundleInstances.mapfull.sandbox;		  
@@ -547,19 +538,10 @@ $(document).bind('afterReady', function() {
 		$('#toolbar').css('display', 'block');
 	}();
 	
-	// Metadata display
+	// Metadata display for biomass layer groups
 	$('div.biomass_info_icon').on('click', function() {
-		for (var key in attributeId_metadataId_JSON) {
-			  if (attributeId_metadataId_JSON.hasOwnProperty(key)) {
-				  var attributeId = attributeId_metadataId_JSON[key]["id"],
-				  		checkboxInputValue = $(this).prev("input").val();
-				  if (attributeId == checkboxInputValue) {
-					  var metadataId =  attributeId_metadataId_JSON[key]["metadataid"];
-					  displayMetadata(metadataId);
-					  break;
-				  } 
-			  }
-			}
+		var metadataId = $(this).children('input[type=hidden]').val();
+		displayMetadata(metadataId);
 	});
 	
 	var displayMetadata = function(uuid) {
@@ -593,20 +575,6 @@ var clearAllBmaLayerCheckboxes = function() {
 		}
 	});
 }
-
-// Loads json file which includes attribute_id and metadata_id. 
-var loadJSON = function(callback) {   
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', '/getJSON/attributeAndMetadata', true); 
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- };	
 
 </script>
 

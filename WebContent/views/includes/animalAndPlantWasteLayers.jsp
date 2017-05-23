@@ -1,4 +1,10 @@
-<h4>Eläin- ja kasvijätteet 2014, t/a </h4>
+<div>
+	<h4 class="biomass_layer_title">Eläin- ja kasvijätteet 2014, t/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+	</div>
+</div>
+
 <table class="table select-column standard-width" id="elainJaKasvijätteetLayerTable">
 	<thead>
 		<tr><td></td><th></th></tr>

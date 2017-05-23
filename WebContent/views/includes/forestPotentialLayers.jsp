@@ -1,4 +1,9 @@
-<h4>Pienpuu, 2004-2008, m<sup>3</sup>/a</h4>
+<div>
+	<h4 class="biomass_layer_title">Pienpuu, 2004-2008, m<sup>3</sup>/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="0e8e4cdc-54f3-43b3-80bc-1faf0db0ea53">
+	</div>
+</div>
 <table class="table select-column standard-width">
 	<thead>
 		<tr><td></td><th></th></tr>
@@ -10,7 +15,12 @@
 </tbody>
 </table>
 
-<h4>Latvusmassa, 2010-2019, m<sup>3</sup>/a</h4>
+<div>
+	<h4 class="biomass_layer_title">Latvusmassa, 2010-2019, m<sup>3</sup>/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="0e8e4cdc-54f3-43b3-80bc-1faf0db0ea53">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr>
@@ -36,7 +46,12 @@
 </tbody>
 </table>
 
-<h4>Kannot, 2010-2019, m<sup>3</sup>/a</h4>
+<div>
+	<h4 class="biomass_layer_title">Kannot, 2010-2019, m<sup>3</sup>/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="0e8e4cdc-54f3-43b3-80bc-1faf0db0ea53">
+	</div>
+</div>
 <table class="table select-column standard-width">
 <thead>
 	<tr>

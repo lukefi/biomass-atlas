@@ -1,4 +1,9 @@
-<h4>Peltokasvien sivuvirrat 2015, t(k-a)/a</h4>
+<div>
+	<h4 class="biomass_layer_title">Peltokasvien sivuvirrat 2015, t(k-a)/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="07dca2e6-681f-4ce4-b548-211e80b6d19c">
+	</div>
+</div>
 <table class="table select-column standard-width" id="sivuvirtaPeltokasvitLayerTable">
 	<thead>
 		 <tr><td></td><th></th></tr>

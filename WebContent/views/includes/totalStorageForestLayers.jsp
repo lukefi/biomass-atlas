@@ -1,4 +1,9 @@
-<h4>Metsäbiomassat 2013, t</h4>
+<div>
+	<h4 class="biomass_layer_title">Metsäbiomassat 2013, t</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="6636acb3-cc10-4693-ad27-24504fc05899">
+	</div>
+</div>
 <table class="table select-column standard-width" id="kokonaisvarantoLayerTable">
 	<thead>
 		<tr>

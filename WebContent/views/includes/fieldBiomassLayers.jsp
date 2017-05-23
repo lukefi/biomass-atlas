@@ -1,4 +1,10 @@
-<h4>Peltobiomassat 2015, t/a</h4>
+<div>
+	<h4 class="biomass_layer_title">Peltobiomassat 2015, t/a</h4>
+	<div class="biomass_info_icon icon-info">
+		<input type="hidden" value="0910fbf5-3f56-4f25-99e6-567f17d3bd14">
+	</div>
+</div>
+
 <table class="table select-column standard-width">
 	<thead class="thead-default">
 		  <tr><td></td><th></th></tr>

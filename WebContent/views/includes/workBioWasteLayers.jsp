@@ -15,7 +15,12 @@
 	</div> <!-- lietteetLayer div ends -->
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
-		<h4>Paperi- ja pahvijätteet 2014, t/a</h4>
+		<div>
+			<h4 class="biomass_layer_title">Paperi- ja pahvijätteet 2014, t/a</h4>
+			<div class="biomass_info_icon icon-info">
+				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+			</div>
+		</div>
 		<table class="table select-column standard-width" id="paperijätteetLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
@@ -42,7 +47,12 @@
 	</div>	<!-- puujätteetLayer tab-pane ends -->
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
-		<h4>Yhdyskuntien sekalainen biohajoava jäte 2014, t/a</h4>
+		<div>
+			<h4 class="biomass_layer_title">Yhdyskuntien sekalainen biohajoava jäte 2014, t/a</h4>
+			<div class="biomass_info_icon icon-info">
+				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+			</div>
+		</div>
 		<table class="table select-column standard-width" id="yhdyskuntienSekalainenBiohajoavaLayerTable">
 			<thead>
 				<tr><td></td><th></th></tr>
