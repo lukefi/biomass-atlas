@@ -22,10 +22,10 @@
 			<th scope="row">020103 Alkutuotannon kasvijätteet</th>
 			<td><input type="checkbox" name="waste" value='1059'></td>	
 		</tr>
-		<tr>
+	<!-- 	<tr>
 			<th scope="row">020106 Eläinten ulosteet, virtsa ja lanta</th>
 			<td><input type="checkbox" name="waste" value='1060'></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th scope="row">020107 Metsätalouden jätteet</th>
 			<td><input type="checkbox" name="waste" value='1061'></td>
