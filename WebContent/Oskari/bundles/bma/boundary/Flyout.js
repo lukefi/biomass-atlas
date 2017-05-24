@@ -513,12 +513,12 @@ function(instance, locale, conf) {
 		var instance = me.instance,
 			sandbox = instance.getSandbox(),
 			requestForAddFeature = sandbox.getRequestBuilder(
-					"MapModulePlugin.AddFeaturesToMapRequest" ),				
+					"MapModulePlugin.AddFeaturesToMapRequest" ),
 			style = OpenLayers.Util.applyDefaults(
-			        {fillColor: '#FFFF00', fillOpacity: 0.8, strokeColor: '#eda740'},
-			        OpenLayers.Feature.Vector.style["default"]);			
+			        {fillColor: '#FFFF00', fillOpacity: 0.8, strokeColor: '#eda740', label: results.boundedAreaName},
+			        OpenLayers.Feature.Vector.style["default"]);	
 		sandbox.request(instance, requestForAddFeature( results.geometry, 'WKT', 
-			{id: results.id}, null, null, true, style, false));	
+			{id: results.id}, null, null, true, style, false));
 	},
 			
 	/**
