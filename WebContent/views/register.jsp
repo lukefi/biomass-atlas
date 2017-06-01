@@ -207,7 +207,7 @@ $(document).ready(function () {
 	$('#changePassword').click(function () {		
 		var host = window.location.protocol + "//" + window.location.host;		
 		jQuery.ajax({
-			url: host + "/action?action_route=UserPasswordReset&email=${email}",
+			url: host + "/action?action_route=UserPasswordReset&email=" + jQuery('#email').val(),
 			type: 'POST',			
 			success: function(data) {
 				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/emailSent"; 
