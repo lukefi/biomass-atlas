@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><spring:message code="bma.title"/></title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.7.1.min.js">
+ 		<title><spring:message code="bma.title"/></title>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Oskari/libraries/jquery/jquery-1.10.2.js">
     </script>
     <!-- ############# css ################# -->   
     <style type="text/css">
