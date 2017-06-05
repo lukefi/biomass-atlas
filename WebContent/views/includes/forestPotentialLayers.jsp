@@ -32,7 +32,7 @@
 </thead>
 <tbody>
 	<tr class="select-row">
-		<th scope="row">Toteutuneet hakkuut</th>
+		<th scope="row">Toteutunut hakkuukertymä</th>
 		<td><input type="checkbox" value='1129'></td>
 		<td><input type="checkbox" value='1042'></td>
 		<td><input type="checkbox" value='1127'></td>
@@ -63,7 +63,7 @@
 </thead>
 <tbody>
 	<tr class="select-row">
-		<th scope="row">Toteutuneet hakkuut</th>
+		<th scope="row">Toteutunut hakkuukertymä</th>
 		<td><input type="checkbox" value='1123'></td>
 		<td><input type="checkbox" value='1121'></td>
 		<td></td>
