@@ -10,6 +10,82 @@
 	</thead>
 	<tbody>
 		<tr>
+			<th scope="row">Kevätviljat</th>
+			<td><input type="checkbox" name="field" value='1043'></td>
+		</tr>
+		<tr>
+			<th scope="row">Syysviljat</th>
+			<td><input type="checkbox" name="field" value='1044'></td>
+		</tr>
+		<tr>
+			<th scope="row">Öljykasvit</th>
+			<td><input type="checkbox" name="field" value='1056'></td>
+		</tr>
+		<tr>
+			<th scope="row">Valkuaiskasvit</th>
+			<td><input type="checkbox" name="field" value='1053'></td>
+		</tr>
+		<tr>
+			<th scope="row">Seoskasvustot</th>
+			<td><input type="checkbox" name="field" value='1048'></td>
+		</tr>
+		<tr>
+			<th scope="row">Peruna</th>
+			<td><input type="checkbox" name="field" value='1049'></td>
+		</tr>
+		<tr>
+			<th scope="row">Erikoiskasvit</th>
+			<td><input type="checkbox" name="field" value='1052'></td>
+		</tr>
+		<tr>
+			<th scope="row">Sokerijuurikas</th>
+			<td><input type="checkbox" name="field" value='1051'></td>
+		</tr>
+		<tr>
+			<th scope="row">Säilörehunurmi</th>
+			<td><input type="checkbox" name="field" value='1250'></td>
+		</tr>
+		<tr>
+			<th scope="row">Heinänurmi</th>
+			<td><input type="checkbox" name="field" value='1251'></td>
+		</tr>
+		<tr>
+			<th scope="row">Viljelty laidun</th>
+			<td><input type="checkbox" name="field" value='1054'></td>
+		</tr>
+		<tr>
+			<th scope="row">Siemennurmi</th>
+			<td><input type="checkbox" name="field" value='1050'></td>
+		</tr>
+		<tr>
+			<th scope="row">Viherlannoitusnurmi</th>
+			<td><input type="checkbox" name="field" value='1252'></td>
+		</tr>
+		<tr>
+			<th scope="row">Viherkesanto ja luonnonhoitopelto</th>
+			<td><input type="checkbox" name="field" value='1055'></td>
+		</tr>
+		<tr>
+			<th scope="row">Kuitu- ja energiakasvit</th>
+			<td><input type="checkbox" name="field" value='1046'></td>
+		</tr>
+		<tr>
+			<th scope="row"> Kesanto, viljelemätön, ym. erityisalat</th>
+			<td><input type="checkbox" name="field" value='1045'></td>
+		</tr>
+		<tr>
+			<th scope="row">Luonnonlaidun</th>
+			<td><input type="checkbox" name="field" value='1047'></td>
+		</tr>
+		<tr>
+			<th scope="row">Avomaan vihannekset ja juurekset</th>
+			<td><input type="checkbox" name="field" value='1157'></td>
+		</tr>
+		<tr>
+			<th scope="row">Marjapensaat, hedelmäpuut ja mansikka</th>
+			<td><input type="checkbox" name="field" value='1240'></td>
+		</tr>
+<!-- 		<tr>
 			<th scope="row">Juurekset ja vihannekset</th>
 			<td><input type="checkbox" name="field" value='1043'></td>
 		</tr>
@@ -72,6 +148,6 @@
 		<tr>
 			<th scope="row">Öljykasvit</th>
 			<td><input type="checkbox" name="field" value='1056'></td>
-		</tr>
+		</tr> -->
 	</tbody>
 </table>
