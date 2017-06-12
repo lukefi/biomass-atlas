@@ -70,6 +70,8 @@ public class BmaConfig extends WebMvcConfigurerAdapter {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "validate");
         properties.setProperty("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
+        properties.setProperty("testWhileIdle", "true");
+        properties.setProperty("timeBetweenEvictionRunsMillis", "60000");
         return properties;
      }
     
