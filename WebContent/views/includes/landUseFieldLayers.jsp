@@ -34,7 +34,7 @@
 			<td><input type="checkbox" name="field" value='1049'></td>
 		</tr>
 		<tr>
-			<th scope="row">Erikoiskasvit</th>
+			<th scope="row">Kumina ja muut erikoiskasvit</th>
 			<td><input type="checkbox" name="field" value='1052'></td>
 		</tr>
 		<tr>
@@ -46,8 +46,12 @@
 			<td><input type="checkbox" name="field" value='1250'></td>
 		</tr>
 		<tr>
-			<th scope="row">Heinänurmi</th>
+			<th scope="row">Kuivaheinä</th>
 			<td><input type="checkbox" name="field" value='1251'></td>
+		</tr>
+		<tr>
+			<th scope="row">Tuorerehunurmi</th>
+			<td><input type="checkbox" name="field" value='1253'></td>
 		</tr>
 		<tr>
 			<th scope="row">Viljelty laidun</th>
