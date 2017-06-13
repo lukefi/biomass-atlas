@@ -138,6 +138,7 @@ function(instance, locale, conf) {
         calclulateCancelTool.find('#boundary-prev').html(localization.prev);
         calclulateCancelTool.find('#boundary-prev').unbind('click');
         calclulateCancelTool.find('#boundary-prev').bind('click', function() {
+        	me._removeWmsLayer(sandbox);  
         	me._clearAllIdList();
         	me.stopPlugin();
         	me.startPlugin();
