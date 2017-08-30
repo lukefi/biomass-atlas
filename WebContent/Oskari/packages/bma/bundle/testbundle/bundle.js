@@ -60,6 +60,11 @@ function() {
             "lang" : "fi",
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/testbundle/resources/locale/fi.js"
+        },
+        {
+            "lang" : "sv",
+            "type" : "text/javascript",
+            "src" : "../../../../bundles/bma/testbundle/resources/locale/sv.js"
         }]
     },
     "bundle" : {
@@ -85,7 +90,14 @@ function() {
                     "Name" : " style-1",
                     "Title" : " style-1"
                 },
-                "en" : {}
+                "en" : {
+                	"Name" : " style-1",
+                    "Title" : " style-1"
+                },
+                "sv" : {
+                	"Name" : " style-1",
+                	"Title" : " style-1"
+                }
             },
             "Bundle-Version" : "1.0.0",
             "Import-Namespace" : ["Oskari"],

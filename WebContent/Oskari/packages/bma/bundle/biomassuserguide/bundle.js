@@ -61,6 +61,11 @@ function() {
             "lang" : "fi",
             "type" : "text/javascript",
             "src" : "../../../../bundles/bma/biomassuserguide/resources/locale/fi.js"
+        },
+        {
+            "lang" : "sv",
+            "type" : "text/javascript",
+            "src" : "../../../../bundles/bma/biomassuserguide/resources/locale/sv.js"
         }]
     },
     "bundle" : {
@@ -89,6 +94,10 @@ function() {
                 "en" : {
                 	 "Name" : " style-1",
                      "Title" : " style-1"
+                },
+                "sv" : {
+                	"Name" : " style-1",
+                	"Title" : " style-1"
                 }
             },
             "Bundle-Version" : "1.0.0",
