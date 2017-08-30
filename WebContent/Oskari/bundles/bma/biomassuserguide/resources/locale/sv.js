@@ -7,23 +7,23 @@ Oskari.registerLocalization(
         "desc": "",
         "flyout": {
             "title": "Användarguide",
-            "loadingtxt": "<p>ladataan sisältöä</p>"
+            "loadingtxt": "<p>Fylla i guiden...</p>"
         },
         "tile": {
             "title": "Användarguide"
         },
         "error": {
-            "title": "Virhe!",
-            "generic": "Ohjeen lataaminen epäonnistui. Yritä myöhemmin uudelleen."
+            "title": "Fel!",
+            "generic": "Laddar användarguide misslyckades. Vänligen försök igen senare."
         },
         "tabs": [
-        	{"title": "Aloitusopas", "tags": "ohje_aloitusopas"},
-        	{"title": "Biomassat", "tags": "ohje_biomassat"},
-            {"title": "Työkalut", "tags": "ohje_tyokalut"},
-            {"title": "Haku", "tags": "ohje_haku"}
+        	{"title": "Komma igång", "tags": "guide_komma_igang"},
+        	{"title": "Biomassor", "tags": "guide_biomassor"},
+            {"title": "Verktyg", "tags": "guide_verktyg"},
+            {"title": "Sök", "tags": "guide_sok"}
         ],
         "help": {
-            "tags": "ohje_aloitusopas, ohje_biomassat, ohje_tyokalut, ohje_haku",
+            "tags": "guide_komma_igang, guide_biomassor, guide_verktyg, guide_sok",
             "contentPart": "body"
         }
     }

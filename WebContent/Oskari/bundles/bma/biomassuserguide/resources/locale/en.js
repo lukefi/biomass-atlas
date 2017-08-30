@@ -18,11 +18,12 @@ Oskari.registerLocalization(
         },
         "tabs": [
         	{"title": "Get Started", "tags": "guide_get_started"},
+        	{"title": "Biomasses", "tags": "guide_biomasses"},
             {"title": "Map Tools", "tags": "guide_tools"},
             {"title": "Search", "tags": "guide_search"}
         ],
         "help": {
-            "tags": "guide_get_started, guide_tools, guide_search",
+            "tags": "guide_get_started, guide_biomasses, guide_tools, guide_search",
             "contentPart": "body"
         }
     }
