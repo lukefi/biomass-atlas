@@ -201,6 +201,14 @@
 						}
 						h4.biomass_layer_title {
 							display: inline-block;
+						}
+						#lang_selector {
+							margin-top: -10px;
+							margin-bottom: 10px;
+							font-size: 12px;
+						}    	
+						#lang_selector span {
+							margin-left: 15px;
 						}    	
     </style>
     <!-- ############# /css ################# -->
@@ -211,6 +219,11 @@
  		<div id="biomass_logo">
     	<a href="https://www.luke.fi/biomassa-atlas" target="_blank">
     		<img alt="biomass_atlas_logo" src="${pageContext.request.contextPath}/Oskari${path}/images/biomass_atlas.png"></a>
+    </div>
+   	<div id="lang_selector">
+    	<span><a href="${pageContext.request.contextPath}/?lang=fi" title="Suomeksi" >FI</a></span>
+    	<span><a href="${pageContext.request.contextPath}/?lang=en" title="In english">EN</a></span>
+    	<span><a href="${pageContext.request.contextPath}/?lang=sv" title="På svenska">SV</a></span>
     </div>
     <div id="loginbar">
     </div>
