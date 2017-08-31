@@ -54,7 +54,10 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
-			'<div id="boundary-calclulate-cancel-tool" style="display:none"><button class="boundary-button" id="boundary-prev"></button><button class="boundary-button" id="boundary-calculate"></button>' +
+			'<div id="boundary-calculate-cancel-tool" style="display:none">' +
+			'<button class="boundary-button" id="boundary-prev"></button>' +
+			'<button class="boundary-button" id="boundary-calculate"></button>' +
+			'<button class="boundary-button" id="boundary-calculateMunicipality" style="display:none"></button>' +
 			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
 	
 	{
@@ -122,7 +125,7 @@ function(instance, locale, conf) {
 
         var boundaryMessage = me.templateBoundaryMessage.clone();
         var boundaryData = me.templateBoundaryData.clone();
-        var calclulateCancelTool = me.templateBoundaryCalculateCancelTool.clone();       
+        var calculateCancelTool = me.templateBoundaryCalculateCancelTool.clone();       
         
         boundaryMessage.find('button[name="boundary"]').unbind('click');
         boundaryMessage.find('button[name="boundary"]').bind('click', function(){
@@ -135,9 +138,9 @@ function(instance, locale, conf) {
         	me._selectAllBoundaries(me);
         });
         
-        calclulateCancelTool.find('#boundary-prev').html(localization.prev);
-        calclulateCancelTool.find('#boundary-prev').unbind('click');
-        calclulateCancelTool.find('#boundary-prev').bind('click', function() {
+        calculateCancelTool.find('#boundary-prev').html(localization.prev);
+        calculateCancelTool.find('#boundary-prev').unbind('click');
+        calculateCancelTool.find('#boundary-prev').bind('click', function() {
         	me._removeWmsLayer(sandbox);  
         	me._clearAllIdList();
         	me.stopPlugin();
@@ -145,15 +148,21 @@ function(instance, locale, conf) {
         	me.createUI();
         });
         
-        calclulateCancelTool.find('#boundary-calculate').html(localization.calculate);
-        calclulateCancelTool.find('#boundary-calculate').unbind('click');
-        calclulateCancelTool.find('#boundary-calculate').bind('click', function(){        	
+        calculateCancelTool.find('#boundary-calculate').html(localization.calculate);
+        calculateCancelTool.find('#boundary-calculate').unbind('click');
+        calculateCancelTool.find('#boundary-calculate').bind('click', function(){        	
         	me._calculateButtonClick(me);
         });
         
-        calclulateCancelTool.find('#boundary-cancel').html(localization.quit);
-        calclulateCancelTool.find('#boundary-cancel').unbind('click');
-        calclulateCancelTool.find('#boundary-cancel').bind('click', function(){        	
+        calculateCancelTool.find('#boundary-calculateMunicipality').html(localization.calculateMunicipality);
+        calculateCancelTool.find('#boundary-calculateMunicipality').unbind('click');
+        calculateCancelTool.find('#boundary-calculateMunicipality').bind('click', function(){        	
+        	me._calculateMunicipalityButtonClick(me);
+        });
+        
+        calculateCancelTool.find('#boundary-cancel').html(localization.quit);
+        calculateCancelTool.find('#boundary-cancel').unbind('click');
+        calculateCancelTool.find('#boundary-cancel').bind('click', function(){        	
         	me._cancelButtonClick();     	
         });
         
@@ -165,7 +174,7 @@ function(instance, locale, conf) {
         content.addClass('bma-boundary-main-div');
         content.append(boundaryMessage);
         content.append(boundaryData);
-        content.append(calclulateCancelTool);    
+        content.append(calculateCancelTool);    
         
     	me._closeIconClickHandler();
 	},
@@ -224,6 +233,9 @@ function(instance, locale, conf) {
     	$('#boundary-message').html(localization[selectedBoundary]);
     	me._createInfoIcon(selectedBoundary);
     	jQuery("#boundary-select-all").show();
+    	if (selectedBoundary === this.BOUNDARY_PROVINCE || selectedBoundary === this.BOUNDARY_ELY ) {
+    		jQuery("button#boundary-calculateMunicipality").show();
+    	}
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
     	me._updateCalculateButtonVisibility(me);
@@ -239,15 +251,22 @@ function(instance, locale, conf) {
 	},
 	
 	_showCalculateCancelButtons : function() {
-		$("#boundary-calclulate-cancel-tool").show();
+		$("#boundary-calculate-cancel-tool").show();
 	},
 	
 	_hideCalculateCancelButtons : function() {
-		$("#boundary-calclulate-cancel-tool").hide();
+		$("#boundary-calculate-cancel-tool").hide();
 	},
     
 	_updateCalculateButtonVisibility : function(me) {
-		var btn = $("#boundary-calculate");
+		me._enableDisableCalulateButton(me, "#boundary-calculate");
+		 if ($("#boundary-calculateMunicipality").is(":visible")) {
+			 me._enableDisableCalulateButton(me, "#boundary-calculateMunicipality");
+		 }
+	},
+	
+	_enableDisableCalulateButton : function(me, buttonId) {
+		var btn = $(buttonId);
 		for (var idList in me.selectedIds) {
 			if (me.selectedIds[idList].length > 0) {
 				btn.attr("disabled", false);
@@ -308,11 +327,15 @@ function(instance, locale, conf) {
 	     }
 	},
 	
-	_calculateButtonClick: function(){		
-		this._areaCalculate(this._getSelectedBoundaryType());	
+	_calculateButtonClick: function() {		
+		this._areaCalculate(this._getSelectedBoundaryType(), false);	
 	},
 	
-	_areaCalculate: function(boundaryType) {
+	_calculateMunicipalityButtonClick: function() {		
+		this._areaCalculate(this._getSelectedBoundaryType(), true);	
+	},
+	
+	_areaCalculate: function(boundaryType, municipalityBased) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
@@ -323,7 +346,8 @@ function(instance, locale, conf) {
 			data: JSON.stringify({
 				areaIds: me.selectedIds[boundaryType],
 				attributes: me._getVisibleBiomassAttributeIds(sandbox),
-				boundedAreaGridId: me.GRID_IDS[boundaryType]
+				boundedAreaGridId: me.GRID_IDS[boundaryType],
+				municipalityBased: municipalityBased
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
