@@ -10,11 +10,14 @@ import java.util.stream.Collectors;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.BiomassCalculationRequestModel.CalculateRule;
+import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.GridCellService;
 import fi.rktl.common.model.DataCell;
 
 public class BoundedAreaCalculator extends Calculator {
@@ -24,28 +27,34 @@ public class BoundedAreaCalculator extends Calculator {
     private final CalculationService calculationService;
 
     private final BoundedAreaService boundedAreaService;
-    
+
     private final AttributeService attributeService;
 
+    private final GridCellService gridCellService;
+
     public BoundedAreaCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
-            BoundedAreaService boundedAreaService, AttributeService attributeService) {
+            BoundedAreaService boundedAreaService, AttributeService attributeService, GridCellService gridCellService) {
         this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.boundedAreaService = boundedAreaService;
         this.attributeService = attributeService;
+        this.gridCellService = gridCellService;
     }
 
     @Override
     public Map<String, ?> calculateBiomass() {
         Map<Long, Map<String, String>> attributeMap = new LinkedHashMap<>();
-        
+
         List<Long> requestedAttibuteIds = requestModel.getAttributes();
-        List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
+        List<Attribute> sortedAttributes = attributeService
+                .getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
         List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
-        
+
+        modifyRequestModelBasedOnCalculateRule(requestModel);
         List<AdministrativeAreaBiomassCalculationResult> boundedAreaBiomasses = calculationService
                 .getTotalBiomassForBoundedArea(sortedAttributeIds, requestModel.getAreaIds(),
                         requestModel.getBoundedAreaGridId());
+
         Map<String, Object> root = new LinkedHashMap<>();
         List<Map<String, ?>> boundedAreaList = new ArrayList<>();
         Map<Long, Map<String, Object>> boundedAreaMap = new LinkedHashMap<>();
@@ -58,7 +67,7 @@ public class BoundedAreaCalculator extends Calculator {
             boundedAreaMap.put(cell.getCellId(), boundedArea);
         }
         root.put("boundedAreas", boundedAreaList);
-        
+
         for (Long attributeId : sortedAttributeIds) {
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
             Map<String, String> m = new LinkedHashMap<>();
@@ -73,7 +82,7 @@ public class BoundedAreaCalculator extends Calculator {
             Long calculatedResult = Math.round(result.getValue());
             boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
         }
-        
+
         Map<String, String> displayOrders = new LinkedHashMap<>();
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
             Double displayOrder = result.getDisplayOrder();
@@ -86,13 +95,14 @@ public class BoundedAreaCalculator extends Calculator {
         double totalSumOfBoundedArea = calculationService.getTotalSumOfBoundedArea(requestModel.getAreaIds(),
                 requestModel.getBoundedAreaGridId()) / 10000; // For m2 converted to hectare
         root.put("selectedArea", Math.round(totalSumOfBoundedArea));
-        
+
         return root;
     }
 
     @Override
     public String getSearchDescription() {
-        List<GridCell> areaList = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(), requestModel.getBoundedAreaGridId());
+        List<GridCell> areaList = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
+                requestModel.getBoundedAreaGridId());
         if (areaList.size() == 0) {
             return "";
         }
@@ -111,7 +121,8 @@ public class BoundedAreaCalculator extends Calculator {
     @SuppressWarnings("unchecked")
     public TabularReportData calculateBiomassInTabularFormat() {
         List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
-        Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass().get("attributes");
+        Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass()
+                .get("attributes");
         Long selectedArea = (Long) calculateBiomass().get("selectedArea");
         List<String> columnNames = new ArrayList<>();
         columnNames.add("Aluetunnus");
@@ -121,7 +132,7 @@ public class BoundedAreaCalculator extends Calculator {
         columnNames.add("Yksikkö");
         columnNames.add("Valittu alue = " + selectedArea + " ha");
         List<List<DataCell>> data = new ArrayList<>();
-        
+
         for (Map<String, ?> boundedArea : biomassData) {
             for (Entry<String, ?> entry : boundedArea.entrySet()) {
                 if ("id".equals(entry.getKey()) || "name".equals(entry.getKey())) {
@@ -133,19 +144,47 @@ public class BoundedAreaCalculator extends Calculator {
                 row.add(new DataCell(boundedArea.get("id")));
                 row.add(new DataCell(boundedArea.get("name")));
                 row.add(new DataCell(attributeInfo.get("name")));
-                row.add(new DataCell((Long)entry.getValue()));
+                row.add(new DataCell((Long) entry.getValue()));
                 row.add(new DataCell(attributeInfo.get("unit")));
-                row.add(new DataCell(""));  // Empty string for 6th column
+                row.add(new DataCell("")); // Empty string for 6th column
                 data.add(row);
             }
         }
-        
+
         return new TabularReportData(columnNames, data);
     }
 
     @Override
     public TabularReportData calculateBiomassInTabularFormatForReport() {
         return calculateBiomassInTabularFormat();
+    }
+
+    /**
+     * If the calculate rule is defined (i.e; Not 'Calculate.None'), then the values (areaIds and boundedAreaGridId) 
+     * of request model is modified with new areaIds (i.e; grid_cell_id) for list of municipalities
+     * @param requestModel BiomassCalculationRequestModel
+     */
+    public void modifyRequestModelBasedOnCalculateRule(BiomassCalculationRequestModel requestModel) {
+        List<Long> requestAreaIds = requestModel.getAreaIds();
+        List<Long> areaIds = new ArrayList<>();
+        if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE == requestModel.getCalculateByMunicipality()) {
+            for (Long areaId : requestAreaIds) {
+                List<GridCell> cells = gridCellService.getAllMunicipalitiesForBoundaryAreaId(areaId,
+                        GridType.PROVINCE.getValue());
+                areaIds.addAll(cells.stream().map(GridCell::getCellId).collect(Collectors.toList()));
+            }
+        } else if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_ELY == requestModel.getCalculateByMunicipality()) {
+            for (Long areaId : requestAreaIds) {
+                List<GridCell> cells = gridCellService.getAllMunicipalitiesForBoundaryAreaId(areaId,
+                        GridType.ELY_CENTER.getValue());
+                areaIds.addAll(cells.stream().map(GridCell::getCellId).collect(Collectors.toList()));
+            }
+        }
+        
+        if (CalculateRule.NONE != requestModel.getCalculateByMunicipality()) {
+            requestModel.setAreaIds(areaIds);
+            requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
+        }
     }
 
 }

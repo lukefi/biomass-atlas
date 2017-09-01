@@ -46,6 +46,11 @@ function(instance, locale, conf) {
 	this.selectedIds[this.BOUNDARY_DRAINAGE_BASIN] = [];
 	this.selectedIds[this.BOUNDARY_POSTAL_CODE] = [];
 	this.selectedPoints = [];
+	
+	// Rules for calculate by municipality (Only in Province and ELY) 
+	this.CALCULATE_RULE_NONE = "NONE";
+	this.CALCULATE_RULE_FOR_PROVINCE = "CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE";
+	this.CALCULATE_RULE_FOR_ELY = "CALCULATE_BY_MUNICIPALITY_FOR_ELY";
 
 	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
@@ -63,7 +68,8 @@ function(instance, locale, conf) {
 	{
 		var flyoutLocalization = this.instance.getLocalization()["flyout"];
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
-		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' + flyoutLocalization["selectAll"] + '</button></div>';
+		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' 
+			+ flyoutLocalization["selectAll"] + '</button></div>';
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
@@ -328,14 +334,20 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function() {		
-		this._areaCalculate(this._getSelectedBoundaryType(), false);	
+		this._areaCalculate(this._getSelectedBoundaryType(), this.CALCULATE_RULE_NONE);	
 	},
 	
-	_calculateMunicipalityButtonClick: function() {		
-		this._areaCalculate(this._getSelectedBoundaryType(), true);	
+	_calculateMunicipalityButtonClick: function() {
+		var selectedBoundary = this._getSelectedBoundaryType();
+		if (selectedBoundary === this.BOUNDARY_PROVINCE) {
+			this._areaCalculate(selectedBoundary, this.CALCULATE_RULE_FOR_PROVINCE);
+		} else if (selectedBoundary === this.BOUNDARY_ELY) {
+			this._areaCalculate(selectedBoundary, this.CALCULATE_RULE_FOR_ELY);
+		}
+			
 	},
 	
-	_areaCalculate: function(boundaryType, municipalityBased) {
+	_areaCalculate: function(boundaryType, calculateByMunicipality) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
@@ -347,7 +359,7 @@ function(instance, locale, conf) {
 				areaIds: me.selectedIds[boundaryType],
 				attributes: me._getVisibleBiomassAttributeIds(sandbox),
 				boundedAreaGridId: me.GRID_IDS[boundaryType],
-				municipalityBased: municipalityBased
+				calculateByMunicipality: calculateByMunicipality
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
@@ -479,6 +491,7 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
+				console.log(results);
 				var result = results[0];
 				var indexId = me.selectedIds[boundaryType].indexOf(result.id);
 				if (indexId > -1) {					

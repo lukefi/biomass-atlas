@@ -11,38 +11,53 @@ import fi.rktl.common.model.NonInsertableEntityWithLongId;
 
 @Entity
 public class Grid extends NonInsertableEntityWithLongId {
-	@Column
-	private String name;
-	
-	@Column
-	@Type(type="date")
-	private Date startDate;
-	
-	@Column
-	@Type(type="date")
-	private Date endDate;
 
-	public String getName() {
-		return name;
-	}
+    public enum GridType {
+        ONE_BY_ONE_KM(1), MUNICIPALITY(2), PROVINCE(3), DRAINAGE_BASIN(4), POST_NUMBER_AREA(5), ELY_CENTER(6);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+        private final int value;
 
-	public Date getStartDate() {
-		return startDate;
-	}
+        private GridType(int value) {
+            this.value = value;
+        }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+        public int getValue() {
+            return value;
+        }
+    };
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    @Column
+    private String name;
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    @Column
+    @Type(type = "date")
+    private Date startDate;
+
+    @Column
+    @Type(type = "date")
+    private Date endDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 }

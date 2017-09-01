@@ -5,44 +5,50 @@ import java.util.List;
 
 public class BiomassCalculationRequestModel {
 
+    public enum CalculateRule {
+        NONE, CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE, CALCULATE_BY_MUNICIPALITY_FOR_ELY;
+    }
+
     public static class Point {
-        
+
         private Double x;
         private Double y;
-        
+
         public Double getX() {
             return x;
         }
-        
+
         public void setX(Double x) {
             this.x = x;
         }
-        
+
         public Double getY() {
             return y;
         }
-        
+
         public void setY(Double y) {
             this.y = y;
         }
-        
+
         public double getDistanceTo(com.vividsolutions.jts.geom.Point jtsPoint) {
             return Math.sqrt(Math.pow(x - jtsPoint.getX(), 2) + Math.pow(y - jtsPoint.getY(), 2));
         }
     }
-    
+
     private ArrayList<Point> points;
-    
+
     private ArrayList<Long> attributes;
-    
+
     private List<Long> areaIds;
-    
+
     private Float radius;
-    
+
     private String radiusType;
-    
+
     private Long boundedAreaGridId;
-    
+
+    private CalculateRule calculateByMunicipality; // For Province and ELY center.
+
     public ArrayList<Point> getPoints() {
         return points;
     }
@@ -59,7 +65,7 @@ public class BiomassCalculationRequestModel {
         this.attributes = attributes;
     }
 
-	public List<Long> getAreaIds() {
+    public List<Long> getAreaIds() {
         return areaIds;
     }
 
@@ -68,12 +74,12 @@ public class BiomassCalculationRequestModel {
     }
 
     public Float getRadius() {
-		return radius;
-	}
+        return radius;
+    }
 
-	public void setRadius(Float radius) {
-		this.radius = radius;
-	}
+    public void setRadius(Float radius) {
+        this.radius = radius;
+    }
 
     public String getRadiusType() {
         return radiusType;
@@ -90,5 +96,13 @@ public class BiomassCalculationRequestModel {
     public void setBoundedAreaGridId(Long boundedAreaGridId) {
         this.boundedAreaGridId = boundedAreaGridId;
     }
-    
+
+    public CalculateRule getCalculateByMunicipality() {
+        return calculateByMunicipality;
+    }
+
+    public void setCalculateByMunicipality(CalculateRule calculateByMunicipality) {
+        this.calculateByMunicipality = calculateByMunicipality;
+    }
+
 }

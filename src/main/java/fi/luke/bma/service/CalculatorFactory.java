@@ -18,7 +18,7 @@ public class CalculatorFactory {
 
     @Autowired
     private CalculationService calculationService;
-    
+
     @Autowired
     private BoundedAreaService boundedAreaService;
 
@@ -27,17 +27,18 @@ public class CalculatorFactory {
 
     @Autowired
     private GeometryService geometryService;
-    
+
+    @Autowired
+    private GridCellService gridCellService;
+
     public Calculator getInstance(BiomassCalculationRequestModel requestModel) {
         Class<? extends Calculator> clazz;
         if (requestModel.getBoundedAreaGridId() != null) {
             clazz = BoundedAreaCalculator.class;
-        }
-        else if (requestModel.getRadius() != null){
+        } else if (requestModel.getRadius() != null) {
             if ("road".equals(requestModel.getRadiusType())) {
                 clazz = RoadBufferCalculator.class;
-            }
-            else {
+            } else {
                 clazz = CircleCalculator.class;
             }
         } else {
@@ -45,10 +46,11 @@ public class CalculatorFactory {
         }
         return getInstance(requestModel, clazz);
     }
-    
+
     public Calculator getInstance(BiomassCalculationRequestModel requestModel, Class<? extends Calculator> clazz) {
         if (clazz == BoundedAreaCalculator.class) {
-            return new BoundedAreaCalculator(requestModel, calculationService, boundedAreaService, attributeService);
+            return new BoundedAreaCalculator(requestModel, calculationService, boundedAreaService, attributeService,
+                    gridCellService);
         }
         if (clazz == RoadBufferCalculator.class) {
             return new RoadBufferCalculator(requestModel, calculationService, attributeService, geometryService);
@@ -61,5 +63,5 @@ public class CalculatorFactory {
         }
         throw new IllegalArgumentException("Unknown calculator requested: " + clazz.getName());
     }
-    
+
 }
