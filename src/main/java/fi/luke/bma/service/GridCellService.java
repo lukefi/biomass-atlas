@@ -78,7 +78,7 @@ public class GridCellService extends BaseStoreNonInsertableLongIdEntityManager<G
     public List<GridCell> getAllMunicipalitiesForBoundaryAreaId(long boundedAreaId, int gridId) {
         String sql = "SELECT c.* " + "FROM grid_cell c " + "WHERE c.grid_id = " + GridType.MUNICIPALITY.getValue()
                 + "AND ST_contains( " + "(SELECT a.geometry " + "FROM grid_cell a "
-                + "WHERE a.grid_id = ? AND a.cell_id = ?) , c.geometry)";
+                + "WHERE a.grid_id = ? AND a.cell_id = ?) , ST_centroid(c.geometry))";
         Query query = entityManager.createNativeQuery(sql, GridCell.class);
         query.setParameter(1, gridId);
         query.setParameter(2, boundedAreaId);
