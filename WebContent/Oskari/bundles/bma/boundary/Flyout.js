@@ -363,12 +363,12 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, boundaryType);					
+				me._createTabularResult(results, boundaryType, calculateByMunicipality);					
 			}
 		});
 	},
 	
-	_createTabularResult : function(results, boundaryType) {
+	_createTabularResult : function(results, boundaryType, calculateByMunicipality) {
 		// TODO - should find better way to show calculation results and selected layers' names
 		var localization = this.instance.getLocalization()["flyout"],
 			totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
@@ -418,11 +418,11 @@ function(instance, locale, conf) {
 		
 		totalResult += "</table>";
 		totalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea)  + " ha <br><br>";
-		totalResult = this._createExportPanel(totalResult, boundaryType);
+		totalResult = this._createExportPanel(totalResult, boundaryType, calculateByMunicipality);
 		this._showResult(totalResult);				
 	},
 	
-	_createExportPanel : function(totalResult, boundaryType) {
+	_createExportPanel : function(totalResult, boundaryType, calculateByMunicipality) {
 		var	queryData,
 			me = this,
 			sandbox = this.instance.getSandbox(),
@@ -431,7 +431,8 @@ function(instance, locale, conf) {
 		queryData= JSON.stringify({				
 			areaIds: me.selectedIds[boundaryType],
 			attributes: attributes,
-			boundedAreaGridId: me.GRID_IDS[boundaryType]
+			boundedAreaGridId: me.GRID_IDS[boundaryType],
+			calculateByMunicipality: calculateByMunicipality
 		});
 		
 		totalResult += 

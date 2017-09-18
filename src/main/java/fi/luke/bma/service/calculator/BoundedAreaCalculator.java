@@ -58,8 +58,9 @@ public class BoundedAreaCalculator extends Calculator {
         Map<String, Object> root = new LinkedHashMap<>();
         List<Map<String, ?>> boundedAreaList = new ArrayList<>();
         Map<Long, Map<String, Object>> boundedAreaMap = new LinkedHashMap<>();
-        for (GridCell cell : boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
-                requestModel.getBoundedAreaGridId())) {
+        List<GridCell> cells = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
+                requestModel.getBoundedAreaGridId());
+        for (GridCell cell : cells) {
             Map<String, Object> boundedArea = new LinkedHashMap<>();
             boundedArea.put("name", cell.getName());
             boundedArea.put("id", cell.getCellId());
@@ -120,10 +121,11 @@ public class BoundedAreaCalculator extends Calculator {
     @Override
     @SuppressWarnings("unchecked")
     public TabularReportData calculateBiomassInTabularFormat() {
-        List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomass().get("boundedAreas");
-        Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomass()
+        Map<String, ?> calculateBiomasses = calculateBiomass();
+        List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomasses.get("boundedAreas");
+        Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomasses
                 .get("attributes");
-        Long selectedArea = (Long) calculateBiomass().get("selectedArea");
+        Long selectedArea = (Long) calculateBiomasses.get("selectedArea");
         List<String> columnNames = new ArrayList<>();
         columnNames.add("Aluetunnus");
         columnNames.add("Alue");
@@ -173,15 +175,14 @@ public class BoundedAreaCalculator extends Calculator {
                         GridType.PROVINCE.getValue());
                 areaIds.addAll(cells.stream().map(GridCell::getCellId).collect(Collectors.toList()));
             }
+            requestModel.setAreaIds(areaIds);
+            requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
         } else if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_ELY == requestModel.getCalculateByMunicipality()) {
             for (Long areaId : requestAreaIds) {
                 List<GridCell> cells = gridCellService.getAllMunicipalitiesForBoundaryAreaId(areaId,
                         GridType.ELY_CENTER.getValue());
                 areaIds.addAll(cells.stream().map(GridCell::getCellId).collect(Collectors.toList()));
             }
-        }
-        
-        if (CalculateRule.NONE != requestModel.getCalculateByMunicipality()) {
             requestModel.setAreaIds(areaIds);
             requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
         }
