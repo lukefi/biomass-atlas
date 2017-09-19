@@ -18,6 +18,12 @@ public class GridCell extends NonInsertableEntityWithLongId {
 	@Column
 	private String name;
 	
+	@Column(name = "name_en")
+	private String nameEN;
+	
+	@Column(name = "name_sv")
+	private String nameSV;
+	
 	@Column
 	@Type(type="org.hibernate.spatial.GeometryType")
 	private MultiPolygon geometry;
@@ -37,7 +43,23 @@ public class GridCell extends NonInsertableEntityWithLongId {
 		this.name = name;
 	}
 
-	public MultiPolygon getGeometry() {
+	public String getNameEN() {
+        return nameEN;
+    }
+
+    public void setNameEN(String nameEN) {
+        this.nameEN = nameEN;
+    }
+
+    public String getNameSV() {
+        return nameSV;
+    }
+
+    public void setNameSV(String nameSV) {
+        this.nameSV = nameSV;
+    }
+
+    public MultiPolygon getGeometry() {
 		return geometry;
 	}
 

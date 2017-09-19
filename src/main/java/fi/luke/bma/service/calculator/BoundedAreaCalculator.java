@@ -3,9 +3,12 @@ package fi.luke.bma.service.calculator;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
@@ -60,9 +63,17 @@ public class BoundedAreaCalculator extends Calculator {
         Map<Long, Map<String, Object>> boundedAreaMap = new LinkedHashMap<>();
         List<GridCell> cells = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
                 requestModel.getBoundedAreaGridId());
+        
+        Locale locale = LocaleContextHolder.getLocale();
+        String language = locale.getLanguage();
         for (GridCell cell : cells) {
             Map<String, Object> boundedArea = new LinkedHashMap<>();
-            boundedArea.put("name", cell.getName());
+            if (language == "en" && (cell.getNameEN() != null))
+                boundedArea.put("name", cell.getNameEN());
+            else if (language == "sv" && (cell.getNameSV() != null))
+                boundedArea.put("name", cell.getNameSV());
+            else
+                boundedArea.put("name", cell.getName());
             boundedArea.put("id", cell.getCellId());
             boundedAreaList.add(boundedArea);
             boundedAreaMap.put(cell.getCellId(), boundedArea);
