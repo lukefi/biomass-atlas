@@ -9,6 +9,7 @@ Oskari.registerLocalization({
     		"selectAll": "Valitse kaikki",
     		"prev": "Takaisin",
     		"calculate": "Laske",
+    		"calculateMunicipality": "Laske kunnittain",
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
