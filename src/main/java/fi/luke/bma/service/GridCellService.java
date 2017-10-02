@@ -1,6 +1,7 @@
 package fi.luke.bma.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import fi.luke.bma.model.Grid.GridType;
@@ -84,5 +86,18 @@ public class GridCellService extends BaseStoreNonInsertableLongIdEntityManager<G
         query.setParameter(2, boundedAreaId);
         return (List<GridCell>) query.getResultList();
     }
+    
+    public String getBoundedAreaName(GridCell cell) {
+    	Locale locale = LocaleContextHolder.getLocale();
+    	String language = locale.getLanguage();
+    	String boundedAreaName ="";
+      
+        if (language == "en" && (cell.getNameEN() != null)) boundedAreaName = cell.getNameEN();  		
+        else if (language == "sv" && (cell.getNameSV() != null)) boundedAreaName = cell.getNameSV();
+        else boundedAreaName = cell.getName();
+        
+		return boundedAreaName;          
+    }
+
 
 }

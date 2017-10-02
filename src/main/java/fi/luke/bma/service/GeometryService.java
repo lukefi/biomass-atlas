@@ -144,7 +144,8 @@ public class GeometryService {
             }
             
             geometryMap.put("geometry", stringWriter.toString());
-            geometryMap.put("boundedAreaName", cell.getName());
+            //geometryMap.put("boundedAreaName", cell.getName());
+            geometryMap.put("boundedAreaName", gridCellService.getBoundedAreaName(cell));
             result.add(geometryMap);
         });
         return result;
