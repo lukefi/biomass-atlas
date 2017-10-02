@@ -64,6 +64,8 @@ public class BoundedAreaCalculator extends Calculator {
         List<GridCell> cells = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
                 requestModel.getBoundedAreaGridId());
         
+        List<Long> areaIds = boundedAreaBiomasses.stream().map(AdministrativeAreaBiomassCalculationResult::getAreaId)
+                .collect(Collectors.toList());
         Locale locale = LocaleContextHolder.getLocale();
         String language = locale.getLanguage();
         for (GridCell cell : cells) {
@@ -75,8 +77,10 @@ public class BoundedAreaCalculator extends Calculator {
             else
                 boundedArea.put("name", cell.getName());
             boundedArea.put("id", cell.getCellId());
-            boundedAreaList.add(boundedArea);
-            boundedAreaMap.put(cell.getCellId(), boundedArea);
+            if (areaIds.contains(cell.getCellId())) {
+                boundedAreaList.add(boundedArea);
+                boundedAreaMap.put(cell.getCellId(), boundedArea);
+            }
         }
         root.put("boundedAreas", boundedAreaList);
 
