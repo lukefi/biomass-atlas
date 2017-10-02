@@ -3,12 +3,9 @@ package fi.luke.bma.service.calculator;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
@@ -63,23 +60,18 @@ public class BoundedAreaCalculator extends Calculator {
         Map<Long, Map<String, Object>> boundedAreaMap = new LinkedHashMap<>();
         List<GridCell> cells = boundedAreaService.getBoundedAreasById(requestModel.getAreaIds(),
                 requestModel.getBoundedAreaGridId());
-        
+
         List<Long> areaIds = boundedAreaBiomasses.stream().map(AdministrativeAreaBiomassCalculationResult::getAreaId)
                 .collect(Collectors.toList());
-        Locale locale = LocaleContextHolder.getLocale();
-        String language = locale.getLanguage();
         for (GridCell cell : cells) {
             Map<String, Object> boundedArea = new LinkedHashMap<>();
-            if (language == "en" && (cell.getNameEN() != null))
-                boundedArea.put("name", cell.getNameEN());
-            else if (language == "sv" && (cell.getNameSV() != null))
-                boundedArea.put("name", cell.getNameSV());
-            else
-                boundedArea.put("name", cell.getName());
-            boundedArea.put("id", cell.getCellId());
-            if (areaIds.contains(cell.getCellId())) {
+            long cellId = cell.getCellId();
+            boundedArea.put("name", gridCellService.getBoundedAreaName(cell));
+            boundedArea.put("id", cellId);
+            /* Include only those bounded areas which have values (omitted empty rows in 'calculate by municipality') */
+            if (areaIds.contains(cellId)) {
                 boundedAreaList.add(boundedArea);
-                boundedAreaMap.put(cell.getCellId(), boundedArea);
+                boundedAreaMap.put(cellId, boundedArea);
             }
         }
         root.put("boundedAreas", boundedAreaList);
@@ -177,9 +169,11 @@ public class BoundedAreaCalculator extends Calculator {
     }
 
     /**
-     * If the calculate rule is defined (i.e; Not 'Calculate.None'), then the values (areaIds and boundedAreaGridId) 
-     * of request model is modified with new areaIds (i.e; grid_cell_id) for list of municipalities
-     * @param requestModel BiomassCalculationRequestModel
+     * If the calculate rule is defined (i.e; Not 'Calculate.None'), then the values (areaIds and boundedAreaGridId) of
+     * request model is modified with new areaIds (i.e; grid_cell_id) for list of municipalities
+     * 
+     * @param requestModel
+     *            BiomassCalculationRequestModel
      */
     public void modifyRequestModelBasedOnCalculateRule(BiomassCalculationRequestModel requestModel) {
         List<Long> requestAreaIds = requestModel.getAreaIds();
