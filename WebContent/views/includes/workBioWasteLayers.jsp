@@ -4,6 +4,7 @@
 	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja<br/>pahvijätteet</a></li>
 	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujätteet</a></li>
 	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Yhdyskuntien<br/>biohajoava jäte</a></li>
+	<li><a data-toggle="tab" href="#" id="yhdyskuntienTuhkaLayer_anchor">Tuhka</a></li>
 </ul>
 <div class="tab-content table-responsive workBioWasteLayers">
 	<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
@@ -69,6 +70,11 @@
 			</tbody>
 		</table>
 	</div>	<!-- yhdyskuntienSekalainenBiohajoavaLayer tab-pane ends -->
+	
+	<div id="yhdyskuntienTuhkaLayer" class="tab-pane fade">
+		<jsp:include page="sivuvirtaTuhkaLayers.jsp"></jsp:include>
+	</div>
+	
 </div>	<!-- sivuvirtaYritystenBiojatteetLayerTabs tab-content ends -->
 
 <script type="text/javascript">
@@ -85,6 +91,11 @@ $(document).ready(function () {
 		});
 		// Activate only div, which matches the 'id' value.
 		workBioWasteLayers.find('#' + id).addClass('in active');
+		
 	});
+	
+	document.getElementById('sivuvirtaYritystenBiojatteet').onclick = function() {
+		document.getElementById('yhdyskuntienTuhkaLayer_anchor').style.display = 'none';
+	}
 });
 </script>

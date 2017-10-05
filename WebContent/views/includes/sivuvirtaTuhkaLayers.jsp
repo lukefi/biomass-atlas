@@ -1,5 +1,5 @@
 <div>
-	<h4 class="biomass_layer_title">Tuhkat 2015, t/v</h4>
+	<h4 class="biomass_layer_title">Tuhkat 2015, t/a</h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="">
 	</div>

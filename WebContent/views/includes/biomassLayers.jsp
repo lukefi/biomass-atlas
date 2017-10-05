@@ -3,7 +3,7 @@
     	z-index: 1000;
     	position: absolute;
     	height: 738px;
-    	width: 588px;
+    	width: 630px;
     	display: none;
     	bottom: 80px;
     	background-color: #333438;
@@ -317,7 +317,7 @@ $(document).ready(function () {
 			<ul class="nav nav-pills">
 				<li class="active"><a data-toggle="tab" href="#maanpeiteLayer">Maanpeite</a></li>
 				<li><a data-toggle="tab" href="#kokonaistuotantoLayer">Kokonaistuotanto</a></li>
-				<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs">Sivuvirtapotentiaali</a></li>
+				<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs" onlick ='$("#sivuvirtaTuhkaLayer")attr("href","")'>Sivuvirtapotentiaali</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="maanpeiteLayer" class="tab-pane fade in active">
@@ -331,7 +331,7 @@ $(document).ready(function () {
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien<br/>biojätteet</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs">Yritysten<br/>biojäte</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs" id="sivuvirtaYritystenBiojatteet">Yritysten<br/>biojäte</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat">Pelto</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer">Lanta</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaTuhkaLayer">Tuhka</a></li>
@@ -419,7 +419,7 @@ $(document).ready(function () {
 								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien<br/>sivuvirrat</a></li>
 								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta<br/>eläinsuojasta</a></li>
 								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta<br/>varastosta</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaTuhkaLayer">Tuhka</a></li>
+								<!-- <li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaTuhkaLayer">Tuhka</a></li> -->
 							</ul>
 							<div class="tab-content">
 								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade in active">
@@ -431,9 +431,9 @@ $(document).ready(function () {
 								<div id="alkuperaMaatilaSivuvirtaLantaVarastoLayer" class="tab-pane fade">
 									<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
 								</div>
-								<div id="alkuperaMaatilaSivuvirtaTuhkaLayer" class="tab-pane fade">
+								<%-- <div id="alkuperaMaatilaSivuvirtaTuhkaLayer" class="tab-pane fade">
 									<jsp:include page="includes/sivuvirtaTuhkaLayers.jsp"></jsp:include>
-								</div>
+								</div> --%>
 								
 							</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
 						</div>
