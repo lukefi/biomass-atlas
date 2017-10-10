@@ -1,5 +1,5 @@
 <div>
-	<h4 class="biomass_layer_title">Pienpuu, 2004-2008, m<sup>3</sup>/a</h4>
+	<h4 class="biomass_layer_title">Pienpuu, 2009-2013, m<sup>3</sup>/a</h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="0e8e4cdc-54f3-43b3-80bc-1faf0db0ea53">
 	</div>
@@ -9,9 +9,11 @@
 		<tr><td></td><th></th></tr>
 	</thead>
 <tbody>
-	<tr><th>Korjuu rankana</th><td><input type="checkbox" value='1130'></td></tr>
-	<tr><th>Korjuu kokopuuna</th><td><input type="checkbox" value='1124'></td></tr>
-	<tr><th>Korjuu integroituna</th><td><input type="checkbox" value='1119'></td></tr>
+	<tr style="display:none;"><th>Korjuu rankana</th><td><input type="checkbox" value='1130'></td></tr>
+	<tr style="display:none;"><th>Korjuu kokopuuna</th><td><input type="checkbox" value='1124'></td></tr>
+	<tr style="display:none;"><th>Korjuu integroituna</th><td><input type="checkbox" value='1119'></td></tr>
+	<tr><th>Pienpuu alle 10cm</th><td><input type="checkbox" value='1259'></td></tr>
+	<tr><th>pienpuu alle 14cm</th><td><input type="checkbox" value='1260'></td></tr>
 </tbody>
 </table>
 
