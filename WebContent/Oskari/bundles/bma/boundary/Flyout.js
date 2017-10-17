@@ -84,6 +84,7 @@ function(instance, locale, conf) {
 	}
 		
 	this.selectedBoundaryType = null;
+	this.selectedUnitConversions = {};
 	
 }, {	
 	/**
@@ -363,6 +364,8 @@ function(instance, locale, conf) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
+		me._setSelectedUnitConverionsValue(me);
+		
 		jQuery.ajax({
 			url: "/biomass/boundedarea/calculate",
 			type: "POST",
@@ -382,11 +385,15 @@ function(instance, locale, conf) {
 	
 	_createTabularResult : function(results, boundaryType, calculateByMunicipality) {
 		// TODO - should find better way to show calculation results and selected layers' names
-		var localization = this.instance.getLocalization()["flyout"],
+		var me = this,
+			localization = this.instance.getLocalization()["flyout"],
 			totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
 		
 		totalResult += "<table class='biomass-result-table'><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
 		totalResult += localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
+		
+		var isUnitConversionSelected = jQuery('#unit-conversion-checkbox').is(':checked');
+		me._hideUnitConversionTable();
 		
 		var originalDisplayOrders = results.displayOrders;
 		for (var boundaryName in results.boundedAreas) {
@@ -404,11 +411,21 @@ function(instance, locale, conf) {
 					for (var property in displayOrders) {
 					    if (displayOrders.hasOwnProperty(property)) {
 					    	// Null check is needed because boundedAdrea might not include area value for particular attribute (Say waste data with 0 amount is not displayed in UI.)
-					    	if (boundedArea[displayOrders[property]] != null) { 
-					    		var attributeInfo = results.attributes[displayOrders[property]];
-					    		rowResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
-					    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
-									+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+					    	if (boundedArea[displayOrders[property]] != null) {
+					    		if (isUnitConversionSelected) {
+					    			var originalResult = boundedArea[displayOrders[property]],
+						    			modifiedResult = me._demoUnitConversionValue(me, attributeId, originalResult);
+						    		var attributeInfo = results.attributes[displayOrders[property]],
+						    			modifiedUnit = me._demoUnitConversionUnit(me, attributeId, attributeInfo.unit);
+						    		rowResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
+						    			+ formatBiomassValue(parseInt(modifiedResult))
+						    			+ "&nbsp;</td><td class='biomass-unit'>" + modifiedUnit + "</td> </tr>";
+					    		} else {
+					    			var attributeInfo = results.attributes[displayOrders[property]];
+						    		rowResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
+						    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
+										+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+					    		}
 					    		rowspanSize++;
 					    		delete displayOrders[property];
 					    		break;
@@ -431,7 +448,8 @@ function(instance, locale, conf) {
 		totalResult += "</table>";
 		totalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea)  + " ha <br><br>";
 		totalResult = this._createExportPanel(totalResult, boundaryType, calculateByMunicipality);
-		this._showResult(totalResult);				
+		this._showResult(totalResult);
+		this._clearSelectedUnitConversions(me);
 	},
 	
 	_createExportPanel : function(totalResult, boundaryType, calculateByMunicipality) {
@@ -712,7 +730,7 @@ function(instance, locale, conf) {
     		totalResult = "<tr><th> Attribute </th><th> Default unit </th><th> Possible unit </th></tr>";
 		for (var i = 0; i < resultSize; i++) {
 			var result = results[i];
-			totalResult += "<tr><td>" 
+			totalResult += "<tr><td><input type='hidden' value='" + result.attributeId + "'>" 
 				+ result.attributeName 
 				+ "</td><td class='biomass-default-unit'>" 
 				+ result.attributeUnit 
@@ -725,7 +743,7 @@ function(instance, locale, conf) {
 					totalResult += "<option value='" 
 						+ unitConversion.code 
 						+ "'>" 
-						+ unitConversion.name 
+						+ unitConversion.unit 
 						+ "</option>";
 				}
 			}
@@ -740,6 +758,74 @@ function(instance, locale, conf) {
     
     _hideUnitConversionTable : function() {
     	jQuery('table.biomass-unit-conversion-table').hide();
+    },
+    
+    _setSelectedUnitConverionsValue : function(me) {
+    	var unitConversionTable = jQuery('table.biomass-unit-conversion-table');
+    	unitConversionTable.find('td:first-child input').each(function () {
+    		var value = jQuery(this).closest('tr').find('.biomass-possible-unit select').val();
+    		me.selectedUnitConversions[this.value] = value;
+    	});
+    },
+    
+    _clearSelectedUnitConversions : function(me) {
+    	var selectedUnitConverions = me.selectedUnitConversions;
+    	for (var key in selectedUnitConverions) {
+    		delete selectedUnitConverions[key];
+    	}
+    },
+    
+    // Just a demo.
+    _demoUnitConversionValue : function(me, attributeId, value) {
+    	var selectedUnitConverions = me.selectedUnitConversions,
+    		result = value;
+    	for (var key in selectedUnitConverions) {
+    		if (selectedUnitConverions.hasOwnProperty(key)) {
+    			if (key == attributeId) {
+    				switch(selectedUnitConverions[key]) {
+    					case "1":
+    						result = parseInt(value) * 2;
+    						break;
+	    				case "2":
+	    					result = parseInt(value) / 2;
+	    					break;
+	    				case "3": 
+	    					result = parseInt(value) + 2;
+	    					break;
+	    				default:
+	    					result = value;
+    				}
+    				break;
+    			}
+    		}
+    	}
+    	return result;
+    },
+    
+    _demoUnitConversionUnit : function(me, attributeId, unit) {
+    	var selectedUnitConverions = me.selectedUnitConversions,
+    		result = unit;
+    	for (var key in selectedUnitConverions) {
+    		if (selectedUnitConverions.hasOwnProperty(key)) {
+    			if (key == attributeId) {
+    				switch(selectedUnitConverions[key]) {
+    				case "1":
+    					result = "aa";
+    					break;
+    				case "2":
+    					result = "bb";
+    					break;
+    				case "3": 
+    					result = "cc";
+    					break;
+    				default:
+    					result = unit;
+    				}
+    				break;
+    			}
+    		}
+    	}
+    	return result;
     }
     
 }, {
