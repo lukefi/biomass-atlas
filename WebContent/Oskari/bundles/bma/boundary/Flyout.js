@@ -70,6 +70,9 @@ function(instance, locale, conf) {
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
 		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' 
 			+ flyoutLocalization["selectAll"] + '</button></div>';
+		messageString += '<br><div id="unit-conversion" style="display: none"><input type="checkbox" id="unit-conversion-checkbox"> ' 
+			+ ' Unit Conversion' + '</input></div>'
+			+ '<div><table class="biomass-unit-conversion-table"></table></div>';
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
@@ -142,6 +145,14 @@ function(instance, locale, conf) {
         boundaryMessage.find('#boundary-select-all-button').unbind('click');
         boundaryMessage.find('#boundary-select-all-button').bind('click', function(){        	
         	me._selectAllBoundaries(me);
+        });
+        
+        boundaryMessage.find('#unit-conversion-checkbox').unbind('click');
+        boundaryMessage.find('#unit-conversion-checkbox').bind('click', function(){
+        	if (this.checked)
+        		me._showUnitConversionOptions(me);
+        	else
+        		me._hideUnitConversionTable();
         });
         
         calculateCancelTool.find('#boundary-prev').html(localization.prev);
@@ -239,6 +250,7 @@ function(instance, locale, conf) {
     	$('#boundary-message').html(localization[selectedBoundary]);
     	me._createInfoIcon(selectedBoundary);
     	jQuery("#boundary-select-all").show();
+    	jQuery("#unit-conversion").show();
     	if (selectedBoundary === this.BOUNDARY_PROVINCE || selectedBoundary === this.BOUNDARY_ELY ) {
     		jQuery("button#boundary-calculateMunicipality").show();
     	}
@@ -492,7 +504,6 @@ function(instance, locale, conf) {
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				console.log(results);
 				var result = results[0];
 				var indexId = me.selectedIds[boundaryType].indexOf(result.id);
 				if (indexId > -1) {					
@@ -601,6 +612,7 @@ function(instance, locale, conf) {
 	_showResult: function(result){	
 		jQuery("#boundary-message").hide();
 		jQuery("#boundary-select-all").hide();
+		jQuery("#unit-conversion").hide();
 		jQuery("#boundary-data").html(result);
 	},
 	
@@ -674,6 +686,60 @@ function(instance, locale, conf) {
             });
             dialog.show(title, desc, [okBtn]);
         });
+    },
+    
+    _showUnitConversionOptions : function(me) {
+    	var tableRowCount = jQuery('table.biomass-unit-conversion-table tr').length;
+    	if (tableRowCount > 0) {
+    		me._showUnitConversionTable();
+    	} else {
+    		var attributeIds = me._getVisibleBiomassAttributeIds();
+        	jQuery.ajax({
+    			url: "/biomass/attribute/unitConversion",
+    			type: "POST",
+    			contentType: "application/json; charset=UTF-8",
+    			data: JSON.stringify(attributeIds),
+    			dataType: "json",
+    			success: function(results, status, xhr) {
+    				me._populateUnitConversionOptions(results);
+    			}
+    		});
+    	}
+    },
+    
+    _populateUnitConversionOptions : function(results) {
+    	var resultSize = results.length,
+    		totalResult = "<tr><th> Attribute </th><th> Default unit </th><th> Possible unit </th></tr>";
+		for (var i = 0; i < resultSize; i++) {
+			var result = results[i];
+			totalResult += "<tr><td>" 
+				+ result.attributeName 
+				+ "</td><td class='biomass-default-unit'>" 
+				+ result.attributeUnit 
+				+ "</td><td class='biomass-possible-unit'><select><option value='0'>Choose</option>";
+			var unitConversions = result.unitConversions;
+			if (unitConversions != null) {
+				unitConversionsSize = unitConversions.length;
+				for (var j = 0; j < unitConversionsSize; j++) {
+					var unitConversion = unitConversions[j];
+					totalResult += "<option value='" 
+						+ unitConversion.code 
+						+ "'>" 
+						+ unitConversion.name 
+						+ "</option>";
+				}
+			}
+			totalResult += "</select></td></tr>";
+		}
+		jQuery('table.biomass-unit-conversion-table').append(totalResult);
+    },
+    
+    _showUnitConversionTable : function() {
+    	jQuery('table.biomass-unit-conversion-table').show();
+    },
+    
+    _hideUnitConversionTable : function() {
+    	jQuery('table.biomass-unit-conversion-table').hide();
     }
     
 }, {

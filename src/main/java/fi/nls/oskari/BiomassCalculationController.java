@@ -19,6 +19,8 @@ import com.opencsv.CSVWriter;
 
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.TabularReportData;
+import fi.luke.bma.model.UnitConversionResponse;
+import fi.luke.bma.service.AttributeUnitConversionService;
 import fi.luke.bma.service.CalculatorFactory;
 import fi.luke.bma.service.GeometryService;
 import fi.luke.bma.service.calculator.BoundedAreaCalculator;
@@ -38,6 +40,9 @@ public class BiomassCalculationController {
 	
     @Autowired
     private GeometryService geometryService;
+    
+    @Autowired
+    private AttributeUnitConversionService attributeUnitConversionService;
     
     @RequestMapping(value="area", method=RequestMethod.POST)
     public Map<String, ?> calculateBiomassForArea(@RequestBody BiomassCalculationRequestModel requestBody) {
@@ -110,6 +115,11 @@ public class BiomassCalculationController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    @RequestMapping(value="attribute/unitConversion", method=RequestMethod.POST)
+    public List<UnitConversionResponse> getUnitConversionOptionsForBoundedArea(@RequestBody Long[] attributeIds) {
+        return attributeUnitConversionService.getUnitConversionsForAttributes(attributeIds);
     }
     
 }

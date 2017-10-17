@@ -46,3 +46,10 @@ th {
 .biomass-unit {
 	border-left-color: transparent !important;
 }
+.biomass-unit-conversion-table td:not(:first-child) {
+	text-align: center;
+}
+.biomass-unit-conversion-table select {
+	width: 130px;
+	height: 30px;
+}
