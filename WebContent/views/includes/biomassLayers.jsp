@@ -3,7 +3,8 @@
     	z-index: 1000;
     	position: absolute;
     	height: 738px;
-    	width: 630px;
+    	width: 730px;
+    	/*width: 630px;*/
     	display: none;
     	bottom: 80px;
     	background-color: #333438;
@@ -126,6 +127,12 @@
    	}
    	#bmaLayerContent table.standard-width tr th:first-child {
    		width: 298px;
+   	}
+   	#bmaLayerContent table.standard-width.waste-table tr th:first-child {
+   		width: 60px;
+   	}
+   	#bmaLayerContent table.standard-width.waste-table tr th:nth-child(2) {
+   		width: 400px;
    	}
    	#bmaLayerContent table.standard-width tr th:first-child ~ td {
    		padding-left: 24px;
@@ -330,11 +337,12 @@ $(document).ready(function () {
 				<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien<br/>biojätteet</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs" id="sivuvirtaYritystenBiojatteet">Yritysten<br/>biojäte</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien<br/>biohajoava jäte</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs" id="sivuvirtaYritystenBiojatteet">Yritysten</br>biohajoava jäte</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaWasteManagementLayer">Jätt.käsittelyn<br>biohaj.jäte</a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaTuhkaLayer">Tuhka</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat">Pelto</a></li>
 						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer">Lanta</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaTuhkaLayer">Tuhka</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="sivuvirtaMetsahakeLayer" class="tab-pane fade in active">
@@ -351,6 +359,14 @@ $(document).ready(function () {
 							<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
 						</div>
 						
+						<div id="sivuvirtaWasteManagementLayer" class="tab-pane fade">
+							<jsp:include page="includes/wasteManagementLayers.jsp"></jsp:include>
+						</div>
+						
+						<div id="sivuvirtaTuhkaLayer" class="tab-pane fade">
+							<jsp:include page="includes/sivuvirtaTuhkaLayers.jsp"></jsp:include>
+						</div>
+						
 						<div id="sivuvirtaPeltokasvitLayer" class="tab-pane fade">
 							<jsp:include page="includes/sivuvirtaFieldLayers.jsp"></jsp:include>
 						</div>
@@ -358,10 +374,6 @@ $(document).ready(function () {
 						<div id="sivuvirtaLantaLayer" class="tab-pane fade">
 							<jsp:include page="includes/sivuvirtaLantaElainsuojaLayers.jsp"></jsp:include>
 							<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
-						</div>
-						
-						<div id="sivuvirtaTuhkaLayer" class="tab-pane fade">
-							<jsp:include page="includes/sivuvirtaTuhkaLayers.jsp"></jsp:include>
 						</div>
 						
 					</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
@@ -375,6 +387,7 @@ $(document).ready(function () {
 				<li><a data-toggle="tab" href="#fieldTabs">Maatalous</a></li>
 				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer">Yhdyskunnat</a></li>
 				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
+				<li><a data-toggle="tab" href="#wasteManagementLayer">Jätt.käsittelyn biohaj.jäte</a></li>
 			</ul>
 			
 			<div class="tab-content">
@@ -447,6 +460,10 @@ $(document).ready(function () {
 				<div id="companiesTabs" class="tab-pane fade">
 					<jsp:include page="includes/workBioWasteLayers.jsp"></jsp:include>
 				</div><!-- companiesTabs tab-pane ends -->
+				
+				<div id="wasteManagementLayer" class="tab-pane fade">
+					<jsp:include page="includes/wasteManagementLayers.jsp"></jsp:include>
+				</div>
 				
 			</div>	<!-- originTab tab-content ends -->
 		</div>	<!-- originTab tab-pane ends -->
