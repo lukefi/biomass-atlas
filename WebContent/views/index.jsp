@@ -563,6 +563,9 @@ $(document).bind('afterReady', function() {
 		sandbox.postRequestByName(rn, [{uuid: uuid}, null]);
 	};
 	
+	// Hide print tool icon
+	$('.tool-print').hide();
+	
 });
 
 /* On unloading page */
