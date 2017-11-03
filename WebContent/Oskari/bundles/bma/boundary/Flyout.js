@@ -347,7 +347,8 @@ function(instance, locale, conf) {
 	},
 	
 	_calculateButtonClick: function() {		
-		this._areaCalculate(this._getSelectedBoundaryType(), this.CALCULATE_RULE_NONE);	
+		this._areaCalculate(this._getSelectedBoundaryType(), this.CALCULATE_RULE_NONE);
+		this._saveUserActivity(this._getSelectedBoundaryType(), this.CALCULATE_RULE_NONE);
 	},
 	
 	_calculateMunicipalityButtonClick: function() {
@@ -826,6 +827,30 @@ function(instance, locale, conf) {
     		}
     	}
     	return result;
+    },
+    
+    //User activity
+    _saveUserActivity : function(boundaryType, calculateByMunicipality) {
+    	var me = this,
+		sandbox = me.instance.getSandbox();
+	
+	me._setSelectedUnitConverionsValue(me);
+	
+	jQuery.ajax({
+		url: "/biomass/useractivity/boundedarea/calculate",
+		type: "POST",
+		contentType: "application/json; charset=UTF-8",
+		data: JSON.stringify({
+			areaIds: me.selectedIds[boundaryType],
+			attributes: me._getVisibleBiomassAttributeIds(sandbox),
+			boundedAreaGridId: me.GRID_IDS[boundaryType],
+			calculateByMunicipality: calculateByMunicipality
+		}),
+		dataType: "json",
+		success: function(results, status, xhr) {
+			//Nothing
+		}
+	});
     }
     
 }, {
