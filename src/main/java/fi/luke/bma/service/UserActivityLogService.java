@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.UserActivityLog;
@@ -50,22 +51,37 @@ public class UserActivityLogService {
             HttpServletRequest request, UserActivityFunction function) {
         Map<String, String> requestHeaders = getRequestHeaders(request);
         String attributeNames = getAttributeNamesFromRequestModel(requestBody);
-        String boundedAreaNames = "";
+        String boundedAreas = "";
         String functionName = "";
         switch (function) {
             case BOUNDED_AREA:
-                boundedAreaNames = getBoundedAreaNamesFromRequestModel(requestBody);
-                for(GridType gridType : GridType.values()) {
+                boundedAreas = getBoundedAreaNamesFromRequestModel(requestBody);
+                for (GridType gridType : GridType.values()) {
                     if (gridType.getValue() == requestBody.getBoundedAreaGridId()) {
                         functionName = "Bounded area - " + gridType.name();
                     }
-                 }
+                }
+                break;
+
+            case FREE_SELECTION:
+                boundedAreas = getPoints(requestBody);
+                functionName = "Free selection";
+                break;
+                
+            case CIRCLE_RADIUS:
+                boundedAreas = getPoints(requestBody);
+                functionName = "Circle - Radius: " + requestBody.getRadius();
+                break;
+                
+            case CIRCLE_ROAD:
+                boundedAreas = getPoints(requestBody);
+                functionName = "Road buffer - Radius: " + requestBody.getRadius();
                 break;
 
             default:
                 break;
         }
-        UserActivityLog log = createNewUserActivityLog(requestHeaders, attributeNames, boundedAreaNames, functionName);
+        UserActivityLog log = createNewUserActivityLog(requestHeaders, attributeNames, boundedAreas, functionName);
         saveLog(log);
     }
 
@@ -100,6 +116,15 @@ public class UserActivityLogService {
         return content;
     }
 
+    private String getPoints(BiomassCalculationRequestModel requestBody) {
+        String content = "";
+        List<Point> points = requestBody.getPoints();
+        for (Point point : points) {
+            content += "(" + point.getX().toString() + ", " + point.getY().toString() + "); ";
+        }
+        return content;
+    }
+    
     private UserActivityLog createNewUserActivityLog(Map<String, String> requestHeaders, String attributeNames,
             String boundedAreaNames, String function) {
         UserActivityLog log = new UserActivityLog();

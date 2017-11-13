@@ -218,25 +218,29 @@ function(instance, locale, conf) {
 			var radiusType = $('input[name=radius-type]:checked').val();
 			var radius = parseFloat(this._convertCommasToDots($('#circle-radius-value').val()));
 			if (radiusType == me.SELECTION_ROAD) {
-				var ajaxUrl = "/biomass/roadbuffer/calculate";
+				var ajaxUrl = "/biomass/roadbuffer/calculate",
+					userActivityUrl = "/biomass/useractivity/roadbuffer";
 				if (parseInt(radius) > 65) {
 					//alert(localization.error["roadRouteExceed"]);
 					return;
 				}
 			}
 			else {
-				var ajaxUrl = "/biomass/circle/calculate";
+				var ajaxUrl = "/biomass/circle/calculate",
+					userActivityUrl = "/biomass/useractivity/circle";
 			}
 			
+			var data = JSON.stringify({
+							points: [me.centerPointCircle], 
+							radius: radius, 
+							attributes: me._getVisibleBiomassAttributeIds(sandbox)
+						});
+			me._saveUserActivity(data, userActivityUrl);
 			jQuery.ajax({
 				url: ajaxUrl,
 				type: "POST",
 				contentType: "application/json; charset=UTF-8",
-				data: JSON.stringify({
-					points: [me.centerPointCircle], 
-					radius: radius, 
-					attributes: me._getVisibleBiomassAttributeIds(sandbox)
-				}),
+				data: data,
 				dataType: "json",
 				success: function(results, status, xhr) {
 					requestForAddFeature = sandbox.getRequestBuilder(
@@ -459,6 +463,23 @@ function(instance, locale, conf) {
             dialog.close(true);
         });
         dialog.show(title, desc, [okBtn]);       
+    },
+    
+    //User activity
+    _saveUserActivity : function(queryData, url) {
+    	var me = this,
+			sandbox = me.instance.getSandbox();
+
+    	jQuery.ajax({
+			url: url,
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: queryData,
+			dataType: "json",
+			success: function(results, status, xhr) {
+				//Nothing
+			}
+		});
     }
 	
 }, {
