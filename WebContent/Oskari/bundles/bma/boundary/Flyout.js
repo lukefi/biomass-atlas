@@ -355,8 +355,10 @@ function(instance, locale, conf) {
 		var selectedBoundary = this._getSelectedBoundaryType();
 		if (selectedBoundary === this.BOUNDARY_PROVINCE) {
 			this._areaCalculate(selectedBoundary, this.CALCULATE_RULE_FOR_PROVINCE);
+			this._saveUserActivity(this._getSelectedBoundaryType(), this.CALCULATE_RULE_FOR_PROVINCE);
 		} else if (selectedBoundary === this.BOUNDARY_ELY) {
 			this._areaCalculate(selectedBoundary, this.CALCULATE_RULE_FOR_ELY);
+			this._saveUserActivity(this._getSelectedBoundaryType(), this.CALCULATE_RULE_FOR_ELY);
 		}
 			
 	},

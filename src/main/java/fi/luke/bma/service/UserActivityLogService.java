@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.BiomassCalculationRequestModel.CalculateRule;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
@@ -59,6 +60,9 @@ public class UserActivityLogService {
                 for (GridType gridType : GridType.values()) {
                     if (gridType.getValue() == requestBody.getBoundedAreaGridId()) {
                         functionName = "Bounded area - " + gridType.name();
+                        if (!requestBody.getCalculateByMunicipality().equals(CalculateRule.NONE)) {
+                            functionName += " (Calculate by municipality)";
+                        }
                     }
                 }
                 break;
