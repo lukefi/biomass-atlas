@@ -24,10 +24,23 @@ public class BiomassUserActivityController {
             HttpServletRequest request) {
         userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.BOUNDED_AREA);
     }
+    
     @RequestMapping(value = "freeform", method = RequestMethod.POST)
     public void logUserActivityForFreeform(@RequestBody BiomassCalculationRequestModel requestBody,
             HttpServletRequest request) {
         userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.FREE_SELECTION);
+    }
+    
+    @RequestMapping(value = "circle", method = RequestMethod.POST)
+    public void logUserActivityForCircle(@RequestBody BiomassCalculationRequestModel requestBody,
+            HttpServletRequest request) {
+        userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.CIRCLE_RADIUS);
+    }
+    
+    @RequestMapping(value = "roadbuffer", method = RequestMethod.POST)
+    public void logUserActivityForRoadBuffer(@RequestBody BiomassCalculationRequestModel requestBody,
+            HttpServletRequest request) {
+        userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.CIRCLE_ROAD);
     }
 
 }

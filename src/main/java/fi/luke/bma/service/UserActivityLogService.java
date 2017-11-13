@@ -64,8 +64,19 @@ public class UserActivityLogService {
                 break;
 
             case FREE_SELECTION:
-                boundedAreas = getGeometryForFreeform(requestBody);
+                boundedAreas = getPoints(requestBody);
                 functionName = "Free selection";
+                break;
+                
+            case CIRCLE_RADIUS:
+                boundedAreas = getPoints(requestBody);
+                functionName = "Circle - Radius: " + requestBody.getRadius();
+                break;
+                
+            case CIRCLE_ROAD:
+                boundedAreas = getPoints(requestBody);
+                functionName = "Road buffer - Radius: " + requestBody.getRadius();
+                break;
 
             default:
                 break;
@@ -105,7 +116,7 @@ public class UserActivityLogService {
         return content;
     }
 
-    private String getGeometryForFreeform(BiomassCalculationRequestModel requestBody) {
+    private String getPoints(BiomassCalculationRequestModel requestBody) {
         String content = "";
         List<Point> points = requestBody.getPoints();
         for (Point point : points) {
@@ -113,7 +124,7 @@ public class UserActivityLogService {
         }
         return content;
     }
-
+    
     private UserActivityLog createNewUserActivityLog(Map<String, String> requestHeaders, String attributeNames,
             String boundedAreaNames, String function) {
         UserActivityLog log = new UserActivityLog();
