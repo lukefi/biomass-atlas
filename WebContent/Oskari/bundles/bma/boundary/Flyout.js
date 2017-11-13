@@ -837,7 +837,7 @@ function(instance, locale, conf) {
 	me._setSelectedUnitConverionsValue(me);
 	
 	jQuery.ajax({
-		url: "/biomass/useractivity/boundedarea/calculate",
+		url: "/biomass/useractivity/boundedarea",
 		type: "POST",
 		contentType: "application/json; charset=UTF-8",
 		data: JSON.stringify({

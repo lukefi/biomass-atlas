@@ -19,10 +19,15 @@ public class BiomassUserActivityController {
     @Autowired
     private UserActivityLogService userActivityLogService;
 
-    @RequestMapping(value = "boundedarea/calculate", method = RequestMethod.POST)
-    public void calculateBiomassForBoundedArea(@RequestBody BiomassCalculationRequestModel requestBody,
+    @RequestMapping(value = "boundedarea", method = RequestMethod.POST)
+    public void logUserActivityForBoundedArea(@RequestBody BiomassCalculationRequestModel requestBody,
             HttpServletRequest request) {
         userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.BOUNDED_AREA);
+    }
+    @RequestMapping(value = "freeform", method = RequestMethod.POST)
+    public void logUserActivityForFreeform(@RequestBody BiomassCalculationRequestModel requestBody,
+            HttpServletRequest request) {
+        userActivityLogService.createUserActivityLog(requestBody, request, UserActivityFunction.FREE_SELECTION);
     }
 
 }

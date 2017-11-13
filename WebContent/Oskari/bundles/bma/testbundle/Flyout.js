@@ -187,6 +187,7 @@ function(instance, locale, conf) {
 		}
 				
 		var queryData = JSON.stringify({ points: points, attributes: attributeIds });
+		me._saveUserActivity(queryData);
 		jQuery.ajax({
 			url: "/biomass/area",
 			type: "POST",
@@ -277,6 +278,23 @@ function(instance, locale, conf) {
             dialog.close(true);
         });
         dialog.show(title, desc, [okBtn]);       
+    },
+    
+    //User activity
+    _saveUserActivity : function(queryData) {
+    	var me = this,
+			sandbox = me.instance.getSandbox();
+
+    	jQuery.ajax({
+			url: "/biomass/useractivity/freeform",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: queryData,
+			dataType: "json",
+			success: function(results, status, xhr) {
+				//Nothing
+			}
+		});
     }
 	
 }, {

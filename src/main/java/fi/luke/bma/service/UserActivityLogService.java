@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.UserActivityLog;
@@ -50,22 +51,26 @@ public class UserActivityLogService {
             HttpServletRequest request, UserActivityFunction function) {
         Map<String, String> requestHeaders = getRequestHeaders(request);
         String attributeNames = getAttributeNamesFromRequestModel(requestBody);
-        String boundedAreaNames = "";
+        String boundedAreas = "";
         String functionName = "";
         switch (function) {
             case BOUNDED_AREA:
-                boundedAreaNames = getBoundedAreaNamesFromRequestModel(requestBody);
-                for(GridType gridType : GridType.values()) {
+                boundedAreas = getBoundedAreaNamesFromRequestModel(requestBody);
+                for (GridType gridType : GridType.values()) {
                     if (gridType.getValue() == requestBody.getBoundedAreaGridId()) {
                         functionName = "Bounded area - " + gridType.name();
                     }
-                 }
+                }
                 break;
+
+            case FREE_SELECTION:
+                boundedAreas = getGeometryForFreeform(requestBody);
+                functionName = "Free selection";
 
             default:
                 break;
         }
-        UserActivityLog log = createNewUserActivityLog(requestHeaders, attributeNames, boundedAreaNames, functionName);
+        UserActivityLog log = createNewUserActivityLog(requestHeaders, attributeNames, boundedAreas, functionName);
         saveLog(log);
     }
 
@@ -96,6 +101,15 @@ public class UserActivityLogService {
                 requestBody.getBoundedAreaGridId());
         for (GridCell gridCell : gridCells) {
             content += gridCell.getName() + "; ";
+        }
+        return content;
+    }
+
+    private String getGeometryForFreeform(BiomassCalculationRequestModel requestBody) {
+        String content = "";
+        List<Point> points = requestBody.getPoints();
+        for (Point point : points) {
+            content += "(" + point.getX().toString() + ", " + point.getY().toString() + "); ";
         }
         return content;
     }

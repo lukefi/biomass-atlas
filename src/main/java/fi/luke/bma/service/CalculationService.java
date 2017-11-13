@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ import fi.luke.bma.model.Data;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.Validity;
 
+@Transactional
 @Component
 public class CalculationService {
 
