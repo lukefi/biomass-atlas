@@ -1,7 +1,7 @@
 <div>
 	<h4 class="biomass_layer_title">Tuhkat 2015, t/a</h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="">
+		<input type="hidden" value="13141e71-4bad-4445-a491-ecc5e25f26ca">
 	</div>
 </div>
 <table class="table select-column standard-width waste-table">
