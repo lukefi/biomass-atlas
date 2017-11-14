@@ -18,7 +18,9 @@ import com.google.common.base.Joiner;
 import fi.luke.bma.dao.ValidityDao;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
+import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.Data;
+import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
 import fi.luke.bma.model.Validity;
 
@@ -72,12 +74,16 @@ public class CalculationService {
     /**
      * Return total biomasses for bounded areas (like: municipalities, drainage basin, etc) and 
      * attributes using the latest available data for each attribute.
+     * ONLY municipality of manure data is calculated based on area without sea.
      */
     @SuppressWarnings("unchecked")
     public List<AdministrativeAreaBiomassCalculationResult> getTotalBiomassForBoundedArea(
     		Collection<Long> attributeIds, Collection<Long> boundedAreaIds, long gridId) {
     	if (attributeIds.isEmpty() || boundedAreaIds.isEmpty()) {
     		return Collections.emptyList();
+    	}
+    	if (isManureData(attributeIds) && gridId == GridType.MUNICIPALITY.getValue()) {
+    	    gridId = GridType.MUNICIPALITY_WITHOUT_SEA_AREA.getValue();
     	}
     	String jpql = "SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value, a.displayOrder)"
     			+ " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, " + Attribute.class.getName() + " a"
@@ -107,4 +113,19 @@ public class CalculationService {
         return (double) query.getSingleResult();
     }
     
+    /**
+     * Checks, if the attributes are manure attribute or not. Manure attributes are with id between 158 and 239
+     * @param attributeIds list of attribute ids.
+     * @return boolean
+     */
+    private boolean isManureData(Collection<Long> attributeIds) {
+        boolean isManureData = false;
+        for (Long attributeId : attributeIds) {
+            if (attributeId >= 158 && attributeId <= 239) {
+                isManureData = true;
+                break;
+            }
+        }
+        return isManureData;        
+    }
 }
