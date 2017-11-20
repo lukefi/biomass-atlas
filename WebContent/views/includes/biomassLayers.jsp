@@ -388,6 +388,7 @@ $(document).ready(function () {
 				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer">Yhdyskunnat</a></li>
 				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
 				<li><a data-toggle="tab" href="#wasteManagementLayer">Jätt.käsittelyn biohaj.jäte</a></li>
+				<li><a data-toggle="tab" href="#incineratorsLayer">Polttolaitokset</a></li>
 			</ul>
 			
 			<div class="tab-content">
@@ -444,10 +445,6 @@ $(document).ready(function () {
 								<div id="alkuperaMaatilaSivuvirtaLantaVarastoLayer" class="tab-pane fade">
 									<jsp:include page="includes/sivuvirtaLantaVarastoLayers.jsp"></jsp:include>
 								</div>
-								<%-- <div id="alkuperaMaatilaSivuvirtaTuhkaLayer" class="tab-pane fade">
-									<jsp:include page="includes/sivuvirtaTuhkaLayers.jsp"></jsp:include>
-								</div> --%>
-								
 							</div>	<!-- sivuvirtapotentiaaliTabs tab-content ends -->
 						</div>
 					</div>
@@ -463,6 +460,10 @@ $(document).ready(function () {
 				
 				<div id="wasteManagementLayer" class="tab-pane fade">
 					<jsp:include page="includes/wasteManagementLayers.jsp"></jsp:include>
+				</div>
+				
+				<div id="incineratorsLayer" class="tab-pane fade">
+					<jsp:include page="includes/sivuvirtaTuhkaLayers.jsp"></jsp:include>
 				</div>
 				
 			</div>	<!-- originTab tab-content ends -->
