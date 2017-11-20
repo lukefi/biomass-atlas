@@ -10,7 +10,7 @@
 		<div>
 			<h4 class="biomass_layer_title">Eläin- ja kasviperäinen jäte 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentElainJaKasvijätteetLayerTable">
@@ -36,7 +36,7 @@
 		<div>
 			<h4 class="biomass_layer_title">Liete 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentLietteetLayerTable">
@@ -77,7 +77,7 @@
 		<div>
 			<h4 class="biomass_layer_title">Paperi- ja pahvijäte 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentPaperijätteetLayerTable">
@@ -103,7 +103,7 @@
 		<div>
 			<h4 class="biomass_layer_title">Puujäte 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentPuujätteetLayerTable">
@@ -139,7 +139,7 @@
 		<div>
 			<h4 class="biomass_layer_title">Yhdyskuntien sekajäte 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
+				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayerTable">

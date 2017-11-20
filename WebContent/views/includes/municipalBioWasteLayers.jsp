@@ -1,7 +1,7 @@
 <div>
 	<h4 class="biomass_layer_title">Yhdyskuntien biohajoava jäte 2015, t/a</h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="97a6010f-5b2d-493c-92d9-a1c2c78649b9">
+		<input type="hidden" value="7021b3b8-f6f6-40b4-9346-ca0bfb69405f">
 	</div>
 </div>
 <table class="table select-column standard-width">
