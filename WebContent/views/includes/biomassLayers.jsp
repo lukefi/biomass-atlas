@@ -430,10 +430,9 @@ $(document).ready(function () {
 						
 						<div id="alkuperaMaatilaSivuvirrat" class="tab-pane fade">
 							<ul class="nav nav-pills">
-								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien<br/>sivuvirrat</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta<br/>eläinsuojasta</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta<br/>varastosta</a></li>
-								<!-- <li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaTuhkaLayer">Tuhka</a></li> -->
+								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade in active">
