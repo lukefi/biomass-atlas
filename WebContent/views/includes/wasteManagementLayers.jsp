@@ -137,7 +137,7 @@
 	
 	<div id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Yritysten yhdyskuntajätteen kaltainen sekajäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title">Yhdyskuntien sekajäte 2015, t/a</h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
 			</div>
