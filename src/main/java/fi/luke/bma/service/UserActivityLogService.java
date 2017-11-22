@@ -67,12 +67,12 @@ public class UserActivityLogService {
                 boundedAreas = getPoints(requestBody);
                 functionName = "Free selection";
                 break;
-                
+
             case CIRCLE_RADIUS:
                 boundedAreas = getPoints(requestBody);
                 functionName = "Circle - Radius: " + requestBody.getRadius();
                 break;
-                
+
             case CIRCLE_ROAD:
                 boundedAreas = getPoints(requestBody);
                 functionName = "Road buffer - Radius: " + requestBody.getRadius();
@@ -124,7 +124,7 @@ public class UserActivityLogService {
         }
         return content;
     }
-    
+
     private UserActivityLog createNewUserActivityLog(Map<String, String> requestHeaders, String attributeNames,
             String boundedAreaNames, String function) {
         UserActivityLog log = new UserActivityLog();
@@ -138,7 +138,7 @@ public class UserActivityLogService {
     private String createUserInfo(Map<String, String> requestHeaders) {
         String content = "";
         // List of values from HttpServletRequest header that are to be stored in database.
-        List<String> columns = Arrays.asList("Origin", "Cookie", "User-Agent", "Referer", "Host", "Accept-Language");
+        List<String> columns = Arrays.asList("x-forwarded-for", "cookie", "user-agent", "accept-language");
         for (Map.Entry<String, String> entry : requestHeaders.entrySet()) {
             if (columns.contains(entry.getKey()))
                 content += entry.getKey() + " : " + entry.getValue() + "\n";
