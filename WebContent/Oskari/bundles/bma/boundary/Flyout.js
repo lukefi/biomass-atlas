@@ -70,9 +70,9 @@ function(instance, locale, conf) {
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
 		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' 
 			+ flyoutLocalization["selectAll"] + '</button></div>';
-		messageString += '<br><div id="unit-conversion" style="display: none"><input type="checkbox" id="unit-conversion-checkbox"> ' 
+		/*messageString += '<br><div id="unit-conversion" style="display: none"><input type="checkbox" id="unit-conversion-checkbox"> ' 
 			+ ' Unit Conversion' + '</input></div>'
-			+ '<div><table class="biomass-unit-conversion-table"></table></div>';
+			+ '<div><table class="biomass-unit-conversion-table"></table></div>';*/
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
@@ -148,13 +148,13 @@ function(instance, locale, conf) {
         	me._selectAllBoundaries(me);
         });
         
-        boundaryMessage.find('#unit-conversion-checkbox').unbind('click');
+        /*boundaryMessage.find('#unit-conversion-checkbox').unbind('click');
         boundaryMessage.find('#unit-conversion-checkbox').bind('click', function(){
         	if (this.checked)
         		me._showUnitConversionOptions(me);
         	else
         		me._hideUnitConversionTable();
-        });
+        });*/
         
         calculateCancelTool.find('#boundary-prev').html(localization.prev);
         calculateCancelTool.find('#boundary-prev').unbind('click');
