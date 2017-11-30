@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "TestBundle",
     "value": {
-    	"toolbarTooltip": "Piirrä alue kartalle ja laske sen biomassa (en)",
+    	"toolbarTooltip": "Free outlining",
     	"flyout": {
     		"title": "Piirrä alue kartalle ja laske sen biomassa",
     		"chooseAreaType": "Piirrä alue ja kartalle ja sovellus laskee biomassan. Aloita piirto klikkaamalla ja päätä se kaksoisklikkaukseen.",    		

@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "Circle",
     "value": {
-    	"toolbarTooltip": "Vapaa-aluehaku: määritä keskipiste ja laske valittujen tasojen biomassa alueelta",
+    	"toolbarTooltip": "Centrum av cirkeln",
     	"flyout": {
     		"title": "Keskipistehaku",
     		"message": "Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen etäisyys, jolta biomassa lasketaan. Maksimietäisyys tieverkkoa pitkin voi olla 65 km.",
