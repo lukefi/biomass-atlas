@@ -126,6 +126,11 @@
 			</c:when>
 			<c:otherwise>
 				<h1><spring:message code="bma.registerTitle"/></h1>
+				<div>Rekisteröitymällä Biomassa-atlas -palveluun saat käyttöösi lisätoiminnallisuuksia, kuten aiempien hakujen tallentamisen ja omien aineistojen käyttämisen apuna biomassa-hauissa.</div>
+				<div id="registerLeaflet" class="customLink">   	    
+    				<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
+    			</div>
+    			<br>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
 					<input class="column-field-input" size="20" id="firstname" name="firstname" type="text" required>
