@@ -9,8 +9,8 @@
 		<tr><td></td><th></th></tr>
 	</thead>
 	<tbody>
-		<tr><th>Läpimitta alle 10cm</th><td><input type="checkbox" value='1259'></td></tr>
-		<tr><th>Läpimitta alle 14cm</th><td><input type="checkbox" value='1260'></td></tr>
+		<tr><th>Läpimitta alle 10 cm</th><td><input type="checkbox" value='1259'></td></tr>
+		<tr><th>Läpimitta alle 14 cm</th><td><input type="checkbox" value='1260'></td></tr>
 	</tbody>
 </table>
 
