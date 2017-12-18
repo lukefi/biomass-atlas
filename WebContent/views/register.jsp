@@ -102,11 +102,6 @@
 					<input class="column-field-input" size="20" id="lastname" name="lastname" type="text" required>
 					<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 				</span>
-				<%-- <span class="content-column">
-					<label class="column-field-label"><spring:message code="bma.registerUsername"/></label> <br>
-					<input class="column-field-input" size="20" id="username" name="username" type="text" value="${username}" required>
-					<span id="errorUsername" class="error"></span>
-				</span> --%>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.email"/></label> <br>
 					<input class="column-field-input" size="20" id="email" name="email" type="email" required>
@@ -128,8 +123,9 @@
 				<h1><spring:message code="bma.registerTitle"/></h1>
 				<div>Rekisteröitymällä Biomassa-atlas -palveluun saat käyttöösi lisätoiminnallisuuksia, kuten aiempien hakujen tallentamisen ja omien aineistojen käyttämisen apuna biomassa-hauissa.</div>
 				<div id="registerLeaflet" class="customLink">   	    
-    				<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
-    			</div>
+					<a href="https://www.luke.fi/wp-content/uploads/2016/04/rekisteriseloste_biomassa_atlas.pdf" target="_blank">
+						<spring:message code="bma.registerLeaflet"/></a>
+    		</div>
     			<br>
 				<span class="content-column">
 					<label class="column-field-label"><spring:message code="bma.firstname"/></label> <br>
@@ -158,9 +154,10 @@
 				<span>				
 					<button id="cancelBtn" class="btn btn-default"><spring:message code="bma.cancel"/></button>
 				</span>			
-				
 				<br><br>
-				<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a>
+				<span class="col-sm-2 col-md-2">
+					<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a>
+				</span>
 			</c:otherwise>
 		</c:choose>
 	</div>

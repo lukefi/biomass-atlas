@@ -266,7 +266,8 @@
     	<a href="${pageContext.request.contextPath}/biomass/feedback" target="_blank"><spring:message code="bma.feedback"/></a>
     </div>
     <div id="registerLeaflet" class="customLink">   	    
-    	<a href="${pageContext.request.contextPath}/download/registerLeaflet"><spring:message code="bma.registerLeaflet"/></a>
+			<a href="https://www.luke.fi/wp-content/uploads/2016/04/rekisteriseloste_biomassa_atlas.pdf" target="_blank">
+				<spring:message code="bma.registerLeaflet"/></a>
     </div>
     <div id="biomassWebPage" class="customLink">   	    
     	<a href="http://www.biomassa-atlas.fi" target="_blank"><spring:message code="bma.webpageLink"/></a>
