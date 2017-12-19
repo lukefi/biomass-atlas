@@ -21,8 +21,6 @@
     #bmaLayerContent .bmaLayerInner {
     	background-color: #54585a;
     	color: #ffffff;
-    	padding-left: 7px;
-    	padding-right: 7px;
     	height: 100%;
     }
     #bmaLayerContent .bmaLayerInner h3 {
