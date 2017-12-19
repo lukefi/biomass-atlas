@@ -88,3 +88,14 @@ div.divmanazerpopup.welcometour h3 span {
 
 .divmanazerpopup.welcometour.draggable {
   cursor: move; }
+  
+#welcome_lang_selector {
+	float: right;
+	margin-top: -5px;
+	margin-right: 20px;
+	font-size: 12px;
+}
+ 	
+#welcome_lang_selector span {
+	margin-left: 15px;
+}    	
