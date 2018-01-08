@@ -225,5 +225,9 @@
 			<th scope="row">Suojavyöhykkeet ja -kaistat</th>
 			<td><input type="checkbox" name="field" value='1293'></td>
 		</tr>
+		<tr>
+			<th scope="row">Käytössä oleva maatalousmaa</th>
+			<td><input type="checkbox" name="field" value='1304'></td>
+		</tr>
 	</tbody>
 </table>
