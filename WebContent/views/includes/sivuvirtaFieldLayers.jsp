@@ -1,5 +1,5 @@
 <div>
-	<h4 class="biomass_layer_title">Peltokasvien sivuvirrat 2015, t(k-a)/a</h4>
+	<h4 class="biomass_layer_title">Peltokasvien sivuvirrat 2016, t(k-a)/a</h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="07dca2e6-681f-4ce4-b548-211e80b6d19c">
 	</div>
@@ -12,6 +12,10 @@
 		<tr>
 			<th scope="row">Kesantonurmi</th>
 			<td><input type="checkbox" name="field" value='1145'></td>
+		</tr>
+		<tr>
+			<th scope="row">Suojavyöhykenurmi</th>
+			<td><input type="checkbox" name="field" value='1146'></td>
 		</tr>
 		<tr>
 			<th scope="row">Olki</th>
@@ -29,10 +33,10 @@
 			<th scope="row">Öljykasvien korsi</th>
 			<td><input type="checkbox" name="field" value='1150'></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th scope="row">Siementuotannon nurmi</th>
 			<td><input type="checkbox" name="field" value='1151'></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th scope="row">Säilörehunurmet</th>
 			<td><input type="checkbox" name="field" value='1246'></td>
@@ -44,6 +48,22 @@
 		<tr>
 			<th scope="row">Tuorerehunurmet</th>
 			<td><input type="checkbox" name="field" value='1248'></td>
+		</tr>
+		<tr>
+			<th scope="row">Perunan varret</th>
+			<td><input type="checkbox" name="field" value='1300'></td>
+		</tr>
+		<tr>
+			<th scope="row">Viherlannoitusnurmien mahdollinen alkusato</th>
+			<td><input type="checkbox" name="field" value='1301'></td>
+		</tr>
+		<tr>
+			<th scope="row">Nurmituotannon lisäämispotentiaali</th>
+			<td><input type="checkbox" name="field" value='1302'></td>
+		</tr>
+		<tr>
+			<th scope="row">Nurmen siemenen olki</th>
+			<td><input type="checkbox" name="field" value='1303'></td>
 		</tr>
 	</tbody>
 </table>

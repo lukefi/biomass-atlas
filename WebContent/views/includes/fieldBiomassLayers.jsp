@@ -1,5 +1,5 @@
 <div>
-	<h4 class="biomass_layer_title">Peltobiomassat 2015, t/a</h4>
+	<h4 class="biomass_layer_title">Peltobiomassat 2016, t/a</h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="0910fbf5-3f56-4f25-99e6-567f17d3bd14">
 	</div>
@@ -63,22 +63,6 @@
 			<td><input type="checkbox" name="field" value='1142'></td>
 		</tr>
 		<tr>
-			<th scope="row">Nurmet</th>
-			<td><input type="checkbox" name="field" value='1143'></td>
-		</tr>
-		<!-- <tr>
-			<th scope="row">Timotein siemen</th>
-			<td><input type="checkbox" name="field" value='1144'></td>
-		</tr> -->
-		<tr>
-			<th scope="row">Kesantonurmi</th>
-			<td><input type="checkbox" name="field" value='1145'></td>
-		</tr>
-		<tr>
-			<th scope="row">Suojavyöhyke ja -kaista</th>
-			<td><input type="checkbox" name="field" value='1146'></td>
-		</tr>
-		<tr>
 			<th scope="row">Seosvilja</th>
 			<td><input type="checkbox" name="field" value='1242'></td>
 		</tr>
@@ -93,6 +77,30 @@
 		<tr>
 			<th scope="row">Tuorerehunurmet</th>
 			<td><input type="checkbox" name="field" value='1245'></td>
+		</tr>
+		<tr>
+			<th scope="row">Vihantavilja</th>
+			<td><input type="checkbox" name="field" value='1294'></td>
+		</tr>
+		<tr>
+			<th scope="row">Peruna</th>
+			<td><input type="checkbox" name="field" value='1295'></td>
+		</tr>
+		<tr>
+			<th scope="row">Öljypellava</th>
+			<td><input type="checkbox" name="field" value='1296'></td>
+		</tr>
+		<tr>
+			<th scope="row">Ruokohelpi</th>
+			<td><input type="checkbox" name="field" value='1297'></td>
+		</tr>
+		<tr>
+			<th scope="row">Laidunsato</th>
+			<td><input type="checkbox" name="field" value='1298'></td>
+		</tr>
+		<tr>
+			<th scope="row">Nurmikasvien siemensato</th>
+			<td><input type="checkbox" name="field" value='1299'></td>
 		</tr>
 	</tbody>
 </table>
