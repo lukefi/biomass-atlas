@@ -227,7 +227,7 @@
 		</tr>
 		<tr>
 			<th scope="row">Käytössä oleva maatalousmaa</th>
-			<td><input type="checkbox" name="field" value='1304'></td>
+			<td><input type="checkbox" name="field" value='1303'></td>
 		</tr>
 	</tbody>
 </table>

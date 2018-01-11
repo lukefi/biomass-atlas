@@ -58,12 +58,8 @@
 			<td><input type="checkbox" name="field" value='1301'></td>
 		</tr>
 		<tr>
-			<th scope="row">Nurmituotannon lisäämispotentiaali</th>
-			<td><input type="checkbox" name="field" value='1302'></td>
-		</tr>
-		<tr>
 			<th scope="row">Nurmen siemenen olki</th>
-			<td><input type="checkbox" name="field" value='1303'></td>
+			<td><input type="checkbox" name="field" value='1302'></td>
 		</tr>
 	</tbody>
 </table>
