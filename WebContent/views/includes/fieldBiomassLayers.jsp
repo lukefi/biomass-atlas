@@ -19,13 +19,13 @@
 			<td><input type="checkbox" name="field" value='1132'></td>
 		</tr>
 		<tr>
-			<th scope="row">Ruis</th>
-			<td><input type="checkbox" name="field" value='1133'></td>
-		</tr>
-		<tr>
 			<th scope="row">Kevätruis</th>
 			<td><input type="checkbox" name="field" value='1241'></td>
 		</tr>
+		<tr>
+			<th scope="row">Ruis</th>
+			<td><input type="checkbox" name="field" value='1133'></td>
+		</tr>		
 		<tr>
 			<th scope="row">Muu ohra</th>
 			<td><input type="checkbox" name="field" value='1134'></td>
@@ -39,12 +39,24 @@
 			<td><input type="checkbox" name="field" value='1136'></td>
 		</tr>
 		<tr>
+			<th scope="row">Seosvilja</th>
+			<td><input type="checkbox" name="field" value='1242'></td>
+		</tr>
+		<tr>
+			<th scope="row">Vihantavilja</th>
+			<td><input type="checkbox" name="field" value='1294'></td>
+		</tr>		
+		<tr>
 			<th scope="row">Herne</th>
 			<td><input type="checkbox" name="field" value='1137'></td>
 		</tr>
 		<tr>
 			<th scope="row">Härkäpapu</th>
 			<td><input type="checkbox" name="field" value='1138'></td>
+		</tr>
+		<tr>
+			<th scope="row">Peruna</th>
+			<td><input type="checkbox" name="field" value='1295'></td>
 		</tr>
 		<tr>
 			<th scope="row">Sokerijuurikas</th>
@@ -59,12 +71,20 @@
 			<td><input type="checkbox" name="field" value='1141'></td>
 		</tr>
 		<tr>
+			<th scope="row">Öljypellava</th>
+			<td><input type="checkbox" name="field" value='1296'></td>
+		</tr>
+		<tr>
+			<th scope="row">Ruokohelpi</th>
+			<td><input type="checkbox" name="field" value='1297'></td>
+		</tr>
+		<tr>
 			<th scope="row">Kumina</th>
 			<td><input type="checkbox" name="field" value='1142'></td>
 		</tr>
 		<tr>
-			<th scope="row">Seosvilja</th>
-			<td><input type="checkbox" name="field" value='1242'></td>
+			<th scope="row">Laidunsato</th>
+			<td><input type="checkbox" name="field" value='1298'></td>
 		</tr>
 		<tr>
 			<th scope="row">Säilörehunurmet</th>
@@ -77,27 +97,7 @@
 		<tr>
 			<th scope="row">Tuorerehunurmet</th>
 			<td><input type="checkbox" name="field" value='1245'></td>
-		</tr>
-		<tr>
-			<th scope="row">Vihantavilja</th>
-			<td><input type="checkbox" name="field" value='1294'></td>
-		</tr>
-		<tr>
-			<th scope="row">Peruna</th>
-			<td><input type="checkbox" name="field" value='1295'></td>
-		</tr>
-		<tr>
-			<th scope="row">Öljypellava</th>
-			<td><input type="checkbox" name="field" value='1296'></td>
-		</tr>
-		<tr>
-			<th scope="row">Ruokohelpi</th>
-			<td><input type="checkbox" name="field" value='1297'></td>
-		</tr>
-		<tr>
-			<th scope="row">Laidunsato</th>
-			<td><input type="checkbox" name="field" value='1298'></td>
-		</tr>
+		</tr>		
 		<tr>
 			<th scope="row">Nurmikasvien siemensato</th>
 			<td><input type="checkbox" name="field" value='1299'></td>
