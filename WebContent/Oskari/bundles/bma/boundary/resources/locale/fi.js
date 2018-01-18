@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "fi",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Aluehaku: Valitse alue ja laske biomassa",
+    	"toolbarTooltip": "Aluehaku: määritä alue ja laske biomassa valituilta tasoilta",
     	"flyout": {
     		"title": "Aluevalinta",
     		"chooseAreaType": "Biomassatasojen tiedot voidaan laskea seuraaville ennakkoon määritelyille alueille. Valitse alue joilta biomassa lasketaan:",

@@ -2,54 +2,55 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Predefined region",
+    	"toolbarTooltip": "Area Search: Specify the area and calculate the biomass from the selected levels.",
     	"flyout": {
-    		"title": "Aluevalinta",
-    		"chooseAreaType": "Biomassatasojen tiedot voidaan laskea seuraaville ennakkoon määritelyille alueille. Valitse alue joilta biomassa lasketaan:",
-    		"selectAll": "Valitse kaikki",
-    		"prev": "Takaisin",
-    		"calculate": "Laske",
-    		"calculateMunicipality": "Laske kunnittain",
-    		"quit": "Lopeta",
-    		"biomassType": "Biomassan tyyppi",
-    		"amount": "Määrä",
-    		"selectedArea": "Valittu alue",
-    		"saveResults": "Tallenna tulokset",
+    		"title": "Area selection",
+    		"chooseAreaType": "Biomass data can be calculated for the following predefined regions. Select the area from which biomass is calculated:",
+    		"selectAll": "Select all",
+    		"prev": "Previous",
+    		"calculate": "Calculate",
+    		"calculateMunicipality": "Calculate by municipality",
+    		"quit": "Quit",
+    		"biomassType": "Biomass type",
+    		"amount": "Amount",
+    		"selectedArea": "Selected area",
+    		"saveResults": "Save results",
     		"areaType": {
-    			"municipality": "Kunta",
-    			"province": "Maakunta",
-    			"ely": "ELY-keskus",
-    			"drainageBasin": "Valuma-alue",
-    			"postalCode": "Postinumeroalue"
+    			"municipality": "Municipality",
+    			"province": "Province",
+    			"ely": "ELY Centre",
+    			"drainageBasin": "Drainage basin",
+    			"postalCode": "Postal code region"
     		},
     		"selectAreaType": {
-    			"municipality": "Valitse kartalta kunnat, joilta biomassat lasketaan",
-    			"province": "Valitse kartalta maakunnat, joilta biomassat lasketaan",
-    			"ely": "Valitse kartalta ELY-keskukset, joilta biomassat lasketaan",
-    			"drainageBasin": "Valitse kartalta valuma-alueet, joilta biomassat lasketaan",
-    			"postalCode": "Valitse kartalta postinumeroalueet, joilta biomassat lasketaan"
+    			"municipality": "Select from the map the municipalities from which you want to summarise biomass.",
+    			"province": "Select from the map the provincies from which you want to summarise biomass.",
+    			"ely": "Select from the map the ELY Centres from which you want to summarise biomass.",
+    			"drainageBasin": "Select from the map the drainage basins from which you want to summarise biomass.",
+    			"postalCode": "Select from the map the postal code regions from which you want to summarise biomass."
     		},
     		"areaTypeSelected": {
-    			"municipality": "Valitut kunnat",
-    			"province": "Valitut maakunnat",
-    			"ely": "Valityt ELY-keskukset",
-    			"drainageBasin": "Valitut valuma-alueet",
-    			"postalCode": "Valitut postinumeroalueet"
+    			"municipality": "Selected municipalities",
+    			"province": "Selected provinces",
+    			"ely": "Selected ELY Centres",
+    			"drainageBasin": "Selected drainage basins",
+    			"postalCode": "Selected postal code regions"
     		},
     		"areaTypeInfo": {
     			"title": {
-    				"municipality": "Kunnan biomassan laskenta",
-	    			"province": "Maakunnan biomassan laskenta",
-	    			"ely": "ELY-keskuksen biomassan laskenta",
-	    			"drainageBasin": "Valuma-alueen biomassan laskenta",
-	    			"postalCode": "Postinumeroalueen biomassan laskenta"
+    				"municipality": "Biomass summary by municipality",
+	    			"province": "Biomass summary by province",
+	    			"ely": "Biomass summary by ELY Centre",
+	    			"drainageBasin": "Biomass summary by drainage basin",
+	    			"postalCode": "Biomass summary by post code area"
     			},
     			"description": {
-    				"municipality": "Kunta-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Kuntakohtaisessa laskennassa kokonaan kunnan sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Kuntien rajalla sijaitsevan ruudun arvo lasketaan sen kunnan tulokseen jonka sisällä suurin osa ruudusta sijaitsee.",
-	    			"province": "Maakunta-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Maakuntakohtaisessa laskennassa kokonaan maakunnan sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Maakuntien rajalla sijaitsevan ruudun arvo lasketaan sen maakunnan tulokseen jonka sisällä ruudun keskipiste sijaitsee.",
-	    			"ely": "ELY-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. ELY-keskuskohtaisessa laskennassa kokonaan ELY-keskuksen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. ELY-keskusalueiden rajalla sijaitsevan ruudun arvo lasketaan sen ELY-keskuksen tulokseen jonka sisällä ruudun keskipiste sijaitsee.",
-	    			"drainageBasin": "Valuma-alueiden aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Valuma-aluekohtaisessa laskennassa kokonaan alueen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Valuma-alueiden rajalla sijaitsevan ruudun arvo lasketaan sen alueen tulokseen jonka sisällä suurin osa ruudusta sijaitsee.",
-	    			"postalCode": "Postinumeroalueiden aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Postinumeroaluekohtaisessa laskennassa kokonaan alueen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Postinumeroalueiden rajalla sijaitsevan ruudun arvo lasketaan sen alueen tulokseen jonka sisällä suurin osa ruudusta sijaitsee."
+    				"municipality": "Municipality data is from National Land Survey Finland 2015. Biomass layers have their data in 1 km x 1 km grid. In municipality level calculation the grids located within municipality borders are summarised to that municipality. The grids overlaying the munipality border are included in that municipality's result, where the grid centroid is located.",
+    				"province": "Province data is derived from National Land Surveys municipality data 2015. Biomass data is in km x 1km grid. If a grid lays at the border of the province, its value is counted to that province, where its centroid is within.",
+	    			"ely": " ELY-centre data is from National Land Survey Finland 2015. Biomass layers have their data in 1 km x 1 km grid. The grids located within ELY-centre borders are summarised to that ELY-centre. The grids overlaying the ELY-centre border are included in that ELY-centre's result, where the grid centroid is located.",
+	    			"drainageBasin": "Drainage basin data is from Finnish Environment Institute, Syke. Biomass layers have their data in 1 km x 1 km grid. The grids located within drainage basin are summarised to that drainage basin. The grids overlaying the drainage basin border are included in that drainage basin's result, where the grid centroid is located.",
+	    			"postalCode": "Post code areas are from Statistics Finland 2015. Biomass layers have their data in 1 km x 1 km grid. In post code area level calculation the grids located within post code area borders are summarised to that post code area. The grids overlaying the post code area border are included in that post code area 's result, where the grid centroid is located."
+
     			}
     		}
     	}
