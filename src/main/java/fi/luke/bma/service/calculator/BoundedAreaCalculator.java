@@ -18,6 +18,7 @@ import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.GridCellService;
+import fi.luke.bma.service.LocalizeService;
 import fi.rktl.common.model.DataCell;
 
 public class BoundedAreaCalculator extends Calculator {
@@ -31,14 +32,18 @@ public class BoundedAreaCalculator extends Calculator {
     private final AttributeService attributeService;
 
     private final GridCellService gridCellService;
+    
+    private final LocalizeService localizeService;
 
     public BoundedAreaCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
-            BoundedAreaService boundedAreaService, AttributeService attributeService, GridCellService gridCellService) {
+            BoundedAreaService boundedAreaService, AttributeService attributeService, GridCellService gridCellService,
+            LocalizeService localizeService) {
         this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.boundedAreaService = boundedAreaService;
         this.attributeService = attributeService;
         this.gridCellService = gridCellService;
+        this.localizeService = localizeService;
     }
 
     @Override
@@ -134,12 +139,13 @@ public class BoundedAreaCalculator extends Calculator {
                 .get("attributes");
         Long selectedArea = (Long) calculateBiomasses.get("selectedArea");
         List<String> columnNames = new ArrayList<>();
-        columnNames.add("Aluetunnus");
-        columnNames.add("Alue");
-        columnNames.add("Biomassan tyyppi");
-        columnNames.add("Määrä");
-        columnNames.add("Yksikkö");
-        columnNames.add("Valittu alue = " + selectedArea + " ha");
+        List<String> localizedMessages = localizeService.getLocalizedMessageSource();
+        columnNames.add(localizedMessages.get(0));
+        columnNames.add(localizedMessages.get(1));
+        columnNames.add(localizedMessages.get(2));
+        columnNames.add(localizedMessages.get(3));
+        columnNames.add(localizedMessages.get(4));
+        columnNames.add(localizedMessages.get(5) + " = " + selectedArea + " " + localizedMessages.get(6));
         List<List<DataCell>> data = new ArrayList<>();
 
         for (Map<String, ?> boundedArea : biomassData) {

@@ -30,6 +30,9 @@ public class CalculatorFactory {
 
     @Autowired
     private GridCellService gridCellService;
+    
+    @Autowired
+    private LocalizeService localizedService;
 
     public Calculator getInstance(BiomassCalculationRequestModel requestModel) {
         Class<? extends Calculator> clazz;
@@ -50,7 +53,7 @@ public class CalculatorFactory {
     public Calculator getInstance(BiomassCalculationRequestModel requestModel, Class<? extends Calculator> clazz) {
         if (clazz == BoundedAreaCalculator.class) {
             return new BoundedAreaCalculator(requestModel, calculationService, boundedAreaService, attributeService,
-                    gridCellService);
+                    gridCellService, localizedService);
         }
         if (clazz == RoadBufferCalculator.class) {
             return new RoadBufferCalculator(requestModel, calculationService, attributeService, geometryService);
