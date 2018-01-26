@@ -44,18 +44,6 @@
 		<tr>
 			<th scope="row">Öljykasvien korsi</th>
 			<td><input type="checkbox" name="field" value='1150'></td>
-		</tr>		
-		<tr>
-			<th scope="row">Säilörehunurmet</th>
-			<td><input type="checkbox" name="field" value='1246'></td>
 		</tr>
-		<tr>
-			<th scope="row">Kuivaheinänurmet</th>
-			<td><input type="checkbox" name="field" value='1247'></td>
-		</tr>
-		<tr>
-			<th scope="row">Tuorerehunurmet</th>
-			<td><input type="checkbox" name="field" value='1248'></td>
-		</tr>		
 	</tbody>
 </table>
