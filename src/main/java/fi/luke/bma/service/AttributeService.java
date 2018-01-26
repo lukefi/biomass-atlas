@@ -2,12 +2,14 @@ package fi.luke.bma.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import fi.luke.bma.dao.AttributeDao;
@@ -32,8 +34,21 @@ public class AttributeService {
     public List<String> getAttributeNameAndUnit(long attributeId){
 		Attribute attribute = attributeDao.get(attributeId);
 		List<String> result = new ArrayList<String>();
-		result.add(attribute.getNameFI()); //TODO: Based on locale set
-		result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
+		Locale locale = LocaleContextHolder.getLocale();
+    	String language = locale.getLanguage();
+    	
+    	if (language == "en" && (attribute.getNameEN() != null)) {
+    		result.add(attribute.getNameEN());
+    		result.add(getAttributeValueWithSuperscript(attribute.getUnitEN()));
+    	}else if(language == "sv" && (attribute.getNameSV() != null)) {
+    		result.add(attribute.getNameSV());
+    		result.add(getAttributeValueWithSuperscript(attribute.getUnitSV()));
+    	}else{
+    		result.add(attribute.getNameFI());
+    		result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
+    	}
+		//result.add(attribute.getNameFI()); //TODO: Based on locale set
+		//result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
 		return result;
 	}
 	

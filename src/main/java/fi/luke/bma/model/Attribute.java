@@ -18,12 +18,18 @@ public class Attribute extends NonInsertableEntityWithLongId {
 
     @Column(name = "en")
     private String nameEN;
+    
+    @Column(name = "sv")
+    private String nameSV;
 
     @Column(name = "unit_fi")
     private String unitFI;
 
     @Column(name = "unit_en")
     private String unitEN;
+    
+    @Column(name = "unit_sv")
+    private String unitSV;
 
     @Column(name = "display_order")
     private Double displayOrder;
@@ -55,7 +61,15 @@ public class Attribute extends NonInsertableEntityWithLongId {
         this.nameEN = nameEN;
     }
 
-    public String getUnitFI() {
+    public String getNameSV() {
+		return nameSV;
+	}
+
+	public void setNameSV(String nameSV) {
+		this.nameSV = nameSV;
+	}
+
+	public String getUnitFI() {
         return unitFI;
     }
 
@@ -71,7 +85,15 @@ public class Attribute extends NonInsertableEntityWithLongId {
         this.unitEN = unitEN;
     }
 
-    public Double getDisplayOrder() {
+    public String getUnitSV() {
+		return unitSV;
+	}
+
+	public void setUnitSV(String unitSV) {
+		this.unitSV = unitSV;
+	}
+
+	public Double getDisplayOrder() {
         return displayOrder;
     }
 
