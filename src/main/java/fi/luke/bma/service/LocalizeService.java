@@ -12,6 +12,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
+import fi.luke.bma.model.Attribute;
+
 @Component
 public class LocalizeService {
 
@@ -56,6 +58,20 @@ public class LocalizeService {
             }
         }
         return localizedName;
+    }
+    
+    public String getLocalizedAttributeName(Attribute attributeName) {
+    	Locale locale = LocaleContextHolder.getLocale();
+    	String language = locale.getLanguage();
+    	String localizedAttributeName;
+    	if (language == "en" && (attributeName != null)) {
+    		localizedAttributeName = attributeName.getNameEN();	
+    	}else if(language == "sv" && (attributeName != null)) {
+    		localizedAttributeName = attributeName.getNameSV();
+    	}else{
+    		localizedAttributeName = attributeName.getNameFI();
+    	}
+    	return localizedAttributeName;
     }
     
     public List<String> getLocalizedMessageSource() {

@@ -12,6 +12,7 @@ import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.LocalizeService;
 
 public class FreeformPolygonCalculator extends SingleAreaCalculator {
 
@@ -20,12 +21,15 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
     private final CalculationService calculationService;
 
     private final AttributeService attributeService;
+    
+    private final LocalizeService localizedService;
 
     public FreeformPolygonCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
-            AttributeService attributeService) {
+            AttributeService attributeService, LocalizeService localizedService) {
         this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.attributeService = attributeService;
+        this.localizedService = localizedService;
     }
 
     @Override
@@ -56,7 +60,8 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
         
         Map<String, String> displayOrders = new LinkedHashMap<>();
         for (Attribute attribute : sortedAttributes) {
-            displayOrders.put(Double.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
+            String localizedName = localizedService.getLocalizedAttributeName(attribute);
+            displayOrders.put(Double.toString(attribute.getDisplayOrder()), localizedName);
         }
         result.put("displayOrders", displayOrders);
         result.put("selectedArea", Math.round(areaOfPolygon * 100)); // Area in hectare, 1 sq/km = 100 hectare

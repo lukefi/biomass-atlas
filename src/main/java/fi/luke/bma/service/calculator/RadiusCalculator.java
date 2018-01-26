@@ -11,6 +11,7 @@ import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
+import fi.luke.bma.service.LocalizeService;
 
 public abstract class RadiusCalculator extends SingleAreaCalculator {
 
@@ -18,9 +19,13 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
     
     private final AttributeService attributeService;
     
-    protected RadiusCalculator(CalculationService calculationService, AttributeService attributeService) {
+    private final LocalizeService localizedService;
+    
+    protected RadiusCalculator(CalculationService calculationService, AttributeService attributeService,
+    		LocalizeService localizedService) {
         this.calculationService = calculationService;
         this.attributeService = attributeService;
+        this.localizedService = localizedService;
     }
 
     protected Map<String, ?> calculateBiomassForWktGeometry(BiomassCalculationRequestModel requestBody, String geometryAsWkt) {
@@ -42,7 +47,8 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
         
         Map<String, String> displayOrders = new LinkedHashMap<>();
         for (Attribute attribute : sortedAttributes) {
-            displayOrders.put(Double.toString(attribute.getDisplayOrder()), attribute.getNameFI());   //TODO: Locale based
+        	String localizedName = localizedService.getLocalizedAttributeName(attribute);
+            displayOrders.put(Double.toString(attribute.getDisplayOrder()), localizedName);
         }
         result.put("displayOrders", displayOrders);
         double areaOfPolygon = calculationService.getAreaOfPolygon(geometryAsWkt) / 10000; // For m2 converted to hectare

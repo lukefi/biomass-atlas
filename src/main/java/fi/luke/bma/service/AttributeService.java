@@ -47,8 +47,6 @@ public class AttributeService {
     		result.add(attribute.getNameFI());
     		result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
     	}
-		//result.add(attribute.getNameFI()); //TODO: Based on locale set
-		//result.add(getAttributeValueWithSuperscript(attribute.getUnitFI()));
 		return result;
 	}
 	
