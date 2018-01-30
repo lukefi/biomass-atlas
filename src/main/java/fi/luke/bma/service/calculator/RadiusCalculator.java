@@ -23,6 +23,7 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
     
     protected RadiusCalculator(CalculationService calculationService, AttributeService attributeService,
     		LocalizeService localizedService) {
+    	super(localizedService); //TODO: Check this, can still use?
         this.calculationService = calculationService;
         this.attributeService = attributeService;
         this.localizedService = localizedService;

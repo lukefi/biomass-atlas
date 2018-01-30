@@ -76,34 +76,25 @@ public class LocalizeService {
     
     public List<String> getLocalizedMessageSource() {
     	Locale locale = LocaleContextHolder.getLocale();
-    	String language = locale.getLanguage();
     	List<String> colunmMessages = new ArrayList<String>();
-    	
-    	if (language == "en") {
-    		colunmMessages.add(messageSource.getMessage("bma.areaName",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.area",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
-    	}else if(language == "sv") {
-    		colunmMessages.add(messageSource.getMessage("bma.areaName",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.area",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
-    	}else{
-    		colunmMessages.add(messageSource.getMessage("bma.areaName",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.area",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
-    		colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
-    	}
+    	colunmMessages.add(messageSource.getMessage("bma.areaName",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.area",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
+		colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
+    	return colunmMessages;
+    }
+    
+    public List<String> getLocalizedMessageSourceForReport() {
+    	Locale locale = LocaleContextHolder.getLocale();
+    	List<String> colunmMessages = new ArrayList<String>();
+    	colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
     	return colunmMessages;
     }
 }

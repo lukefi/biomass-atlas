@@ -26,7 +26,8 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
 
     public FreeformPolygonCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
             AttributeService attributeService, LocalizeService localizedService) {
-        this.requestModel = requestModel;
+    	super(localizedService); //TODO: Check this, can still use?
+    	this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.attributeService = attributeService;
         this.localizedService = localizedService;
