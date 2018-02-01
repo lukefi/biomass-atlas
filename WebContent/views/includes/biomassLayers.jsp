@@ -120,6 +120,27 @@
    	.even-col-even-cell {
    		background-color: #E5E5E5;
    	}
+   	#bmaLayerContent .search-content {
+		padding-left: 20px;
+		padding-top: 30px;
+		margin-top: 10px;
+		height: 60px;
+	}
+	#bmaLayerContent .search-content button {
+		border-radius: 4px;
+		padding: 1px 20px;
+	}
+	#bmaLayerContent #searchAttribute {
+		padding-left: 20px;
+		padding-top: 30px;
+		margin-top: 10px;
+		height: 60px;
+	}
+	#bmaLayerContent #showResults {
+		padding-left: 20px;
+		padding-top: 30px;
+		margin-top: 10px;
+	}
    	#bmaLayerContent table.standard-width tr th {
    		padding-right: 0;
    	}
@@ -316,6 +337,7 @@ $(document).ready(function () {
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Potentiaali</a></li>
 		<li><a data-toggle="tab" href="#originTabs">Alkuperä</a></li>
+		<li><a data-toggle="tab" href="#searchTab">Haku</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="potentialTabs" class="tab-pane fade in active">
@@ -465,5 +487,18 @@ $(document).ready(function () {
 				
 			</div>	<!-- originTab tab-content ends -->
 		</div>	<!-- originTab tab-pane ends -->
+		<div id="searchTab" class="tab-pane fade">
+			<div class="search-content">
+				<div id="searchAttribute">
+					<input type="text" id="searchText" /><button id="searchBt" type="button">Hae</button>
+				</div>
+				<div id="showResults">
+					<h4>Tulokset</h4>
+					<table>
+						<span>Here should show results!</span>
+					</table>
+				</div>
+			</div>
+		</div> <!-- searchTab tab-pane ends -->
 	</div> <!-- bmaLayerContent tab-content ends -->
 </div></div>	<!-- bmaLayerContent ends -->
