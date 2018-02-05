@@ -1,12 +1,16 @@
 package fi.luke.bma.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -81,5 +85,40 @@ public class AttributeService {
 			value = firstPart + superscriptValue + secondPart;
 		}
 		return value;
+	}
+	
+	/**
+	 * Find attribute id and name
+	 * @param value
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Map<String, Long> getAttributeNameAndId(String value) {
+		Locale locale = LocaleContextHolder.getLocale();
+    	String language = locale.getLanguage();
+		Map<String, Long> results = new HashMap<>();
+		String sql;
+		if (language == "en") {
+			sql = "SELECT en, id FROM attribute a ORDER BY id";
+		}else if(language == "sv") {
+			sql = "SELECT sv, id FROM attribute a ORDER BY id";
+		}else {
+			sql = "SELECT fi, id FROM attribute a ORDER BY id";
+		}
+		Query query = entityManager.createNativeQuery(sql);
+		List<Object[]> rows = query.getResultList();
+		
+		for(Object[] row : rows) {
+			BigInteger x = (BigInteger) row[1];
+			long longValue = x.longValue();
+			String attributeName = (String) row[0];
+			String NameLowerCase = attributeName.toLowerCase();
+			String valueLowerCase = value.toLowerCase();
+			if(NameLowerCase.indexOf(valueLowerCase)!=-1){
+				results.put((String) row[0], longValue);
+			}
+		}
+		return results;
 	}
 }

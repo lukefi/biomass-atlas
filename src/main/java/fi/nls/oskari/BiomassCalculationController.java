@@ -20,6 +20,7 @@ import com.opencsv.CSVWriter;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.model.UnitConversionResponse;
+import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.AttributeUnitConversionService;
 import fi.luke.bma.service.CalculatorFactory;
 import fi.luke.bma.service.GeometryService;
@@ -40,6 +41,9 @@ public class BiomassCalculationController {
 	
     @Autowired
     private GeometryService geometryService;
+    
+    @Autowired
+    private AttributeService attributeService;
     
     @Autowired
     private AttributeUnitConversionService attributeUnitConversionService;
@@ -91,6 +95,16 @@ public class BiomassCalculationController {
     	}
     }
 
+    /**
+     * Search 
+     */
+    @RequestMapping(value="search", method=RequestMethod.POST)
+    public Map<String,Long> getAttributeValue(@RequestBody String searchValue) {
+    	String sValue = searchValue;
+    	Map<String,Long> results = attributeService.getAttributeNameAndId(sValue);
+        return results;
+    }
+    
     /**
      * Export CSV file
      */
