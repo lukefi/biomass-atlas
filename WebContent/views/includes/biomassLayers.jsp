@@ -187,7 +187,15 @@
 	}    	
 	#bmaLayerContent .even-row > th {
     	background-color: #F0F0F0;
-	}    	
+	}
+	.searchResult {
+		margin: -35px 0 0 -25px;
+	}
+	.searchResult tr > td:first-child {
+		width: 450px;
+	}
+	
+	
 </style>
 
 <script type="text/javascript">
@@ -328,7 +336,7 @@ $(document).ready(function () {
 	 	}
 	});
 	
-	$('#searchBt').click(function() {
+	$('#searchBt').on('click', function() {
 		var searchValue = $('#searchText').val();
 		$.ajax({
 			url: "${pageContext.request.contextPath}/biomass/search",
@@ -337,12 +345,19 @@ $(document).ready(function () {
 			data: searchValue,
 			dataType: "json",
 			success: function(data) {
-				var koe = '<table class="table select-column standard-width">'
+				var koe = '<table class="table select-column standard-width searchResult">'
 					+ '<thead><tr><td></td><th></th></tr></thead>'
 					+ '<tbody>';
+				var count = 0;
 				$.each(data,function(key,value) {
 				 	value = 1000 + value;
-				 	koe += '<tr><th scope="row">' + key + '</th>';
+				 	++count;
+				 	if (count % 2 == 0) {
+				 		koe += '<tr class="even-row">';
+				 	} else {
+				 		koe += '<tr>';
+				 	}
+				 	koe += '<th scope="row">' + key + '</th>';
 					if ($("#bmaLayerContent input[value='" + value + "']").is(":checked")) {
 						koe += '<td><input type="checkbox" value=' + value + ' checked></td></tr>';
 				 	}else {
