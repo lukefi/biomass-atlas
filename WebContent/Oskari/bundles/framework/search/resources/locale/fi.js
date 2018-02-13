@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "fi",
     "key": "Search",
     "value": {
-        "title": "Haku",
+        "title": "Sijaintihaku",
         "desc": "",
         "tabTitle": "Paikkahaku",
         "invalid_characters": "Hakusanassa on kiellettyjä merkkejä. Sallittuja merkkejä ovat aakkoset (A-Ö, a-ö), numerot (0-9), piste (.), pilkku (,), yhdysviiva (-) ja huutomerkki (!). Lisäksi sallittuja ovat kysymysmerkki (?), jolla voi korvata sanasta yhden merkin, ja jokerimerkki (*), jolla voi korvata sanan loppuosan. Jokerimerkki voi olla ainoastaan sanan lopussa.",

@@ -3,7 +3,7 @@ Oskari.registerLocalization(
     "lang": "sv",
     "key": "Search",
     "value": {
-        "title": "Sök",
+        "title": "Ortnamnssökning",
         "desc": "",
         "tabTitle": "Ortnamnssökning",
         "invalid_characters": "Sökbegrepp innehåller otillåtna tecken. Tillåtna tecken är bokstäverna az samt å, ä och ö, siffror, backsteg, frågetecken, stjärnor (*) och bindestreck (?) (-).",

@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "Search",
     "value": {
-        "title": "Search",
+        "title": "Location search",
         "desc": "",
         "tabTitle": "Location Search",
         "invalid_characters": "Search term contains illegal characters. Allowed characters are the letters a-z as well as å, ä and ö, numbers, backspaces, question marks (?), stars (*) and hyphens (-).",
