@@ -5,30 +5,19 @@
 	</div>
 </div>
 
-<style>
-	#menuToggle { cursor: pointer; color:blue; }
-	tbody.subMenuToggle tr th { padding-left:20px; };
-</style>
-<script>
-	$('#menuToggle').click(function() {
-		$(".subMenuToggle").toggle();
-		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
-	});
-</script>
-
 <table class="table select-column standard-width">
 	<thead>
 		<tr><td></td><th></th></tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th scope="row" id="menuToggle" >
+			<th scope="row" class="mainLevelToggle" >
 			<span class="glyphicon glyphicon glyphicon-collapse-down" data-toggle="collapse"></span>
 			Käytössä oleva maatalousmaa</th>
 			<td><input type="checkbox" name="field" value='1303'></td>
 		</tr>
 		<tr>
-			<tbody class="subMenuToggle" style="display:none; padding-left:100px;">
+			<tbody class="openMainToggle" style="display:none; padding-left:100px;">
 			<tr>
 				<th scope="row">Syysvehnä</th>
 				<td><input type="checkbox" name="field" value='1276'></td>

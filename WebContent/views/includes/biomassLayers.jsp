@@ -195,6 +195,13 @@
 		width: 450px;
 	}
 	
+	.mainLevelToggle { 
+		cursor: pointer; color:blue;
+	}
+	
+	tbody.openMainToggle tr th {
+		padding-left:20px;
+	}
 	
 </style>
 
@@ -334,6 +341,12 @@ $(document).ready(function () {
 		if($(event.target).is($(this))) {
 	  	event.stopPropagation ? event.stopPropagation() : (event.cancelBubble=true);
 	 	}
+	});
+	
+	
+	$('.mainLevelToggle').click(function() {
+		$(".openMainToggle").toggle();
+		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
 	});
 	
 	$('#searchBt').on('click', function() {
