@@ -1,5 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div>
-	<h4 class="biomass_layer_title">Pellon käyttö 2017, ha</h4>
+	<h4 class="biomass_layer_title"><spring:message code="bma.field_land_use_title"/></h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="42140a1a-da1e-4cd5-bc58-3246f9dd6f48">
 	</div>

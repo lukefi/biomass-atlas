@@ -390,20 +390,20 @@ $(document).ready(function () {
 </script>
 
 <div id="bmaLayerContent"><div class="bmaLayerInner">
-	<h3>BIOMASSAT</h3>
+	<h3><spring:message code="bma.biomasses_title"/></h3>
 	<div id="closeAllBmaLayersBtn" class="hidden" title="Sulje kaikki biomassatasot"></div>
 	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
-		<li class="active"><a data-toggle="tab" href="#potentialTabs">Potentiaali</a></li>
-		<li><a data-toggle="tab" href="#originTabs">Alkuperä</a></li>
+		<li class="active"><a data-toggle="tab" href="#potentialTabs"><spring:message code="bma.potential"/></a></li>
+		<li><a data-toggle="tab" href="#originTabs"><spring:message code="bma.origin"/></a></li>
 		<li><a data-toggle="tab" href="#searchTab"><spring:message code="bma.search"/></a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="potentialTabs" class="tab-pane fade in active">
 			<ul class="nav nav-pills">
-				<li class="active"><a data-toggle="tab" href="#maanpeiteLayer">Maanpeite</a></li>
-				<li><a data-toggle="tab" href="#kokonaistuotantoLayer">Kokonaistuotanto</a></li>
-				<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs" onlick ='$("#sivuvirtaTuhkaLayer")attr("href","")'>Sivuvirtapotentiaali</a></li>
+				<li class="active"><a data-toggle="tab" href="#maanpeiteLayer"><spring:message code="bma.land_cover"/></a></li>
+				<li><a data-toggle="tab" href="#kokonaistuotantoLayer"><spring:message code="bma.total_production"/></a></li>
+				<li><a data-toggle="tab" href="#sivuvirtapotentiaaliTabs" onlick ='$("#sivuvirtaTuhkaLayer")attr("href","")'><spring:message code="bma.sidestream_potential"/></a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="maanpeiteLayer" class="tab-pane fade in active">
@@ -415,13 +415,13 @@ $(document).ready(function () {
 				</div>
 				<div id="sivuvirtapotentiaaliTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer">Metsähake</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer">Yhdyskuntien<br/>biohajoava jäte</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs" id="sivuvirtaYritystenBiojatteet">Yritysten</br>biohajoava jäte</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaWasteManagementLayer">Jätt.käsittelyn<br>biohaj.jäte</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaTuhkaLayer">Tuhka</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat">Pelto</a></li>
-						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer">Lanta</a></li>
+						<li class="active"><a data-toggle="tab" href="#sivuvirtaMetsahakeLayer"><spring:message code="bma.forest_chip"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYhdyskuntienBiojatteetLayer"><spring:message code="bma.community_s"/><br/><spring:message code="bma.biowaste"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaYritystenBiojatteetLayerTabs" id="sivuvirtaYritystenBiojatteet"><spring:message code="bma.company_s"/><br/><spring:message code="bma.biowaste"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaWasteManagementLayer"><spring:message code="bma.treated_biodegradable_waste"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaTuhkaLayer"><spring:message code="bma.asses"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaPeltokasvitLayer" title="Peltokasvien sivuvirrat"><spring:message code="bma.field"/></a></li>
+						<li><a data-toggle="tab" href="#sivuvirtaLantaLayer"><spring:message code="bma.manure"/></a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="sivuvirtaMetsahakeLayer" class="tab-pane fade in active">
@@ -462,19 +462,19 @@ $(document).ready(function () {
 		
 		<div id="originTabs" class="tab-pane fade">
 			<ul class="nav nav-pills">
-				<li class="active"><a data-toggle="tab" href="#forestTabs">Metsä</a></li>
-				<li><a data-toggle="tab" href="#fieldTabs">Maatalous</a></li>
-				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer">Yhdyskunnat</a></li>
-				<li><a data-toggle="tab" href="#companiesTabs">Yritykset</a></li>
-				<li><a data-toggle="tab" href="#wasteManagementLayer">Jätt.käsittelyn biohaj.jäte</a></li>
-				<li><a data-toggle="tab" href="#incineratorsLayer">Polttolaitokset</a></li>
+				<li class="active"><a data-toggle="tab" href="#forestTabs"><spring:message code="bma.forest"/></a></li>
+				<li><a data-toggle="tab" href="#fieldTabs"><spring:message code="bma.agriculture"/></a></li>
+				<li><a data-toggle="tab" title="Yhdyskunnat (asutus, kaupat ja julkiset palvelut)" href="#communitiesLayer"><spring:message code="bma.communities"/></a></li>
+				<li><a data-toggle="tab" href="#companiesTabs"><spring:message code="bma.companies"/></a></li>
+				<li><a data-toggle="tab" href="#wasteManagementLayer"><spring:message code="bma.treated_biodegradable_waste"/></a></li>
+				<li><a data-toggle="tab" href="#incineratorsLayer"><spring:message code="bma.incernation_plants"/></a></li>
 			</ul>
 			
 			<div class="tab-content">
 				<div id="forestTabs" class="tab-pane fade in active">
 					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#kokonaisvarantoLayer">Kokonaisvaranto (MVMI)</a></li>
-						<li><a data-toggle="tab" href="#metsähakepotentiaaliLayer">Metsähakepotentiaali</a></li>
+						<li class="active"><a data-toggle="tab" href="#kokonaisvarantoLayer"><spring:message code="bma.total_resources"/></a></li>
+						<li><a data-toggle="tab" href="#metsähakepotentiaaliLayer"><spring:message code="bma.forest_chip_potential"/></a></li>
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="kokonaisvarantoLayer" class="tab-pane fade in active">
@@ -494,9 +494,9 @@ $(document).ready(function () {
 				
 				<div id="fieldTabs" class="tab-pane fade">
 					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="tab" href="#maankäyttöLayer">Maankäyttö</a></li>
-						<li><a data-toggle="tab" href="#fieldBiomassLayer">Biomassat</a></li>
-						<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirrat">Sivuvirrat</a></li>
+						<li class="active"><a data-toggle="tab" href="#maankäyttöLayer"><spring:message code="bma.land_use"/></a></li>
+						<li><a data-toggle="tab" href="#fieldBiomassLayer"><spring:message code="bma.biomasses"/></a></li>
+						<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirrat"><spring:message code="bma.side_streams"/></a></li>
 					</ul>
 					<div class="tab-content table-responsive">
 						<div id="maankäyttöLayer" class="tab-pane fade in active">
@@ -509,9 +509,9 @@ $(document).ready(function () {
 						
 						<div id="alkuperaMaatilaSivuvirrat" class="tab-pane fade">
 							<ul class="nav nav-pills">
-								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer">Peltokasvien sivuvirrat</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer">Lanta eläinsuojasta</a></li>
-								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer">Lanta varastosta</a></li>
+								<li class="active"><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaPeltokasvitLayer"><spring:message code="bma.crop_side_streams"/></a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaElainsuojaLayer"><spring:message code="bma.manure_housing"/></a></li>
+								<li><a data-toggle="tab" href="#alkuperaMaatilaSivuvirtaLantaVarastoLayer"><spring:message code="bma.manure_storage"/></a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="alkuperaMaatilaSivuvirtaPeltokasvitLayer" class="tab-pane fade in active">

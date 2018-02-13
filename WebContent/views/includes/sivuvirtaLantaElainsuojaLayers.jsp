@@ -1,5 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div>
-	<h4 class="biomass_layer_title">Lanta eläinsuojasta 2016, t/a</h4>
+	<h4 class="biomass_layer_title"><spring:message code="bma.manure_housing_title"/></h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="5cd36aa9-4d33-4018-b98a-143ad57380b3">
 	</div>

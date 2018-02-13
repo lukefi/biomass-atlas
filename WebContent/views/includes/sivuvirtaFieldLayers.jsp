@@ -1,5 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div>
-	<h4 class="biomass_layer_title">Peltokasvien sivuvirrat 2016, t(k-a)/a</h4>
+	<h4 class="biomass_layer_title"><spring:message code="bma.crop_side_streams_title"/></h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="07dca2e6-681f-4ce4-b548-211e80b6d19c">
 	</div>

@@ -1,5 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div>
-	<h4 class="biomass_layer_title">Peltobiomassat 2016, t/a</h4>
+	<h4 class="biomass_layer_title"><spring:message code="bma.field_biomasses_title"/></h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="0910fbf5-3f56-4f25-99e6-567f17d3bd14">
 	</div>

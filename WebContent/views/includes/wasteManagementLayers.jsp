@@ -1,14 +1,16 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <ul class="nav nav-pills wasteTreatmentLayersNavPills">
-	<li class="active"><a data-toggle="tab" href="#" id="wasteTreatmentElainJaKasvijätteetLayer_anchor">Eläin- ja kasvijäte</a></li>
-	<li><a data-toggle="tab" href="#" id="wasteTreatmentLietteetLayer_anchor">Liete</a></li>
-	<li><a data-toggle="tab" href="#" id="wasteTreatmentPaperijätteetLayer_anchor">Paperi- ja pahvijäte</a></li>
-	<li><a data-toggle="tab" href="#" id="wasteTreatmentPuujätteetLayer_anchor">Puujäte</a></li>
-	<li><a data-toggle="tab" href="#" id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayer_anchor">Sekajäte</a></li>
+	<li class="active"><a data-toggle="tab" href="#" id="wasteTreatmentElainJaKasvijätteetLayer_anchor"><spring:message code="bma.animal_and_plant_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="wasteTreatmentLietteetLayer_anchor"><spring:message code="bma.sludges"/></a></li>
+	<li><a data-toggle="tab" href="#" id="wasteTreatmentPaperijätteetLayer_anchor"><spring:message code="bma.paper_and_cardboard_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="wasteTreatmentPuujätteetLayer_anchor"><spring:message code="bma.wood_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayer_anchor"><spring:message code="bma.mixed_waste"/></a></li>
 </ul>
 <div class="tab-content table-responsive wasteTreatmentLayers">
 	<div id="wasteTreatmentElainJaKasvijätteetLayer" class="tab-pane fade in active">
 		<div>
-			<h4 class="biomass_layer_title">Eläin- ja kasviperäinen jäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.animal_and_plant_waste_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
@@ -34,7 +36,7 @@
 	
 	<div id="wasteTreatmentLietteetLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Liete 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code='bma.sludges_title'/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
@@ -75,7 +77,7 @@
 
 	<div id="wasteTreatmentPaperijätteetLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Paperi- ja pahvijäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.paper_and_cardboard_waste_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
@@ -101,7 +103,7 @@
 	
 	<div id="wasteTreatmentPuujätteetLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Puujäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.wood_waste_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>
@@ -137,7 +139,7 @@
 	
 	<div id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Yhdyskuntien sekajäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.mixed_waste_communities_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
 			</div>

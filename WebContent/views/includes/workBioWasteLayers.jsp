@@ -1,9 +1,11 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <ul class="nav nav-pills workBiowasteLayersNavPills">
-	<li class="active"><a data-toggle="tab" href="#" id="elainJaKasvijätteetLayer_anchor">Eläin- ja kasvijäte</a></li>
-	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor">Liete</a></li>
-	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor">Paperi- ja pahvijäte</a></li>
-	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor">Puujäte</a></li>
-	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor">Sekajäte</a></li>
+	<li class="active"><a data-toggle="tab" href="#" id="elainJaKasvijätteetLayer_anchor"><spring:message code="bma.animal_and_plant_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="lietteetLayer_anchor"><spring:message code="bma.sludges"/></a></li>
+	<li><a data-toggle="tab" href="#" id="paperijätteetLayer_anchor"><spring:message code="bma.paper_and_cardboard_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="puujätteetLayer_anchor"><spring:message code="bma.wood_waste"/></a></li>
+	<li><a data-toggle="tab" href="#" id="yhdyskuntienSekalainenBiohajoavaLayer_anchor"><spring:message code="bma.mixed_waste"/></a></li>
 </ul>
 <div class="tab-content table-responsive workBioWasteLayers">
 	<div id="elainJaKasvijätteetLayer" class="tab-pane fade in active">
@@ -16,7 +18,7 @@
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Paperi- ja pahvijäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.paper_and_cardboard_waste_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
 			</div>
@@ -51,7 +53,7 @@
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title">Yhdyskuntien sekajäte 2015, t/a</h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.mixed_waste_communities_title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
 			</div>

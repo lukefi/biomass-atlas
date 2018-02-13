@@ -1,5 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div>
-	<h4 class="biomass_layer_title">Puujäte 2015, t/a</h4>
+	<h4 class="biomass_layer_title"><spring:message code="bma.wood_waste_title"/></h4>
 	<div class="biomass_info_icon icon-info">
 		<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
 	</div>
