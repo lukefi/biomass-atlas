@@ -383,7 +383,7 @@ $(document).ready(function () {
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs">Potentiaali</a></li>
 		<li><a data-toggle="tab" href="#originTabs">Alkuperä</a></li>
-		<li><a data-toggle="tab" href="#searchTab">Haku</a></li>
+		<li><a data-toggle="tab" href="#searchTab"><spring:message code="bma.search"/></a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="potentialTabs" class="tab-pane fade in active">
@@ -535,10 +535,10 @@ $(document).ready(function () {
 		</div>	<!-- originTab tab-pane ends -->
 		<div id="searchTab" class="tab-pane fade">
 			<div class="search-content">
-				<div>Hae biomassajakeet.</div>
+				<div><spring:message code="bma.search_biomass_type"/></div>
 				<div id="searchAttribute">
 					<input type="text" id="searchText" size="35"/>
-					<button id="searchBt" class="oskari-button">Hae</button>
+					<button id="searchBt" class="oskari-button"><spring:message code="bma.search_button"/></button>
 				</div>
 				<div id="showResults">
 				</div>
