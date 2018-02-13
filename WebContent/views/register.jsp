@@ -121,7 +121,7 @@
 			</c:when>
 			<c:otherwise>
 				<h1><spring:message code="bma.register"/></h1>
-				<div>Rekisteröitymällä Biomassa-atlas -palveluun saat käyttöösi lisätoiminnallisuuksia, kuten aiempien hakujen tallentamisen ja omien aineistojen käyttämisen apuna biomassa-hauissa.</div>
+				<div><spring:message code="bma.after_register_possiblility_message"/></div>
 				<div id="registerLeaflet" class="customLink">   	    
 					<a href="https://www.luke.fi/wp-content/uploads/2016/04/rekisteriseloste_biomassa_atlas.pdf" target="_blank">
 						<spring:message code="bma.registerLeaflet"/></a>
