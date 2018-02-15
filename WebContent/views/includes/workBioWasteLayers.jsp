@@ -18,7 +18,7 @@
 	
 	<div id="paperijätteetLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title"><spring:message code="bma.paper_and_cardboard_waste_title"/></h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.paper_and_cardboard_waste.title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
 			</div>
@@ -30,17 +30,17 @@
 			<tbody>
 				<tr>
 					<th scope="row">150101</th>
-					<th scope="row">Paperi- ja kartonkipakkaukset, yritystoiminnasta</th>
+					<th scope="row"><spring:message code="bma.companies_biowaste.paper_and_cardboard_waste.150101"/></th>
 					<td><input type="checkbox" name="waste" value='1107'></td>
 				</tr>
 				<tr>
 					<th scope="row">191201</th>
-					<th scope="row">Jätteiden mekaanisen käsittelyn paperi- ja kartonkijätteet, yritystoiminnasta</th>
+					<th scope="row"><spring:message code="bma.companies_biowaste.paper_and_cardboard_waste.191201"/></th>
 					<td><input type="checkbox" name="waste" value='1108'></td>
 				</tr>
 				<tr>
 					<th scope="row">200101</th>
-					<th scope="row">Yhdyskuntajätteen paperi ja kartonki, yritystoiminnasta</th>
+					<th scope="row"><spring:message code="bma.companies_biowaste.paper_and_cardboard_waste.200101"/></th>
 					<td><input type="checkbox" name="waste" value='1109'></td>
 				</tr>
 			</tbody>
@@ -53,7 +53,7 @@
 	
 	<div id="yhdyskuntienSekalainenBiohajoavaLayer" class="tab-pane fade">
 		<div>
-			<h4 class="biomass_layer_title"><spring:message code="bma.mixed_waste_communities_title"/></h4>
+			<h4 class="biomass_layer_title"><spring:message code="bma.mixed_waste_communities.title"/></h4>
 			<div class="biomass_info_icon icon-info">
 				<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
 			</div>
@@ -65,12 +65,12 @@
 			<tbody>
 				<tr>
 					<th scope="row">200301</th>
-					<th scope="row">Sekalaiset yhdyskuntajätteet, yritystoiminnasta</th>
+					<th scope="row"><spring:message code="bma.companies_biowaste.mixed_waste.200301"/></th>
 					<td><input type="checkbox" name="waste" value='1117'></td>
 				</tr>
 				<tr>
 					<th scope="row">200399</th>
-					<th scope="row">Yhdyskuntajätteet, joita ei ole mainittu muualla, yritystoiminnasta</th>
+					<th scope="row"><spring:message code="bma.companies_biowaste.mixed_waste.200399"/></th>
 					<td><input type="checkbox" name="waste" value='1118'></td>
 				</tr>
 			</tbody>

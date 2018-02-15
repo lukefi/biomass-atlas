@@ -390,7 +390,7 @@ $(document).ready(function () {
 </script>
 
 <div id="bmaLayerContent"><div class="bmaLayerInner">
-	<h3><spring:message code="bma.biomasses_title"/></h3>
+	<h3><spring:message code="bma.biomasses.title"/></h3>
 	<div id="closeAllBmaLayersBtn" class="hidden" title="Sulje kaikki biomassatasot"></div>
 	<div class='oskari-flyouttool-close icon-close icon-close' id="closeBmaLayerContent"></div>
 	<ul class="nav nav-pills">
