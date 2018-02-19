@@ -75,7 +75,33 @@ body {
 
 #login input[type="submit"] {
 	width: 90%;
-	margin-bottom: 5px;
+	background: #78be20;
+	background-image: -webkit-linear-gradient(top, #78be20, #3d5c11);
+	background-image: -moz-linear-gradient(top, #78be20, #3d5c11);
+	background-image: -ms-linear-gradient(top, #78be20, #3d5c11);
+	background-image: -o-linear-gradient(top, #78be20, #3d5c11);
+	background-image: linear-gradient(to bottom, #78be20, #3d5c11);
+	-webkit-border-radius: 5;
+	-moz-border-radius: 5;
+	border-radius: 5px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 13px;
+	padding: 6px 12px 6px 12px;
+	text-shadow: none;
+	margin: 10px 20px 10px 0px;
+	font-weight: normal;
+	min-height: 3em;
+}
+
+#login input[type="submit"]:hover:enabled {
+	background: #64a019;
+	background-image: -webkit-linear-gradient(top, #64a019, #507719);
+	background-image: -moz-linear-gradient(top, #64a019, #507719);
+	background-image: -ms-linear-gradient(top, #64a019, #507719);
+	background-image: -o-linear-gradient(top, #64a019, #507719);
+	background-image: linear-gradient(to bottom, #64a019, #507719);
+	color: #ffffff;
 }
 
 #login p.error {
@@ -209,6 +235,14 @@ h4.biomass_layer_title {
 #lang_selector span {
 	margin-left: 15px;
 }
+
+.hide {
+	display: none;
+}
+
+#submit {
+	margin-left: 0px;
+}
 </style>
 <!-- ############# /css ################# -->
 </head>
@@ -230,15 +264,9 @@ h4.biomass_layer_title {
 		<div id="divider"></div>
 		<div id="toolbar"></div>
 		<div id="login">
-			<c:choose>
-				<c:when test="${!empty loginState}">
-					<p class="error">
-						<spring:message code="bma.invalidPassword" />
-					</p>
-				</c:when>
-			</c:choose>
 			<c:set var="user" value="fi.nls.oskari.domain.User" />
-			<%-- when test="${!empty sessionScope[user]}" --%>
+			<c:set var="loginStatus" value="${!empty loginState}" />
+			<input type="hidden" id="loginStatus" value="${ loginStatus }">
 			<c:choose>
 				<c:when test="${!empty _logout_uri && empty _login_uri}">
 					<span id="user">${sessionScope[user].firstname} ${sessionScope[user].lastname}</span>
@@ -247,16 +275,28 @@ h4.biomass_layer_title {
 					<br>
 					<a href="${_logout_uri}"><spring:message code="bma.logout" /></a>
 				</c:when>
+				<c:when test="${empty _logout_uri && !empty _login_uri && empty loginState}">
+					<a href="#" id="showLogin"><spring:message code="bma.login" /></a>
+				</c:when>
 				<c:otherwise>
-					<form action='${_login_uri}' method="post" accept-charset="UTF-8">
-						<input size="16" id="username" name="${_login_field_user}" type="text"
-							placeholder="<spring:message code="bma.username"/>" autofocus required> <input
-							size="16" id="password" name="${_login_field_pass}" type="password"
-							placeholder="<spring:message code="bma.password"/>" required> <input
-							type="submit" id="submit" value="<spring:message code="bma.login"/>">
-					</form>
+					<!-- Nothing -->
 				</c:otherwise>
 			</c:choose>
+			
+			<p class="error hide">
+				<spring:message code="bma.invalidPassword" />
+			</p>
+				
+			<div id="loginForm" class="hide">
+				<form action='${_login_uri}' method="post" accept-charset="UTF-8">
+					<input size="16" id="username" name="${_login_field_user}" type="text"
+						placeholder="<spring:message code="bma.username"/>" autofocus required> <input
+						size="16" id="password" name="${_login_field_pass}" type="password"
+						placeholder="<spring:message code="bma.password"/>" required> <input
+						type="submit" id="submit" value="<spring:message code="bma.login"/>">
+				</form>
+				<a href="#" id="forgotPassword"><spring:message code="bma.forgotPassword"/></a><br><br>
+			</div>
 		</div>
 		<div id="register" class="customLink">
 			<c:if test="${empty _logout_uri}">
@@ -594,6 +634,23 @@ var clearAllBmaLayerCheckboxes = function() {
 	});
 }
 
+/* Login form hide/show */
+$('#showLogin').click(function () {
+	$('#loginForm').removeClass('hide');
+	$('#showLogin').addClass('hide');
+});
+
+var loginStatus = $("#loginStatus").val();
+if (loginStatus == 'true') {
+	$('div#login p.error').removeClass('hide');
+	$('#loginForm').removeClass('hide');
+} 
+
+/* Forgot password  anchot click event*/
+$('#forgotPassword').click(function () {		
+	var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
+	window.location.replace(host);
+});
 </script>
 
 	<!-- Google Analytics -->
