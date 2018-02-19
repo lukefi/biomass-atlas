@@ -60,15 +60,15 @@ function(instance, locale, conf) {
 	this.templateBoundaryData = jQuery('<div id="boundary-data"></div>');
 	this.templateBoundaryCalculateCancelTool = jQuery('<div class="boundary-horizontal-line">.</div>' + 
 			'<div id="boundary-calculate-cancel-tool" style="display:none">' +
-			'<button class="boundary-button" id="boundary-prev"></button>' +
-			'<button class="boundary-button" id="boundary-calculate"></button>' +
-			'<button class="boundary-button" id="boundary-calculateMunicipality" style="display:none"></button>' +
-			'<span id="boundary-cancel-tool"><button class="boundary-button" id="boundary-cancel"></button></span> </div>');
+			'<button class="oskari-button" id="boundary-prev"></button>' +
+			'<button class="oskari-button" id="boundary-calculate"></button>' +
+			'<button class="oskari-button" id="boundary-calculateMunicipality" style="display:none"></button>' +
+			'<span id="boundary-cancel-tool"><button class="oskari-button" id="boundary-cancel"></button></span> </div>');
 	
 	{
 		var flyoutLocalization = this.instance.getLocalization()["flyout"];
 		var messageString = '<div id="boundary-message">' + flyoutLocalization["chooseAreaType"] + '</div>';
-		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="boundary-button">' 
+		messageString += '<div id="boundary-select-all" style="display: none"><button id="boundary-select-all-button" class="oskari-button">' 
 			+ flyoutLocalization["selectAll"] + '</button></div>';
 		/*messageString += '<br><div id="unit-conversion" style="display: none"><input type="checkbox" id="unit-conversion-checkbox"> ' 
 			+ ' Unit Conversion' + '</input></div>'
@@ -76,8 +76,8 @@ function(instance, locale, conf) {
 		messageString += '<div id="boundary-radio">';
 		for (var i = 0; i < this.AREA_TYPES.length; i++) {
 			var areaType = this.AREA_TYPES[i];
-			messageString += '<button name="boundary" value="' + areaType;
-			messageString += '">' + flyoutLocalization["areaType"][areaType] + ' »</button><br>';
+			messageString += '<button name="boundary" class="oskari-button" value="' + areaType;
+			messageString += '">' + flyoutLocalization["areaType"][areaType] + ' </button>';
 		}
 		messageString += '</div>';
 		this.templateBoundaryMessage = jQuery(messageString);
@@ -700,7 +700,7 @@ function(instance, locale, conf) {
                     'Oskari.userinterface.component.Button'
                 );
 
-            okBtn.addClass('default boundary-button');
+            okBtn.addClass('default oskari-button');
             okBtn.setTitle('Ok');
             okBtn.setHandler(function () {
                 dialog.close(true);

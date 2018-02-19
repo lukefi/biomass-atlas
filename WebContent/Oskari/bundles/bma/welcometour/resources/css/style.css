@@ -11,7 +11,7 @@
 
 div.divmanazerpopup.welcometour h3.popupHeader {
   color: #fff;
-  background-color: #1995fd;
+  background-color: #00b4e1;
   border-radius: 3px 3px 0 0;
   padding: 10px 0 10px 12px; }
 
@@ -45,44 +45,8 @@ div.divmanazerpopup.welcometour h3 span {
   /* zoom and *display = ie7 hack for display:inline-block */
   *display: inline;
   vertical-align: baseline;
-  margin: 0 2px;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font: 14px/100% Arial, sans-serif;
-  font-weight: bold;
-  padding: 4px 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  color: #fff;
-  border: solid 1px #017a24;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
-  background: #3996ed;
-  background: -webkit-gradient(linear, left top, left bottom, from(#017a24), to(#034710));
-  background: -moz-linear-gradient(top, #017a24, #034710);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#017a24', endColorstr='#034710');
-  /* unquote for libsass bug */ }
-
-.divmanazerpopup.welcometour .actions input:hover {
-  text-decoration: none;
-  color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#017a24), to(#034710));
-  background: -moz-linear-gradient(top, #017a24, #034710);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#017a24', endColorstr='#034710');
-  /* unquote for libsass bug */ }
-
-.divmanazerpopup.welcometour .actions input:active {
-  position: relative;
-  top: 1px;
-  color: #19456d;
-  text-shadow: none;
-  background: -webkit-gradient(linear, left top, left bottom, from(#017a24), to(#034710));
-  background: -moz-linear-gradient(top, #017a24, #034710);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#017a24', endColorstr='#034710');
-  /* unquote for libsass bug */ }
-
+   /* unquote for libsass bug */ }
+  
 .divmanazerpopup.welcometour.arrow:after, .divmanazerpopup.welcometour.arrow:before {
   display: none; }
 
@@ -94,8 +58,13 @@ div.divmanazerpopup.welcometour h3 span {
 	margin-top: -5px;
 	margin-right: 20px;
 	font-size: 12px;
-}
- 	
+} 	
 #welcome_lang_selector span {
 	margin-left: 15px;
-}    	
+}
+#welcome_lang_selector span > a {
+	color: #4e8be5;
+}
+#welcome_lang_selector span > a:hover {
+	color: #c2c2c2;
+}

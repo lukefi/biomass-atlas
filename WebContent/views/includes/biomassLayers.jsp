@@ -196,7 +196,8 @@
 	}
 	
 	.mainLevelToggle { 
-		cursor: pointer; color:blue;
+		cursor: pointer; 
+		color: #2a79aa;
 	}
 	
 	tbody.openMainToggle tr th {
@@ -551,7 +552,7 @@ $(document).ready(function () {
 				<div><spring:message code="bma.search_biomass_type"/></div>
 				<div id="searchAttribute">
 					<input type="text" id="searchText" size="35"/>
-					<button id="searchBt" class="oskari-button"><spring:message code="bma.search_button"/></button>
+					<button id="searchBt" class="oskari-button bma-button"><spring:message code="bma.search_button"/></button>
 				</div>
 				<div id="showResults">
 				</div>

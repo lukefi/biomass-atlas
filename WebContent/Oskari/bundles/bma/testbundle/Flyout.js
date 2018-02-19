@@ -26,7 +26,7 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateAreaMessage = jQuery('<div id="area-message"><span id="description"></span><div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
-	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="area-button" id="area-cancel"></button></div>');
+	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="oskari-button" id="area-cancel"></button></div>');
 	
 }, {	
 	/**
@@ -272,7 +272,7 @@ function(instance, locale, conf) {
             okBtn = Oskari.clazz.create(
                 'Oskari.userinterface.component.Button'
             );            
-        okBtn.addClass('default area-button');
+        okBtn.addClass('default oskari-button');
         okBtn.setTitle('Ok');
         okBtn.setHandler(function () {
             dialog.close(true);

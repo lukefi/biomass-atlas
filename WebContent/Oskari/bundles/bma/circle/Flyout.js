@@ -42,10 +42,10 @@ function(instance, locale, conf) {
 			'</label><div class="icon-info" id="road-info-tool"></div></div> <div class="horizontal-line">.</div>');
 	this.templateCirclePoint = jQuery('<div id="circle-point" style="display:none;"><label id="circle-point-label"> '+ flyoutLocalization.point + 
 			': </label><span id="circle-point-value"></span></div>');
-	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="circle-button" id="circle-calculate"></button>' +
-			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
-	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="circle-button" id="circle-back"></button>' +
-			'<span id="circle-cancel-tool"><button class="circle-button" id="circle-cancel"></button></span> </div>');
+	this.templateCircleCalculateCancelTool = jQuery('<div id="circle-calclulate-tool" style="display:none;"><button class="oskari-button" id="circle-calculate"></button>' +
+			'<span id="circle-cancel-tool"><button class="oskari-button" id="circle-cancel"></button></span> </div>');
+	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="oskari-button" id="circle-back"></button>' +
+			'<span id="circle-cancel-tool"><button class="oskari-button" id="circle-cancel"></button></span> </div>');
 }, {	
 	/**
 	 * @property template HTML templates for the User Interface
