@@ -119,7 +119,7 @@
 					<span class="content-column">
 						<span class="content-column"><label class="column-field-label"><spring:message code="bma.passwordReset.confirmNew"/></label></span>
 						<span class="content-column"><input class="column-field-input" size="16" id="confirmPassword" name="confirmPassword" type="password" required>
-						<label id="unmatchedPassword" class="error"></label></span>
+						<span id="unmatchedPassword" class="alert alert-danger hidden" role="alert"></span>
 					</span>
 					<span>				
 						<button id="reset"><spring:message code="bma.passwordReset.submit"/></button>
@@ -141,35 +141,51 @@ $(document).ready(function () {
 	});
 	
 	$('#reset').click(function () {		
-		var password = jQuery('#password').val();
-		var confirmPassword = jQuery('#confirmPassword').val();
-		
-		if (password != confirmPassword) {
-			jQuery('#unmatchedPassword').text('<spring:message code="bma.passwordReset.doesNotMatch"/>');
-			return;
+		if (validate()) {
+			var uuid = '${uuid}',
+				host = window.location.protocol + "//" + window.location.host; 
+			jQuery.ajax({
+				url: host + "/action?action_route=UserPasswordReset&setPassword=1",
+				type: 'POST',
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify({
+						password: password,
+						uuid: uuid					
+					}),
+				success: function(data) {
+					var url = window.location.protocol + "//" + window.location.host + "/biomass/user/passwordChanged"; 
+					window.location.replace(url);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert(jqXHR.responseText);
+				}
+			});	
 		}
-		
-		var uuid = '${uuid}';
-		var host = window.location.protocol + "//" + window.location.host; 
-		jQuery.ajax({
-			url: host + "/action?action_route=UserPasswordReset&setPassword=1",
-			type: 'POST',
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({
-					password: password,
-					uuid: uuid					
-				}),
-			success: function(data) {
-				var url = window.location.protocol + "//" + window.location.host + "/biomass/user/passwordChanged"; 
-				window.location.replace(url);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.responseText);
-			}
-		});				
 	});
 	
 });
+
+//Validates the form values
+function validate() {
+	var password = jQuery('#password').val(),
+		confirmPassword = jQuery('#confirmPassword').val(),
+		flag = true;
+	clearErrorMessage();
+	
+	if (password != confirmPassword) {
+		errorMsg('#unmatchedPassword', '<spring:message code="bma.passwordReset.doesNotMatch"/>');	
+		flag = false;
+	}
+	return flag;
+}
+
+function errorMsg(selector, str) {
+	$(selector).text(str).removeClass("hidden");
+}
+
+function clearErrorMessage() {
+	$('.alert').text("").addClass("hidden");
+}
 
 </script>
 </body>
