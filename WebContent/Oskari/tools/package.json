@@ -55,7 +55,7 @@
     "uglifycss": "0.0.5",   
     "xml2js": "latest",
     "yuidocjs": "0.3.45",
-    "fs-extra": "latest"
+    "fs-extra": "5.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
