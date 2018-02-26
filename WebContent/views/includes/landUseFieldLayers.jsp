@@ -3,7 +3,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.field_land_use.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="42140a1a-da1e-4cd5-bc58-3246f9dd6f48">
+		<input type="hidden" value="48430c98-e372-4a4a-b707-d3feeb484dd1">
 	</div>
 </div>
 

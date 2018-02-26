@@ -3,7 +3,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.crop_side_streams.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="07dca2e6-681f-4ce4-b548-211e80b6d19c">
+		<input type="hidden" value="71341068-4813-4e48-9471-82ac534a6a8e">
 	</div>
 </div>
 <table class="table select-column standard-width" id="sivuvirtaPeltokasvitLayerTable">
