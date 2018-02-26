@@ -3,7 +3,7 @@
     	z-index: 1000;
     	position: absolute;
     	height: 738px;
-    	width: 730px;
+    	width: 735px;
     	/*width: 630px;*/
     	display: none;
     	bottom: 80px;
