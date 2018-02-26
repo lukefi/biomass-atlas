@@ -111,7 +111,7 @@ body {
 }
 
 #login a {
-	padding: 5px;
+	padding: 0px;
 }
 
 .error {
