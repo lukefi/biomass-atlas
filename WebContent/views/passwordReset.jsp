@@ -140,9 +140,11 @@ $(document).ready(function () {
 		window.location.replace(host);
 	});
 	
-	$('#reset').click(function () {		
+	$('#reset').click(function (event) {
+		event.preventDefault();
 		if (validate()) {
 			var uuid = '${uuid}',
+				password = jQuery('#password').val(),
 				host = window.location.protocol + "//" + window.location.host; 
 			jQuery.ajax({
 				url: host + "/action?action_route=UserPasswordReset&setPassword=1",
