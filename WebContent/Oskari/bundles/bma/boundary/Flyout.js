@@ -52,7 +52,7 @@ function(instance, locale, conf) {
 	this.CALCULATE_RULE_FOR_PROVINCE = "CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE";
 	this.CALCULATE_RULE_FOR_ELY = "CALCULATE_BY_MUNICIPALITY_FOR_ELY";
 
-	this.wmsUrl = "http://testi.biomassa-atlas.luke.fi/geoserver/wms";	
+	this.wmsUrl = "https://testi-biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
 	this.wmsId = null;	
 
