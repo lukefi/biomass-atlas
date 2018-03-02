@@ -28,7 +28,8 @@ Oskari.registerLocalization(
             "page2": {
             	"title": "Welcome to Biomassa atlas second page",
             	"message" : "Second page"
-            }
+            },
+            "image" : "area_selection_tool_fi.png"
       }
     }
 );

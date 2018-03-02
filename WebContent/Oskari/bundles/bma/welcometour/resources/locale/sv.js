@@ -24,7 +24,8 @@ Oskari.registerLocalization(
                 "listitem2" : "Piirrä tai valitse alue ALUEVALINTA-kuvakkeiden työkaluilla ja laske tulokset",
                 "imagealt" : "Aluevalinta",
                 "tip" : "Vinkki: Sulkemalla ja avaamalla taustakartan uudelleen TAUSTAKARTAT-valikossa, saat nostettua kartan nopeasti päällimmäiseksi"
-            }
+            },
+            "image" : "area_selection_tool_sv.png"
       }
     }
 );

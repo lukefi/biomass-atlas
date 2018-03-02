@@ -113,8 +113,8 @@ Oskari.clazz.define("Oskari.bma.bundle.welcometour.WelcomeTourInstance",
                 content.append('<ol type="1"> \
                 		<li>'+this.ref._localization['page1'].listitem1+'</li> \
                 		<li>'+this.ref._localization['page1'].listitem2+'<br> \
-                		<img src="/resources/images/area_selection_tools.png" \
-                		alt="'+this.ref._localization['page1'].imagealt+'" width="98" height="62"></li></ol>');      
+                		<img src="/resources/images/' +this.ref._localization['image']+'" \
+                		alt="'+this.ref._localization['page1'].imagealt+'" width="121" height="54"></li></ol>');      
                 content.append(this.ref._localization['page1'].tip);
                 return content;
             }
