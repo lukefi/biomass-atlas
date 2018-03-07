@@ -1,6 +1,8 @@
 package fi.luke.bma.service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +21,7 @@ import fi.luke.bma.dao.ValidityDao;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
+import fi.luke.bma.model.Category;
 import fi.luke.bma.model.Data;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
@@ -82,18 +85,31 @@ public class CalculationService {
     	if (attributeIds.isEmpty() || boundedAreaIds.isEmpty()) {
     		return Collections.emptyList();
     	}
-    	if (isManureData(attributeIds) && gridId == GridType.MUNICIPALITY.getValue()) {
-    	    gridId = GridType.MUNICIPALITY_WITHOUT_SEA_AREA.getValue();
-    	}
-    	String jpql = "SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value, a.displayOrder)"
-    			+ " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, " + Attribute.class.getName() + " a"
-    			+ " WHERE d.cell.id = c.id AND d.attribute.id = a.id AND c.grid.id = " + gridId
-    			+ " AND d.validity.id = a.latestValidity.id "
-    			+ " AND a.id IN (" + Joiner.on(',').join(attributeIds) + ")"
-    			+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ") ORDER BY a.displayOrder";
     	
-    	Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
-    	return query. getResultList();
+    	List<AdministrativeAreaBiomassCalculationResult> allResultList = new ArrayList<AdministrativeAreaBiomassCalculationResult>();
+    	
+    	if(gridId == GridType.MUNICIPALITY.getValue()){
+    		List<Integer> gridIdForMunicipality = Arrays.asList(GridType.MUNICIPALITY.getValue(), GridType.MUNICIPALITY_WITHOUT_SEA_AREA.getValue());
+    		String jpql =
+    				" SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value, a.displayOrder)"
+    		    	+ " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, " + Attribute.class.getName() + " a"
+    		    	+ " WHERE d.cell.id = c.id AND d.attribute.id = a.id AND c.grid.id IN (" + Joiner.on(',').join(gridIdForMunicipality) + ")"
+    		    	+ " AND d.validity.id = a.latestValidity.id "
+    		    	+ " AND a.id IN (" + Joiner.on(',').join(attributeIds) + ")"
+    		    	+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ") ORDER BY a.displayOrder ";
+    		Query query2 = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);	
+    		allResultList = query2.getResultList();
+    	}else {
+    		String jpql = "SELECT new " + AdministrativeAreaBiomassCalculationResult.class.getName() + "(a.id, c.cellId, d.value, a.displayOrder)"
+        			+ " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, " + Attribute.class.getName() + " a"
+        			+ " WHERE d.cell.id = c.id AND d.attribute.id = a.id AND c.grid.id = " + gridId
+        			+ " AND d.validity.id = a.latestValidity.id "
+        			+ " AND a.id IN (" + Joiner.on(',').join(attributeIds) + ")"
+        			+ " AND c.cellId IN (" + Joiner.on(',').join(boundedAreaIds) + ") ORDER BY a.displayOrder";
+    		Query query = entityManager.createQuery(jpql, AdministrativeAreaBiomassCalculationResult.class);
+    		allResultList = query.getResultList();
+    	}
+    	return allResultList;
     }
     
     public double getTotalSumOfBoundedArea(Collection<Long> boundedAreaIds, long gridId) {
