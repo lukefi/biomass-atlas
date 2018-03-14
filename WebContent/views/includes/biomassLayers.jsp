@@ -199,8 +199,14 @@
 		cursor: pointer; 
 		color: #2a79aa;
 	}
-	
+	.subLevelVegetablesToggle { 
+		cursor: pointer;
+		color: #337ab7;
+	}
 	tbody.openMainToggle tr th {
+		padding-left:20px;
+	}
+	table.openVegetablesToggle tr th {
 		padding-left:20px;
 	}
 	
@@ -344,9 +350,12 @@ $(document).ready(function () {
 	 	}
 	});
 	
-	
 	$('.mainLevelToggle').click(function() {
 		$(".openMainToggle").toggle();
+		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
+	});
+	$('.subLevelVegetablesToggle').click(function() {
+		$(".openVegetablesToggle").toggle();
 		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
 	});
 	

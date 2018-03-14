@@ -101,8 +101,15 @@
 				<td><input type="checkbox" name="field" value='1046'></td>
 			</tr>
 			<tr>
-				<th scope="row"><spring:message code="bma.field_land_use.outdoor_vegetables_and_roots"/></th>
+				<th scope="row" class="subLevelVegetablesToggle">
+					<span class="glyphicon glyphicon glyphicon-collapse-down" data-toggle="collapse"></span>
+					<spring:message code="bma.field_land_use.outdoor_vegetables_and_roots"/>
+				</th>
 				<td><input type="checkbox" name="field" value='1157'></td>
+			</tr>
+			<tr class="openVegetablesToggle" style="display:none;">
+				<th scope="row" style="padding-left: 50px;">Porkkana</th>
+				<td><input type="checkbox" name="field" value='0000'></td>
 			</tr>
 			<tr>
 				<th scope="row"><spring:message code="bma.field_land_use.berry_bushes_and_fruits"/></th>
