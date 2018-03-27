@@ -27,8 +27,7 @@ public class LocalizeService {
     public <T> String getLocalizedName(Object obj, Class<T> clazz, String partialMethodName) {
         Method[] methods = clazz.getMethods();
         Field[] fields = clazz.getDeclaredFields();
-        Locale locale = LocaleContextHolder.getLocale();
-        String language = locale.getLanguage();
+        String language = getLocalLanguage();
         String localizedName = "";
         boolean hasLocalized = false;
         for (Field field : fields) {
@@ -61,8 +60,7 @@ public class LocalizeService {
     }
     
     public String getLocalizedAttributeName(Attribute attributeName) {
-    	Locale locale = LocaleContextHolder.getLocale();
-    	String language = locale.getLanguage();
+    	String language = getLocalLanguage();
     	String localizedAttributeName;
     	if (language == "en" && (attributeName != null)) {
     		localizedAttributeName = attributeName.getNameEN();	
@@ -77,24 +75,20 @@ public class LocalizeService {
     public List<String> getLocalizedMessageSource() {
     	Locale locale = LocaleContextHolder.getLocale();
     	List<String> colunmMessages = new ArrayList<String>();
-    	colunmMessages.add(messageSource.getMessage("bma.areaName",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.area",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
-		colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.areaName", null, locale));
+		colunmMessages.add(messageSource.getMessage("bma.area", null, locale));
+		colunmMessages.addAll(getLocalizedMessageSourceForReport());
     	return colunmMessages;
     }
     
     public List<String> getLocalizedMessageSourceForReport() {
     	Locale locale = LocaleContextHolder.getLocale();
     	List<String> colunmMessages = new ArrayList<String>();
-    	colunmMessages.add(messageSource.getMessage("bma.type",null,locale));
-    	colunmMessages.add(messageSource.getMessage("bma.amount",null,locale));
-    	colunmMessages.add(messageSource.getMessage("bma.unit",null,locale));
-    	colunmMessages.add(messageSource.getMessage("bma.selectedArea",null,locale));
-    	colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
+    	colunmMessages.add(messageSource.getMessage("bma.type", null, locale));
+    	colunmMessages.add(messageSource.getMessage("bma.amount", null, locale));
+    	colunmMessages.add(messageSource.getMessage("bma.unit", null, locale));
+    	colunmMessages.add(messageSource.getMessage("bma.selectedArea", null, locale));
+    	colunmMessages.add(messageSource.getMessage("bma.areaType", null, locale));
     	return colunmMessages;
     }
     
