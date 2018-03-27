@@ -97,4 +97,9 @@ public class LocalizeService {
     	colunmMessages.add(messageSource.getMessage("bma.areaType",null,locale));
     	return colunmMessages;
     }
+    
+    public String getLocalLanguage() {
+        Locale locale = LocaleContextHolder.getLocale();
+        return locale.getLanguage();
+    }
 }

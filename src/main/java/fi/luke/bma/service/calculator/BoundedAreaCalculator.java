@@ -1,8 +1,10 @@
 package fi.luke.bma.service.calculator;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -32,7 +34,7 @@ public class BoundedAreaCalculator extends Calculator {
     private final AttributeService attributeService;
 
     private final GridCellService gridCellService;
-    
+
     private final LocalizeService localizeService;
 
     public BoundedAreaCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
@@ -92,7 +94,8 @@ public class BoundedAreaCalculator extends Calculator {
 
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
             Map<String, Object> boundedArea = boundedAreaMap.get(result.getAreaId());
-            Long calculatedResult = Math.round(result.getValue());
+            Double value = result.getValue();
+            Double calculatedResult = getCalculateResult(value);
             boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
         }
 
@@ -159,7 +162,7 @@ public class BoundedAreaCalculator extends Calculator {
                 row.add(new DataCell(boundedArea.get("id")));
                 row.add(new DataCell(boundedArea.get("name")));
                 row.add(new DataCell(attributeInfo.get("name")));
-                row.add(new DataCell((Long) entry.getValue()));
+                row.add(new DataCell((Double) entry.getValue()));
                 row.add(new DataCell(attributeInfo.get("unit")));
                 row.add(new DataCell("")); // Empty string for 6th column
                 data.add(row);
@@ -201,6 +204,25 @@ public class BoundedAreaCalculator extends Calculator {
             requestModel.setAreaIds(areaIds);
             requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
         }
+    }
+
+    /**
+     * If the value is less than 10, 2 decimal place is returned, else value is rounded to nearest long value.
+     * 
+     * @param value
+     *            Result value which is to be rounded
+     * @return Object which would be either String or Long value
+     */
+    private Double getCalculateResult(Double value) {
+        Double calculatedResult;
+        NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
+        numberFormat.setMaximumFractionDigits(2);
+        if (value < 10.0) {
+            calculatedResult = Double.parseDouble(numberFormat.format(value));
+        } else {
+            calculatedResult = ((Long) Math.round(value)).doubleValue();
+        }
+        return calculatedResult;
     }
 
 }
