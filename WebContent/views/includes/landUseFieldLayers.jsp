@@ -107,14 +107,73 @@
 				</th>
 				<td><input type="checkbox" name="field" value='1157'></td>
 			</tr>
-			<tr class="openVegetablesToggle" style="display:none;">
-				<th scope="row" style="padding-left: 50px;">Porkkana</th>
-				<td><input type="checkbox" name="field" value='0000'></td>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.garden_pea"/></th>
+				<td><input type="checkbox" name="field" value='1317'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.heading_cabbages"/></th>
+				<td><input type="checkbox" name="field" value='1318'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.other_cabbages"/></th>
+				<td><input type="checkbox" name="field" value='1319'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.carrot"/></th>
+				<td><input type="checkbox" name="field" value='1320'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.other_beetroots"/></th>
+				<td><input type="checkbox" name="field" value='1321'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.gherkin"/></th>
+				<td><input type="checkbox" name="field" value='1322'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.red_and_yellow_beetroots"/></th>
+				<td><input type="checkbox" name="field" value='1323'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.onion"/></th>
+				<td><input type="checkbox" name="field" value='1324'></td>
+			</tr>
+			<tr class="openVegetablesToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.lettuce"/></th>
+				<td><input type="checkbox" name="field" value='1325'></td>
 			</tr>
 			<tr>
-				<th scope="row"><spring:message code="bma.field_land_use.berry_bushes_and_fruits"/></th>
+				<th scope="row" class="subLevelFruitsToggle">
+					<span class="glyphicon glyphicon glyphicon-collapse-down" data-toggle="collapse"></span>
+					<spring:message code="bma.field_land_use.berry_bushes_and_fruits"/>
+				</th>
 				<td><input type="checkbox" name="field" value='1240'></td>
-			</tr>		
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.fruits"/></th>
+				<td><input type="checkbox" name="field" value='1326'></td>
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.currants_and_gooseberries"/></th>
+				<td><input type="checkbox" name="field" value='1327'></td>
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.raspberry"/></th>
+				<td><input type="checkbox" name="field" value='1328'></td>
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.strawberry"/></th>
+				<td><input type="checkbox" name="field" value='1329'></td>
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.flowers_and_ornamental_plants"/></th>
+				<td><input type="checkbox" name="field" value='1330'></td>
+			</tr>
+			<tr class="openFruitsToggle">
+				<th scope="row"><spring:message code="bma.field_land_use.nursery_production"/></th>
+				<td><input type="checkbox" name="field" value='1331'></td>
+			</tr>	
 			<tr>
 				<th scope="row"><spring:message code="bma.field_land_use.cumin"/></th>
 				<td><input type="checkbox" name="field" value='1292'></td>

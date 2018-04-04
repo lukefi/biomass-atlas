@@ -104,5 +104,57 @@
 			<th scope="row"><spring:message code="bma.field_biomasses.herbage_seed"/></th>
 			<td><input type="checkbox" name="field" value='1299'></td>
 		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.garden_pea"/></th>
+			<td><input type="checkbox" name="field" value='1304'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.heading_cabbages"/></th>
+			<td><input type="checkbox" name="field" value='1305'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.other_cabbages"/></th>
+			<td><input type="checkbox" name="field" value='1306'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.carrot"/></th>
+			<td><input type="checkbox" name="field" value='1307'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.red_and_yellow_beetroots"/></th>
+			<td><input type="checkbox" name="field" value='1310'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.other_beetroots"/></th>
+			<td><input type="checkbox" name="field" value='1308'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.onion"/></th>
+			<td><input type="checkbox" name="field" value='1311'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.gherkin"/></th>
+			<td><input type="checkbox" name="field" value='1309'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.lettuce"/></th>
+			<td><input type="checkbox" name="field" value='1312'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.fruits"/></th>
+			<td><input type="checkbox" name="field" value='1313'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.currants_and_gooseberries"/></th>
+			<td><input type="checkbox" name="field" value='1314'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.raspberry"/></th>
+			<td><input type="checkbox" name="field" value='1315'></td>
+		</tr>
+		<tr>
+			<th scope="row"><spring:message code="bma.field_biomasses.strawberry"/></th>
+			<td><input type="checkbox" name="field" value='1316'></td>
+		</tr>
 	</tbody>
 </table>

@@ -199,7 +199,7 @@
 		cursor: pointer; 
 		color: #2a79aa;
 	}
-	.subLevelVegetablesToggle { 
+	.subLevelVegetablesToggle, .subLevelFruitsToggle { 
 		cursor: pointer;
 		color: #337ab7;
 	}
@@ -209,7 +209,12 @@
 	table.openVegetablesToggle tr th {
 		padding-left:20px;
 	}
-	
+	.openVegetablesToggle, .openFruitsToggle {
+		display: none;
+	}
+	.openVegetablesToggle > th, .openFruitsToggle > th {
+		padding-left: 50px !important;
+	}
 </style>
 
 <script type="text/javascript">
@@ -354,8 +359,14 @@ $(document).ready(function () {
 		$(".openMainToggle").toggle();
 		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
 	});
+	
 	$('.subLevelVegetablesToggle').click(function() {
 		$(".openVegetablesToggle").toggle();
+		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
+	});
+	
+	$('.subLevelFruitsToggle').click(function() {
+		$('.openFruitsToggle').toggle();
 		$(this).find('span:first').toggleClass('glyphicon glyphicon-collapse-down glyphicon glyphicon-collapse-up');
 	});
 	
