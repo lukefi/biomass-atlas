@@ -10,6 +10,7 @@ Oskari.registerLocalization({
     		"prev": "Previous",
     		"calculate": "Calculate",
     		"calculateMunicipality": "Calculate by municipality",
+    		"calculateSubDrainageBasin": "Calculate by sub drainage basins",
     		"quit": "Quit",
     		"biomassType": "Biomass type",
     		"amount": "Amount",

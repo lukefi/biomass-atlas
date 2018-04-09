@@ -14,7 +14,7 @@ public class Grid extends NonInsertableEntityWithLongId {
 
     public enum GridType {
         ONE_BY_ONE_KM(1), MUNICIPALITY(2), PROVINCE(3), DRAINAGE_BASIN(4), POST_NUMBER_AREA(5), ELY_CENTER(6),
-        MUNICIPALITY_WITHOUT_SEA_AREA(7);
+        MUNICIPALITY_WITHOUT_SEA_AREA(7), SUB_DRAINAGE_BASIN(8);
 
         private final int value;
 

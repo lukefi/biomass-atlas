@@ -6,7 +6,7 @@ import java.util.List;
 public class BiomassCalculationRequestModel {
 
     public enum CalculateRule {
-        NONE, CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE, CALCULATE_BY_MUNICIPALITY_FOR_ELY;
+        NONE, CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE, CALCULATE_BY_MUNICIPALITY_FOR_ELY, CALCULATE_BY_SUB_DRAINAGE_BASIN;
     }
 
     public static class Point {
@@ -47,7 +47,7 @@ public class BiomassCalculationRequestModel {
 
     private Long boundedAreaGridId;
 
-    private CalculateRule calculateByMunicipality; // For Province and ELY center.
+    private CalculateRule calculateRule; // For Province and ELY center. And also drainage basin 
 
     public ArrayList<Point> getPoints() {
         return points;
@@ -97,12 +97,12 @@ public class BiomassCalculationRequestModel {
         this.boundedAreaGridId = boundedAreaGridId;
     }
 
-    public CalculateRule getCalculateByMunicipality() {
-        return calculateByMunicipality;
+    public CalculateRule getCalculateRule() {
+        return calculateRule;
     }
 
-    public void setCalculateByMunicipality(CalculateRule calculateByMunicipality) {
-        this.calculateByMunicipality = calculateByMunicipality;
+    public void setCalculateRule(CalculateRule calculateRule) {
+        this.calculateRule = calculateRule;
     }
 
 }

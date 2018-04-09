@@ -79,25 +79,44 @@ public class GridCellService extends BaseStoreNonInsertableLongIdEntityManager<G
     @SuppressWarnings("unchecked")
     public List<GridCell> getAllMunicipalitiesForBoundaryAreaId(long boundedAreaId, int gridId) {
         String sql = "SELECT c.* " + "FROM grid_cell c " + "WHERE c.grid_id = " + GridType.MUNICIPALITY.getValue()
-                + "AND ST_contains( " + "(SELECT a.geometry " + "FROM grid_cell a "
+                + "AND ST_contains((SELECT a.geometry FROM grid_cell a "
                 + "WHERE a.grid_id = ? AND a.cell_id = ?) , ST_centroid(c.geometry))";
         Query query = entityManager.createNativeQuery(sql, GridCell.class);
         query.setParameter(1, gridId);
         query.setParameter(2, boundedAreaId);
         return (List<GridCell>) query.getResultList();
     }
-    
-    public String getBoundedAreaName(GridCell cell) {
-    	Locale locale = LocaleContextHolder.getLocale();
-    	String language = locale.getLanguage();
-    	String boundedAreaName ="";
-      
-        if (language == "en" && (cell.getNameEN() != null)) boundedAreaName = cell.getNameEN();  		
-        else if (language == "sv" && (cell.getNameSV() != null)) boundedAreaName = cell.getNameSV();
-        else boundedAreaName = cell.getName();
-        
-		return boundedAreaName;          
+
+    /**
+     * Returns all sub drainage basin grid cells which are belonging to the provided bounded area (Drainage basin)
+     * 
+     * @param boundedAreaId
+     *            long 'gridCellId' of drainage basin
+     * @return List of GridCell
+     */
+    @SuppressWarnings("unchecked")
+    public List<GridCell> getAllSubDrainageBasinsForBoundaryAreaId(long boundedAreaId) {
+        String sql = "SELECT c.* " + "FROM grid_cell c " + "WHERE c.grid_id = " + GridType.SUB_DRAINAGE_BASIN.getValue()
+                + "AND ST_contains((SELECT a.geometry FROM grid_cell a WHERE a.grid_id = "
+                + GridType.DRAINAGE_BASIN.getValue() + " AND a.cell_id = ?) , ST_centroid(c.geometry))";
+        Query query = entityManager.createNativeQuery(sql, GridCell.class);
+        query.setParameter(1, boundedAreaId);
+        return (List<GridCell>) query.getResultList();
     }
 
+    public String getBoundedAreaName(GridCell cell) {
+        Locale locale = LocaleContextHolder.getLocale();
+        String language = locale.getLanguage();
+        String boundedAreaName = "";
+
+        if (language == "en" && (cell.getNameEN() != null))
+            boundedAreaName = cell.getNameEN();
+        else if (language == "sv" && (cell.getNameSV() != null))
+            boundedAreaName = cell.getNameSV();
+        else
+            boundedAreaName = cell.getName();
+
+        return boundedAreaName;
+    }
 
 }

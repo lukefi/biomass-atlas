@@ -51,8 +51,11 @@ function(instance, locale, conf) {
 	this.CALCULATE_RULE_NONE = "NONE";
 	this.CALCULATE_RULE_FOR_PROVINCE = "CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE";
 	this.CALCULATE_RULE_FOR_ELY = "CALCULATE_BY_MUNICIPALITY_FOR_ELY";
+	
+	//Rule for calculate by sub drainage basin
+	this.CALCULATE_RULE_FOR_DRAINAGE_BASIN = "CALCULATE_BY_SUB_DRAINAGE_BASIN";
 
-	this.wmsUrl = "https://testi-biomassa-atlas.luke.fi/geoserver/wms";	
+	this.wmsUrl = "https://biomassa-atlas.luke.fi/geoserver/wms";	
 	this.wmsName = null;
 	this.wmsId = null;	
 
@@ -63,6 +66,7 @@ function(instance, locale, conf) {
 			'<button class="oskari-button" id="boundary-prev"></button>' +
 			'<button class="oskari-button" id="boundary-calculate"></button>' +
 			'<button class="oskari-button" id="boundary-calculateMunicipality" style="display:none"></button>' +
+			'<button class="oskari-button" id="boundary-calculateSubDrainageBasin" style="display:none"></button>' +
 			'<span id="boundary-cancel-tool"><button class="oskari-button" id="boundary-cancel"></button></span> </div>');
 	
 	{
@@ -178,6 +182,12 @@ function(instance, locale, conf) {
         	me._calculateMunicipalityButtonClick(me);
         });
         
+        calculateCancelTool.find('#boundary-calculateSubDrainageBasin').html(localization.calculateSubDrainageBasin);
+        calculateCancelTool.find('#boundary-calculateSubDrainageBasin').unbind('click');
+        calculateCancelTool.find('#boundary-calculateSubDrainageBasin').bind('click', function(){        	
+        	me._calculateSubDrainageBasinButtonClick(me);
+        });
+        
         calculateCancelTool.find('#boundary-cancel').html(localization.quit);
         calculateCancelTool.find('#boundary-cancel').unbind('click');
         calculateCancelTool.find('#boundary-cancel').bind('click', function(){        	
@@ -252,8 +262,11 @@ function(instance, locale, conf) {
     	me._createInfoIcon(selectedBoundary);
     	jQuery("#boundary-select-all").show();
     	jQuery("#unit-conversion").show();
-    	if (selectedBoundary === this.BOUNDARY_PROVINCE || selectedBoundary === this.BOUNDARY_ELY ) {
+    	if (selectedBoundary === this.BOUNDARY_PROVINCE || selectedBoundary === this.BOUNDARY_ELY) {
     		jQuery("button#boundary-calculateMunicipality").show();
+    	}
+    	if (selectedBoundary === this.BOUNDARY_DRAINAGE_BASIN) {
+    		jQuery("button#boundary-calculateSubDrainageBasin").show();
     	}
     	me._hideBoundaryOption();
     	me._showCalculateCancelButtons();
@@ -279,9 +292,12 @@ function(instance, locale, conf) {
     
 	_updateCalculateButtonVisibility : function(me) {
 		me._enableDisableCalulateButton(me, "#boundary-calculate");
-		 if ($("#boundary-calculateMunicipality").is(":visible")) {
-			 me._enableDisableCalulateButton(me, "#boundary-calculateMunicipality");
-		 }
+		if ($("#boundary-calculateMunicipality").is(":visible")) {
+			me._enableDisableCalulateButton(me, "#boundary-calculateMunicipality");
+		}
+		if ($("#boundary-calculateSubDrainageBasin").is(":visible")) {
+			me._enableDisableCalulateButton(me, "#boundary-calculateSubDrainageBasin");
+		}
 	},
 	
 	_enableDisableCalulateButton : function(me, buttonId) {
@@ -363,7 +379,13 @@ function(instance, locale, conf) {
 			
 	},
 	
-	_areaCalculate: function(boundaryType, calculateByMunicipality) {
+	_calculateSubDrainageBasinButtonClick: function() {
+		var selectedBoundary = this._getSelectedBoundaryType();
+		this._areaCalculate(selectedBoundary, this.CALCULATE_RULE_FOR_DRAINAGE_BASIN);
+		this._saveUserActivity(selectedBoundary, this.CALCULATE_RULE_FOR_DRAINAGE_BASIN);
+	},
+	
+	_areaCalculate: function(boundaryType, calculateRule) {
 		var me = this,
 			sandbox = me.instance.getSandbox();
 		
@@ -377,16 +399,16 @@ function(instance, locale, conf) {
 				areaIds: me.selectedIds[boundaryType],
 				attributes: me._getVisibleBiomassAttributeIds(sandbox),
 				boundedAreaGridId: me.GRID_IDS[boundaryType],
-				calculateByMunicipality: calculateByMunicipality
+				calculateRule: calculateRule
 			}),
 			dataType: "json",
 			success: function(results, status, xhr) {
-				me._createTabularResult(results, boundaryType, calculateByMunicipality);					
+				me._createTabularResult(results, boundaryType, calculateRule);					
 			}
 		});
 	},
 	
-	_createTabularResult : function(results, boundaryType, calculateByMunicipality) {
+	_createTabularResult : function(results, boundaryType, calculateRule) {
 		// TODO - should find better way to show calculation results and selected layers' names
 		var me = this,
 			localization = this.instance.getLocalization()["flyout"],
@@ -450,12 +472,12 @@ function(instance, locale, conf) {
 		
 		totalResult += "</table>";
 		totalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea)  + " ha <br><br>";
-		totalResult = this._createExportPanel(totalResult, boundaryType, calculateByMunicipality);
+		totalResult = this._createExportPanel(totalResult, boundaryType, calculateRule);
 		this._showResult(totalResult);
 		this._clearSelectedUnitConversions(me);
 	},
 	
-	_createExportPanel : function(totalResult, boundaryType, calculateByMunicipality) {
+	_createExportPanel : function(totalResult, boundaryType, calculateRule) {
 		var	queryData,
 			me = this,
 			sandbox = this.instance.getSandbox(),
@@ -465,7 +487,7 @@ function(instance, locale, conf) {
 			areaIds: me.selectedIds[boundaryType],
 			attributes: attributes,
 			boundedAreaGridId: me.GRID_IDS[boundaryType],
-			calculateByMunicipality: calculateByMunicipality
+			calculateRule: calculateRule
 		});
 		
 		totalResult += 
@@ -832,7 +854,7 @@ function(instance, locale, conf) {
     },
     
     //User activity
-    _saveUserActivity : function(boundaryType, calculateByMunicipality) {
+    _saveUserActivity : function(boundaryType, calculateRule) {
     	var me = this,
 		sandbox = me.instance.getSandbox();
 	
@@ -846,7 +868,7 @@ function(instance, locale, conf) {
 			areaIds: me.selectedIds[boundaryType],
 			attributes: me._getVisibleBiomassAttributeIds(sandbox),
 			boundedAreaGridId: me.GRID_IDS[boundaryType],
-			calculateByMunicipality: calculateByMunicipality
+			calculateRule: calculateRule
 		}),
 		dataType: "json",
 		success: function(results, status, xhr) {

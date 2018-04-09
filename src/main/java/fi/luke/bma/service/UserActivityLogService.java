@@ -60,7 +60,7 @@ public class UserActivityLogService {
                 for (GridType gridType : GridType.values()) {
                     if (gridType.getValue() == requestBody.getBoundedAreaGridId()) {
                         functionName = "Bounded area - " + gridType.name();
-                        if (!requestBody.getCalculateByMunicipality().equals(CalculateRule.NONE)) {
+                        if (!requestBody.getCalculateRule().equals(CalculateRule.NONE)) {
                             functionName += " (Calculate by municipality)";
                         }
                     }

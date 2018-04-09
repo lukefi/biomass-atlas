@@ -187,7 +187,7 @@ public class BoundedAreaCalculator extends Calculator {
     public void modifyRequestModelBasedOnCalculateRule(BiomassCalculationRequestModel requestModel) {
         List<Long> requestAreaIds = requestModel.getAreaIds();
         List<Long> areaIds = new ArrayList<>();
-        if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE == requestModel.getCalculateByMunicipality()) {
+        if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_PROVINCE == requestModel.getCalculateRule()) {
             for (Long areaId : requestAreaIds) {
                 List<GridCell> cells = gridCellService.getAllMunicipalitiesForBoundaryAreaId(areaId,
                         GridType.PROVINCE.getValue());
@@ -195,7 +195,7 @@ public class BoundedAreaCalculator extends Calculator {
             }
             requestModel.setAreaIds(areaIds);
             requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
-        } else if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_ELY == requestModel.getCalculateByMunicipality()) {
+        } else if (CalculateRule.CALCULATE_BY_MUNICIPALITY_FOR_ELY == requestModel.getCalculateRule()) {
             for (Long areaId : requestAreaIds) {
                 List<GridCell> cells = gridCellService.getAllMunicipalitiesForBoundaryAreaId(areaId,
                         GridType.ELY_CENTER.getValue());
@@ -203,6 +203,13 @@ public class BoundedAreaCalculator extends Calculator {
             }
             requestModel.setAreaIds(areaIds);
             requestModel.setBoundedAreaGridId(Long.valueOf(GridType.MUNICIPALITY.getValue()));
+        } else if (CalculateRule.CALCULATE_BY_SUB_DRAINAGE_BASIN == requestModel.getCalculateRule()) {
+            for (Long areaId : requestAreaIds) {
+                List<GridCell> cells = gridCellService.getAllSubDrainageBasinsForBoundaryAreaId(areaId);
+                areaIds.addAll(cells.stream().map(GridCell::getCellId).collect(Collectors.toList()));
+            }
+            requestModel.setAreaIds(areaIds);
+            requestModel.setBoundedAreaGridId(Long.valueOf(GridType.SUB_DRAINAGE_BASIN.getValue()));
         }
     }
 

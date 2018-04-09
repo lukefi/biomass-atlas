@@ -10,6 +10,7 @@ Oskari.registerLocalization({
     		"prev": "Takaisin",
     		"calculate": "Laske",
     		"calculateMunicipality": "Laske kunnittain",
+    		"calculateSubDrainageBasin": "Laske osavaluma-alueittain",
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
