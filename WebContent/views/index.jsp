@@ -656,6 +656,18 @@ $('#forgotPassword').click(function () {
 	var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
 	window.location.replace(host);
 });
+
+
+/* Biomass webpage navigation based on language selected */
+$('#biomassWebPage').click(function () {
+	if (language == 'en') {
+		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/en/');
+	} else if (language == 'sv') {
+		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/sv/');
+	} else {
+		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/');
+	}
+});
 </script>
 
 	<!-- Google Analytics -->
