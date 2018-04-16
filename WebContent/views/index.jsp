@@ -53,7 +53,7 @@ body {
 	margin-left: 153px;
 }
 
-#login, #searchOldDatas {
+#login, #searchOldData {
 	margin-top: 10px;
 	margin-left: 10px;
 }
@@ -264,8 +264,8 @@ h4.biomass_layer_title {
 		<div id="divider"></div>
 		<div id="toolbar"></div>
 		<c:if test="${!empty _logout_uri && empty _login_uri}">
-			<div id="searchOldDatas">
-				<a href="${pageContext.request.contextPath}/views/searchAndExportData.jsp">Biomassatietojen lataus</a>
+			<div id="searchOldData">
+				<a href="${pageContext.request.contextPath}/showAndDownload" target="_blank">Biomassatietojen lataus</a>
 			</div>
 		</c:if>
 		<div id="login">

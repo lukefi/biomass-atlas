@@ -12,12 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import fi.luke.bma.service.AttributeService;
 
 @Controller
 public class FileDownloadController {
 
     @Autowired
     ServletContext servletContext;
+    
+    @Autowired
+    private AttributeService attributeService;
 
     private static final int BUFFER_SIZE = 1024;
 
@@ -49,4 +55,10 @@ public class FileDownloadController {
         outStream.close();
     }
 
+    @RequestMapping(value="/showAndDownload", method=RequestMethod.GET)
+    public ModelAndView showAndDownload() {
+        ModelAndView mv = new ModelAndView("searchAndExportData");
+        mv.addObject("attributes", attributeService.getAllAttributes());
+        return mv;
+    }
 }

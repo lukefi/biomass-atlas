@@ -121,4 +121,11 @@ public class AttributeService {
 		}
 		return results;
 	}
+	
+	@SuppressWarnings("unchecked")
+    public List<Attribute> getAllAttributes() {
+	    String sql = "FROM attribute a ORDER BY a.category.id, a.displayOrder ASC";
+        Query query = entityManager.createQuery(sql);
+        return (List<Attribute>)query.getResultList();
+	}
 }
