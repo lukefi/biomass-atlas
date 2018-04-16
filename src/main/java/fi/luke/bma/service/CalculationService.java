@@ -20,8 +20,6 @@ import com.google.common.base.Joiner;
 import fi.luke.bma.dao.ValidityDao;
 import fi.luke.bma.model.AdministrativeAreaBiomassCalculationResult;
 import fi.luke.bma.model.Attribute;
-import fi.luke.bma.model.BiomassCalculationRequestModel;
-import fi.luke.bma.model.Category;
 import fi.luke.bma.model.Data;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
@@ -129,19 +127,4 @@ public class CalculationService {
         return (double) query.getSingleResult();
     }
     
-    /**
-     * Checks, if the attributes are manure attribute or not. Manure attributes are with id between 158 and 239
-     * @param attributeIds list of attribute ids.
-     * @return boolean
-     */
-    private boolean isManureData(Collection<Long> attributeIds) {
-        boolean isManureData = false;
-        for (Long attributeId : attributeIds) {
-            if (attributeId >= 158 && attributeId <= 239) {
-                isManureData = true;
-                break;
-            }
-        }
-        return isManureData;        
-    }
 }
