@@ -103,12 +103,39 @@
 		$('#loadXlSXBtn').click(function () {
 			if( $("#selectAttribute").val() != null && $("#selectYear").val() != null) {
 				var values = {
-						attributes: $("#selectAttribute").val(),
+						attributeIds: $("#selectAttribute").val(),
 						years: $("#selectYear").val()
 				};
-				//TODO: create ajax request/response
+				console.log(values);
+				$.ajax({
+					url: '${pageContext.request.contextPath}/showAndDownload',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(values),
+					success: function( responseData ) {
+						//Nothing
+					},
+					error: function( request, status, error ) {
+						alert( request.status );
+					}
+				});
 			}
 		});
+		
+		var createArray = function(selectorId) {
+			var selectedValues = $(selectorId).val();
+			
+			
+			var select = document.getElementById(selectorId);
+			var optArray = [];
+			for (var i = 0; i < select.length; i++) {
+				var selectedVal = select.options[select.selectedIndex].value;
+				if (select[i].value == selectedVal) {
+					 optArray.push(select[i].value);
+				}
+			}
+			return optArray;
+		}
 		
 		var generateDynamicYearList = function() {
 			var startYear = year = 2013,

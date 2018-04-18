@@ -4,16 +4,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import fi.luke.bma.model.SearchModel;
+import fi.luke.bma.model.SearchReport;
 import fi.luke.bma.service.AttributeService;
 
 @Controller
@@ -21,7 +26,7 @@ public class FileDownloadController {
 
     @Autowired
     ServletContext servletContext;
-    
+
     @Autowired
     private AttributeService attributeService;
 
@@ -55,10 +60,16 @@ public class FileDownloadController {
         outStream.close();
     }
 
-    @RequestMapping(value="/showAndDownload", method=RequestMethod.GET)
+    @RequestMapping(value = "/showAndDownload", method = RequestMethod.GET)
     public ModelAndView showAndDownload() {
         ModelAndView mv = new ModelAndView("searchAndExportData");
         mv.addObject("attributes", attributeService.getAllAttributes());
         return mv;
+    }
+
+    @RequestMapping(value = "/showAndDownload", method = RequestMethod.POST, consumes = "application/json", 
+            headers = "content-type=application/x-www-form-urlencoded")
+    public @ResponseBody List<SearchReport> downloadSearchReport(@RequestBody SearchModel searchModel) {
+        return null;
     }
 }

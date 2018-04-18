@@ -92,6 +92,15 @@ public class LocalizeService {
     	return colunmMessages;
     }
     
+    public List<String> getLocalizedMessageSourceForSearch() {
+        List<String> colunmMessages = new ArrayList<String>();
+        colunmMessages.add("year");
+        colunmMessages.add("attribute");
+        colunmMessages.add("value");
+        colunmMessages.add("geometry");
+        return colunmMessages;
+    }
+    
     public String getLocalLanguage() {
         Locale locale = LocaleContextHolder.getLocale();
         return locale.getLanguage();

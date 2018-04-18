@@ -23,6 +23,7 @@ import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.Data;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
+import fi.luke.bma.model.SearchReport;
 import fi.luke.bma.model.Validity;
 
 @Transactional
@@ -127,4 +128,18 @@ public class CalculationService {
         return (double) query.getSingleResult();
     }
     
+    @SuppressWarnings("unchecked")
+    public List<Data> getBiomassDataForAttributesAndYears(List<Long> attributeIds, List<Integer> years) {
+        String jpql =
+                " SELECT new " + SearchReport.class.getName() + "(v.startDate, a.nameFI, d.value, c.geometry)"
+                + " FROM " + Data.class.getName() + " d, " + GridCell.class.getName() + " c, "
+                + Attribute.class.getName() + " a" + Validity.class.getName() + " v"
+                + " WHERE d.cell.id = c.id AND d.attribute.id = a.id AND c.grid.id = 1"
+                + " AND d.validity.id = a.latestValidity.id AND d.validity.id = v.id"
+                + " AND a.id IN (" + Joiner.on(',').join(attributeIds) + ")"
+                + " AND v.id IN (" + Joiner.on(',').join(years) + ")"
+                + " ORDER BY a.category.id, a.displayOrder ";
+        Query query = entityManager.createQuery(jpql, SearchReport.class);
+        return query.getResultList();
+    }
 }
