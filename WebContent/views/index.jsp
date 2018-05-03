@@ -659,7 +659,7 @@ $('#forgotPassword').click(function () {
 
 
 /* Biomass webpage navigation based on language selected */
-$('#biomassWebPage').click(function () {
+$('#biomassWebPage, #biomass_logo').click(function () {
 	if (language == 'en') {
 		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/en/');
 	} else if (language == 'sv') {
