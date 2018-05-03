@@ -3,7 +3,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.sludges.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="0931a5c0-b6e4-4956-ba83-8004334bfa59">
+		<input type="hidden" value="e42f0f04-c01c-44fc-8f72-b7a445678643">
 	</div>
 </div>
 <table class="table select-column standard-width waste-table" id="lietteetLayerTable">

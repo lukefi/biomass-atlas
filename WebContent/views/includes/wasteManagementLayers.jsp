@@ -12,7 +12,7 @@
 		<div>
 			<h4 class="biomass_layer_title"><spring:message code="bma.animal_and_plant_waste.title"/></h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
+				<input type="hidden" value="3514fde7-bd5c-4585-bddb-11f3bc61aadc">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentElainJaKasvijätteetLayerTable">
@@ -38,7 +38,7 @@
 		<div>
 			<h4 class="biomass_layer_title"><spring:message code='bma.sludges.title'/></h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
+				<input type="hidden" value="3514fde7-bd5c-4585-bddb-11f3bc61aadc">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentLietteetLayerTable">
@@ -79,7 +79,7 @@
 		<div>
 			<h4 class="biomass_layer_title"><spring:message code="bma.paper_and_cardboard_waste.title"/></h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
+				<input type="hidden" value="3514fde7-bd5c-4585-bddb-11f3bc61aadc">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentPaperijätteetLayerTable">
@@ -105,7 +105,7 @@
 		<div>
 			<h4 class="biomass_layer_title"><spring:message code="bma.wood_waste.title"/></h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
+				<input type="hidden" value="3514fde7-bd5c-4585-bddb-11f3bc61aadc">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentPuujätteetLayerTable">
@@ -141,7 +141,7 @@
 		<div>
 			<h4 class="biomass_layer_title"><spring:message code="bma.mixed_waste_communities.title"/></h4>
 			<div class="biomass_info_icon icon-info">
-				<input type="hidden" value="2f083a3f-bc0d-4e97-b0ec-aeef9af55fb2">
+				<input type="hidden" value="3514fde7-bd5c-4585-bddb-11f3bc61aadc">
 			</div>
 		</div>
 		<table class="table select-column standard-width waste-table" id="wasteTreatmentYhdyskuntienSekalainenBiohajoavaLayerTable">
