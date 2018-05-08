@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fi.luke.bma.model.SearchModel;
 import fi.luke.bma.model.SearchReport;
 import fi.luke.bma.service.AttributeService;
+import fi.luke.bma.service.SearchService;
 
 @Controller
 public class FileDownloadController {
@@ -29,6 +31,9 @@ public class FileDownloadController {
 
     @Autowired
     private AttributeService attributeService;
+    
+    @Autowired
+    private SearchService searchService;
 
     private static final int BUFFER_SIZE = 1024;
 
@@ -69,7 +74,8 @@ public class FileDownloadController {
 
     @RequestMapping(value = "/showAndDownload", method = RequestMethod.POST, consumes = "application/json", 
             headers = "content-type=application/x-www-form-urlencoded")
-    public @ResponseBody List<SearchReport> downloadSearchReport(@RequestBody SearchModel searchModel) {
+    public @ResponseBody List<SearchReport> downloadSearchReport(@RequestBody SearchModel searchModel) throws ParseException {
+        searchService.searchForBiomassData(searchModel);
         return null;
     }
 }

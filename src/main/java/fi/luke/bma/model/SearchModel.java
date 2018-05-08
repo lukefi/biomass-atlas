@@ -3,15 +3,15 @@ package fi.luke.bma.model;
 import java.util.List;
 
 public class SearchModel {
-    private List<Integer> attributeIds;
+    private List<Long> attributeIds;
    
     private List<Integer> years;
 
-    public List<Integer> getAttributeIds() {
+    public List<Long> getAttributeIds() {
         return attributeIds;
     }
 
-    public void setAttributeIds(List<Integer> attributeIds) {
+    public void setAttributeIds(List<Long> attributeIds) {
         this.attributeIds = attributeIds;
     }
 
