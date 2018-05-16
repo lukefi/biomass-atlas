@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.opencsv.CSVWriter;
 
 import fi.luke.bma.model.SearchModel;
 import fi.luke.bma.model.SearchReport;
@@ -74,8 +75,22 @@ public class FileDownloadController {
 
     @RequestMapping(value = "/showAndDownload", method = RequestMethod.POST, consumes = "application/json", 
             headers = "content-type=application/x-www-form-urlencoded")
-    public @ResponseBody List<SearchReport> downloadSearchReport(@RequestBody SearchModel searchModel) throws ParseException {
-        searchService.searchForBiomassData(searchModel);
-        return null;
+    public void downloadSearchReport(@ModelAttribute SearchModel searchModel, HttpServletResponse response) 
+    		throws ParseException {
+    	response.addHeader("Content-Type", "text/csv;Charset=" + response.getCharacterEncoding());
+        response.addHeader("Content-Disposition", "attachment; filename=BiomassSearchReport.csv");
+        List<SearchReport> searchReports = searchService.searchForBiomassData(searchModel);
+        try (CSVWriter writer = new CSVWriter(response.getWriter(), ';')) {
+            for (SearchReport row : searchReports) {
+                String[] line = new String[4];
+                line[0] = row.getYear().toString();
+                line[1] = row.getAttributeName();
+                line[2] = row.getValue().toString();
+                line[3] = row.getGeometry().toString();
+                writer.writeNext(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
