@@ -67,7 +67,7 @@ public class SearchService {
         List<Object[]> data = query.getResultList();
         List<SearchReport> searchReports = new ArrayList<>();
         for (Object[] object : data) {
-            Long year = ((Long) object[0]).longValue();
+            Long year = ((Integer) object[0]).longValue();
             String attributeName = ((String) object[1]).toString();
             Double value = ((Double) object[2]).doubleValue();
             MultiPolygon geometry = ((MultiPolygon) object[3]);

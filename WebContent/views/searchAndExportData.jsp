@@ -102,13 +102,7 @@
 	$(document).ready(function () {	
 		$('#loadXlSXBtn').click(function () {
 			if( $("#selectAttribute").val() != null && $("#selectYear").val() != null) {
-				/* var values = {
-					attributeIds: $("#selectAttribute").val(),
-					years: $("#selectYear").val()
-				};
-				console.log(values); */
-				
-				var url = "${pageContext.request.contextPath}/showAndDownload";				
+				var url = "${pageContext.request.contextPath}/user/search/download";				
 				var form = document.createElement("form");
 			    form.setAttribute("method", "post");
 			    form.setAttribute("action", url);
@@ -126,20 +120,6 @@
 			    document.body.appendChild(form); // For Firefox to work.
 			    form.submit();
 			    document.body.removeChild(form); // For IE to work.	
-				
-				
-				/* $.ajax({
-					url: '${pageContext.request.contextPath}/showAndDownload',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify(values),
-					success: function( responseData ) {
-						//Nothing
-					},
-					error: function( request, status, error ) {
-						alert( request.status );
-					}
-				}); */
 			}
 		});
 		
