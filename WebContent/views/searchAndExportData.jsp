@@ -62,17 +62,16 @@
 
 <nav id="maptools">    
     <div id="etusivu"> 	
-    	<a href="#" id="frontpage">Takaisin etusivulle</a>
+    	<a href="#" id="frontpage"><spring:message code="bma.backToFrontpage"/></a>
     </div>   
 </nav>
 
 <div class="container" role="main" style="margin-left: 170px;">
-	<h2>Tietojen tarkastelu</h2>
+	<h2><spring:message code="bma.download_biomass_data"/></h2>
 	<div class="row">
-		<label>Attribute:</label> <br>
+		<label><spring:message code="bma.biomass"/></label> <br>
 		<div class="col-sm-11 col-md-11">
 			<select id="selectAttribute" class="form-control selectpicker" multiple>
-				<option value="">Valitse</option>
 				<c:forEach var="attribute" items="${attributes}">
 					<option value="${attribute.id}">${attribute.nameFI}</option>
 				</c:forEach>
@@ -81,7 +80,7 @@
 	</div>
 	<br/>	<br/>	
 	<div class="row">
-		<label>Vuosi:</label> <br>
+		<label><spring:message code="bma.year"/></label> <br>
 		<div class="col-sm-2 col-md-2">
 			<select id="selectYear" name="selectAttribute" class="form-control selectpicker" data-width="fit" multiple>
 			</select>
@@ -89,7 +88,7 @@
 	</div>
 	<br/>	<br/>
 	<div class="row">
-		<button id="loadXlSXBtn">Lataa xlsx</button>
+		<button id="loadCSVBtn"><spring:message code="bma.download_csv"/></button>
 	</div>
 </div>
 
@@ -100,7 +99,7 @@
 	});
 	
 	$(document).ready(function () {	
-		$('#loadXlSXBtn').click(function () {
+		$('#loadCSVBtn').click(function () {
 			if( $("#selectAttribute").val() != null && $("#selectYear").val() != null) {
 				var url = "${pageContext.request.contextPath}/user/search/download";				
 				var form = document.createElement("form");
