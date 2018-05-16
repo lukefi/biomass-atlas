@@ -4,9 +4,10 @@ import org.hibernate.annotations.Type;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
+
 public class SearchReport {
 
-    private Integer year;
+	private Long year;
 
     private String attributeName;
 
@@ -15,11 +16,18 @@ public class SearchReport {
     @Type(type = "org.hibernate.spatial.GeometryType")
     private MultiPolygon geometry;
 
-    public Integer getYear() {
+    public SearchReport(Long year, String attributeName, Double value, MultiPolygon geometry) {
+		this.year = year;
+		this.attributeName = attributeName;
+		this.value = value;
+		this.geometry = geometry;
+	}
+
+	public Long getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(Long year) {
         this.year = year;
     }
 

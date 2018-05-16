@@ -1,13 +1,10 @@
 package fi.luke.bma.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +14,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.google.common.base.Joiner;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
-import fi.luke.bma.model.Data;
+import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.SearchModel;
 import fi.luke.bma.model.SearchReport;
 import fi.luke.bma.model.Validity;
@@ -29,17 +27,17 @@ public class SearchService {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<Validity> getAllValidity() {
         Query query = entityManager.createQuery("SELECT v FROM Validity v");
         return query.getResultList();
     }
-    
+
     public List<Long> getValiditiesForYears(List<Integer> requestYears) throws ParseException {
         List<Long> requestValidities = new ArrayList<>();
         List<Validity> validities = getAllValidity();
@@ -55,14 +53,27 @@ public class SearchService {
         }
         return requestValidities;
     }
-    
+
     @SuppressWarnings("unchecked")
-    public void searchForBiomassData(SearchModel searchModel) throws ParseException {
+    public List<SearchReport> searchForBiomassData(SearchModel searchModel) throws ParseException {
         List<Long> years = getValiditiesForYears(searchModel.getYears());
-        String jpql = "SELECT NEW " + SearchReport.class.getName() + "(d)  d FROM Data d WHERE d.attribute.id in (" + Joiner.on(',').join(searchModel.getAttributeIds()) 
-                + ") AND d.validity.id in (" + Joiner.on(',').join(years) + ")";
+        // Couldn't use "SELECT NEW SearchReport ...", because of problem in constructor with geometry.
+        String jpql = "SELECT EXTRACT(year FROM d.validity.startDate) as year, d.attribute.nameFI as attributeName, "
+                + "d.value, d.cell.geometry FROM Data d WHERE d.attribute.id IN ("
+                + Joiner.on(',').join(searchModel.getAttributeIds()) + ") AND d.validity.id IN ("
+                + Joiner.on(',').join(years) + ") AND d.cell.grid.id IN (" + GridType.ONE_BY_ONE_KM.getValue() + ", "
+                + GridType.MUNICIPALITY_WITHOUT_SEA_AREA.getValue() + ") ORDER BY year, attributeName";
         Query query = entityManager.createQuery(jpql);
-        List<Data> data = query.getResultList(); 
-        System.out.println("test");
+        List<Object[]> data = query.getResultList();
+        List<SearchReport> searchReports = new ArrayList<>();
+        for (Object[] object : data) {
+            Long year = ((Long) object[0]).longValue();
+            String attributeName = ((String) object[1]).toString();
+            Double value = ((Double) object[2]).doubleValue();
+            MultiPolygon geometry = ((MultiPolygon) object[3]);
+            searchReports.add(new SearchReport(year, attributeName, value, geometry));
+        }
+        return searchReports;
     }
+
 }
