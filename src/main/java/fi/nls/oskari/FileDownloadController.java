@@ -66,14 +66,14 @@ public class FileDownloadController {
         outStream.close();
     }
 
-    @RequestMapping(value = "/showAndDownload", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
     public ModelAndView showAndDownload() {
         ModelAndView mv = new ModelAndView("searchAndExportData");
         mv.addObject("attributes", attributeService.getAllAttributes());
         return mv;
     }
 
-    @RequestMapping(value = "/showAndDownload", method = RequestMethod.POST, consumes = "application/json", 
+    @RequestMapping(value = "/user/search/download", method = RequestMethod.POST, consumes = "application/json", 
             headers = "content-type=application/x-www-form-urlencoded")
     public void downloadSearchReport(@ModelAttribute SearchModel searchModel, HttpServletResponse response) 
     		throws ParseException {

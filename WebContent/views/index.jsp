@@ -265,7 +265,7 @@ h4.biomass_layer_title {
 		<div id="toolbar"></div>
 		<c:if test="${!empty _logout_uri && empty _login_uri}">
 			<div id="searchOldData">
-				<a href="${pageContext.request.contextPath}/showAndDownload" target="_blank">Biomassatietojen lataus</a>
+				<a href="${pageContext.request.contextPath}/user/search" target="_blank">Biomassatietojen lataus</a>
 			</div>
 		</c:if>
 		<div id="login">
