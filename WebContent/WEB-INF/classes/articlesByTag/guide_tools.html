@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.margin-left-minus-30 {
+			margin-left: -30px;
+		}
+		div {
+			font-size: 14px;
+			font-family: Arial, sans-serif;
+		}
+		.title {
+			font-weight: bold;
+			font-size: 18px;
+		}
+		.sub-title {
+			font-weight: bold;
+			font-size: 15px;
+		}
+		.margin-left-plus-15 {
+			margin-left: 15px;
+		}
+		ol {
+			margin-left: 30px;
+		}
+		.icon {
+			display: inline-block;
+			background: #333438;
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="top">
+	<span class="title">Region selection tools</span>
+</div>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Draw area</span>
+	<span class="icon"><img alt="Piirto" src="/Oskari/bundles/bma/testbundle/resources/images/tool-area-selection.png" /></span>
+	<br>
+	Draw the region on the map. The application calculates the biomass. Start drawing by clicking on the map. 
+	Draw a line with the mouse, and click at every corner of the area. Stop drawing by double-clicking.
+</div>
+<br>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Search by pre-determined regions</span>
+	<span class="icon"><img alt="Ennalta määritettyjen alueiden valinta" src="/Oskari/bundles/bma/boundary/resources/images/tool-boundary.png" /></span>
+	<br>
+	The biomass data can be retrieved for pre-determined regions. The types of region to choose 
+	from are: municipalities, provinces, Centres for Economic Development, Transport and 
+	the Environment (ELY-keskus), catchment areas or postcode regions. After choosing the type of region, 
+	choose the desired areas by clicking the map with the mouse. "Choose all" function chooses 
+	all regions at once. After this you can remove regions by clicking on them on the map.
+</div>
+<br>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Central point search</span>
+	<span class="icon"><img alt="Keskipistehaku" src="/Oskari/bundles/bma/circle/resources/images/tool-circle.png" /></span>
+	<br>
+	Choose first the central point of the desired area on the map, and then write in the opening 
+	window the distance from the central point. The biomass within the created circle will be calculated. 
+	The distance from the central point can be along the beeline or along the road network. 
+</div>
+<br>
+<div>
+	<span class="title">Move between maps (arrow tool icons)</span>
+	<span class="icon">
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-reset.png" />
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-history-back.png" />
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-history-forward.png" />
+	</span>
+	(<a href="#top">Top of page</a>)<br>
+	Move to default view, previous view or the next view. Click corresponding arrow tool. 
+	Default view is the map that is open when you enter the map service. Moving to the default 
+	view zeros your search and you have to make the selections again. You can move to default 
+	view also by clicking the arrow in the centre of the panning tool.
+
+</div>
+<br>
+<div>
+	<span class="title">Zoom in or zoom out the map</span>
+	<span class="icon"><img alt="Lähennä tai loitonna karttaa" src="/Oskari/applications/bma/icons/tool-zoombox.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Click the tool "Zoom in map" and zoom in the map with one of the following ways:
+	<ol>
+		<li>Mark out with the mouse the area that you want to be shown in the map.</li>
+		<li>Double-click a point on the map. The map will be zoomed in and centered to the selected point.</li>
+	</ol>
+</div>
+<div>
+	Choose a suitable scale with one of the following ways:
+	<ol>
+		<li> Change scale with the scaling tool (right upper area of the map).</li>
+		<li> Change scale with the keyboard + and - keys.</li>
+		<span class="margin-left-minus-30">The scale bar of the map is shown at the lower left corner of the map.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Move the map</span>
+	<span class="icon"><img alt="Siirrä karttaa" src="/Oskari/applications/bma/icons/tool-pan.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Move the map in one of the following ways:
+	<ol>
+		<li>Click the panning arrows in the upper right area of the map.</li>
+		<li>Use the arrow keys of your keyboard.</li>
+		<li>Click the tool "Move map" and drag the map with the mouse.</li>
+		<span class="margin-left-minus-30">You can see the coordinates of the map view centre and the coordinate system information below the scaling tool in the upper right area of the map.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Measure the distance</span>
+	<span class="icon"><img alt="Mittaa etäisyys" src="/Oskari/applications/bma/icons/tool-measure-line.png" /></span>
+  (<a href="#top">Top of page</a>)<br>
+	Choose the tool "Measure the distance" and measure the distance: 
+	<ol>
+		<li>Click the starting point and the turning points.</li>
+		<li>Read the distance in metres in the opening window.</li>
+		<li>Double-click the end point to stop the measurement.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Measure the area</span>
+	<span class="icon"><img alt="Mittaa pinta-ala" src="/Oskari/applications/bma/icons/tool-measure-area.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Choose the tool "Measure the area" and measure the area:
+	<ol>
+		<li>Draw the border line of the area by clicking at each corner of the area.</li>
+		<li>Read the area in square metres in the opening window.</li>
+		<li>To stop measuring, double-click at the last corner.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Save the map view and the biomass selections</span>
+	<span class="icon"><img alt="Tallenna karttanäkymä ja biomassavalinnat" src="/Oskari/applications/bma/icons/tool-save-view.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Save the map view and the selections you made in the "Biomasses" menu in order to use them later:
+	<ol>
+		<li>Click the tool "Save the map view and the biomass selections".</li>
+		<li>Give the view a name and description. Name is compulsory.</li>
+		<li>Click "Save".</li>
+	</ol>
+	Saved map views and biomass selections are found in the "My data" menu on the "Map views" -interleaf. In the interleaf you can:
+	<ol>
+		<li>Open a saved map view and biomass selections</li>
+		<li>Edit a map view and biomass selections</li>
+		<li>Delete a map view and biomass selections</li>
+		<span class="margin-left-minus-30">Only registered users can save map views and biomass selections.</span>
+	</ol>
+</div>
+<br>
+<div>	
+	<span class="title">Create a link to map view and biomass selections</span>
+	<span class="icon"><img alt="Tee linkki karttanäkymään ja biomassavalintoihin" src="/Oskari/applications/bma/icons/tool-link.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Create a link to map view and biomass selections and forward it:
+	<ol>
+		<li>Choose the tool "Link to map view".</li>
+		<li>Copy the link from the opening window using keys Ctrl-C.</li>
+		<li>Paste the link in e.g. an e-mail using keys Ctrl-V.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Print map view</span>
+	<span class="icon"><img alt="Tulosta karttanäkymä" src="/Oskari/applications/bma/icons/tool-print.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Print the open map view as a PNG-picture or as a PDF file:
+	<ol>
+		<li>Choose the tool "Print".</li>
+		<li>Press the handle "Continue" in the opening window.</li>
+		<li>Choose size and direction for the output.</li>
+		<li>Choose between PNG-picture or PDF file.</li>
+		<li>Give the file a descriptive name.</li>
+		<li>Choose whether the output shows the service logo, scale or date.</li>
+		<li>Press the handle "Show output".</li>
+		<span class="margin-left-minus-30">You see the output coverage in a preview. All map layers are not shown in the preview.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Marking of a map</span>
+	<span class="icon"><img alt="Tee karttamerkintä" src="/Oskari/applications/bma/icons/marker-share.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Mark a point in the map:
+	<ol>
+		<li>Choose the tool "Mark the map".</li>
+		<li>Click a point of interest on the map.</li>
+		<li>Define the design, size and color of the marking symbol.</li>
+		<li>Give the text that will be shown beside the symbol.</li>
+		<li>Click the "Save" handle. </li>
+		<span class="margin-left-minus-30">You can delete all map markings by choosing the tool "Mark the map" and clicking on the option "Delete all map markings".</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Add own material</span>
+	<span class="icon"><img alt="Lisää oma aineisto" src="/Oskari/applications/bma/icons/upload-material.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	A registered user can add own material as a map layer:
+	<ol>
+		<li>Select the file in your computer. The file has to be zip-packed in the shp-, gpx- or mif/mid form, or in kmz-file form (packed kml).</li>
+		<li>Give the material a name, description, source and style definitions for different targets.</li>
+		<li>Press "Send"</li>
+		<span class="margin-left-minus-30">Now you can use the material through the "My data" menu interleaf "Materials" or through the "Map layer administration".</span>
+	</ol>
+</div>
+<br>
+</body>
+</html>
