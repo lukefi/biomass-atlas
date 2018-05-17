@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.margin-left-minus-30 {
+			margin-left: -30px;
+		}
+		div {
+			font-size: 14px;
+			font-family: Arial, sans-serif;
+		}
+		.title {
+			font-weight: bold;
+			font-size: 18px;
+		}
+		.sub-title {
+			font-weight: bold;
+			font-size: 15px;
+		}
+		.margin-left-plus-15 {
+			margin-left: 15px;
+		}
+		ol {
+			margin-left: 30px;
+		}
+		.icon {
+			display: inline-block;
+			background: #333438;
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="top">
+	<span class="title">Definition av område</span>
+</div>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Ritandet</span>
+	<span class="icon"><img alt="Piirto" src="/Oskari/bundles/bma/testbundle/resources/images/tool-area-selection.png" /></span>
+	<br>
+	Rita regionen på kartan. Applikationen beräknar biomassan. Börja ritning genom att klicka på kartan. 
+	Rita en linje med musen och klicka på varje hörn av området. Sluta teckningen genom att dubbelklicka. 
+</div>
+<br>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Urval av förutbestämda regioner</span>
+	<span class="icon"><img alt="Ennalta määritettyjen alueiden valinta" src="/Oskari/bundles/bma/boundary/resources/images/tool-boundary.png" /></span>
+	<br>
+	Biomassan kan beräknas för förutbestämda regioner. De olika typerna av region att välja 
+	mellan är: kommuner, provinser, NTM-centralerna, avrinningsområden eller postnummerregioner. 
+	Efter att ha valt regionstyp väljer du önskade områden genom att klicka på kartan med musen. 
+	"Välj alla" -funktionen väljer alla regioner samtidigt. Därefter kan du ta bort regioner genom 
+	att klicka på dem på kartan.
+</div>
+<br>
+<div class="margin-left-plus-15">
+	<span class="sub-title">Central punktsökning</span>
+	<span class="icon"><img alt="Keskipistehaku" src="/Oskari/bundles/bma/circle/resources/images/tool-circle.png" /></span>
+	<br>
+	Välj först centralpunkten för önskat område på kartan och skriv sedan i det öppnade fönstret 
+	avståndet från centralpunkten. Biomassan i den skapade cirkeln beräknas. Avståndet från 
+	centralpunkten kan vara längs fågelvägen eller längs vägnätet. 
+</div>
+<br>
+<div>
+	<span class="title">Flytta mellan kartor (pilverktygsikoner)</span>
+	<span class="icon">
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-reset.png" />
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-history-back.png" />
+		<img alt="Siirry karttanäkymien välillä" src="/Oskari/applications/bma/icons/tool-history-forward.png" />
+	</span>
+	(<a href="#top">Top of page</a>)<br>
+	Flytta till standardvyn, föregående vy eller nästa vy. Klicka på motsvarande pilverktyg. 
+	Standardvyn är den karta som är öppen när du sätter i gång karttjänsten. Om du flyttar 
+	till standardvyn nollställs din sökning och du måste göra valen igen. Du kan också flytta 
+	till standardvyn genom att klicka på den centrala knoppen i panoreringsverktyget.
+</div>
+<br>
+<div>
+	<span class="title">Zooma in eller zooma ut kartan</span>
+	<span class="icon"><img alt="Lähennä tai loitonna karttaa" src="/Oskari/applications/bma/icons/tool-zoombox.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Klicka på verktyget "Zooma in karta" och zooma in kartan med ett av följande sätt:
+	<ol>
+		<li>Markera med musen det område du vill visas på kartan.</li>
+		<li>Dubbelklicka på en punkt på kartan. Kartan zoomas in och centreras till vald punkt.</li>
+	</ol>
+</div>
+<div>
+	Välj en lämplig skala på något av följande sätt:
+	<ol>
+		<li>Ändra skalan med skalverktyget (högra övre delen av kartan).</li>
+		<li>Ändra skalan med tangenterna + och - på tangentbordet.</li>
+		<span class="margin-left-minus-30">Kartans skala visas längst ner till vänster på kartan.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Flytta kartan </span>
+	<span class="icon"><img alt="Siirrä karttaa" src="/Oskari/applications/bma/icons/tool-pan.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Flytta kartan på ett av följande sätt:
+	<ol>
+		<li>Klicka på panoreringspilarna längst upp till höger på kartan.</li>
+		<li>Använd piltangenterna på ditt tangentbord</li>
+		<li>Klicka på verktyget "Flytta karta" och dra kartan med musen.</li>
+		<span class="margin-left-minus-30">Du kan se koordinaterna för kartvycentralen och koordinatsysteminformationen under skalningsverktyget längst upp till höger på kartan.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Mät avståndet</span>
+	<span class="icon"><img alt="Mittaa etäisyys" src="/Oskari/applications/bma/icons/tool-measure-line.png" /></span>
+  (<a href="#top">Top of page</a>)<br>
+	Välj verktyget "Mät avståndet" och mäta avståndet: 
+	<ol>
+		<li>Klicka på startpunkten och vändpunkterna.</li>
+		<li>Läs avståndet i meter i det öppnade fönstret.</li>
+		<li>Dubbelklicka på slutpunkten för att stoppa mätningen.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Mät området</span>
+	<span class="icon"><img alt="Mittaa pinta-ala" src="/Oskari/applications/bma/icons/tool-measure-area.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Välj verktyget "Mät området" och mäta området:
+	<ol>
+		<li>Rita gränslinjen för området genom att klicka på varje hörn av området.</li>
+		<li>Läs området i kvadratmeter i det öppnade fönstret.</li>
+		<li>För att stoppa mätningen, dubbelklicka I det sista hörnet.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Lagra kartvy och biomassa urval</span>
+	<span class="icon"><img alt="Tallenna karttanäkymä ja biomassavalinnat" src="/Oskari/applications/bma/icons/tool-save-view.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Lagra kartvy och de urval du gjorde i menyn "Biomassor", för att kunna använda dem senare:
+	<ol>
+		<li>Klicka på verktyget "Lagra kartvy och biomassa urval".</li>
+		<li>Ge vyn ett namn och en beskrivning. Namn är obligatoriskt.</li>
+		<li>Klicka "Lagra".</li>
+	</ol>
+	Sparade kartvyer och biomassaurval finns i "Mina data" -menyn på mellanblad "Kartvyer". Där kan du:
+	<ol>
+		<li>Öppna en lagrade kartvy och biomassa urval.</li>
+		<li>Redigera en kartvy och biomassa urval.</li>
+		<li>Radera en kartvy och biomassa urval.</li>
+		<span class="margin-left-minus-30">Endast registrerade användare kan spara kartvyer och biomassa urval.</span>
+	</ol>
+</div>
+<br>
+<div>	
+	<span class="title">Skapa en länk till kartvy och biomassa urval</span>
+	<span class="icon"><img alt="Tee linkki karttanäkymään ja biomassavalintoihin" src="/Oskari/applications/bma/icons/tool-link.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Skapa en länk till kartvy och biomassa urval och skicka den vidare:
+	<ol>
+		<li>Välj verktyget "Länk till kartvy".</li>
+		<li>Kopiera länken I det öppnade fönstret med tangenterna Ctrl-C.</li>
+		<li>Klistra in länken i t.ex. ett e-postmeddelande med tangenterna Ctrl-V.</li>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Skriv ut kartvyn</span>
+	<span class="icon"><img alt="Tulosta karttanäkymä" src="/Oskari/applications/bma/icons/tool-print.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Skriv ut den öppna kartvyn som en PNG-bild eller som en PDF-fil:
+	<ol>
+		<li>Välj verktyget "Skriv ut".</li>
+		<li>Tryck på handtaget "Fortsätt" i det öppnade fönstret.</li>
+		<li>Välj storlek och riktning för utgången.</li>
+		<li>Välj mellan PNG-bild eller PDF-fil.</li>
+		<li>Ge filen ett beskrivande namn.</li>
+		<li>Välj om utmatningen visar servicelogon, skalan eller datumet.</li>
+		<li>Tryck på handtaget "Visa utgången".</li>
+		<span class="margin-left-minus-30">Du ser produktdäckningen i en förhandsgranskning. Alla kartlager visas inte i förhandsvisningen.</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Markering av en karta</span>
+	<span class="icon"><img alt="Tee karttamerkintä" src="/Oskari/applications/bma/icons/marker-share.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	Markera en punkt i kartan:
+	<ol>
+		<li>Välj verktyget "Markera kartan".</li>
+		<li>Klicka på en punkt på kartan.</li>
+		<li>Ange markeringssymbolens stil, storlek och färg.</li>
+		<li>Ange texten som ska visas bredvid symbolen.</li>
+		<li>Klicka på "Lagra". </li>
+		<span class="margin-left-minus-30">Du kan radera alla kartmarkeringar genom att välja verktyget "Markera kartan" och klicka på alternativet "Ta bort alla kartmarkeringar".</span>
+	</ol>
+</div>
+<br>
+<div>
+	<span class="title">Lägg till eget material</span>
+	<span class="icon"><img alt="Lisää oma aineisto" src="/Oskari/applications/bma/icons/upload-material.png" /></span>
+	(<a href="#top">Top of page</a>)<br>
+	En registrerad användare kan lägga till eget material som ett kartlager:
+	<ol>
+		<li>Välj filen i din dator. Filen måste vara zip-packad i shp-, gpx- eller mif / midformen eller i kmz-filformat (packad kml).</li>
+		<li>Ge materialet namn, beskrivning, källa och stildefinitioner för olika mål.</li>
+		<li>Tryck på "Skicka".</li>
+		<span class="margin-left-minus-30">Nu kan du använda materialet via menyn "Mina data" mellansida "Material" eller via menyn "Kartlager".</span>
+	</ol>
+</div>
+<br>
+</body>
+</html>
