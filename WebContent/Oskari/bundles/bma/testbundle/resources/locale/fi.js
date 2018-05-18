@@ -4,8 +4,8 @@ Oskari.registerLocalization({
     "value": {
     	"toolbarTooltip": "Vapaa aluerajaus: Piirrä alue kartalle ja laske sen biomassa",
     	"flyout": {
-    		"title": "Piirrä alue kartalle ja laske sen biomassa",
-    		"chooseAreaType": "Piirrä alue ja kartalle ja sovellus laskee biomassan. Aloita piirto klikkaamalla ja päätä se kaksoisklikkaukseen.",    		
+    		"title": "Vapaa aluerajaus",
+    		"chooseAreaType": "Piirrä alue kartalle ja sovellus laskee biomassan. Aloita piirto klikkaamalla ja päätä se kaksoisklikkaukseen.",    		
     		"quit": "Lopeta",
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
@@ -19,7 +19,7 @@ Oskari.registerLocalization({
     					"sijaitsee piirretyn alueen sisällä, huomioidaan ao. ruudun tieto laskennassa."
     		},
     		"error": {
-    			"smallAreaSelected": "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.",
+    			"smallAreaSelected": "Valittu alue on laskentatarkkuuteen nähden liian pieni, jolloin tuloksen virhe voi olla iso.",
     			"notEnoughPoints": "Vähintään kolme kulmapistettä on valittava, yritä uudelleen."
     		}
     	}

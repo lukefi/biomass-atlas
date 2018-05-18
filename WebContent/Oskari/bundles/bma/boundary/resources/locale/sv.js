@@ -2,55 +2,55 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Förbestämt område",
+    	"toolbarTooltip": "Områdesökning: välj område och beräkna biomassa (sv)",
     	"flyout": {
-    		"title": "Range val",
-    		"chooseAreaType": "Biomassatasojen tiedot voidaan laskea seuraaville ennakkoon määritelyille alueille. Valitse alue joilta biomassa lasketaan:",
-    		"selectAll": "Valitse kaikki",
-    		"prev": "Takaisin",
-    		"calculate": "Laske",
-    		"calculateMunicipality": "Laske kunnittain",
-    		"calculateSubDrainageBasin": "Laske osavaluma-alueittain",
-    		"quit": "Lopeta",
-    		"biomassType": "Biomassan tyyppi",
-    		"amount": "Määrä",
-    		"selectedArea": "Valittu alue",
-    		"saveResults": "Tallenna tulokset",
+    		"title": "Förbestämt område",
+    		"chooseAreaType": "Data för biomassskikt kan beräknas för följande förutbestämda regioner. Välj regioner för vilka biomassan ska beräknas:",
+    		"selectAll": "Välj alla",
+    		"prev": "Tidigare",
+    		"calculate": "Beräkna",
+    		"calculateMunicipality": "Beräkna för varje kommun",
+    		"calculateSubDrainageBasin": "Beräkna för varje delavrinningsområde",
+    		"quit": "Sluta",
+    		"biomassType": "Biomassa typ",
+    		"amount": "Belopp",
+    		"selectedArea": "Valt område",
+    		"saveResults": "Spara resultaten",
     		"areaType": {
     			"municipality": "Kommun",
-    			"province": "Maakunta",
-    			"ely": "ELY-keskus",
-    			"drainageBasin": "Valuma-alue",
-    			"postalCode": "Postinumeroalue"
+    			"province": "Provins",
+    			"ely": "NTM-centralen",
+    			"drainageBasin": "Avrinningsområde",
+    			"postalCode": "Postnummerområde"
     		},
     		"selectAreaType": {
-    			"municipality": "Valitse kartalta kunnat, joilta biomassat lasketaan",
-    			"province": "Valitse kartalta maakunnat, joilta biomassat lasketaan",
-    			"ely": "Valitse kartalta ELY-keskukset, joilta biomassat lasketaan",
-    			"drainageBasin": "Valitse kartalta valuma-alueet, joilta biomassat lasketaan",
-    			"postalCode": "Valitse kartalta postinumeroalueet, joilta biomassat lasketaan"
+    			"municipality": "Välj från kartan de kommuner från vilka biomassa beräknas",
+    			"province": "Välj från kartan de provinser från vilka biomassa beräknas",
+    			"ely": "Välj från kartan de NTM-centraler från vilka biomassa beräknas",
+    			"drainageBasin": "Välj från kartan de avrinningsområden från vilka biomassa beräknas",
+    			"postalCode": "Välj från kartan de postnummerområden från vilka biomassa beräknas"
     		},
     		"areaTypeSelected": {
-    			"municipality": "Valitut kunnat",
-    			"province": "Valitut maakunnat",
-    			"ely": "Valityt ELY-keskukset",
-    			"drainageBasin": "Valitut valuma-alueet",
-    			"postalCode": "Valitut postinumeroalueet"
+    			"municipality": "Utvalda kommuner",
+    			"province": "Utvalda provinser",
+    			"ely": "Utvalda NTM-centraler",
+    			"drainageBasin": "Utvalda avrinningsområden",
+    			"postalCode": "Utvalda postnummerområden"
     		},
     		"areaTypeInfo": {
     			"title": {
-    				"municipality": "Kunnan biomassan laskenta",
-	    			"province": "Maakunnan biomassan laskenta",
-	    			"ely": "ELY-keskuksen biomassan laskenta",
-	    			"drainageBasin": "Valuma-alueen biomassan laskenta",
-	    			"postalCode": "Postinumeroalueen biomassan laskenta"
+    				"municipality": "Biomassa sammanfattning av kommun",
+	    			"province": "Biomassa sammanfattning av provins",
+	    			"ely": "Biomassa sammanfattning av NTM-centralen",
+	    			"drainageBasin": "Biomassa sammanfattning av avrinningsområde",
+	    			"postalCode": "Biomassa sammanfattning av postnummerområde"
     			},
     			"description": {
-    				"municipality": "Kunta-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Kuntakohtaisessa laskennassa kokonaan kunnan sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Kuntien rajalla sijaitsevan ruudun arvo lasketaan sen kunnan tulokseen jonka sisällä suurin osa ruudusta sijaitsee.",
-	    			"province": "Maakunta-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Maakuntakohtaisessa laskennassa kokonaan maakunnan sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Maakuntien rajalla sijaitsevan ruudun arvo lasketaan sen maakunnan tulokseen jonka sisällä ruudun keskipiste sijaitsee.",
-	    			"ely": "ELY-aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. ELY-keskuskohtaisessa laskennassa kokonaan ELY-keskuksen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. ELY-keskusalueiden rajalla sijaitsevan ruudun arvo lasketaan sen ELY-keskuksen tulokseen jonka sisällä ruudun keskipiste sijaitsee.",
-	    			"drainageBasin": "Valuma-alueiden aineistona on Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Valuma-aluekohtaisessa laskennassa kokonaan alueen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Valuma-alueiden rajalla sijaitsevan ruudun arvo lasketaan sen alueen tulokseen jonka sisällä suurin osa ruudusta sijaitsee.",
-	    			"postalCode": "Postinumeroalueiden aineistona on käytetty Maanmittauslaitoksen kuntajakoa vuodelta 2015. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Postinumeroaluekohtaisessa laskennassa kokonaan alueen sisällä sijaitsevat ruudut lasketaan mukaan täysimääräisesti. Postinumeroalueiden rajalla sijaitsevan ruudun arvo lasketaan sen alueen tulokseen jonka sisällä suurin osa ruudusta sijaitsee."
+    				"municipality": "Kommundata är från Lantmäteriverkets kommunindelning (år 2015). Biomassskikt har sina data i 1 km x 1 km rutnät. På kommunnivå beräknas rutorna inom kommunens gränser sammanfattas till den kommunen. Rutorna som överlagrar kommungränsen ingår i den kommunens resultat, där rutcentroiden finns.",
+	    			"province": "Provinsdata är från Lantmäteriverkets kommunindelning (år 2015). Biomassskikt har sina data i 1 km x 1 km rutnät. På provinsnivå beräknas rutorna inom provinsens gränser sammanfattas till den provinsen. Rutorna som överlagrar provinsgränsen ingår i den provinsens resultat, där rutcentroiden finns.",
+	    			"ely": "NTM-centraldata är från Lantmäteriverkets kommunindelning (år 2015). Biomassskikt har sina data i 1 km x 1 km rutnät. På NTM-centralnivå beräknas rutorna inom NTM-centralens gränser sammanfattas till den centralen. Rutorna som överlagrar NTM-centralgränsen ingår i den NTM-centralens resultat, där rutcentroiden finns.",
+	    			"drainageBasin": "Avrinningsområdedata är från Finlans miljöcentral, Syke. Biomassskikt har sina data i 1 km x 1 km rutnät. På avrinningsområdenivå beräknas rutorna inom avrinningsområdets gränser sammanfattas till det avrinningsområdet. Rutorna som överlagrar avrinningsområdegränsen ingår i det avrinningsområdets resultat, där rutcentroiden finns.",
+	    			"postalCode": "Postnummerområdedata är från Statistikscentralen. Biomassskikt har sina data i 1 km x 1 km rutnät. På postnummerområdenivå beräknas rutorna inom postnummerområdets gränser sammanfattas till det postnummerområdet. Rutorna som överlagrar postnummerområdegränsen ingår i det postnummerområdets resultat, där rutcentroiden finns."
     			}
     		}
     	}

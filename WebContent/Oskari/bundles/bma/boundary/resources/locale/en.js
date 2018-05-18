@@ -2,10 +2,10 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Area Search: Specify the area and calculate the biomass from the selected levels.",
+    	"toolbarTooltip": "Area search: select area and calculate biomass (en)",
     	"flyout": {
-    		"title": "Area selection",
-    		"chooseAreaType": "Biomass data can be calculated for the following predefined regions. Select the area from which biomass is calculated:",
+    		"title": "Predefined region",
+    		"chooseAreaType": "Data for biomass layers can be calculated for the following pre-determined regions. Select regions for which the biomass will be calculated:",
     		"selectAll": "Select all",
     		"prev": "Previous",
     		"calculate": "Calculate",
@@ -43,14 +43,14 @@ Oskari.registerLocalization({
 	    			"province": "Biomass summary by province",
 	    			"ely": "Biomass summary by ELY Centre",
 	    			"drainageBasin": "Biomass summary by drainage basin",
-	    			"postalCode": "Biomass summary by post code area"
+	    			"postalCode": "Biomass summary by postal code area"
     			},
     			"description": {
-    				"municipality": "Municipality data is from National Land Survey Finland 2015. Biomass layers have their data in 1 km x 1 km grid. In municipality level calculation the grids located within municipality borders are summarised to that municipality. The grids overlaying the munipality border are included in that municipality's result, where the grid centroid is located.",
-    				"province": "Province data is derived from National Land Surveys municipality data 2015. Biomass data is in km x 1km grid. If a grid lays at the border of the province, its value is counted to that province, where its centroid is within.",
+    				"municipality": "Municipality data is from National Land Survey Finland 2015. Biomass data is in 1 km x 1 km grid. In municipality level calculation the grids located within municipality borders are summarised to that municipality. The grids overlaying the munipality border are included in that municipality's result, where the grid centroid is located.",
+    				"province": "Province data is from National Land Survey Finland 2015. Biomass data is in 1 km x 1 km grid. The grids located within province borders are summarised to that province. If a grid lays at the border of the province, its value is included in that province, where its centroid is within.",
 	    			"ely": " ELY-centre data is from National Land Survey Finland 2015. Biomass layers have their data in 1 km x 1 km grid. The grids located within ELY-centre borders are summarised to that ELY-centre. The grids overlaying the ELY-centre border are included in that ELY-centre's result, where the grid centroid is located.",
 	    			"drainageBasin": "Drainage basin data is from Finnish Environment Institute, Syke. Biomass layers have their data in 1 km x 1 km grid. The grids located within drainage basin are summarised to that drainage basin. The grids overlaying the drainage basin border are included in that drainage basin's result, where the grid centroid is located.",
-	    			"postalCode": "Post code areas are from Statistics Finland 2015. Biomass layers have their data in 1 km x 1 km grid. In post code area level calculation the grids located within post code area borders are summarised to that post code area. The grids overlaying the post code area border are included in that post code area 's result, where the grid centroid is located."
+	    			"postalCode": "Postal code areas are from Statistics Finland 2015. Biomass layers have their data in 1 km x 1 km grid. In postal code area level calculation the grids located within postal code area borders are summarised to that postal code area. The grids overlaying the postal code area border are included in that postal code area's result, where the grid centroid is located."
 
     			}
     		}

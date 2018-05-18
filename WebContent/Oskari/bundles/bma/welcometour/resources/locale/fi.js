@@ -26,8 +26,8 @@ Oskari.registerLocalization(
                 "tip" : "Vinkki: Sulkemalla ja avaamalla taustakartan uudelleen TAUSTAKARTAT-valikossa, saat nostettua kartan nopeasti päällimmäiseksi"
             },
             "page2": {
-            	"title": "Welcome to Biomassa atlas second page",
-            	"message" : "Second page"
+            	"title": "Tervetuloa Biomassa-atlaksen toiselle sivulle",
+            	"message" : "Toinen sivu"
             },
             "image" : "area_selection_tool_fi.png"
       }

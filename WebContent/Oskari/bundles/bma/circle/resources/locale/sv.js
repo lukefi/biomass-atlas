@@ -2,37 +2,37 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "Circle",
     "value": {
-    	"toolbarTooltip": "Centrum av cirkeln",
+    	"toolbarTooltip": "Sök i mitten av en cirkel eller vägnät: Definiera en central punkt och räkna biomassa kring centroid inom en vald radie",
     	"flyout": {
-    		"title": "Keskipistehaku",
-    		"message": "Valitse ensin alueen keskipiste kartalta ja määrittele sen jälkeen etäisyys, jolta biomassa lasketaan. Maksimietäisyys tieverkkoa pitkin voi olla 65 km.",
-    		"point": "Piste",
-    		"radius": "Etäisyys",
+    		"title": "Centrum av cirkeln",
+    		"message": "Definiera först centralpunkten och sätt avståndet (i km) från vilket biomassan beräknas. Maximal avstånd längs vägar kan vara 65 km.",
+    		"point": "Punkt",
+    		"radius": "Avstånd",
     		"back": "Tillbaka",
     		"calculate": "Beräkna",
-    		"quit": "Lopeta",
-    		"biomassType": "Biomassan tyyppi",
-    		"amount": "Määrä",
-    		"selectedArea": "Valittu alue",
-    		"saveResults": "Tallenna tulokset",
-    		"roadExtraInformation": "km hakualue säteenä tai tieverkostoa pitkin. Mikäli hakualue muodostetaan tieverkostoa pitkin on se aina pienempi kuin linnuntie-etäisyys. Tällöin etäisyydet huomioidaan realistisemmin ja esimerkiksi tiettömät alueet (vesistöt) huomioidaan alueen määrittelyssä.",
+    		"quit": "Sluta",
+    		"biomassType": "Biomassa typ",
+    		"amount": "Mängd",
+    		"selectedArea": "Valt område",
+    		"saveResults": "Spara resultaten",
+    		"roadExtraInformation": "Km sökområde inom en radie eller längs ett vägnät. Om sökområdet bildas längs ett vägnät, är det alltid mindre än avståndet fågelvägen. Här beaktas avstånden mer realistiskt och exempelvis vägfria områden (t. ex. vattensystem) beaktas i definitionen av området.",
     		"selectionType": {
-    			"circle": "Etäisyys ympyrän säteenä (linnuntien etäisyys)",
-    			"road": "Etäisyys tieverkostoa pitkin (saavutettavuus)"    			
+    			"circle": "Avstånd som en cirkelradie (fågelvägen)",
+    			"road": "Avstånd längs ett vägnät (tillgänglighet)"    			
     		},
     		"selectionTypeInfo": {
     			"title": {
-    				"circle": "Biomassan laskenta määritellyltä etäisyydeltä linnuntietä",
-	    			"road": "Biomassan laskenta määritellyltä etäisyydeltä tieverkostoa pitkin"	    			
+    				"circle": "Biomassberäkning inom en bestämd radie (fågelvägen)",
+	    			"road": "Biomassberäkning inom ett visst avstånd längs vägnätet"	    			
     			},
     			"description": {
-    				"circle": "Valitusta keskipisteestä piirretään annetun etäisyyden perusteella säde, jonka perusteella muodostetaan ympyrän muotoinen hakualue. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli yksittäisen ruudun keskipiste osuu ympyrän muotoisen hakualueen sisälle, huomioidaan ao. ruudun tiedot laskennassa.",
-	    			"road": "Valitun keskipisteen perusteella etsitään ensin lähin sijainti tieverkostosta. Tämän jälkeen tieverkostoa pitkin muodostetaan jokaiseen mahdolliseen suuntaan annetun etäisyyden perusteella monitahoinen verkosto. Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Mikäli muodostettu verkosto leikkaa yksittäistä ruutua, sen tiedot huomioidaan laskennassa. Analyysin tieaineistona käytetään kansallista digiroad-aineistoa (<a href='http://www.digiroad.fi/fi_FI/' target='_blank'>http://www.digiroad.fi/fi_FI/</a>)."	    			
+    				"circle": "Radien dras från den valda centroiden för att bilda en cirkel för biomassans sökområde. Biomassdata finns på ett 1 km x 1 km rutnät. Om ett rutcentrum ligger inom cirkeln sammanfattas dess värde till biomassan i området.",
+	    			"road": "För den valda centroiden söks den närmaste platsen i vägnätet. Därefter används vägnätets dataset för att bilda ett vägnät runt centroid vid det angivna avståndet. Biomassa är i 1 km x 1 km rutnät. Om det valda vägnätet skär en enskilda ruta, ingår dess data i sammanfattningen av biomassan. Vägdata för analysen är den finska nationella <a href=https://www.liikennevirasto.fi/web/en/open-data/digiroad#.WvlgHocUmdI target='_blank'>Digiroad-data</a>."	    			
     			}
     		},
     		"error": {
-    			"roadRouteExceed": "Tiereittiä pitkin laskettaessa säde saa olla korkeintaan 65 km. (väliaikainen rajoitus).",
-    			"radiusNotNumber": "Kirjoita säteen arvo numeroina."
+    			"roadRouteExceed": "Max 65 km radie för beräkning av vägnät är tillåten (tillfällig begränsning).",
+    			"radiusNotNumber": "Skriv radie som antal i kilometer."
     		}
     	}
     }

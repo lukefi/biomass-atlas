@@ -2,25 +2,23 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "TestBundle",
     "value": {
-    	"toolbarTooltip": "Fri kontur",
+    	"toolbarTooltip": "Rita område till kartan och räkna dess biomassa",
     	"flyout": {
-    		"title": "Piirrä alue kartalle ja laske sen biomassa",
-    		"chooseAreaType": "Piirrä alue ja kartalle ja sovellus laskee biomassan. Aloita piirto klikkaamalla ja päätä se kaksoisklikkaukseen.",    		
-    		"quit": "Lopeta",
-    		"biomassType": "Biomassan tyyppi",
-    		"amount": "Määrä",
-    		"selectedArea": "Valittu alue",
-    		"saveResults": "Tallenna tulokset",    		
+    		"title": "Fri kontur",
+    		"chooseAreaType": "Rita område till kartan. Applikationen kommer att beräkna dess biomassa. Börja ritningen genom att klicka på kartan och avsluta den genom att dubbelklicka.",    		
+    		"quit": "Avsluta",
+    		"biomassType": "Biomassa typ",
+    		"amount": "Mängd",
+    		"selectedArea": "Valt område",
+    		"saveResults": "Spara resultaten",    		
     		"infoIcon": {
-    			"title": "Alueen biomassan laskenta",
-    			"description": "Laskenta suoritetaan piirretyn alueen ja valittujen karttatasojen perusteella. " +
-    					"Biomassatasoille tiedot on arvioitu 1 km x 1 km kokoiselle ruudukolle. Laskennassa käyttäjän " +
-    					"piirtämää aluetta verrataan biomassatason ruudukkoon ja mikäli yksittäisen ruudun keskipiste " +
-    					"sijaitsee piirretyn alueen sisällä, huomioidaan ao. ruudun tieto laskennassa."
+    			"title": "Regionens biomassa sammanfattning",
+    			"description": "Beräkning sker baserat på ritningsområde och valda kartlager. " +
+    					"Data är i 1 km x 1 km rutnät i biomassskikt. Om ett rutcentrum är inuti polygonen ritad av användaren kommer rutan att inkluderas i sammanfattning."
     		},
     		"error": {
-    			"smallAreaSelected": "Valittu alue on laskentatarkkuuteen nähden liian pieni, tuloksessa voi olla merkittävää virhettä.",
-    			"notEnoughPoints": "Vähintään kolme kulmapistettä on valittava, yritä uudelleen."
+    			"smallAreaSelected": "Den valda regionen är för liten jämfört med nätupplösningen. Resultatfel marginalen kan vara stor.",
+    			"notEnoughPoints": "Minst tre hörn måste väljas. Försök igen."
     		}
     	}
     }
