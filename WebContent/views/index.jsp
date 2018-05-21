@@ -323,7 +323,7 @@ h4.biomass_layer_title {
 		</div>
 		<div id="luke_logo">
 			<a href="https://www.luke.fi" target="_blank"> <img alt="luke_logo"
-				src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo.png"></a>
+				src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo_${language}.png"></a>
 		</div>
 	</nav>
 
@@ -349,7 +349,7 @@ h4.biomass_layer_title {
 
 	<!--  OSKARI -->
 
-	<script type="text/javascript">
+<script type="text/javascript">
     var ajaxUrl = '${ajaxUrl}';
     var viewId = '${viewId}';
     var language = '${language}';
@@ -357,36 +357,36 @@ h4.biomass_layer_title {
     var controlParams = ${controlParams};
 </script>
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/Oskari/bundles/bundle.js">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Oskari/bundles/bundle.js">
 </script>
 
-	<!--  OPENLAYERS -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/Oskari/packages/openlayers/startup.js">
+<!--  OPENLAYERS -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/Oskari/packages/openlayers/startup.js">
 </script>
 
-	<c:if test="${preloaded}">
-		<!-- Pre-compiled application JS, empty unless created by build job -->
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/Oskari${path}/oskari.min.js">
+<c:if test="${preloaded}">
+	<!-- Pre-compiled application JS, empty unless created by build job -->
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/Oskari${path}/oskari.min.js">
     </script>
 		<!-- Minified CSS for preload -->
-		<link rel="stylesheet" type="text/css"
-			href="${pageContext.request.contextPath}/Oskari${path}/oskari.min.css" />
-		<%--language files --%>
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_all.js">
+	<link rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath}/Oskari${path}/oskari.min.css" />
+	<%--language files --%>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_all.js">
     </script>
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_${language}.js">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/Oskari${path}/oskari_lang_${language}.js">
     </script>
-	</c:if>
+</c:if>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/Oskari${path}/index.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/Oskari${path}/index.js">
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function () {
 	$(document).on('change', '.tab-content input:checkbox', function() {
 		var app = Oskari.app,
