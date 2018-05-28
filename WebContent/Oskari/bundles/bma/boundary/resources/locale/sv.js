@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Områdesökning: välj område och beräkna biomassa (sv)",
+    	"toolbarTooltip": "Förbestämt område: Välj område och beräkna biomassa (sv)",
     	"flyout": {
     		"title": "Förbestämt område",
     		"chooseAreaType": "Data för biomassskikt kan beräknas för följande förutbestämda regioner. Välj regioner för vilka biomassan ska beräknas:",

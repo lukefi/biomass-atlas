@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "sv",
     "key": "TestBundle",
     "value": {
-    	"toolbarTooltip": "Rita område till kartan och räkna dess biomassa",
+    	"toolbarTooltip": "Fri kontur: Rita område till kartan och räkna dess biomassa",
     	"flyout": {
     		"title": "Fri kontur",
     		"chooseAreaType": "Rita område till kartan. Applikationen kommer att beräkna dess biomassa. Börja ritningen genom att klicka på kartan och avsluta den genom att dubbelklicka.",    		

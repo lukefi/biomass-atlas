@@ -4,7 +4,7 @@ Oskari.registerLocalization({
     "value": {
     	"toolbarTooltip": "Sök i mitten av en cirkel eller vägnät: Definiera en central punkt och räkna biomassa kring centroid inom en vald radie",
     	"flyout": {
-    		"title": "Centrum av cirkeln",
+    		"title": "Sök i mitten av en cirkel eller vägnät",
     		"message": "Definiera först centralpunkten och sätt avståndet (i km) från vilket biomassan beräknas. Maximal avstånd längs vägar kan vara 65 km.",
     		"point": "Punkt",
     		"radius": "Avstånd",

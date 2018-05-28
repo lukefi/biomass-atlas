@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "Boundary",
     "value": {
-    	"toolbarTooltip": "Area search: select area and calculate biomass (en)",
+    	"toolbarTooltip": "Predefined region: select area and calculate biomass (en)",
     	"flyout": {
     		"title": "Predefined region",
     		"chooseAreaType": "Data for biomass layers can be calculated for the following pre-determined regions. Select regions for which the biomass will be calculated:",

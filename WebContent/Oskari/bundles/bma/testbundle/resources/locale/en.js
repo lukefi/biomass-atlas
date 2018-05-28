@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "TestBundle",
     "value": {
-    	"toolbarTooltip": "Draw area to the map and count its biomass.",
+    	"toolbarTooltip": "Free outlining: Draw area to the map and count its biomass.",
     	"flyout": {
     		"title": "Free outlining",
     		"chooseAreaType": "Draw area to the map. The application will calculate the biomass within it. Start drawing by clicking on the map and finish it by double-clicking.",    		

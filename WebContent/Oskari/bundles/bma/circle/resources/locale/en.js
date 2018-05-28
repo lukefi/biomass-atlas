@@ -2,7 +2,7 @@ Oskari.registerLocalization({
     "lang": "en",
     "key": "Circle",
     "value": {
-    	"toolbarTooltip": "Search by the centre of a circle or road network: Define a central point and count biomass surrounding the centroid within a chosen radius.",
+    	"toolbarTooltip": "The centre of a circle or road network: Define a central point and count biomass surrounding the centroid within a chosen radius.",
     	"flyout": {
     		"title": "The centre of a circle or road network",
     		"message": "Define first the central point and set the distance (in km) from which the biomass is calculated. Maximum distance along roads can be 65 km.",
