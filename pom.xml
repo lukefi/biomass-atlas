@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fi.luke</groupId>
 	<artifactId>bma</artifactId>
-	<version>1.4.20180522.1-SNAPSHOT</version>
+	<version>1.4.20180529.1-SNAPSHOT</version>
 	<name>Biomassa-atlas</name>
 	<inceptionYear>2015</inceptionYear>
 	<packaging>war</packaging>
