@@ -33,7 +33,7 @@ Oskari.registerLocalization({
     		"areaTypeSelected": {
     			"municipality": "Valitut kunnat",
     			"province": "Valitut maakunnat",
-    			"ely": "Valityt ELY-keskukset",
+    			"ely": "Valitut ELY-keskukset",
     			"drainageBasin": "Valitut valuma-alueet",
     			"postalCode": "Valitut postinumeroalueet"
     		},
