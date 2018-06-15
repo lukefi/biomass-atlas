@@ -140,6 +140,8 @@ public class BoundedAreaCalculator extends Calculator {
         List<Map<String, ?>> biomassData = (List<Map<String, ?>>) calculateBiomasses.get("boundedAreas");
         Map<Long, Map<String, String>> attributeMap = (Map<Long, Map<String, String>>) calculateBiomasses
                 .get("attributes");
+        // Display order's Map<Order number, attribute id>
+        Map<String, String> displayOrders =  (Map<String, String>) calculateBiomasses.get("displayOrders");
         Long selectedArea = (Long) calculateBiomasses.get("selectedArea");
         List<String> columnNames = new ArrayList<>();
         List<String> localizedMessages = localizeService.getLocalizedMessageSource();
@@ -148,7 +150,8 @@ public class BoundedAreaCalculator extends Calculator {
         columnNames.add(localizedMessages.get(2));
         columnNames.add(localizedMessages.get(3));
         columnNames.add(localizedMessages.get(4));
-        columnNames.add(localizedMessages.get(5) + " = " + selectedArea + " " + localizedMessages.get(6));
+        columnNames.add(localizedMessages.get(5));
+        columnNames.add(localizedMessages.get(6) + " = " + selectedArea + " " + localizedMessages.get(7));
         List<List<DataCell>> data = new ArrayList<>();
 
         for (Map<String, ?> boundedArea : biomassData) {
@@ -164,7 +167,14 @@ public class BoundedAreaCalculator extends Calculator {
                 row.add(new DataCell(attributeInfo.get("name")));
                 row.add(new DataCell((Double) entry.getValue()));
                 row.add(new DataCell(attributeInfo.get("unit")));
-                row.add(new DataCell("")); // Empty string for 6th column
+                // Include order number
+                for (Entry<String, String> orderEntry : displayOrders.entrySet()) {
+                    if (orderEntry.getValue().equals(String.valueOf(attributeId))) {
+                        row.add(new DataCell(orderEntry.getKey()));
+                        break;
+                    }
+                }
+                row.add(new DataCell("")); // Empty string for 7th column
                 data.add(row);
             }
         }
