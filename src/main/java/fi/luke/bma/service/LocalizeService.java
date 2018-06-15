@@ -87,6 +87,7 @@ public class LocalizeService {
     	colunmMessages.add(messageSource.getMessage("bma.type", null, locale));
     	colunmMessages.add(messageSource.getMessage("bma.amount", null, locale));
     	colunmMessages.add(messageSource.getMessage("bma.unit", null, locale));
+    	colunmMessages.add(messageSource.getMessage("bma.order_number", null, locale));
     	colunmMessages.add(messageSource.getMessage("bma.selectedArea", null, locale));
     	colunmMessages.add(messageSource.getMessage("bma.areaType", null, locale));
     	return colunmMessages;

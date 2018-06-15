@@ -2,19 +2,11 @@ package fi.luke.bma.service.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.TabularReportData;
 import fi.luke.bma.model.ValueAndUnit;
-import fi.luke.bma.service.AttributeService;
-import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.LocalizeService;
 import fi.rktl.common.model.DataCell;
 
@@ -49,21 +41,32 @@ public abstract class SingleAreaCalculator extends Calculator {
     @SuppressWarnings("unchecked")
     @Override
     public TabularReportData calculateBiomassInTabularFormatForReport() {
-        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) calculateBiomass().get("values");
-        Long selectedArea = (Long) calculateBiomass().get("selectedArea");
+        Map<String, ?> biomassDataMap =   (Map<String, ?>) calculateBiomass();
+        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) biomassDataMap.get("values");
+        // Display order's Map<Order number, attribute name>
+        Map<String, String> displayOrders =  (Map<String, String>) biomassDataMap.get("displayOrders");
+        Long selectedArea = (Long) biomassDataMap.get("selectedArea");
         List<String> plainColumnNames = new ArrayList<String>();
         List<String> localMessages = localizedService.getLocalizedMessageSourceForReport();
         plainColumnNames.add(localMessages.get(0));
         plainColumnNames.add(localMessages.get(1));
         plainColumnNames.add(localMessages.get(2));
-        plainColumnNames.add(localMessages.get(3) + " = " + selectedArea + " " + localMessages.get(4));
+        plainColumnNames.add(localMessages.get(3));
+        plainColumnNames.add(localMessages.get(4) + " = " + selectedArea + " " + localMessages.get(5));
         List<List<DataCell>> data = new ArrayList<>();
         for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
             List<DataCell> dataRow = new ArrayList<>();
             dataRow.add(new DataCell(attributeEntry.getKey()));
             dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
             dataRow.add(new DataCell(attributeEntry.getValue().getUnit()));
-            dataRow.add(new DataCell(""));  // Empty string for 4th column name
+            // Include order number
+            for (Entry<String, String> orderEntry : displayOrders.entrySet()) {
+                if (orderEntry.getValue().equals(attributeEntry.getKey())) {
+                    dataRow.add(new DataCell(orderEntry.getKey()));
+                    break;
+                }
+            }
+            dataRow.add(new DataCell(""));  // Empty string for 5th column name
             data.add(dataRow);
         }   
         return new TabularReportData(plainColumnNames, data);
