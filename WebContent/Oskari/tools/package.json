@@ -20,8 +20,8 @@
     "expect.js": "latest",
     "gm": "latest",
     "async": "latest",
-    "markx": "latest",   
-    "ejs": "latest",    
+    "markx": "latest",
+    "ejs": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-sass": "latest",
     "grunt-contrib-requirejs": "latest"
@@ -52,14 +52,14 @@
     "markx": "0.3.1",
     "node-fs-extra": "latest",
     "uglify-js": "2.3.6",
-    "uglifycss": "0.0.5",   
+    "uglifycss": "0.0.5",
     "xml2js": "latest",
     "yuidocjs": "0.3.45",
     "fs-extra": "5.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/grunt release",   
+    "build": "./node_modules/.bin/grunt release",
     "build-bma": "./node_modules/.bin/grunt release:bma:../applications/bma/minifierAppSetup.json",
     "trim": "./node_modules/.bin/grunt trimtrailingspaces",
     "lint": "./node_modules/.bin/jshint ../bundles"
