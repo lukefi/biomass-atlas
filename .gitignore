@@ -4,3 +4,5 @@
 /.classpath
 /.externalToolBuilders/
 /db/database_model.architect~
+/.factorypath
+**/package-lock.json
