@@ -130,17 +130,17 @@
 					</h2>
 					<span class="content-column"> 
 						<label class="column-field-label"><spring:message code="bma.firstname" /></label> <br>
-						<input class="column-field-input" size="20" id="firstname" name="firstname"	type="text" required>
+						<input class="column-field-input" size="20" id="firstname" name="firstname"	type="text" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorFirstname" class="alert alert-danger hidden"	role="alert"></span>
 					</span>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.lastname" /></label> <br>
-						<input class="column-field-input" size="20" id="lastname" name="lastname"	type="text" required>
+						<input class="column-field-input" size="20" id="lastname" name="lastname"	type="text" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 					</span>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.email" /></label> <br>
-						<input class="column-field-input" size="20" id="email" name="email"	type="email" required>
+						<input class="column-field-input" size="20" id="email" name="email"	type="email" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorEmail" class="alert alert-danger hidden"	role="alert"></span>
 					</span>
 					<br />
@@ -167,22 +167,22 @@
 					<br>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.firstname" /></label> <br>
-						<input class="column-field-input" size="20" id="firstname" name="firstname"	type="text" required>
+						<input class="column-field-input" size="20" id="firstname" name="firstname"	type="text" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorFirstname" class="alert alert-danger hidden"	role="alert"></span>
 					</span>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.lastname" /></label> <br>
-						<input class="column-field-input" size="20" id="lastname" name="lastname"	type="text" required>
+						<input class="column-field-input" size="20" id="lastname" name="lastname"	type="text" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorLastname" class="alert alert-danger hidden" role="alert"></span>
 					</span>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.registerUsername" /></label> <br>
-						<input class="column-field-input" size="20" id="username" name="username"	type="text" required>
+						<input class="column-field-input" size="20" id="username" name="username"	type="text" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorUsername" class="alert alert-danger hidden" role="alert"></span>
 					</span>
 					<span class="content-column">
 						<label class="column-field-label"><spring:message code="bma.email" /></label> <br>
-						<input class="column-field-input" size="20" id="email" name="email"	type="email" required>
+						<input class="column-field-input" size="20" id="email" name="email"	type="email" required title='<spring:message code="bma.fillTheField" />'>
 						<span id="errorEmail" class="alert alert-danger hidden"	role="alert"></span>
 					</span>
 					<br />
