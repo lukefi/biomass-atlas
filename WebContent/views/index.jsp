@@ -254,6 +254,11 @@ h4.biomass_layer_title {
 				alt="biomass_atlas_logo"
 				src="${pageContext.request.contextPath}/Oskari${path}/images/biomass_atlas.png"></a>
 		</div>
+		<div id="lang_selector">
+			<span><a href="${pageContext.request.contextPath}/?lang=fi" title="Suomeksi">FI</a></span>
+			<span><a href="${pageContext.request.contextPath}/?lang=en" title="In english">EN</a></span>
+			<span><a href="${pageContext.request.contextPath}/?lang=sv" title="På svenska">SV</a></span>
+		</div>
 		<div id="loginbar"></div>
 		<div id="menubar"></div>
 		<div id="divider"></div>

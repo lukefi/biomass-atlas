@@ -101,12 +101,12 @@ Oskari.clazz.define("Oskari.bma.bundle.welcometour.WelcomeTourInstance",
             },
             getContent: function () {
                 var content = jQuery('<div></div>');
-               /* content.append('<div id="welcome_lang_selector"> \
+                content.append('<div id="welcome_lang_selector"> \
 				    	<span><a href="/?lang=fi" title="Suomeksi" >FI</a></span> \
 				    	<span><a href="/?lang=en" title="In english">EN</a></span> \
 				    	<span><a href="/?lang=sv" title="På svenska">SV</a></span> \
 				    	</div>');
-                content.append('<br>');*/
+                content.append('<br>');
                 content.append(this.ref._localization['page1'].message);
                 content.append('<br><br>');
                 content.append(this.ref._localization['page1'].listtitle);
