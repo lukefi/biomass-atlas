@@ -581,7 +581,9 @@ $(document).bind('afterReady', function() {
 		};
 		
 		sb.register(removeLayerModule);
-		sb.register(addLayerModule);
+		sb.register(addLayerModule);		
+		// Hide import icon
+		$('#oskari_toolbar_myplaces_import').hide();		
 	})(Oskari.getSandbox());	
 	
 	if ($('#oskari_toolbar_basictools_bmacalculator').length) {
