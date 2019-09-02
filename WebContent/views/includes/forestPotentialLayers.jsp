@@ -11,8 +11,8 @@
 		<tr><td></td><th></th></tr>
 	</thead>
 	<tbody>
-		<tr><th><spring:message code="bma.small_trees.diameter_10cm"/></th><td><input type="checkbox" value='1259'></td></tr>
-		<tr><th><spring:message code="bma.small_trees.diameter_14cm"/></th><td><input type="checkbox" value='1260'></td></tr>
+		<tr><th><spring:message code="bma.small_trees.first_thinnings_smaller_than_pulpwood"/></th><td><input type="checkbox" value='1332'></td></tr>
+		<tr><th><spring:message code="bma.small_trees.first_thinnings"/></th><td><input type="checkbox" value='1333'></td></tr>
 	</tbody>
 </table>
 
@@ -32,12 +32,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr class="select-row">
-			<th scope="row"><spring:message code="bma.realized_cutting_removals"/></th>
-			<td><input type="checkbox" value='1129'></td>
-			<td><input type="checkbox" value='1042'></td>
-			<td><input type="checkbox" value='1127'></td>
-		</tr>
 		<tr class="select-row">
 			<th scope="row"><spring:message code="bma.maximum_sustainable_removal"/></th>
 			<td><input type="checkbox" value='1128'></td>
@@ -63,12 +57,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr class="select-row">
-			<th scope="row"><spring:message code="bma.realized_cutting_removals"/></th>
-			<td><input type="checkbox" value='1123'></td>
-			<td><input type="checkbox" value='1121'></td>
-			<td></td>
-		</tr>
 		<tr class="select-row">
 			<th scope="row"><spring:message code="bma.maximum_sustainable_removal"/></th>
 			<td><input type="checkbox" value='1122'></td>
