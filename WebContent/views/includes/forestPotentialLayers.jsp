@@ -3,7 +3,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.small_trees.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="44c4b160-2d5c-4acb-8d6a-38712592db30">
+		<input type="hidden" value="c779ec80-0a74-4e5b-b48e-302e2a6d96b3">
 	</div>
 </div>
 <table class="table select-column standard-width">
@@ -19,7 +19,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.logging_residues.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="129ac41c-1322-475f-bb9b-1c75877ea4cd">
+		<input type="hidden" value="c779ec80-0a74-4e5b-b48e-302e2a6d96b3">
 	</div>
 </div>
 <table class="table select-column standard-width">
@@ -44,7 +44,7 @@
 <div>
 	<h4 class="biomass_layer_title"><spring:message code="bma.stumps.title"/></h4>
 	<div class="biomass_info_icon icon-info">
-		<input type="hidden" value="129ac41c-1322-475f-bb9b-1c75877ea4cd">
+		<input type="hidden" value="c779ec80-0a74-4e5b-b48e-302e2a6d96b3">
 	</div>
 </div>
 <table class="table select-column standard-width">
