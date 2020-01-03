@@ -210,9 +210,15 @@ Oskari.clazz.define('Oskari.mapframework.bundle.maplegend.Flyout',
          * creates legend image div for layer
          */
         _createLegendDiv: function (layer, imagesAdded) {
+        	// Add language support to map legend (As this feature was not available in this version of Oskari)
+        	// (Hack not that good but working)
+        	//Retrieving selected language and append to the image legend.
+        	var mapLayerUrl = this.instance.getSandbox()._core._services[0]._mapLayerUrl,        	 
+        		lang = mapLayerUrl.split('&lang=')[1];        		
+        	
             var me = this,
-                legendUrl = layer.getLegendImage ? layer.getLegendImage() : null;
-
+                legendUrl = layer.getLegendImage ? layer.getLegendImage() + "&language=" + lang : null;
+                
             if (imagesAdded[legendUrl]) {
                 me._checkNoLegendText();
                 return null;
