@@ -7,6 +7,7 @@ import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.GeometryService;
 import fi.luke.bma.service.LocalizeService;
+import fi.luke.bma.service.NutrientCalculationService;
 
 public class CircleCalculator extends RadiusCalculator {
 
@@ -15,8 +16,9 @@ public class CircleCalculator extends RadiusCalculator {
     private final GeometryService geometryService;
 
     public CircleCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
-            AttributeService attributeService, GeometryService geometryService, LocalizeService localizedService) {
-        super(calculationService, attributeService, localizedService);
+            AttributeService attributeService, GeometryService geometryService, LocalizeService localizedService,
+            NutrientCalculationService nutrientCalculationService) {
+        super(calculationService, attributeService, localizedService, nutrientCalculationService);
         this.requestModel = requestModel;
         this.geometryService = geometryService;
     }

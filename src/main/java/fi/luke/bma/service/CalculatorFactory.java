@@ -59,10 +59,10 @@ public class CalculatorFactory {
                     gridCellService, localizedService);
         }
         if (clazz == RoadBufferCalculator.class) {
-            return new RoadBufferCalculator(requestModel, calculationService, attributeService, geometryService, localizedService);
+            return new RoadBufferCalculator(requestModel, calculationService, attributeService, geometryService, localizedService, nutrientCalculationService);
         }
         if (clazz == CircleCalculator.class) {
-            return new CircleCalculator(requestModel, calculationService, attributeService, geometryService, localizedService);
+            return new CircleCalculator(requestModel, calculationService, attributeService, geometryService, localizedService, nutrientCalculationService);
         }
         if (clazz == FreeformPolygonCalculator.class) {
             return new FreeformPolygonCalculator(requestModel, calculationService, attributeService, localizedService, nutrientCalculationService);
