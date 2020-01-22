@@ -47,7 +47,9 @@ public class BiomassCalculationRequestModel {
 
     private Long boundedAreaGridId;
 
-    private CalculateRule calculateRule; // For Province and ELY center. And also drainage basin 
+    private CalculateRule calculateRule; // For Province and ELY center. And also drainage basin
+    
+    private NutrientConstant nutrientResult;
 
     public ArrayList<Point> getPoints() {
         return points;
@@ -105,4 +107,12 @@ public class BiomassCalculationRequestModel {
         this.calculateRule = calculateRule;
     }
 
+    public NutrientConstant getNutrientResult() {
+        return nutrientResult;
+    }
+
+    public void setNutrientResult(NutrientConstant nutrientResult) {
+        this.nutrientResult = nutrientResult;
+    }
+    
 }

@@ -33,6 +33,9 @@ public class CalculatorFactory {
     
     @Autowired
     private LocalizeService localizedService;
+    
+    @Autowired
+    private NutrientCalculationService nutrientCalculationService;
 
     public Calculator getInstance(BiomassCalculationRequestModel requestModel) {
         Class<? extends Calculator> clazz;
@@ -62,7 +65,7 @@ public class CalculatorFactory {
             return new CircleCalculator(requestModel, calculationService, attributeService, geometryService, localizedService);
         }
         if (clazz == FreeformPolygonCalculator.class) {
-            return new FreeformPolygonCalculator(requestModel, calculationService, attributeService, localizedService);
+            return new FreeformPolygonCalculator(requestModel, calculationService, attributeService, localizedService, nutrientCalculationService);
         }
         throw new IllegalArgumentException("Unknown calculator requested: " + clazz.getName());
     }

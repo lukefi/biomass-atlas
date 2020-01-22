@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 import fi.luke.bma.model.Attribute;
 import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.Point;
+import fi.luke.bma.model.NutrientConstant;
 import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.LocalizeService;
+import fi.luke.bma.service.NutrientCalculationService;
 
 public class FreeformPolygonCalculator extends SingleAreaCalculator {
 
@@ -23,14 +25,18 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
     private final AttributeService attributeService;
     
     private final LocalizeService localizedService;
+    
+    private final NutrientCalculationService nutrientCalculationService;
 
     public FreeformPolygonCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
-            AttributeService attributeService, LocalizeService localizedService) {
+            AttributeService attributeService, LocalizeService localizedService,
+            NutrientCalculationService nutrientCalculationService) {
     	super(localizedService); //TODO: Check this, can still use?
     	this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.attributeService = attributeService;
         this.localizedService = localizedService;
+        this.nutrientCalculationService = nutrientCalculationService;
     }
 
     @Override
@@ -49,13 +55,19 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
         List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
         List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
         
-        LinkedHashMap<String, ValueAndUnit<Long>> attributeValues = new LinkedHashMap<>();
+        LinkedHashMap<String, BiomassAndNutrientValue> attributeValues = new LinkedHashMap<>();
         for (long attributeId : sortedAttributeIds) {
             double calculatedResult = calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
             List<String> attributeNameAndUnit = attributeService.getAttributeNameAndUnit(attributeId);
             String attributeName = attributeNameAndUnit.get(0);
             String attributeUnit = attributeNameAndUnit.get(1);
-            attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
+            
+            List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
+            BiomassAndNutrientValue biomassAndNutrientValue = new BiomassAndNutrientValue(
+                    new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit),
+                    nutrientCalculationService.getNutrientValue(attributeId, calculatedResult, nutrientConstants));
+            
+            attributeValues.put(attributeName, biomassAndNutrientValue);
         }
         result.put("values", attributeValues);
         
