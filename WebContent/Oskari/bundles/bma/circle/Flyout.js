@@ -257,7 +257,13 @@ function(instance, locale, conf) {
 						finalResult += "<div>" + radius + " " + localization.roadExtraInformation + "</div><br>"; 
 					}
 					finalResult += "<table class='biomass-result-table'><tr><th>"+ localization.biomassType + "</th>" +
-							"<th colspan='2'>" + localization.amount + "</th></tr>";
+							"<th colspan='2'>" + localization.amount + "</th>"+
+							"<th class='nutrient-value'>N (%TS)</th>" +
+							"<th class='nutrient-value'>N (g/kgFM)</th>" +
+							"<th class='nutrient-value'>P (%TS)</th>" +
+							"<th class='nutrient-value'>P (g/kgFM)</th>" +
+							"<th class='nutrient-value'>N-soluble (%TS)</th>" +
+							"<th class='nutrient-value'>N-soluble (g/kgFM)</th>" + "</tr>";
 					
 					var displayOrders = results.displayOrders;
 					for (var property in displayOrders) {
@@ -265,8 +271,15 @@ function(instance, locale, conf) {
 					    	for (var key in results.values) {
 					    		if (key == displayOrders[property]) {
 						    		finalResult += "<tr><td>" + key + "</td><td class='biomass-amount'>" 
-						    			+ formatBiomassValue(results.values[key].value)
-						    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].unit + "</td></tr>";
+							    		+ formatBiomassValue(results.values[key].valueAndUnit.value)
+						    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].valueAndUnit.unit + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_TS == null) ? ' - ' : results.values[key].nutrientResult.n_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_g_kgFM) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_TS == null) ? ' - ' : results.values[key].nutrientResult.p_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.p_g_kgFM) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_TS == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_g_kgFM) + "</td>"
+						    			+ "</tr>";
 						    		delete results.values[key];
 						    		break;
 						    	}
