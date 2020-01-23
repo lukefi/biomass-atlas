@@ -10,7 +10,10 @@ Oskari.registerLocalization({
     		"biomassType": "Biomassa typ",
     		"amount": "Mängd",
     		"selectedArea": "Valt område",
-    		"saveResults": "Spara resultaten",    		
+    		"saveResults": "Spara resultaten",
+    		"showNutrients": "Visa näringsämnen",
+    		"yes": "Ja",
+    		"no": "Nej",
     		"infoIcon": {
     			"title": "Regionens biomassa sammanfattning",
     			"description": "Beräkning sker baserat på ritningsområde och valda kartlager. " +

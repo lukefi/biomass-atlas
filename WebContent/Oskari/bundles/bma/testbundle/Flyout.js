@@ -26,6 +26,13 @@ function(instance, locale, conf) {
 	this.template = null;
 	this.templateAreaMessage = jQuery('<div id="area-message"><span id="description"></span><div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
+	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
+			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+ '<label class="switch switch-left-right">'
+			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
+			+ '<span class="switch-label"></span>' 
+			+ '<span class="switch-handle"></span></label>'
+			+ '</div>');	
 	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="oskari-button" id="area-cancel"></button></div>');
 	
 }, {	
@@ -74,6 +81,7 @@ function(instance, locale, conf) {
 
         var areaMessage = me.templateAreaMessage.clone();
         var areaData = me.templateAreaData.clone();        
+        //var showNutrientOption = me.templateShowNutrientOption.clone();        
         var cancelTool = me.templateAreaCancelTool.clone();
                        
         cancelTool.find('#area-cancel').html(localization.quit);
@@ -87,10 +95,10 @@ function(instance, locale, conf) {
         areaMessage.find('#area-info-tool').bind('click', function(){        	
         	me._displayInfoTip();     	
         });
-	
+        
         content.addClass('bma-area-main-div');
-        content.append(areaMessage);
-        content.append(areaData);       
+        content.append(areaMessage);       
+        content.append(areaData);
     	content.append(cancelTool);
     	    	    	
     	me._closeIconClickHandler();
@@ -231,7 +239,8 @@ function(instance, locale, conf) {
 				    }
 				}
 				finalResult += "</table>";
-				finalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha <br><br>";
+				finalResult += '<div id="show-nutrient"></div>';
+				finalResult += '<div id="selected-area">' + localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha </div>";
 				finalResult += localization.saveResults
 					+ " : <form method='POST' action='/biomass/area/xlsx' style='display: inline-block'>" 
 					+ "<input type='hidden' name='query' value= " + queryData + "/>" 
@@ -264,6 +273,7 @@ function(instance, locale, conf) {
 	_showResult: function(result){
 		jQuery("#area-message").hide();
 		jQuery("#area-data").html(result);
+		this._showNutrientOptionDiv();
 	},
 	
 	getContentState: function() {
@@ -308,6 +318,33 @@ function(instance, locale, conf) {
 				//Nothing
 			}
 		});
+    },
+    
+    /**
+     * Add checkbox to hide/show nutrient values
+     */
+    _showNutrientOptionDiv: function () {
+    	var me = this,
+    		localization = me.instance.getLocalization()["flyout"],
+			showNutrientOption = me.templateShowNutrientOption.clone();
+    	
+    	showNutrientOption.find('#show-nutrient-text').text(localization.showNutrients + " : ");
+    	showNutrientOption.find('.switch-label').attr('data-on', localization.yes);
+    	showNutrientOption.find('.switch-label').attr('data-off', localization.no);
+		showNutrientOption.find('#show-nutrient-checkbox').unbind('change');
+	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
+	    	me._hideShowNutrientValuesInTable(this);     	
+	    });
+	    
+	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
+    },
+    
+    _hideShowNutrientValuesInTable: function(object) {
+    	if (jQuery(object).is(':checked')) {
+    		$('.nutrient-value').show();
+    	} else {
+    		$('.nutrient-value').hide();
+    	}
     }
 	
 }, {

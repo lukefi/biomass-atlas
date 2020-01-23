@@ -10,7 +10,10 @@ Oskari.registerLocalization({
     		"biomassType": "Biomassan tyyppi",
     		"amount": "Määrä",
     		"selectedArea": "Valittu alue",
-    		"saveResults": "Tallenna tulokset",    		
+    		"saveResults": "Tallenna tulokset",
+    		"showNutrients": "Näytä ravinteet",
+    		"yes": "Kyllä",
+    		"no": "Ei",
     		"infoIcon": {
     			"title": "Alueen biomassan laskenta",
     			"description": "Laskenta suoritetaan piirretyn alueen ja valittujen karttatasojen perusteella. " +

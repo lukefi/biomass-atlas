@@ -10,7 +10,10 @@ Oskari.registerLocalization({
     		"biomassType": "Biomass type",
     		"amount": "Amount",
     		"selectedArea": "Selected area",
-    		"saveResults": "Save results",    		
+    		"saveResults": "Save results",
+    		"showNutrients": "Show nutrients",
+    		"yes": "Yes",
+    		"no": "No",
     		"infoIcon": {
     			"title": "Region's biomass summary",
     			"description": "Calculation is done based on drawing area and selected map layers. " +
