@@ -15,6 +15,9 @@ Oskari.registerLocalization({
     		"amount": "Määrä",
     		"selectedArea": "Valittu alue",
     		"saveResults": "Tallenna tulokset",
+    		"showNutrients": "Näytä ravinteet",
+    		"yes": "Kyllä",
+    		"no": "Ei",
     		"roadExtraInformation": "Km hakualue säteenä tai tieverkostoa pitkin. Mikäli hakualue muodostetaan tieverkostoa pitkin on se aina pienempi kuin linnuntie-etäisyys. Tällöin etäisyydet huomioidaan realistisemmin ja esimerkiksi tiettömät alueet (vesistöt) huomioidaan alueen määrittelyssä.",
     		"selectionType": {
     			"circle": "Etäisyys ympyrän säteenä (linnuntie-etäisyys)",

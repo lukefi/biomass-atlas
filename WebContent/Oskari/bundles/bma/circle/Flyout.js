@@ -46,6 +46,13 @@ function(instance, locale, conf) {
 			'<span id="circle-cancel-tool"><button class="oskari-button" id="circle-cancel"></button></span> </div>');
 	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="oskari-button" id="circle-back"></button>' +
 			'<span id="circle-cancel-tool"><button class="oskari-button" id="circle-cancel"></button></span> </div>');
+	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
+			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+ '<label class="switch switch-left-right">'
+			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
+			+ '<span class="switch-label"></span>' 
+			+ '<span class="switch-handle"></span></label>'
+			+ '</div>');
 }, {	
 	/**
 	 * @property template HTML templates for the User Interface
@@ -287,7 +294,8 @@ function(instance, locale, conf) {
 					    }
 					}
 					finalResult += "</table>";
-					finalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha <br><br>";
+					finalResult += '<div id="show-nutrient"></div>';
+					finalResult += '<div id="selected-area">' + localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha </div>";
 					
 					var	queryData = JSON.stringify({
 							points: points, 
@@ -378,6 +386,7 @@ function(instance, locale, conf) {
 		jQuery("#circle-calclulate-tool").hide();
 		jQuery("#circle-result").html(result).show();
 		jQuery("#circle-back-tool").show();
+		this._showNutrientOptionDiv();
 	},
 	
 	_addMarker: function(sandbox, x, y) {
@@ -493,6 +502,33 @@ function(instance, locale, conf) {
 				//Nothing
 			}
 		});
+    },
+    
+    /**
+     * Add checkbox to hide/show nutrient values
+     */
+    _showNutrientOptionDiv: function () {
+    	var me = this,
+    		localization = me.instance.getLocalization()["flyout"],
+			showNutrientOption = me.templateShowNutrientOption.clone();
+    	
+    	showNutrientOption.find('#show-nutrient-text').text(localization.showNutrients + " : ");
+    	showNutrientOption.find('.switch-label').attr('data-on', localization.yes);
+    	showNutrientOption.find('.switch-label').attr('data-off', localization.no);
+		showNutrientOption.find('#show-nutrient-checkbox').unbind('change');
+	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
+	    	me._hideShowNutrientValuesInTable(this);     	
+	    });
+	    
+	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
+    },
+    
+    _hideShowNutrientValuesInTable: function(object) {
+    	if (jQuery(object).is(':checked')) {
+    		$('.nutrient-value').show();
+    	} else {
+    		$('.nutrient-value').hide();
+    	}
     }
 	
 }, {

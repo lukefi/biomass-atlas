@@ -15,6 +15,9 @@ Oskari.registerLocalization({
     		"amount": "Mängd",
     		"selectedArea": "Valt område",
     		"saveResults": "Spara resultaten",
+    		"showNutrients": "Visa näringsämnen",
+    		"yes": "Ja",
+    		"no": "Nej",
     		"roadExtraInformation": "Km sökområde inom en radie eller längs ett vägnät. Om sökområdet bildas längs ett vägnät, är det alltid mindre än avståndet fågelvägen. Här beaktas avstånden mer realistiskt och exempelvis vägfria områden (t. ex. vattensystem) beaktas i definitionen av området.",
     		"selectionType": {
     			"circle": "Avstånd som en cirkelradie (fågelvägen)",
