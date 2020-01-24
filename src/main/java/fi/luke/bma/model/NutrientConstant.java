@@ -1,6 +1,5 @@
 package fi.luke.bma.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -12,22 +11,16 @@ import fi.rktl.common.model.NonInsertableEntityWithLongId;
 @Table(name = "nutrient_constant")
 public class NutrientConstant extends NonInsertableEntityWithLongId {
 
-    @Column(name = "N_(%TS)")
     private Double N_TS;
     
-    @Column(name = "N_(g/kgFM)")
     private Double N_g_kgFM;
     
-    @Column(name = "P_(%TS)")
     private Double P_TS;
     
-    @Column(name = "P_(g/kgFM)")
     private Double P_g_kgFM;
     
-    @Column(name = "N-soluble_(%TS)")
     private Double N_soluble_TS;
     
-    @Column(name = "N-soluble_(g/kgFM)")
     private Double N_soluble_g_kgFM;
     
     @OneToOne
