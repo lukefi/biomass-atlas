@@ -42,7 +42,7 @@ public abstract class SingleAreaCalculator extends Calculator {
     @Override
     public TabularReportData calculateBiomassInTabularFormatForReport() {
         Map<String, ?> biomassDataMap =   (Map<String, ?>) calculateBiomass();
-        Map<String, ValueAndUnit<Long>> biomassData = (Map<String, ValueAndUnit<Long>>) biomassDataMap.get("values");
+        Map<String, BiomassAndNutrientValue> biomassData = (Map<String, BiomassAndNutrientValue>) biomassDataMap.get("values");
         // Display order's Map<Order number, attribute name>
         Map<String, String> displayOrders =  (Map<String, String>) biomassDataMap.get("displayOrders");
         Long selectedArea = (Long) biomassDataMap.get("selectedArea");
@@ -51,14 +51,26 @@ public abstract class SingleAreaCalculator extends Calculator {
         plainColumnNames.add(localMessages.get(0));
         plainColumnNames.add(localMessages.get(1));
         plainColumnNames.add(localMessages.get(2));
+        plainColumnNames.add("N (%TS)");
+        plainColumnNames.add("N (g/kgFM)");
+        plainColumnNames.add("P (%TS)");
+        plainColumnNames.add("P (g/kgFM)");
+        plainColumnNames.add("N-soluble (%TS)");
+        plainColumnNames.add("N-soluble (g/kgFM)");
         plainColumnNames.add(localMessages.get(3));
         plainColumnNames.add(localMessages.get(4) + " = " + selectedArea + " " + localMessages.get(5));
         List<List<DataCell>> data = new ArrayList<>();
-        for (Entry<String, ValueAndUnit<Long>> attributeEntry : biomassData.entrySet()) {
+        for (Entry<String, BiomassAndNutrientValue> attributeEntry : biomassData.entrySet()) {
             List<DataCell> dataRow = new ArrayList<>();
             dataRow.add(new DataCell(attributeEntry.getKey()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getValue()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getUnit()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getValue()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getUnit()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_TS()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_g_kgFM()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP_TS()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP_g_kgFM()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble_TS()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble_g_kgFM()));
             // Include order number
             for (Entry<String, String> orderEntry : displayOrders.entrySet()) {
                 if (orderEntry.getValue().equals(attributeEntry.getKey())) {
