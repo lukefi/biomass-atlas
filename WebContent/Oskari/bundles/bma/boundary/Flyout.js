@@ -86,6 +86,14 @@ function(instance, locale, conf) {
 		messageString += '</div>';
 		this.templateBoundaryMessage = jQuery(messageString);
 	}
+	
+	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
+			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+ '<label class="switch switch-left-right">'
+			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
+			+ '<span class="switch-label"></span>' 
+			+ '<span class="switch-handle"></span></label>'
+			+ '</div>');
 		
 	this.selectedBoundaryType = null;
 	this.selectedUnitConversions = {};
@@ -414,8 +422,15 @@ function(instance, locale, conf) {
 			localization = this.instance.getLocalization()["flyout"],
 			totalResult = "<span>" + localization.areaTypeSelected[boundaryType] + "</span><br>";
 		
-		totalResult += "<table class='biomass-result-table'><tr><th>" + localization.areaType[boundaryType] + "</th><th>";
-		totalResult += localization.biomassType + "</th><th colspan='2'>" + localization.amount + "</th></tr>";
+		totalResult += "<table class='biomass-result-table'><tr><th>" + localization.areaType[boundaryType] + "</th>"
+			+ "<th>" + localization.biomassType + "</th>"
+			+ "<th colspan='2'>" + localization.amount + "</th>"
+			+ "<th class='nutrient-value'>N (%TS)</th>"
+			+ "<th class='nutrient-value'>N (g/kgFM)</th>"
+			+ "<th class='nutrient-value'>P (%TS)</th>"
+			+ "<th class='nutrient-value'>P (g/kgFM)</th>"
+			+ "<th class='nutrient-value'>N-soluble (%TS)</th>"
+			+ "<th class='nutrient-value'>N-soluble (g/kgFM)</th></tr>";
 		
 		var isUnitConversionSelected = jQuery('#unit-conversion-checkbox').is(':checked');
 		me._hideUnitConversionTable();
@@ -446,10 +461,18 @@ function(instance, locale, conf) {
 						    			+ formatBiomassValue(parseInt(modifiedResult))
 						    			+ "&nbsp;</td><td class='biomass-unit'>" + modifiedUnit + "</td> </tr>";
 					    		} else {
-					    			var attributeInfo = results.attributes[displayOrders[property]];
-						    		rowResult += "<td>" + attributeInfo.name + "</td><td class='biomass-amount'>" 
-						    		 	+ formatBiomassValue(boundedArea[displayOrders[property]])
-										+ "&nbsp;</td><td class='biomass-unit'>" + attributeInfo.unit + "</td> </tr>";
+					    			var attributeInfo = results.attributes[displayOrders[property]],
+					    				boundedAreaInfo = boundedArea[displayOrders[property]];
+						    		rowResult += "<td>" + attributeInfo.name + "</td>"
+						    			+ "<td class='biomass-amount'>" + formatBiomassValue(boundedAreaInfo.valueAndUnit.value) + "&nbsp;</td>"
+						    			+ "<td class='biomass-unit'>" + attributeInfo.unit + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_g_kgFM) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.p_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.p_g_kgFM) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble_TS) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble_g_kgFM) + "</td>"
+						    			+ "</tr>";
 					    		}
 					    		rowspanSize++;
 					    		delete displayOrders[property];
@@ -471,7 +494,8 @@ function(instance, locale, conf) {
 		}				
 		
 		totalResult += "</table>";
-		totalResult += localization.selectedArea + " : " + formatBiomassValue(results.selectedArea)  + " ha <br><br>";
+		totalResult += '<div id="show-nutrient"></div>';
+		totalResult += '<div id="selected-area">' + localization.selectedArea + " : " + formatBiomassValue(results.selectedArea) + " ha </div>";
 		totalResult = this._createExportPanel(totalResult, boundaryType, calculateRule);
 		this._showResult(totalResult);
 		this._clearSelectedUnitConversions(me);
@@ -657,6 +681,7 @@ function(instance, locale, conf) {
 		jQuery("#boundary-select-all").hide();
 		jQuery("#unit-conversion").hide();
 		jQuery("#boundary-data").html(result);
+		this._showNutrientOptionDiv();
 	},
 	
 	_getSelectedBoundaryType: function() {
@@ -856,25 +881,52 @@ function(instance, locale, conf) {
     //User activity
     _saveUserActivity : function(boundaryType, calculateRule) {
     	var me = this,
-		sandbox = me.instance.getSandbox();
+			sandbox = me.instance.getSandbox();
 	
-	me._setSelectedUnitConverionsValue(me);
-	
-	jQuery.ajax({
-		url: "/biomass/useractivity/boundedarea",
-		type: "POST",
-		contentType: "application/json; charset=UTF-8",
-		data: JSON.stringify({
-			areaIds: me.selectedIds[boundaryType],
-			attributes: me._getVisibleBiomassAttributeIds(sandbox),
-			boundedAreaGridId: me.GRID_IDS[boundaryType],
-			calculateRule: calculateRule
-		}),
-		dataType: "json",
-		success: function(results, status, xhr) {
-			//Nothing
-		}
-	});
+		me._setSelectedUnitConverionsValue(me);
+		
+		jQuery.ajax({
+			url: "/biomass/useractivity/boundedarea",
+			type: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify({
+				areaIds: me.selectedIds[boundaryType],
+				attributes: me._getVisibleBiomassAttributeIds(sandbox),
+				boundedAreaGridId: me.GRID_IDS[boundaryType],
+				calculateRule: calculateRule
+			}),
+			dataType: "json",
+			success: function(results, status, xhr) {
+				//Nothing
+			}
+		});
+    },
+    
+    /**
+     * Add checkbox to hide/show nutrient values
+     */
+    _showNutrientOptionDiv: function () {
+    	var me = this,
+    		localization = me.instance.getLocalization()["flyout"],
+			showNutrientOption = me.templateShowNutrientOption.clone();
+    	
+    	showNutrientOption.find('#show-nutrient-text').text(localization.showNutrients + " : ");
+    	showNutrientOption.find('.switch-label').attr('data-on', localization.yes);
+    	showNutrientOption.find('.switch-label').attr('data-off', localization.no);
+		showNutrientOption.find('#show-nutrient-checkbox').unbind('change');
+	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
+	    	me._hideShowNutrientValuesInTable(this);     	
+	    });
+	    
+	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
+    },
+    
+    _hideShowNutrientValuesInTable: function(object) {
+    	if (jQuery(object).is(':checked')) {
+    		$('.nutrient-value').show();
+    	} else {
+    		$('.nutrient-value').hide();
+    	}
     }
     
 }, {

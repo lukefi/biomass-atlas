@@ -16,6 +16,9 @@ Oskari.registerLocalization({
     		"amount": "Belopp",
     		"selectedArea": "Valt område",
     		"saveResults": "Spara resultaten",
+    		"showNutrients": "Visa näringsämnen",
+    		"yes": "Ja",
+    		"no": "Nej",
     		"areaType": {
     			"municipality": "Kommun",
     			"province": "Provins",

@@ -16,6 +16,9 @@ Oskari.registerLocalization({
     		"amount": "Amount",
     		"selectedArea": "Selected area",
     		"saveResults": "Save results",
+    		"showNutrients": "Show nutrients",
+    		"yes": "Yes",
+    		"no": "No",
     		"areaType": {
     			"municipality": "Municipality",
     			"province": "Province",

@@ -16,6 +16,9 @@ Oskari.registerLocalization({
     		"amount": "Määrä",
     		"selectedArea": "Valittu alue",
     		"saveResults": "Tallenna tulokset",
+    		"showNutrients": "Näytä ravinteet",
+    		"yes": "Kyllä",
+    		"no": "Ei",
     		"areaType": {
     			"municipality": "Kunta",
     			"province": "Maakunta",
