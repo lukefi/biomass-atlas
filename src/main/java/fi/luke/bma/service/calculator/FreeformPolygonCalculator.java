@@ -55,6 +55,7 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
         List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
         List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
         
+        List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
         LinkedHashMap<String, BiomassAndNutrientValue> attributeValues = new LinkedHashMap<>();
         for (long attributeId : sortedAttributeIds) {
             double calculatedResult = calculationService.getTotalBiomassForAttribute(attributeId, gridId, polygonAsWkt);
@@ -62,7 +63,6 @@ public class FreeformPolygonCalculator extends SingleAreaCalculator {
             String attributeName = attributeNameAndUnit.get(0);
             String attributeUnit = attributeNameAndUnit.get(1);
             
-            List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
             BiomassAndNutrientValue biomassAndNutrientValue = new BiomassAndNutrientValue(
                     new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit),
                     nutrientCalculationService.getNutrientValue(attributeId, calculatedResult, nutrientConstants));

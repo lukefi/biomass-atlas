@@ -39,6 +39,7 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
         List<Attribute> sortedAttributes = attributeService.getAllAttibutesWithIdsSortedByDisplayOrder(requestedAttibuteIds);
         List<Long> sortedAttributeIds = sortedAttributes.stream().map(Attribute::getId).collect(Collectors.toList());
         
+        List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
         LinkedHashMap<String, BiomassAndNutrientValue> attributeValues = new LinkedHashMap<>();
         TreeMap<String, Object> result = new TreeMap<>();
         for(long attributeId : sortedAttributeIds){
@@ -47,13 +48,11 @@ public abstract class RadiusCalculator extends SingleAreaCalculator {
             String attributeName = attributeNameAndUnit.get(0);
             String attributeUnit = attributeNameAndUnit.get(1);
             
-            List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
             BiomassAndNutrientValue biomassAndNutrientValue = new BiomassAndNutrientValue(
                     new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit),
                     nutrientCalculationService.getNutrientValue(attributeId, calculatedResult, nutrientConstants));
             
             attributeValues.put(attributeName, biomassAndNutrientValue);
-            //attributeValues.put(attributeName, new ValueAndUnit<Long>(Math.round(calculatedResult), attributeUnit));
         }
         result.put("values", attributeValues);
         result.put("geo", geometryAsWkt);
