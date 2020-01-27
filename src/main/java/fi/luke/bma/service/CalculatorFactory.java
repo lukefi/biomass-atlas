@@ -56,7 +56,7 @@ public class CalculatorFactory {
     public Calculator getInstance(BiomassCalculationRequestModel requestModel, Class<? extends Calculator> clazz) {
         if (clazz == BoundedAreaCalculator.class) {
             return new BoundedAreaCalculator(requestModel, calculationService, boundedAreaService, attributeService,
-                    gridCellService, localizedService);
+                    gridCellService, localizedService, nutrientCalculationService);
         }
         if (clazz == RoadBufferCalculator.class) {
             return new RoadBufferCalculator(requestModel, calculationService, attributeService, geometryService, localizedService, nutrientCalculationService);

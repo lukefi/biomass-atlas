@@ -15,12 +15,15 @@ import fi.luke.bma.model.BiomassCalculationRequestModel;
 import fi.luke.bma.model.BiomassCalculationRequestModel.CalculateRule;
 import fi.luke.bma.model.Grid.GridType;
 import fi.luke.bma.model.GridCell;
+import fi.luke.bma.model.NutrientConstant;
 import fi.luke.bma.model.TabularReportData;
+import fi.luke.bma.model.ValueAndUnit;
 import fi.luke.bma.service.AttributeService;
 import fi.luke.bma.service.BoundedAreaService;
 import fi.luke.bma.service.CalculationService;
 import fi.luke.bma.service.GridCellService;
 import fi.luke.bma.service.LocalizeService;
+import fi.luke.bma.service.NutrientCalculationService;
 import fi.rktl.common.model.DataCell;
 
 public class BoundedAreaCalculator extends Calculator {
@@ -36,16 +39,19 @@ public class BoundedAreaCalculator extends Calculator {
     private final GridCellService gridCellService;
 
     private final LocalizeService localizeService;
+    
+    private final NutrientCalculationService nutrientCalculationService;
 
     public BoundedAreaCalculator(BiomassCalculationRequestModel requestModel, CalculationService calculationService,
             BoundedAreaService boundedAreaService, AttributeService attributeService, GridCellService gridCellService,
-            LocalizeService localizeService) {
+            LocalizeService localizeService, NutrientCalculationService nutrientCalculationService) {
         this.requestModel = requestModel;
         this.calculationService = calculationService;
         this.boundedAreaService = boundedAreaService;
         this.attributeService = attributeService;
         this.gridCellService = gridCellService;
         this.localizeService = localizeService;
+        this.nutrientCalculationService = nutrientCalculationService;
     }
 
     @Override
@@ -92,11 +98,16 @@ public class BoundedAreaCalculator extends Calculator {
         }
         root.put("attributes", attributeMap);
 
+        List<NutrientConstant> nutrientConstants = nutrientCalculationService.getAll();
         for (AdministrativeAreaBiomassCalculationResult result : boundedAreaBiomasses) {
             Map<String, Object> boundedArea = boundedAreaMap.get(result.getAreaId());
             Double value = result.getValue();
             Double calculatedResult = getCalculateResult(value);
-            boundedArea.put(Long.toString(result.getAttributeId()), calculatedResult);
+            
+            BiomassAndNutrientValue biomassAndNutrientValue = new BiomassAndNutrientValue(
+                    new ValueAndUnit<Long>(Math.round(calculatedResult), null),
+                    nutrientCalculationService.getNutrientValue(result.getAttributeId(), calculatedResult, nutrientConstants));
+            boundedArea.put(Long.toString(result.getAttributeId()), biomassAndNutrientValue);
         }
 
         Map<String, String> displayOrders = new LinkedHashMap<>();

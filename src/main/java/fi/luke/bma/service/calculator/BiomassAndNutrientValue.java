@@ -8,10 +8,18 @@ public class BiomassAndNutrientValue {
     private ValueAndUnit<Long> valueAndUnit;
     
     private NutrientConstant nutrientResult;
+    
+    private Double value;   // For Administrative border's value
 
     public BiomassAndNutrientValue(ValueAndUnit<Long> valueAndUnit, NutrientConstant nutrientResult) {
         super();
         this.valueAndUnit = valueAndUnit;
+        this.nutrientResult = nutrientResult;
+    }
+    
+    public BiomassAndNutrientValue(Double value,NutrientConstant nutrientResult) {
+        super();
+        this.value = value;
         this.nutrientResult = nutrientResult;
     }
 
@@ -29,6 +37,16 @@ public class BiomassAndNutrientValue {
 
     public void setNutrientResult(NutrientConstant nutrientResult) {
         this.nutrientResult = nutrientResult;
-    }    
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+    
+    
     
 }

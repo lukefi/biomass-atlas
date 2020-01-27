@@ -40,7 +40,7 @@ public class NutrientCalculationService {
         }
         return new NutrientConstant(null, null, null, null, null, null);
     }
-    
+   
     @SuppressWarnings("unchecked")
     public List<NutrientConstant> getAll() {
         String sql = "SELECT n.* FROM nutrient_constant n";
