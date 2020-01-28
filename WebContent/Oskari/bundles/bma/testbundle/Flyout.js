@@ -225,12 +225,12 @@ function(instance, locale, conf) {
 					    		finalResult += "<tr><td>" + key + "</td><td class='biomass-amount'>" 
 					    			+ formatBiomassValue(results.values[key].valueAndUnit.value)
 					    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].valueAndUnit.unit + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_TS == null) ? ' - ' : results.values[key].nutrientResult.n_TS) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_g_kgFM) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_TS == null) ? ' - ' : results.values[key].nutrientResult.p_TS) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.p_g_kgFM) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_TS == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_TS) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_g_kgFM) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_TS == null) ? ' - ' : results.values[key].nutrientResult.n_TS.toString().replace('.', ',')) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_g_kgFM.toString().replace('.', ',')) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_TS == null) ? ' - ' : results.values[key].nutrientResult.p_TS.toString().replace('.', ',')) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.p_g_kgFM.toString().replace('.', ',')) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_TS == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_TS.toString().replace('.', ',')) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble_g_kgFM == null) ? ' - ' : results.values[key].nutrientResult.n_soluble_g_kgFM.toString().replace('.', ',')) + "</td>"
 					    			+ "</tr>";
 					    		delete results.values[key];
 					    		break;
