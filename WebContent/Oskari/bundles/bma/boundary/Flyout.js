@@ -463,9 +463,9 @@ function(instance, locale, conf) {
 						    		rowResult += "<td>" + attributeInfo.name + "</td>"
 						    			+ "<td class='biomass-amount'>" + formatBiomassValue(boundedAreaInfo.valueAndUnit.value) + "&nbsp;</td>"
 						    			+ "<td class='biomass-unit'>" + attributeInfo.unit + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n == null) ? ' - ' : boundedAreaInfo.nutrientResult.n) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p == null) ? ' - ' : boundedAreaInfo.nutrientResult.p) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n == null) ? ' - ' : formatBiomassValue(boundedAreaInfo.nutrientResult.n)) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble == null) ? ' - ' : formatBiomassValue(boundedAreaInfo.nutrientResult.n_soluble)) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p == null) ? ' - ' : formatBiomassValue(boundedAreaInfo.nutrientResult.p)) + "</td>"
 						    			+ "</tr>";
 					    		}
 					    		rowspanSize++;

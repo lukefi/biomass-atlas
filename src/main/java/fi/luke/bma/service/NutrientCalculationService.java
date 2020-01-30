@@ -78,15 +78,15 @@ public class NutrientCalculationService {
      * @param biomassAmount
      * @return
      */
-    private Double calculateNutrient(Double totalSolidPercent, Double coefficient_TS, Double coefficient_g_per_kg,
+    private Long calculateNutrient(Double totalSolidPercent, Double coefficient_TS, Double coefficient_g_per_kg,
             Double biomassAmount) {
         if ((coefficient_TS == null || coefficient_TS == 0)
                 && (coefficient_g_per_kg == null || coefficient_g_per_kg == 0)) {
             return null;
         } else if (coefficient_TS == null || coefficient_TS == 0) {
-            return calculateNutrientForFreshMatter(totalSolidPercent, coefficient_g_per_kg, biomassAmount);
+            return calculateNutrientForFreshMatter(totalSolidPercent, coefficient_g_per_kg, biomassAmount).longValue();
         } else {
-            return calculateNutrientForTotalSolid(totalSolidPercent, coefficient_TS, biomassAmount);
+            return calculateNutrientForTotalSolid(totalSolidPercent, coefficient_TS, biomassAmount).longValue();
         }
     }
 

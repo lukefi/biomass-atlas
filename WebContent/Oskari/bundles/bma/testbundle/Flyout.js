@@ -222,9 +222,9 @@ function(instance, locale, conf) {
 					    		finalResult += "<tr><td>" + key + "</td><td class='biomass-amount'>" 
 					    			+ formatBiomassValue(results.values[key].valueAndUnit.value)
 					    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].valueAndUnit.unit + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n == null) ? ' - ' : results.values[key].nutrientResult.n) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble == null) ? ' - ' : results.values[key].nutrientResult.n_soluble) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p == null) ? ' - ' : results.values[key].nutrientResult.p) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.n)) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.n_soluble)) + "</td>"
+					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.p)) + "</td>"
 					    			+ "</tr>";
 					    		delete results.values[key];
 					    		break;

@@ -2,40 +2,40 @@ package fi.luke.bma.model;
 
 public class NutrientResult {
 
-    private Double N;
+    private Long N;
     
-    private Double P;
+    private Long P;
     
-    private Double N_soluble;
+    private Long N_soluble;
     
-    public NutrientResult(Double n, Double p, Double n_soluble) {
+    public NutrientResult(Long n, Long p, Long n_soluble) {
         super();
         N = n;
         P = p;
         N_soluble = n_soluble;
     }
 
-    public Double getN() {
+    public Long getN() {
         return N;
     }
 
-    public void setN(Double n) {
+    public void setN(Long n) {
         N = n;
     }
 
-    public Double getP() {
+    public Long getP() {
         return P;
     }
 
-    public void setP(Double p) {
+    public void setP(Long p) {
         P = p;
     }
 
-    public Double getN_soluble() {
+    public Long getN_soluble() {
         return N_soluble;
     }
 
-    public void setN_soluble(Double n_soluble) {
+    public void setN_soluble(Long n_soluble) {
         N_soluble = n_soluble;
     }
     
