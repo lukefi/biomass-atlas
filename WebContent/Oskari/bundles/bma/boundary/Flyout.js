@@ -425,12 +425,9 @@ function(instance, locale, conf) {
 		totalResult += "<table class='biomass-result-table'><tr><th>" + localization.areaType[boundaryType] + "</th>"
 			+ "<th>" + localization.biomassType + "</th>"
 			+ "<th colspan='2'>" + localization.amount + "</th>"
-			+ "<th class='nutrient-value'>N (%TS)</th>"
-			+ "<th class='nutrient-value'>N (g/kgFM)</th>"
-			+ "<th class='nutrient-value'>P (%TS)</th>"
-			+ "<th class='nutrient-value'>P (g/kgFM)</th>"
-			+ "<th class='nutrient-value'>N-soluble (%TS)</th>"
-			+ "<th class='nutrient-value'>N-soluble (g/kgFM)</th></tr>";
+			+ "<th class='nutrient-value'>N (kg)</th>"
+			+ "<th class='nutrient-value'>N-soluble (kg)</th>"
+			+ "<th class='nutrient-value'>P (kg)</th>" + "</tr>";
 		
 		var isUnitConversionSelected = jQuery('#unit-conversion-checkbox').is(':checked');
 		me._hideUnitConversionTable();
@@ -466,12 +463,9 @@ function(instance, locale, conf) {
 						    		rowResult += "<td>" + attributeInfo.name + "</td>"
 						    			+ "<td class='biomass-amount'>" + formatBiomassValue(boundedAreaInfo.valueAndUnit.value) + "&nbsp;</td>"
 						    			+ "<td class='biomass-unit'>" + attributeInfo.unit + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_TS.toString().replace('.', ',')) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_g_kgFM.toString().replace('.', ',')) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.p_TS.toString().replace('.', ',')) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.p_g_kgFM.toString().replace('.', ',')) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble_TS == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble_TS.toString().replace('.', ',')) + "</td>"
-						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble_g_kgFM == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble_g_kgFM.toString().replace('.', ',')) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n == null) ? ' - ' : boundedAreaInfo.nutrientResult.n) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.n_soluble == null) ? ' - ' : boundedAreaInfo.nutrientResult.n_soluble) + "</td>"
+						    			+ "<td class='nutrient-value'>" + ((boundedAreaInfo.nutrientResult.p == null) ? ' - ' : boundedAreaInfo.nutrientResult.p) + "</td>"
 						    			+ "</tr>";
 					    		}
 					    		rowspanSize++;
