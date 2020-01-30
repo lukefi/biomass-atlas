@@ -34,7 +34,7 @@
     }
     #bmaLayerContent .bmaLayerInner > .nav-pills > li {
     	padding-right: 7px;
-    	width: 203px;
+    	width: 170px;
     }
     #bmaLayerContent .bmaLayerInner > .nav-pills > li > a {
     	background-color: #00b5e2;
@@ -417,6 +417,7 @@ $(document).ready(function () {
 	<ul class="nav nav-pills">
 		<li class="active"><a data-toggle="tab" href="#potentialTabs"><spring:message code="bma.potential"/></a></li>
 		<li><a data-toggle="tab" href="#originTabs"><spring:message code="bma.origin"/></a></li>
+		<li><a data-toggle="tab" href="#nutrientTabs"><spring:message code="bma.nutrients"/></a></li>
 		<li><a data-toggle="tab" href="#searchTab"><spring:message code="bma.search"/></a></li>
 	</ul>
 	<div class="tab-content">
@@ -567,6 +568,13 @@ $(document).ready(function () {
 				
 			</div>	<!-- originTab tab-content ends -->
 		</div>	<!-- originTab tab-pane ends -->
+		<div id="nutrientTabs" class="tab-pane fade">
+			<div class="tab-content">
+				<div id="nutrientLayer" class="tab-pane fade in active">
+					<jsp:include page="includes/nutrientLayers.jsp"></jsp:include>
+				</div>
+			</div>
+		</div>
 		<div id="searchTab" class="tab-pane fade">
 			<div class="search-content">
 				<div><spring:message code="bma.search_biomass_type"/></div>
