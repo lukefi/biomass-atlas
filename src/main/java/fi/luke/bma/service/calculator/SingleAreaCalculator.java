@@ -51,12 +51,9 @@ public abstract class SingleAreaCalculator extends Calculator {
         plainColumnNames.add(localMessages.get(0));
         plainColumnNames.add(localMessages.get(1));
         plainColumnNames.add(localMessages.get(2));
-        plainColumnNames.add("N (%TS)");
-        plainColumnNames.add("N (g/kgFM)");
-        plainColumnNames.add("P (%TS)");
-        plainColumnNames.add("P (g/kgFM)");
-        plainColumnNames.add("N-soluble (%TS)");
-        plainColumnNames.add("N-soluble (g/kgFM)");
+        plainColumnNames.add("N (kg)");
+        plainColumnNames.add("N-soluble (kg)");
+        plainColumnNames.add("P (kg)");
         plainColumnNames.add(localMessages.get(3));
         plainColumnNames.add(localMessages.get(4) + " = " + selectedArea + " " + localMessages.get(5));
         List<List<DataCell>> data = new ArrayList<>();
@@ -65,12 +62,9 @@ public abstract class SingleAreaCalculator extends Calculator {
             dataRow.add(new DataCell(attributeEntry.getKey()));
             dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getValue()));
             dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getUnit()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_TS()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_g_kgFM()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP_TS()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP_g_kgFM()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble_TS()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble_g_kgFM()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble()));
+            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP()));
             // Include order number
             for (Entry<String, String> orderEntry : displayOrders.entrySet()) {
                 if (orderEntry.getValue().equals(attributeEntry.getKey())) {
