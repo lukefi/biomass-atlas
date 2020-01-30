@@ -10,6 +10,8 @@ import fi.rktl.common.model.NonInsertableEntityWithLongId;
 @Entity
 @Table(name = "nutrient_constant")
 public class NutrientConstant extends NonInsertableEntityWithLongId {
+    
+    private Double TS;  // Total Solid percent
 
     private Double N_TS;
     
@@ -40,6 +42,14 @@ public class NutrientConstant extends NonInsertableEntityWithLongId {
         P_g_kgFM = p_g_kgFM;
         N_soluble_TS = n_soluble_TS;
         N_soluble_g_kgFM = n_soluble_g_kgFM;
+    }
+
+    public Double getTS() {
+        return TS;
+    }
+
+    public void setTS(Double tS) {
+        TS = tS;
     }
 
     public Double getN_TS() {
