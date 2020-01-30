@@ -1,25 +1,22 @@
 package fi.luke.bma.service.calculator;
 
-import fi.luke.bma.model.NutrientConstant;
+import fi.luke.bma.model.NutrientResult;
 import fi.luke.bma.model.ValueAndUnit;
 
 public class BiomassAndNutrientValue {
     
     private ValueAndUnit<Long> valueAndUnit;
     
-    private NutrientConstant nutrientResult;
+    private NutrientResult nutrientResult;
     
-    private Double value;   // For Administrative border's value
-
-    public BiomassAndNutrientValue(ValueAndUnit<Long> valueAndUnit, NutrientConstant nutrientResult) {
+    public BiomassAndNutrientValue(ValueAndUnit<Long> valueAndUnit, NutrientResult nutrientResult) {
         super();
         this.valueAndUnit = valueAndUnit;
         this.nutrientResult = nutrientResult;
     }
     
-    public BiomassAndNutrientValue(Double value,NutrientConstant nutrientResult) {
+    public BiomassAndNutrientValue(NutrientResult nutrientResult) {
         super();
-        this.value = value;
         this.nutrientResult = nutrientResult;
     }
 
@@ -31,22 +28,12 @@ public class BiomassAndNutrientValue {
         this.valueAndUnit = valueAndUnit;
     }
 
-    public NutrientConstant getNutrientResult() {
+    public NutrientResult getNutrientResult() {
         return nutrientResult;
     }
 
-    public void setNutrientResult(NutrientConstant nutrientResult) {
+    public void setNutrientResult(NutrientResult nutrientResult) {
         this.nutrientResult = nutrientResult;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-    
-    
+    }   
     
 }
