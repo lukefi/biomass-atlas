@@ -27,15 +27,16 @@ function(instance, locale, conf) {
 	this.NUTRIENT_TOOLTIP = "nutrient";
 	
 	this.template = null;
+	var flyoutLocalization = this.instance.getLocalization()["flyout"];
 	this.templateAreaMessage = jQuery('<div id="area-message"><span id="description"></span><div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
 	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
-			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+' <label id="show-nutrient-text">' + flyoutLocalization.showNutrients + ' : </label>'
 			+ '<label class="switch switch-left-right">'
 			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
 			+ '<span class="switch-label"></span>' 
 			+ '<span class="switch-handle"></span></label>'
-			+ '<div class="icon-info" id="circle-nutrient-tooltip" style="display:inline-block;"></div></div>');	
+			+ '<div class="icon-info" id="nutrient-tooltip" style="display:inline-block;"></div></div>');	
 	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="oskari-button" id="area-cancel"></button></div>');
 	
 }, {	
@@ -341,8 +342,8 @@ function(instance, locale, conf) {
 	    	me._hideShowNutrientValuesInTable(this);     	
 	    });
 	    
-	    showNutrientOption.find('#circle-nutrient-tooltip').unbind('click');
-	    showNutrientOption.find('#circle-nutrient-tooltip').bind('click', function(){        	
+	    showNutrientOption.find('#nutrient-tooltip').unbind('click');
+	    showNutrientOption.find('#nutrient-tooltip').bind('click', function(){        	
         	me._displayInfoTip(me.NUTRIENT_TOOLTIP);     	
         });
 	    
