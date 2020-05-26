@@ -162,7 +162,6 @@ public class BoundedAreaCalculator extends Calculator {
         columnNames.add(localizedMessages.get(3));
         columnNames.add(localizedMessages.get(4));
         columnNames.add("N (kg)");
-        columnNames.add("N-soluble (kg)");
         columnNames.add("P (kg)");
         columnNames.add(localizedMessages.get(5));
         columnNames.add(localizedMessages.get(6) + " = " + selectedArea + " " + localizedMessages.get(7));
@@ -183,7 +182,6 @@ public class BoundedAreaCalculator extends Calculator {
                 row.add(new DataCell(biomassAndNutrientValue.getValueAndUnit().getValue()));
                 row.add(new DataCell(attributeInfo.get("unit")));                
                 row.add(new DataCell(biomassAndNutrientValue.getNutrientResult().getN()));
-                row.add(new DataCell(biomassAndNutrientValue.getNutrientResult().getN_soluble()));
                 row.add(new DataCell(biomassAndNutrientValue.getNutrientResult().getP()));
                 // Include order number
                 for (Entry<String, String> orderEntry : displayOrders.entrySet()) {

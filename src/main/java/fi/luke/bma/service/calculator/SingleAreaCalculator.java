@@ -52,7 +52,6 @@ public abstract class SingleAreaCalculator extends Calculator {
         plainColumnNames.add(localMessages.get(1));
         plainColumnNames.add(localMessages.get(2));
         plainColumnNames.add("N (kg)");
-        plainColumnNames.add("N-soluble (kg)");
         plainColumnNames.add("P (kg)");
         plainColumnNames.add(localMessages.get(3));
         plainColumnNames.add(localMessages.get(4) + " = " + selectedArea + " " + localMessages.get(5));
@@ -63,7 +62,6 @@ public abstract class SingleAreaCalculator extends Calculator {
             dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getValue()));
             dataRow.add(new DataCell(attributeEntry.getValue().getValueAndUnit().getUnit()));
             dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN()));
-            dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getN_soluble()));
             dataRow.add(new DataCell(attributeEntry.getValue().getNutrientResult().getP()));
             // Include order number
             for (Entry<String, String> orderEntry : displayOrders.entrySet()) {
