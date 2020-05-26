@@ -243,6 +243,11 @@ h4.biomass_layer_title {
 #submit {
 	margin-left: 0px;
 }
+
+#nutrientLayerTable th:first-child {
+	width: 550px !important;
+}
+
 </style>
 <!-- ############# /css ################# -->
 </head>
