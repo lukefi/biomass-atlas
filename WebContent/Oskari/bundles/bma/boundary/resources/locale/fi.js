@@ -19,6 +19,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Näytä ravinteet",
     		"yes": "Kyllä",
     		"no": "Ei",
+    		"showNutrientTooltip": "Ravinnepitoisuudet perustuvat biomassan määrään ja kirjallisuudesta ja asiantuntija-arvioina valittuihin kertoimiin, jotka ovat vakioita kautta Suomen ja keskiarvoja useiden eri massojen ominaisuuksista. <br><br>Ravinnetaulukot julkaistaan myöhemmin, ja viite niihin lisätään tänne, kun se on saatavilla.",
     		"areaType": {
     			"municipality": "Kunta",
     			"province": "Maakunta",

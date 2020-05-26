@@ -22,6 +22,10 @@ function(instance, locale, conf) {
 
 	/* @property container the DIV element */
 	this.container = null;
+	
+	/* For tooltip */
+	this.AREA_TOOLTIP = "area";
+	this.NUTRIENT_TOOLTIP = "nutrient";
 
 	/* These string values must be same as value for radio button. */
 	this.BOUNDARY_MUNICIPALITY = "municipality";
@@ -88,12 +92,12 @@ function(instance, locale, conf) {
 	}
 	
 	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
-			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+' <label id="show-nutrient-text">' + flyoutLocalization.showNutrients + ' : </label>'
 			+ '<label class="switch switch-left-right">'
 			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
 			+ '<span class="switch-label"></span>' 
 			+ '<span class="switch-handle"></span></label>'
-			+ '</div>');
+			+ '<div class="icon-info" id="nutrient-tooltip" style="display:inline-block;"></div></div>');
 		
 	this.selectedBoundaryType = null;
 	this.selectedUnitConversions = {};
@@ -727,24 +731,8 @@ function(instance, locale, conf) {
         	infoIcon = jQuery('<div class="icon-info" id="boundary-info-tool"></div>'),
             location = jQuery('#boundary-message');       
         location.append(infoIcon);
-        // show metadata
         infoIcon.click(function (e) {
-            var areaTypeInfoLocalization = me.instance.getLocalization()["flyout"].areaTypeInfo,
-            	title = areaTypeInfoLocalization.title[boundaryType],
-            	desc = areaTypeInfoLocalization.description[boundaryType],
-                dialog = Oskari.clazz.create(
-                    'Oskari.userinterface.component.Popup'
-                ),
-                okBtn = Oskari.clazz.create(
-                    'Oskari.userinterface.component.Button'
-                );
-
-            okBtn.addClass('default oskari-button');
-            okBtn.setTitle('Ok');
-            okBtn.setHandler(function () {
-                dialog.close(true);
-            });
-            dialog.show(title, desc, [okBtn]);
+        	me._displayInfoTip(me.AREA_TOOLTIP, boundaryType);
         });
     },
     
@@ -870,6 +858,34 @@ function(instance, locale, conf) {
     	return result;
     },
     
+    _displayInfoTip: function (selectionType, boundaryType) {
+    	var areaTypeInfoLocalization,
+			title,
+			desc,
+			dialog = Oskari.clazz.create(
+	            'Oskari.userinterface.component.Popup'
+	        ),
+	        okBtn = Oskari.clazz.create(
+	            'Oskari.userinterface.component.Button'
+	        );
+	
+		if (selectionType === this.AREA_TOOLTIP) {
+			areaTypeInfoLocalization = this.instance.getLocalization()["flyout"].areaTypeInfo;
+        	title = areaTypeInfoLocalization.title[boundaryType];
+        	desc = areaTypeInfoLocalization.description[boundaryType];
+		} else if (selectionType === this.NUTRIENT_TOOLTIP) {
+	    	title = this.instance.getLocalization()["flyout"].showNutrients;
+	    	desc = this.instance.getLocalization()["flyout"].showNutrientTooltip;
+		}
+		
+        okBtn.addClass('default oskari-button');
+        okBtn.setTitle('Ok');
+        okBtn.setHandler(function () {
+            dialog.close(true);
+        });
+        dialog.show(title, desc, [okBtn]);       
+    },
+    
     //User activity
     _saveUserActivity : function(boundaryType, calculateRule) {
     	var me = this,
@@ -909,6 +925,11 @@ function(instance, locale, conf) {
 	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
 	    	me._hideShowNutrientValuesInTable(this);     	
 	    });
+	    
+	    showNutrientOption.find('#nutrient-tooltip').unbind('click');
+	    showNutrientOption.find('#nutrient-tooltip').bind('click', function() {        	
+        	me._displayInfoTip(me.NUTRIENT_TOOLTIP, null);     	
+        });
 	    
 	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
     },

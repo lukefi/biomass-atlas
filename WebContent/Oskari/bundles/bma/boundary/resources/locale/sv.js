@@ -19,6 +19,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Visa näringsämnen",
     		"yes": "Ja",
     		"no": "Nej",
+    		"showNutrientTooltip": "Näringskoncentrationerna baseras på mängden av biomassa och på koefficienterna från litteraturen och expertberäkningar. Koefficienterna är konstanta i hela Finland och är i genomsnitt över egenskaperna hos flera olika biomassor. <br><br>Näringstabeller kommer att publiceras senare och en referens hittas här när den är tillgänglig.",
     		"areaType": {
     			"municipality": "Kommun",
     			"province": "Provins",
