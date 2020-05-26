@@ -23,6 +23,9 @@ function(instance, locale, conf) {
 	/* @property container the DIV element */
 	this.container = null;
 	
+	this.AREA_TOOLTIP = "area";	
+	this.NUTRIENT_TOOLTIP = "nutrient";
+	
 	this.template = null;
 	this.templateAreaMessage = jQuery('<div id="area-message"><span id="description"></span><div class="icon-info" id="area-info-tool"></div></div>');
 	this.templateAreaData = jQuery('<div id="area-data"></div>');	
@@ -32,7 +35,7 @@ function(instance, locale, conf) {
 			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
 			+ '<span class="switch-label"></span>' 
 			+ '<span class="switch-handle"></span></label>'
-			+ '</div>');	
+			+ '<div class="icon-info" id="circle-nutrient-tooltip" style="display:inline-block;"></div></div>');	
 	this.templateAreaCancelTool = jQuery('<div class="area-horizontal-line">.</div><div id="area-cancel-tool"><button class="oskari-button" id="area-cancel"></button></div>');
 	
 }, {	
@@ -93,7 +96,7 @@ function(instance, locale, conf) {
         areaMessage.find('#description').text(localization.chooseAreaType);
         areaMessage.find('#area-info-tool').unbind('click');
         areaMessage.find('#area-info-tool').bind('click', function(){        	
-        	me._displayInfoTip();     	
+        	me._displayInfoTip(me.AREA_TOOLTIP);     	
         });
         
         content.addClass('bma-area-main-div');
@@ -277,16 +280,26 @@ function(instance, locale, conf) {
     setContentState: function(state) {
     },
     
-    _displayInfoTip: function () {      
-        var infoIconLocalization = this.instance.getLocalization()["flyout"].infoIcon,
-        	title = infoIconLocalization.title,
-        	desc = infoIconLocalization.description,
-        	dialog = Oskari.clazz.create(
-                'Oskari.userinterface.component.Popup'
-            ),
-            okBtn = Oskari.clazz.create(
-                'Oskari.userinterface.component.Button'
-            );            
+    _displayInfoTip: function (selectionType) {
+    	var infoIconLocalization,
+    		title,
+			desc,
+			dialog = Oskari.clazz.create(
+	            'Oskari.userinterface.component.Popup'
+	        ),
+	        okBtn = Oskari.clazz.create(
+	            'Oskari.userinterface.component.Button'
+	        );
+	
+		if (selectionType === this.AREA_TOOLTIP) {
+			infoIconLocalization = this.instance.getLocalization()["flyout"].infoIcon;
+        	title = infoIconLocalization.title;
+        	desc = infoIconLocalization.description;
+		} else if (selectionType === this.NUTRIENT_TOOLTIP) {
+	    	title = this.instance.getLocalization()["flyout"].showNutrients;
+	    	desc = this.instance.getLocalization()["flyout"].showNutrientTooltip;
+		}
+		
         okBtn.addClass('default oskari-button');
         okBtn.setTitle('Ok');
         okBtn.setHandler(function () {
@@ -327,6 +340,11 @@ function(instance, locale, conf) {
 	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
 	    	me._hideShowNutrientValuesInTable(this);     	
 	    });
+	    
+	    showNutrientOption.find('#circle-nutrient-tooltip').unbind('click');
+	    showNutrientOption.find('#circle-nutrient-tooltip').bind('click', function(){        	
+        	me._displayInfoTip(me.NUTRIENT_TOOLTIP);     	
+        });
 	    
 	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
     },

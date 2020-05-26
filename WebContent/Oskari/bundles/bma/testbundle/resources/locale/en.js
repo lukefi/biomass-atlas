@@ -14,6 +14,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Show nutrients",
     		"yes": "Yes",
     		"no": "No",
+    		"showNutrientTooltip": "The nutrient concentrations are based on the amount of biomass and on the coefficients from the literature and expert estimates. The coefficients are constant throughout Finland and averaged over the properties of several different biomasses. <br><br>Nutrition tables will be published later and a reference will be added here when available.",
     		"infoIcon": {
     			"title": "Region's biomass summary",
     			"description": "Calculation is done based on drawing area and selected map layers. " +
