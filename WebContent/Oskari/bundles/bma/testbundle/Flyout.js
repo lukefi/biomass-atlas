@@ -211,7 +211,6 @@ function(instance, locale, conf) {
 				finalResult += "<table class='biomass-result-table'><tr><th>"+ localization.biomassType + "</th>" +
 						"<th colspan='2'>" + localization.amount + "</th>"+
 						"<th class='nutrient-value'>N (kg)</th>" +
-						"<th class='nutrient-value'>N-soluble (kg)</th>" +
 						"<th class='nutrient-value'>P (kg)</th>" + "</tr>";
 				
 				var displayOrders = results.displayOrders;
@@ -223,7 +222,6 @@ function(instance, locale, conf) {
 					    			+ formatBiomassValue(results.values[key].valueAndUnit.value)
 					    			+ "&nbsp;</td><td class='biomass-unit'>" + results.values[key].valueAndUnit.unit + "</td>"
 					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.n)) + "</td>"
-					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.n_soluble == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.n_soluble)) + "</td>"
 					    			+ "<td class='nutrient-value'>" + ((results.values[key].nutrientResult.p == null) ? ' - ' : formatBiomassValue(results.values[key].nutrientResult.p)) + "</td>"
 					    			+ "</tr>";
 					    		delete results.values[key];
