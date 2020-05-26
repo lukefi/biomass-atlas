@@ -18,6 +18,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Visa näringsämnen",
     		"yes": "Ja",
     		"no": "Nej",
+    		"showNutrientTooltip": "Näringskoncentrationerna baseras på mängden av biomassa och på koefficienterna från litteraturen och expertberäkningar. Koefficienterna är konstanta i hela Finland och är i genomsnitt över egenskaperna hos flera olika biomassor. <br><br>Näringstabeller kommer att publiceras senare och en referens hittas här när den är tillgänglig.",
     		"roadExtraInformation": "Km sökområde inom en radie eller längs ett vägnät. Om sökområdet bildas längs ett vägnät, är det alltid mindre än avståndet fågelvägen. Här beaktas avstånden mer realistiskt och exempelvis vägfria områden (t. ex. vattensystem) beaktas i definitionen av området.",
     		"selectionType": {
     			"circle": "Avstånd som en cirkelradie (fågelvägen)",

@@ -29,6 +29,8 @@ function(instance, locale, conf) {
 	this.SELECTION_CIRCLE = "circle";
 	this.SELECTION_ROAD = "road";
 	
+	this.NUTRIENT_TOOLTIP = "nutrient";
+	
 	var flyoutLocalization = this.instance.getLocalization()["flyout"];
 	this.templateCircleMessage = jQuery('<div id="circle-message">' + flyoutLocalization.message + 
 			'<div class="horizontal-line">.</div></div>');
@@ -47,12 +49,12 @@ function(instance, locale, conf) {
 	this.templateCircleBackCancelTool = jQuery('<div id="circle-back-tool" style="display:none;"><button class="oskari-button" id="circle-back"></button>' +
 			'<span id="circle-cancel-tool"><button class="oskari-button" id="circle-cancel"></button></span> </div>');
 	this.templateShowNutrientOption = jQuery('<div class="show-nutrient-option">'
-			+' <label id="show-nutrient-text">Näytä ravinteet : </label>'
+			+' <label id="show-nutrient-text">' + flyoutLocalization.showNutrients + ' : </label>'
 			+ '<label class="switch switch-left-right">'
 			+ '<input class="switch-input" type="checkbox" id="show-nutrient-checkbox"/>'
 			+ '<span class="switch-label"></span>' 
 			+ '<span class="switch-handle"></span></label>'
-			+ '</div>');
+			+ '<div class="icon-info" id="circle-nutrient-tooltip" style="display:inline-block;"></div></div> ');
 }, {	
 	/**
 	 * @property template HTML templates for the User Interface
@@ -153,7 +155,7 @@ function(instance, locale, conf) {
         radiusType.find('#road-type, #circle-type').bind('change', function(){        	
         	me._updateCalculateButtonVisibility(me);  
         });
-	
+        
         content.addClass('bma-circle-main-div');
         content.append(circleMessage);
         content.append(circleResult);
@@ -461,16 +463,26 @@ function(instance, locale, conf) {
     	me._updateCalculateButtonVisibility(me);
     },
     
-    _displayInfoTip: function (selectionType) {  
-        var selectionTypeIconLocalization = this.instance.getLocalization()["flyout"].selectionTypeInfo,
-        	title = selectionTypeIconLocalization.title[selectionType],
-        	desc = selectionTypeIconLocalization.description[selectionType],
-        	dialog = Oskari.clazz.create(
+    _displayInfoTip: function (selectionType) {
+    	var selectionTypeIconLocalization,
+    		title,
+    		desc,
+    		dialog = Oskari.clazz.create(
                 'Oskari.userinterface.component.Popup'
             ),
             okBtn = Oskari.clazz.create(
                 'Oskari.userinterface.component.Button'
-            );            
+            );
+    	
+    	if (selectionType === this.SELECTION_CIRCLE || selectionType === this.SELECTION_ROAD) {
+    		selectionTypeIconLocalization = this.instance.getLocalization()["flyout"].selectionTypeInfo;
+        	title = selectionTypeIconLocalization.title[selectionType];
+        	desc = selectionTypeIconLocalization.description[selectionType];
+    	} else if (selectionType === this.NUTRIENT_TOOLTIP) {
+        	title = this.instance.getLocalization()["flyout"].showNutrients;
+        	desc = this.instance.getLocalization()["flyout"].showNutrientTooltip;
+    	}
+        	           
         okBtn.addClass('default area-button');
         okBtn.setTitle('Ok');
         okBtn.setHandler(function () {
@@ -508,10 +520,15 @@ function(instance, locale, conf) {
     	showNutrientOption.find('.switch-label').attr('data-on', localization.yes);
     	showNutrientOption.find('.switch-label').attr('data-off', localization.no);
 		showNutrientOption.find('#show-nutrient-checkbox').unbind('change');
-	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function(){        	
+	    showNutrientOption.find('#show-nutrient-checkbox').bind('change', function() {        	
 	    	me._hideShowNutrientValuesInTable(this);     	
 	    });
 	    
+	    showNutrientOption.find('#circle-nutrient-tooltip').unbind('click');
+	    showNutrientOption.find('#circle-nutrient-tooltip').bind('click', function(){        	
+        	me._displayInfoTip(me.NUTRIENT_TOOLTIP);     	
+        });
+       
 	    jQuery(me.container).find("#show-nutrient").append(showNutrientOption);
     },
     

@@ -18,6 +18,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Show nutrients",
     		"yes": "Yes",
     		"no": "No",
+    		"showNutrientTooltip": "The nutrient concentrations are based on the amount of biomass and on the coefficients from the literature and expert estimates. The coefficients are constant throughout Finland and averaged over the properties of several different biomasses. <br><br>Nutrition tables will be published later and a reference will be added here when available.",
     		"roadExtraInformation": "Km search area within a radius or along a road network. In case the search area is formed along a road network, it is always smaller than the distance as the crow flies. Here the distances are more realistically taken into account and e.g. road free areas (e.g. water systems) are taken into account in the definition of the area.",
     		"selectionType": {
     			"circle": "Distance as a circle radius (as the crow flies)",

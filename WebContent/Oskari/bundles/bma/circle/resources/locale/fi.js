@@ -18,6 +18,7 @@ Oskari.registerLocalization({
     		"showNutrients": "Näytä ravinteet",
     		"yes": "Kyllä",
     		"no": "Ei",
+    		"showNutrientTooltip": "Ravinnepitoisuudet perustuvat biomassan määrään ja kirjallisuudesta ja asiantuntija-arvioina valittuihin kertoimiin, jotka ovat vakioita kautta Suomen ja keskiarvoja useiden eri massojen ominaisuuksista. <br><br>Ravinnetaulukot julkaistaan myöhemmin, ja viite niihin lisätään tänne, kun se on saatavilla.",
     		"roadExtraInformation": "Km hakualue säteenä tai tieverkostoa pitkin. Mikäli hakualue muodostetaan tieverkostoa pitkin on se aina pienempi kuin linnuntie-etäisyys. Tällöin etäisyydet huomioidaan realistisemmin ja esimerkiksi tiettömät alueet (vesistöt) huomioidaan alueen määrittelyssä.",
     		"selectionType": {
     			"circle": "Etäisyys ympyrän säteenä (linnuntie-etäisyys)",
