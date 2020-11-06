@@ -326,10 +326,15 @@ h4.biomass_layer_title {
 			<a href="http://www.biomassa-atlas.fi" target="_blank"><spring:message
 					code="bma.webpageLink" /></a>
 		</div>
+		<div id="accessibilityLink" class="customLink">
+			<a href="<spring:message code='bma.accessibilityLink.url' />" target="_blank">
+				<spring:message	code="bma.accessibilityLink" />
+			</a>
+		</div>
 		<div id="luke_logo">
 			<a href="https://www.luke.fi" target="_blank"> <img alt="luke_logo"
 				src="${pageContext.request.contextPath}/Oskari${path}/images/luke_logo_${language}.png"></a>
-		</div>
+		</div>		
 	</nav>
 
 	<div id="contentMap" class="oskariui container-fluid">
@@ -675,20 +680,21 @@ $('#biomassWebPage, #biomass_logo').click(function () {
 		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/');
 	}
 });
+
 </script>
 
-	<!-- Google Analytics -->
-	<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', '<spring:eval expression="@environment.getProperty('googleAnalyticsWebPropertyId')" />', 'auto');
-ga('send', 'pageview');
+<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	ga('create', '<spring:eval expression="@environment.getProperty('googleAnalyticsWebPropertyId')" />', 'auto');
+	ga('send', 'pageview');
 </script>
-	<!-- End Google Analytics -->
+<!-- End Google Analytics -->
 
-	<!-- ############# /Javascript ################# -->
+<!-- ############# /Javascript ################# -->
 </body>
 </html>
