@@ -215,6 +215,11 @@
 	.openVegetablesToggle > th, .openFruitsToggle > th {
 		padding-left: 50px !important;
 	}
+	td.sub-title {
+		font-size: 14px;
+		color: #00b5e2;
+		padding-bottom: 10px !important;
+	}
 </style>
 
 <script type="text/javascript">

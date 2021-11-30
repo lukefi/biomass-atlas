@@ -9,7 +9,10 @@
 
 <table class="table select-column standard-width">
 	<thead class="thead-default">
-		  <tr><td></td><th></th></tr>
+		<tr>
+		  	<td class="sub-title"><spring:message code="bma.field_biomasses.main_crops"/></td>
+		  	<th></th>
+		</tr>
 	</thead>
 	<tbody>
 		<tr>
@@ -103,7 +106,18 @@
 		<tr>
 			<th scope="row"><spring:message code="bma.field_biomasses.herbage_seed"/></th>
 			<td><input type="checkbox" name="field" value='1299'></td>
+		</tr>		
+	</tbody>
+</table>
+
+<table class="table select-column standard-width">
+	<thead class="thead-default">
+		<tr>
+			<td class="sub-title"><spring:message code="bma.field_biomasses.berries_and_garden_plants"/></td>
+		  	<th></th>
 		</tr>
+	</thead>
+	<tbody>	
 		<tr>
 			<th scope="row"><spring:message code="bma.field_biomasses.garden_pea"/></th>
 			<td><input type="checkbox" name="field" value='1304'></td>
