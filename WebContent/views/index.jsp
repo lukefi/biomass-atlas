@@ -593,7 +593,20 @@ $(document).bind('afterReady', function() {
 		sb.register(removeLayerModule);
 		sb.register(addLayerModule);		
 		// Hide import icon
-		$('#oskari_toolbar_myplaces_import').hide();		
+		$('#oskari_toolbar_myplaces_import').hide();
+
+		/* Update biomass webpage url based on language selected */
+		var updateBiomassPageUrlBasedOnLanguage = function() {			
+			let anchorLink = $('#biomassWebPage, #biomass_logo').find('a');
+			if (language == 'en') {
+				anchorLink.attr('href', 'https://projects.luke.fi/biomassa-atlas/en/');
+			} else if (language == 'sv') {
+				anchorLink.attr('href', 'https://projects.luke.fi/biomassa-atlas/sv/');
+			} else {
+				anchorLink.attr('href', 'https://projects.luke.fi/biomassa-atlas/');
+			}
+		}();
+				
 	})(Oskari.getSandbox());	
 	
 	if ($('#oskari_toolbar_basictools_bmacalculator').length) {
@@ -667,18 +680,6 @@ if (loginStatus == 'true') {
 $('#forgotPassword').click(function () {		
 	var host = window.location.protocol + "//" + window.location.host + "/biomass/user/forgotPassword"; 
 	window.location.replace(host);
-});
-
-
-/* Biomass webpage navigation based on language selected */
-$('#biomassWebPage, #biomass_logo').click(function () {
-	if (language == 'en') {
-		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/en/');
-	} else if (language == 'sv') {
-		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/sv/');
-	} else {
-		$(this).find('a').attr('href', 'https://www.luke.fi/biomassa-atlas/');
-	}
 });
 
 </script>
