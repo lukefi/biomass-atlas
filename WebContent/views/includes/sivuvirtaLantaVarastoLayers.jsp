@@ -48,7 +48,7 @@
 		</tr>
 		<tr class="select-row">
 			<th scope="row"><spring:message code="bma.manure.broiler_turkey_and_other_poultry"/></th>
-			<td><input type="checkbox" value='1223'></td>
+			<td></td>
 			<td><input type="checkbox" value='1237'></td>
 			<td></td>
 		</tr>
