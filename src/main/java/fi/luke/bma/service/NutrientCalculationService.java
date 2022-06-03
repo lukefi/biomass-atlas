@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
 
@@ -27,14 +27,11 @@ public class NutrientCalculationService {
     private final String P_TS = "p_ts";
     
     private final String P_FM = "p_g_kgfm";
-
-    @PersistenceContext
+    
+   
     private EntityManager entityManager;
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
+    @PersistenceContext
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -67,10 +64,10 @@ public class NutrientCalculationService {
     }
 
     @SuppressWarnings("unchecked")
-    public List<NutrientConstant> getAll() {
-        String sql = "SELECT n.* FROM nutrient_constant n";
-        Query query = entityManager.createNativeQuery(sql, NutrientConstant.class);
-        return (List<NutrientConstant>) query.getResultList();
+    public List<NutrientConstant> getAll() {  	
+    	String jpql = "SELECT n FROM " + NutrientConstant.class.getName() + " n";
+        TypedQuery<NutrientConstant> query = entityManager.createQuery(jpql, NutrientConstant.class);        
+        return query.getResultList();
     }
 
     private Double calculateNutrientForTotalSolid(Double totalSolidPercent, Double coefficient_TS,
