@@ -269,7 +269,7 @@ function(instance, locale, conf) {
 	_showResult: function(result){
 		jQuery("#area-message").hide();
 		jQuery("#area-data").html(result);
-		this._showNutrientOptionDiv();
+		//this._showNutrientOptionDiv();
 	},
 	
 	getContentState: function() {

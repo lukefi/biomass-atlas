@@ -380,7 +380,7 @@ function(instance, locale, conf) {
 		jQuery("#circle-calclulate-tool").hide();
 		jQuery("#circle-result").html(result).show();
 		jQuery("#circle-back-tool").show();
-		this._showNutrientOptionDiv();
+		//this._showNutrientOptionDiv();
 	},
 	
 	_addMarker: function(sandbox, x, y) {

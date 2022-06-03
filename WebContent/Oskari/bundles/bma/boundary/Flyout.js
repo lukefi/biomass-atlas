@@ -677,7 +677,7 @@ function(instance, locale, conf) {
 		jQuery("#boundary-select-all").hide();
 		jQuery("#unit-conversion").hide();
 		jQuery("#boundary-data").html(result);
-		this._showNutrientOptionDiv();
+		//this._showNutrientOptionDiv();
 	},
 	
 	_getSelectedBoundaryType: function() {
