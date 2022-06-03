@@ -229,36 +229,6 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.4</version>
-				<configuration>
-					<reportPlugins>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>3.0.3</version>
-							<configuration>
-								<excludeFilterFile>FindbugsExcludeFilter.xml</excludeFilterFile>
-								<effort>Max</effort>
-								<threshold>Low</threshold>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.10.1</version>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.7</version>
-						</plugin>
-					</reportPlugins>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.2</version>
 				<configuration>
@@ -305,5 +275,30 @@
 
 		</plugins>
 	</build>
-
+	
+	<reporting>
+		<plugins>
+      		<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.3</version>
+				<configuration>
+					<excludeFilterFile>FindbugsExcludeFilter.xml</excludeFilterFile>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+				</configuration>
+			</plugin>
+        	<plugin>
+          		<groupId>org.apache.maven.plugins</groupId>
+          		<artifactId>maven-javadoc-plugin</artifactId>
+          		<version>2.10.4</version>
+        	</plugin>
+        	<plugin>
+          		<groupId>org.apache.maven.plugins</groupId>
+          		<artifactId>maven-project-info-reports-plugin</artifactId>
+          		<version>2.9</version>
+        	</plugin>
+	    </plugins>
+  	</reporting>
+  	
 </project>
