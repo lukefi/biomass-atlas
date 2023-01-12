@@ -27,4 +27,4 @@ googleAnalyticsWebPropertyId=
 
 The code is licensed under the MIT license.
 
-<br>&copy; 2023 Natural Resource Institute Finland
+<br>&copy; 2023 Natural Resources Institute Finland
